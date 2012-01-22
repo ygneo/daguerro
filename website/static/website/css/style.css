@@ -1,0 +1,174 @@
+* {margin:0;padding:0;}
+
+html,body {height:100%; font-family: Verdana, Arial; color: #111; }
+p { line-height:1.5; margin:0 0 1em; }
+img { border:0; }
+a { color: #75b410; } 
+fieldset { margin: 0; padding:0; border: 0; }
+em { font-style: normal; font-weight: bold; }
+
+.push { clear:both; height:0; width:0; line-height:0;}
+
+img.mini { width: 50px; height: 40px; } 
+
+div#container {
+	position:relative; /* needed for footer positioning*/
+	width:100%;
+	background:white;
+	height:auto !important; /* real browsers */
+	height:100%; /* IE6: treaded as min-height*/
+	min-height:100%; /* real browsers */
+    background-color: #CCC;
+}
+
+#header {height: 109px; padding-top:1ex; background-color:#222; border-bottom: 2px #58880c solid;width:100%; margin-bottom:2ex;}
+        #header #header-int { width:88%; margin: 0 auto;}
+        #header h1 {font-size:200%;font-weight:normal; font-family: Helvetica; }
+        #header h1 a {text-decoration: none; }
+        #header h2 {clear: both; font-size: 100%;font-weight:normal; margin:0 0 0.5em;}
+        #header a {font-decoration:none;}
+        #header a:hover {font-decoration:underline;}
+#header #push {display: block; clear: left; margin: -0.66em 0;}
+        #header #site_info { float: left; background: url('../img/logo.jpg') no-repeat top left; color: black; height:109px;margin-top:-15px; }
+        #header #site_info h1 a {color:white; font-weight: bold;}
+        #header #site_info span {color:#75b410;font-weight:bold;}
+        #header #site_info h1 {margin-top:15px;margin-left: 90px;}
+        #header #site_info h2 {margin-left: 90px; color: white;}
+        #header #site_info h3 {margin-left: 90px; font-size:60%; color: white; font-weight:normal;}
+        #header #side { float: right; }
+        #header #side #languages {font-size:70%; text-align: right; color: white;}
+        #header #side #languages span {font-weight:bold;}
+        #header #side #searcher { margin-top: 3ex;font-size: 90%; text-align: right; }        
+        #header #searcher #search { float:right;}
+        #header #searcher #search label { display: block; padding-bottom: .5ex;}
+        #header #searcher #search input[type=text] { width:15em; color: grey; border: 0; border: 2px solid white;}
+
+div#content {
+        width: 88%;    
+        clear: both;
+        margin: 0 auto;
+        padding-bottom: 2ex;
+}
+
+#gallery {clear:both; width: 930px; margin: 0 auto; height: 100%; }
+#gallery.sub { margin-left: 20%;}
+#gallery ul {clear:left;list-style:none; margin-bottom: 40px; float:left; width:100%;}
+#gallery ul.last { margin-bottom:0px}
+#gallery li {float:left; text-align:center; margin-right: 40px; padding-bottom: 16px; background: #222222; width: 270px; margin-bottom:40px}
+#gallery li.last {float:left; text-align:center; margin-right: 0px;}
+#gallery li:hover {background-color:#58880c; filter:shadow(color:gray);}
+#gallery img {display:block;margin-bottom: 1ex;  margin: 0 auto; margin-bottom: 1ex;} 
+#gallery a { font-size: 130%; color: white; text-decoration: none; }
+#gallery a:hover {margin-top: 1ex; color: white;  text-decoration: underline;}
+
+#category { margin-bottom: 2ex; float: left; width: 100%; background: #222222; }
+#category #imgCat img { float: left; padding:0; margin: 0; width: 108px; height: 72px; }
+#category #title { float:left; color: white; padding-left: 2ex; height: 72px; }  
+#category h2 { padding: 0; font-size: 130%; float: left; }      
+#category h3 { font-weight: normal; font-size: 90%; clear:left;}      
+
+#tools { float: right; margin-top: 8px; margin-right: 8px; text-align: right; }
+#tools form { float: right; }
+#tools fieldset { float: left;}
+#tools fieldset#ico_search { margin-top:2px; height: 20px; width: 20px; }
+#tools form input[type=image] { width: 16px; height: 16px; background: #CCC; padding: 2px; float:left;}
+#tools form input[type=image]:hover { background: #58880c;}
+#tools form input[type=text] { height: 16px; color: grey; border: 2px solid white; float:left;}
+
+#tools #shop { clear: both; float: right; margin-top: 8px; color: white; font-size: 80%; display: none; }
+#tools #shop_info { float: left; text-align: right;  font-size: 90%; margin-right: 1ex; }
+#tools #shop.ready { background: #CCC; color: black;}
+#tools #shop.ready #shop_info { float: left; text-align: right;  font-size: 90%; margin-right: 1ex; }
+#tools img#shop_ico { float: right; height: 16px; width: 16px; }
+#tools img#shop_ico:hover { cursor: pointer; }
+
+#subgallery {clear:both; margin: 0 auto; width: 77%; height: 100%; float: left;}
+#subgallery.sub { margin-left: 20%;}
+#subgallery ul {clear:left;list-style:none; margin-bottom: 20px; float:left; width:100%;}
+#subgallery li {float:left; text-align:center; margin-right: 20px; padding-bottom: 8px; margin-bottom:20px; background: #222222; width: 250px;}
+#subgallery li:hover {background-color:#58880c; }
+#subgallery li.first {clear:both;}
+#subgallery img {display:block;margin-bottom: 1ex; width: 250px; height: 160px;  margin: 0 auto;  margin-bottom: 1ex;} 
+#subgallery a { font-size: 100%; color: white; text-decoration: none; }
+#subgallery a:hover {margin-top: 1ex; color: white;  text-decoration: underline;}
+
+#photos {clear:both; margin: 0 auto; width: 77%; height: 100%; float: left;}
+#photos ul { margin-bottom: 10px; clear: both; list-style:none; margin-bottom: 10px; width:100%; float: left; }
+#photos li { float: left;  width: 180px; font-size: 90%; color: white; margin-right: 4ex; margin-bottom: 10px; background-color: transparent; color: #222; text-align:center; padding-bottom: 7ex; }
+#photos p { margin: 0; padding: 0;  height: 3ex; }
+#photos em { display: block; font-weight: normal; font-style: italic; }
+#photos li div.photo { height: 162px; width: 180px; display:table-cell; vertical-align: middle;   background-color: #BBB; border-bottom: 1ex;}
+#photos li div.photo:hover { background-color: #222; }
+#photos li p a { color: #222;font-weight: bold; text-decoration: none; padding: 0; background: transparent; width: 100%;}
+#photos li p a:hover { color: #222;font-weight: bold; text-decoration: underline; background: transparent;  }
+#photos form.photo_tools { float: right;  height: 24px;  width: 24px;}
+#photos form.photo_tools.active { background: #CCC; position: relative; top: -20px;}
+#photos form.photo_tools fieldset { margin: 0 auto;  }
+
+
+#menu { width: 22%; float: right;}
+#menu ul { list-style: none; }
+#menu ul li { clear: both; float: right; margin-bottom: .5ex;}
+#menu li div.title_cat:hover {background-color:#58880c; }
+#menu ul li img.mini { float: left; }
+#menu ul li div.mini img { height: 40px; width: 50px; }
+#menu ul li.current div.mini img { opacity:0.4;filter:alpha(opacity=40); }
+#menu ul li div.title_cat { float: left;  width: 10em; height: 32px; padding-top: 8px; padding-left: 1ex; font-size: 90%; background: #222; -moz-border-radius: 0 10px 10px 0; -webkit-border-radius:0 10px 10px 0;}
+#menu ul li h2 { font-size: 80%; margin-top: 0px;}
+#menu ul li h2 a { color: white; text-decoration:none; }
+#menu ul li.current div.title_cat {background:#555; }
+#menu ul li.current div.title_cat:hover {background:#555; }
+#menu ul li.current div.mini img { opacity:0.4;filter:alpha(opacity=40); }
+#menu ul li.current div.title_cat a, #menu ul li.current div.title_cat h2 { color: grey; }
+
+div#breadcrumbs { background:#222; font-size: 75%; margin-top: .5ex; margin-bottom: .5ex;}
+
+div#photo {
+   color: white; margin-bottom: 3ex; float: left; width: 100%; background: #222222; padding-bottom: 2ex; padding-left: 1.5ex;
+   -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px;
+}
+div#photo div#photo_title  { padding-top: .5ex; float: left; margin-bottom: 2ex;}
+div#photo div#photo_title h3 { font-size: 80%; font-weight: normal; }
+div#photo div#photo_title h2 span { font-weight: normal; font-style:italic;}
+div#photo div#photo_area { clear: both; float: left; width: 100%; height: 100%; text-align:center;}
+div#photo div#photo_area div#picture { width: 50%; margin: 0 auto; }
+div#photo div#photo_area div#prev { float: left; width: 25%; }
+div#photo div#photo_area div#prev img { position:relative; margin-top: 50%;  }
+div#photo div#photo_area div#next { float: left; width: 25%;  }
+div#photo div#photo_area div#next img { position:relative; margin-top: 50%;  }
+div#photo div#photo_info  { clear:both;  margin-top: 2.5ex; background-color: #111; float: left; width: 97%; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px; color: white; padding: 1ex; font-size:90%;}
+div#photo div#photo_info em  {  font-style: italic; font-weight: normal;}
+div#photo div#photo_info p  {  margin: 0 }
+div#photo div#photo_info img  {  float:left; margin-left: 1ex; margin-right: 1ex; }
+div#photo div#description  { float: left; margin-right: 4ex;}
+div#photo hr { clear: both; border: 0; height: 2ex; }
+div#photo div.tab  { float: left; width: 12em;   margin-left: 1ex; }
+div#photo div.tab ul  { list-style: none; }
+div#photo div.last-tab  { float:right; }
+
+#shopping-cart { }
+    #shopping-cart #head h3 { font-size: normal; display: block; float: left; }
+    #shopping-cart #head a { float: right; background: #222; color: white; padding-bottom: .5ex; padding-left: 1ex; padding-right: 1ex; font-size: small; text-decoration: none; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+    #shopping-cart table {  clear: both; margin-top: 1ex; font-size: small; border-collapse: collapse; margin-bottom: 1ex; width: 100%; }
+    #shopping-cart table tr {  border-bottom: 1px solid #CCC; }
+    #shopping-cart table td {  padding: .5ex; }
+    #shopping-cart img { width: 64px; height: 48px; }
+    #shopping-cart fieldset#request-form { display: none; clear: both;  }
+    #shopping-cart input[type=text], #shopping-cart textarea { color: grey; font-size: small; width: 99%; float: right; margin-bottom: .5ex; font-family: Verdana, Arial;}
+    #shopping-cart input[type=submit], #shopping-cart input[type=button] { color: black; float: right; }
+    
+
+div#footer {
+	position:absolute;
+	bottom: 0; /* stick to bottom */
+        font-size:60%;
+        color: #EEFFFF;
+        padding-top: 1.5ex;
+        padding-bottom: 1.5ex;
+        width: 100%;
+        background-color: #222;                
+}
+        #footer a {color: #EEFFFF;  font-decoration:none;}
+        #footer a:hover {font-decoration:underline;}
+        #footer #links {width: 88%; margin: 0 auto; text-align: center;}
+        #footer #daguerro {display:block;float:right;}

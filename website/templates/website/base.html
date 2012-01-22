@@ -1,0 +1,83 @@
+{% load l10n %}
+{% load flatpages website %}
+{% get_flatpages as flatpages %}
+{% get_flatpages "/josep" as contact_flatpages %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}website/css/style.css"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}website/js/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}website/js/jquery.corner.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}website/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}website/js/json2.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}website/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}website/js/cart.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}website/js/efectos.js"></script>
+    {% block extraJS %}
+    {% endblock extraJS %}
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div id="header-int">
+          <div id="site_info">
+            <h1><a href="{% url website-gallery %}">barres<span>fotonatura</span></a></h1>
+            <h2>Archivo Digital especializado en Naturaleza y Geografía.</h2>
+            <h3>
+              <strong>{{ photo_count|numberformat }}</strong> fotografías de
+              {% for gallery in galleries %}
+              <a href="{% url website-gallery gallery.title_slug %}" title="{{ gallery.title }}">{{ gallery.title }}</a>{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            </h3>  
+          </div>
+          <div id="side">
+{% comment %}
+            Left here for future development 
+          <div id="languages">
+              <a href="#">Catalá</a> · <span>Castellano</span> · <a href="#">English</a>
+            </div>-->
+{% endcomment %}
+            <div id="searcher">
+              <form id="search" method="GET" action="{% url website-search-photos %}">
+                <input type="text" id="query" name="query" value="{{ query|default:'Buscar fotografías' }}" data:default="Buscar fotografías"/>
+                <input type="submit" value="Buscar"/>
+              </form>
+            </div>
+            <div id="tools">
+              <div id="shop">
+                <div id="shop_info"><em id="shopping-cart-num-items">0</em> fotografía/s en la <a href="#" id="open-shopping-cart">cesta</a></div>
+                <img id="shop_ico" src="{{ STATIC_URL }}website/img/assets/shop_cart.png" alt="Ver cesta" title="Arrastra aquí imágenes para solicitarlas"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="content">
+        {%block content %}{% endblock %}
+      </div>
+
+      <div id="footer">
+        <div id="links">(c) Josep María Barres 2009 |
+          {% for page in flatpages %}
+          <a href="{{ page.url }}">{{ page.title }}</a> {% if not forloop.last  %} | {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try{
+    var pageTracker = _gat._getTracker("UA-26297451-1");
+    pageTracker._trackPageview();
+    } catch(err) {}
+    </script>
+  </body>
+</html>

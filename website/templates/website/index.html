@@ -1,0 +1,15 @@
+{% extends "website/base.html" %}
+
+{% block title %}Barres foto natura {% endblock %}
+
+{% block content %}
+          <div id="gallery">
+            <ul>
+              {% for gallery in galleries %}
+              <li class="{% if forloop.last %}last{% endif %}"><a href="{% url website-gallery gallery.slugs_path %}"><img src="{{ gallery.photo.get_home_url }}" alt="{{ gallery.title }}" title="{{ gallery.title }}"/></a> <a href="{% url website-gallery gallery.slugs_path %}">{{ gallery.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <div class="push"></div>
+          </div>
+          <div class="push"></div>
+{% endblock %}

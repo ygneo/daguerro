@@ -1,0 +1,2 @@
+def redirect_to_gallery(slugs=None):
+    return HttpResponseRedirect(reverse('daguerro-gallery', kwargs={'slugs':slugs} if slugs else {}))

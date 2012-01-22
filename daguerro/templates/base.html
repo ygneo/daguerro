@@ -1,0 +1,28 @@
+{% load i18n %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <link rel="stylesheet" href="{{MEDIA_URL}}daguerro/css/styles.css" />
+    <script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/jquery-ui-1.8.6.custom.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/daguerro.js"></script>
+    {% block extra_js %}{% endblock %} 
+    {% block extra_style %}{% endblock %} 
+    {% block extra_media %}{% endblock %} 
+    <title>{% block title %}{% trans "Administración de" %} {{ current_site.name }} | {%block section %}{% endblock %} | Daguero CMS {% endblock %}</title>
+  </head>
+  <body>
+    {% block header %}
+    {% endblock header %}
+    <div id="content">
+      <div id="inner-content">
+        {% if current_action_title %}
+         <h1 id="{{ current_action }}">{{ current_action_title }}</h1>
+        {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

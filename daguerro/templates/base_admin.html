@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load tabs %}
+{% load i18n %}
+
+{% block extra_style %}
+    <link rel="stylesheet" href="{{MEDIA_URL}}daguerro/css/admin_styles.css" />
+{% endblock %}
+
+{% block header %}
+<div id="header">
+      <div id="branding">
+        <h2>{% trans "Daguerro CMS" %}</h2>
+        <h1>
+        {% trans "Administración del sitio" %} <a target="_new" href="{{ current_site }}">{{ current_site.name }}</a>
+        </h1>
+      </div>
+      <div id="user">
+        <a id="user_name" href="{% url daguerro-user user.id %}">{{ user.first_name }} {{ user.last_name }}</a>
+        <a id="logout" href="/daguerro/logout/">{% trans "Salir" %}</a>
+      </div>
+    </div>
+    {% block nav %}
+    <div id="tabs">
+      <ul>
+        {% if perms.photologue %}
+        <li class="{% ifactivetab "topnav" "gallery" %}active{% else %}inactive{% endifactivetab %}"><a href="{% url daguerro-gallery %}">{%trans "Galería" %}</a></li>
+        {% endif %}
+        {% if perms.flatpages %}
+        <li class="{% ifactivetab "topnav" "pages" %}active{% else %}inactive{% endifactivetab %}"><a href="{% url daguerro-pages-index %}">{%trans "Páginas" %}</a></li>
+        {% endif  %}
+        {% if perms.auth %}
+        <li class="{% ifactivetab "topnav" "users" %}active{% else %}inactive{% endifactivetab %}"><a href="{% url daguerro-users-index %}">{%trans "Usuarios" %}</a></li>
+        {% endif %}
+<!--        <li class="{% ifactivetab "topnav" "settings" %}active{% else %}inactive{% endifactivetab %}"><a href="">Configuración</a></li>-->
+      </ul>
+    </div>
+    {% endblock %}
+    <div id="breadcrumbs">
+      {% for breadcrumb in request.breadcrumbs %}
+      {% if not forloop.last %}
+      <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a> ›
+      {% else %}
+      {{ breadcrumb.name }}
+      {% endif %}
+      {% endfor %}
+    </div>
+{% endblock %}

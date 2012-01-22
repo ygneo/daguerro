@@ -1,0 +1,53 @@
+{% extends "website/base.html" %}
+
+{% block title %}Barres foto natura | {{ gallery.title }}{% endblock %}
+
+{% block content %}
+
+{% include "website/subheader.html" %}
+
+{% if gallery.gallery_set.public %}
+
+<div id="subgallery">
+  <ul>
+    {% for subgal in gallery.gallery_set.public %}
+    <li {% if forloop.counter0|divisibleby:"3" %}class="first"{% endif %}>
+      <a href="{% url website-gallery subgal.slugs_path %}"><img src="{{ subgal.photo.get_gallery_url }}" alt="{{ subgal.title }}" title="{{ subgal.title }}"/></a><a href="{% url website-gallery subgal.slugs_path %}">{{ subgal.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+{% if gallery.photos.public %}
+<div id="photos">
+  <ul>
+    {% for photo in gallery.photos.public %}
+    <li>
+      <div class="photo">
+        <a href="{% url website-photo gallery.slugs_path, photo.title_slug %}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>      
+      </div>
+      <p>
+        <a href="foto.php">{{ photo.title }}</a>
+        <em>{% if photo.alternative_title %}{{ photo.alternative_title }}{% endif %}</em>
+      </p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+<div id="menu">
+  <ul>
+    {% for brother_gallery in brother_galleries %}
+    <li class="{% ifequal brother_gallery.id gallery.id %} current {% endifequal %}">
+      <a href="{% url website-gallery brother_gallery.slugs_path %}" title="{{ brother_gallery.title }}">
+      <img class="mini" src="{{ brother_gallery.photo.get_gallery_title_url }}" alt="{{ brother_gallery.title }}" title="{{ brother_gallery.title }}"/></a>
+      <div class="title_cat">
+        <h2><a href="{% url website-gallery brother_gallery.slugs_path %}" title="{{ brother_gallery.title }}">{{ brother_gallery.title }}</a></h2>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="push"></div>
+{% endblock %}
+

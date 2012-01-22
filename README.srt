@@ -1,0 +1,10 @@
+Requirements
+------------
+
+ Use pip install -r pip_requirements.txt to install required packages (included django).
+
+Notes
+-----
+
+I had to patch django-form-utils to decode correctly utf-8 strings when rendering image widget. I should consider report this in http://bitbucket.org/carljm/django-form-utils/overview
+

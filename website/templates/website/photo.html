@@ -1,0 +1,81 @@
+{% extends "website/base.html" %}
+
+{% load l10n %}
+
+{% block title %}Barres foto natura | Botánica{% endblock %}
+
+{% block content %}
+  <div id="photo">
+    <div id="photo_title">
+          <div id="breadcrumbs">
+         {% for breadcrumb in request.breadcrumbs %}
+           <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a> {% if not forloop.last %}&raquo; {% endif %}
+         {% endfor %}
+    </div>
+      <h2>{{ photo.title }} <span>{% if photo.alternative_title %} ({{ photo.alternative_title }}) {% endif %}</span></h2>
+    </div>
+    <div id="photo_area">
+      <div id="prev">
+      {% comment TODO %}
+      {% if prev_photo %}
+      <a href="{% url website-photo gallery_slugs=gallery_slugs photo_slug=prev_photo.title_slug %}"><img src="{{ MEDIA_URL }}/website/img/assets/prev.png" alt="&laquo; Anterior" title="&laquo; Anterior"/></a>
+      {% endif %}
+      {% endcomment %}
+      </div>
+      <img src="{{ photo.get_original_url }}" alt="{{ photo.title }}"/> 
+      <div id="next">
+      {% comment TODO %}
+      {% if next_photo %}
+      <a href="{% url website-photo gallery_slugs=gallery_slugs photo_slug=next_photo.title_slug %}"><img src="{{ MEDIA_URL }}/website/img/assets/next.png" alt="&raquo; Siguiente" title="Siguiente &raquo;"></a>
+      {% endif %}
+        {% endcomment %}
+      </div>
+    </div>
+    <div id="photo_info">
+      {% if photo.caption %}
+      <img src="{{ MEDIA_URL }}/website/img/assets/info.png" alt="Descripción" title="Descripción"/>
+      <p>{{ photo.caption }}</p>
+      <hr/>
+      {% endif %}
+      {% if photo.alternative_title or photo.family %}
+      <img src="{{ MEDIA_URL }}/website/img/assets/desc.png" alt="Descripción">
+        <div id="description" class="tab">
+          <em>
+            {% if photo.alternative_title_url %}<a href="http://es.wikipedia.org/w/index.php?title=Especial%3ABuscar&search={{ photo.alternative_title }}" target="_blank">{% endif %}
+              {{ photo.alternative_title }}
+            {% if photo.alternative_title_url %}</a>{% endif %}
+          </em>
+          {% if photo.family %}
+          <p>{{ photo.family }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if photo.location_title and photo.latitude and photo.longitude %}
+         {% localize off %}
+         <a href="http://maps.google.com/maps?q={{ photo.latitude }},+{{ photo.longitude }}+%28{{ photo.location_title }}%29&iwloc=A&" target="_blank">
+         {% endlocalize %}
+         <img src="{{ MEDIA_URL }}/website/img/assets/globe.png" alt="Geolocalización">
+         </a>
+        <div class="tab">
+          {% localize off %}
+          <a href="http://maps.google.com/maps?q={{ photo.latitude }},+{{ photo.longitude }}+%28{{ photo.location_title }}%29&iwloc=A&" target="_blank">{{ photo.location_title }}</a>
+          {% endlocalize %}
+        </div>
+      {% endif %}
+       
+         {% if photo.tags %} 
+            <img src="{{ MEDIA_URL }}/website/img/assets/tag.png" alt="Etiquetas">
+          <div class="tab">
+            {{  photo.tags|lower }}
+          </div>
+          {% endif %}  
+            <div class="last-tab">
+              <a id="ui-add-to-cart" href="#" data:item_id="{{ photo.id }}" data:item_thumb_url="{{ photo.get_thumbnail_url }}" data:item_title="{{ photo.title }}">
+                <img src="{{ MEDIA_URL }}/website/img/assets/shop_cart.png" alt="Solicitar" title="Solicitar">
+                </a>
+                </div>
+            </div>
+          </div>      
+          <div class="push"></div>
+{% endblock %}
+

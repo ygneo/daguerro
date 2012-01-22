@@ -1,0 +1,44 @@
+Requisitos
+----------
+ 
+ * Este directorio contiene un proyecto django (https://www.djangoproject.com/), y para su instalación se requiere un intérprete de python y uno de los Sistemas de Gestión de Bases de Datos soportados por django: https://docs.djangoproject.com/en/1.3/topics/install/#database-installation.
+
+ * El directorio que aloja este proyecto django se debe llamar 'barres'.
+
+ * Se recomienda instalar en una distribución GNU/Linux, preferentemente una basada en Debian, pues es ha sido validado en una Ubuntu 10.04.
+
+ * En Ubuntu 10.4 se necesita instalar estos paquetes para poder compilar PIL:
+
+  sudo apt-get install python-dev zlib1g-dev libjpeg62-dev libfreetype6-dev
+
+  * Es posible que sea necesario este paquete installar estos paquetes para poder compilar MySQL-python
+
+  sudo apt-get build-dep python-mysqldb
+
+Instalación
+----------
+ 
+ * Se requiere tener instalado pip (http://www.pip-installer.org/en/latest/index.html). En Ubuntu 10.04 se puede instalar con:
+   
+   sudo apt-get install pip
+
+ * El resto de requisitos, incluyendo el propio django, se instalan ejecutando:
+
+   sudo pip install -r pip_requirements
+
+ * La base de datos ha de configurarse en el fichero settings.py, en la variable DATABASES.
+
+ * Una vez configurada, ha de crearse una base de datos vacía, y ejecutar:
+
+   ./manage.py syncdb
+
+ * Una vez sincronizada la base de datos, se lanza el servidor web de desarrollo y testeo:
+ 
+  ./manage.py runserver
+
+ * En este punto es posible acceder, desde un navegador, a:
+
+   * El sitio web, en http://127.0.0.1:8000  
+
+   * El sitio de administración, en http://127.0.0.1:8000/daguerro.
+

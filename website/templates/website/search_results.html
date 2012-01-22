@@ -1,0 +1,25 @@
+{% extends "website/base.html" %}
+
+{% block title %}Barres foto natura | Búsqueda | {{ query }}{% endblock %}
+
+{% block content %}
+<div id="photos">
+  <ul>
+    {% for photo in photos %}
+    <li>
+      <div class="photo">
+        <a href="{% url website-photo photo.slugs_path, photo.title_slug %}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>      
+      </div>
+      <p>
+        <a href="foto.php">{{ photo.title }}</a>
+        <em>{% if photo.alternative_title %}{{ photo.alternative_title }}{% endif %}</em>
+      </p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<div id="search_count" style="float:left; width: 15em; backgroud: white;">
+  <p><em>{{ num_results }}</em> fotografías encontradas.</p>
+</div>
+<div class="push"></div>
+{% endblock %}

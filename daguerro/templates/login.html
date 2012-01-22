@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block section %}Accesso {% endblock %}
+
+{% block content %}
+
+<div id="login" class="rounded-corners">
+  <div id="inner-login">
+    <div id="title">
+      <h2>Daguerro CMS</h2>
+      <h1>Administración de Barres Fotonatura</h1>
+      Accesso
+    </div>
+    <form method="post" action="{% url django.contrib.auth.views.login %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <p id="submit"><input type="submit" value="Acceder &raquo;" /></p>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    <div id="links_login">
+      <a href="{{ current_site.domain }}">Volver a {{ site.name }}</a>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

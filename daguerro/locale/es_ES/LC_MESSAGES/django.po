@@ -1,0 +1,348 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-22 21:21+0200\n"
+"PO-Revision-Date: 2011-07-15 20:28+0100\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:28
+msgid "Alternative title"
+msgstr "Nombre científico"
+
+#: forms.py:33
+msgid "Caption"
+msgstr "Pie de foto"
+
+#: forms.py:41
+msgid "Category(s)"
+msgstr "Categoría(s)"
+
+#: forms.py:43
+msgid "Location <a class=\"no_location\">No location</a>"
+msgstr "Localización <a class=\"no_location\">No usar localización</a>"
+
+#: forms.py:92
+msgid "Parent category"
+msgstr "Categoría padre"
+
+#: forms.py:94
+msgid "None"
+msgstr "Ninguna"
+
+#: forms.py:97
+msgid "Description"
+msgstr "Descripción"
+
+#: forms.py:120
+msgid "Photo does not exist"
+msgstr "La foto no existe"
+
+#: forms.py:147
+#: templates/pages.html:26
+msgid "Public"
+msgstr "Pública"
+
+#: forms.py:148
+msgid "Public pages will be displayed in the website."
+msgstr "Las páginas publicas serán mostradas en el sitio web."
+
+#: forms.py:161
+msgid "Content"
+msgstr "Contenido"
+
+#: forms.py:188
+msgid "Groups"
+msgstr "Grupo(s)"
+
+#: forms.py:215
+msgid "You cannot unactivate your own user"
+msgstr "No puedes desactivar tu propio usuario."
+
+#: utils.py:16
+#: utils.py:22
+msgid "Galeria"
+msgstr "Galería"
+
+#: views.py:45
+msgid "Edit photography"
+msgstr "Editar fotografía"
+
+#: views.py:50
+msgid "Add photography"
+msgstr "Añadir fotografía"
+
+#: views.py:113
+msgid "Edit Gallery"
+msgstr "Editar Galería"
+
+#: views.py:117
+msgid "Add Gallery"
+msgstr "Crear Categoría"
+
+#: views.py:211
+msgid "Edit Page"
+msgstr "Editar Página"
+
+#: views.py:214
+msgid "Add Page"
+msgstr "Añadir Página"
+
+#: views.py:218
+#: templates/pages.html:10
+msgid "Pages"
+msgstr "Páginas"
+
+#: views.py:260
+msgid "Edit User"
+msgstr "Editar Usuario"
+
+#: views.py:264
+msgid "Add User"
+msgstr "Añadir Usuario"
+
+#: views.py:269
+#: templates/users.html:10
+msgid "Users"
+msgstr "Usuarios"
+
+#: views.py:296
+msgid "Change password"
+msgstr "Cambiar contraseña"
+
+#: widgets.py:55
+msgid "Photo"
+msgstr "Foto"
+
+#: widgets.py:65
+msgid "Upload new photo"
+msgstr "Subir nueva foto"
+
+#: widgets.py:68
+msgid "Search existing photo"
+msgstr "Buscar foto existente"
+
+#: widgets.py:69
+msgid "Write a photo title"
+msgstr "Escribe el título de una foto"
+
+#: widgets.py:96
+msgid "Change pasword"
+msgstr "Cambiar contraseña"
+
+#: widgets.py:116
+msgid "Write a location to be searched in the map. A marker will be drop in the map, and can be draggable."
+msgstr "Puedes escribir una localización. Selecciona una de las opciones sugeridas y aparecerá en un mapa."
+
+#: widgets.py:117
+msgid "No results. Try to do a different search that approaches to your target. If you don't want to use any location, click <a class='no_location'>here</a>."
+msgstr "No hay resultados en el mapa. Intenta una búqueda diferente que se aproxime a tu objetivo. Si no quieres usar ninguna localización, haz click <a class='no_location'>aquí</a>"
+
+#: widgets.py:118
+msgid "No location"
+msgstr ""
+
+#: widgets.py:119
+msgid "Drag and drop this marker if you want to mark a different position in the map."
+msgstr "Arrastra este marcador para que apunte a una posición distinta en el mapa."
+
+#: widgets.py:170
+msgid "Article found in wikipedia. <a class=\"ui-wikipedia-link\" href=\"#\" target=\"_blank\">Visit</a> | "
+msgstr "Artículo encontrado en wikipedia. <a class=\"ui-wikipedia-link\" href=\"#\" target=\"_blank\">Ver</a>"
+
+#: widgets.py:174
+msgid "Linked to an article in wikipedia. <a class=\"ui-wikipedia-link\" href=\"#\" target=\"_blank\">Visit</a> | "
+msgstr "Enlazado a un artículo en wikipedia. <a class=\"ui-wikipedia-link\" href=\"#\" target=\"_blank\">Ver</a> | "
+
+#: widgets.py:198
+msgid "Link?"
+msgstr "¿Enlazar?"
+
+#: widgets.py:199
+msgid "Yes"
+msgstr "Sí"
+
+#: widgets.py:200
+#: templates/pages.html:38
+#: templates/users.html:52
+msgid "No"
+msgstr "No"
+
+#: widgets.py:202
+msgid "Unlink"
+msgstr "Desenlazar"
+
+#: templates/base.html:14
+msgid "Administración de"
+msgstr ""
+
+#: templates/base_admin.html:13
+msgid "Daguerro CMS"
+msgstr ""
+
+#: templates/base_admin.html:15
+msgid "Administración del sitio"
+msgstr ""
+
+#: templates/base_admin.html:20
+msgid "Salir"
+msgstr ""
+
+#: templates/base_admin.html:26
+#, fuzzy
+msgid "Galería"
+msgstr "Galería"
+
+#: templates/base_admin.html:27
+msgid "Páginas"
+msgstr ""
+
+#: templates/base_admin.html:28
+msgid "Usuarios"
+msgstr ""
+
+#: templates/gallery.html:11
+msgid "Home"
+msgstr "Portada"
+
+#: templates/gallery.html:26
+msgid "Edit"
+msgstr "Editar"
+
+#: templates/gallery.html:29
+#: templates/gallery_form.html:49
+#: templates/page_form.html:50
+#: templates/pages.html:50
+#: templates/photo.html:54
+#: templates/user_form.html:47
+#: templates/users.html:64
+msgid "Delete"
+msgstr "Eliminar"
+
+#: templates/gallery.html:37
+msgid "photo(s) title contains"
+msgstr "foto(s) contienen en su título"
+
+#: templates/gallery.html:70
+msgid "No categories nor images"
+msgstr "No hay categorías ni fotografías"
+
+#: templates/gallery.html:76
+msgid "Search image"
+msgstr "Buscar fotografía"
+
+#: templates/gallery.html:83
+#: templates/gallery.html.py:85
+msgid "Upload image"
+msgstr "Subir fotografía"
+
+#: templates/gallery.html:88
+msgid "Create category"
+msgstr "Crear categoría"
+
+#: templates/gallery_form.html:52
+#: templates/page_form.html:53
+#: templates/photo.html:57
+#: templates/user_form.html:50
+msgid "Save"
+msgstr "Guardar"
+
+#: templates/pages.html:25
+msgid "Title"
+msgstr "Título"
+
+#: templates/pages.html:36
+#: templates/users.html:50
+msgid "Sí"
+msgstr "Sí"
+
+#: templates/pages.html:46
+msgid "For selected pages"
+msgstr "Para las páginas seleccionadas"
+
+#: templates/pages.html:48
+msgid "Publish"
+msgstr "Publicar"
+
+#: templates/pages.html:49
+msgid "Unpublish"
+msgstr "Despublicar"
+
+#: templates/pages.html:53
+#: templates/users.html:67
+msgid "Run selected action"
+msgstr "Ejecutar acción seleccionada"
+
+#: templates/pages.html:53
+#: templates/users.html:67
+msgid "Ok"
+msgstr "Ok"
+
+#: templates/pages.html:59
+msgid "No pages"
+msgstr "No hay páginas"
+
+#: templates/pages.html:64
+msgid "Create page"
+msgstr "Crear página"
+
+#: templates/user_form.html:21
+msgid "First type an username and password. Then you can edit rest of the user data."
+msgstr "Primero introduce un nombre de usuario y una contraseña. Luego podrás el resto de datos del usuario."
+
+#: templates/user_form.html:24
+msgid "Type a new password for user"
+msgstr "Escribe una nueva contraseña para el usuario"
+
+#: templates/users.html:31
+msgid "User"
+msgstr "Usuario"
+
+#: templates/users.html:32
+msgid "Name"
+msgstr "Nombre"
+
+#: templates/users.html:33
+msgid "Group(s)"
+msgstr "Grupo(s)"
+
+#: templates/users.html:34
+msgid "Active"
+msgstr "Activo"
+
+#: templates/users.html:60
+msgid "For selected users"
+msgstr "Para los usuarios seleccionados"
+
+#: templates/users.html:62
+msgid "Activate"
+msgstr "Activar"
+
+#: templates/users.html:63
+msgid "Unactivate"
+msgstr "Desactivar"
+
+#: templates/users.html:73
+msgid "No users"
+msgstr "No hay usuarios"
+
+#: templates/users.html:78
+msgid "Create user"
+msgstr "Crear usuario"
+
+#~ msgid "Is public"
+#~ msgstr "Pública"
+#~ msgid "Portada"
+#~ msgstr "Portada"
+#~ msgid "Technical data"
+#~ msgstr "Datos técnicos"
+

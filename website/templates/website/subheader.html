@@ -1,0 +1,18 @@
+<div id="category">
+  <div id="imgCat">
+    <img src="{{ gallery.photo.get_gallery_title_url }}" alt="Botánica"/>
+  </div>
+  <div id="title">
+    <div id="breadcrumbs">
+         {% for breadcrumb in request.breadcrumbs %}
+           {% if not forloop.last %}
+           <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a> &raquo; 
+           {% else %}
+           {{ breadcrumb.name }}
+           {% endif %}
+         {% endfor %}
+    </div>
+    <h2>{{ gallery.title }}</h2>
+    <h3>{{ gallery.description }}</h3>
+  </div>
+</div>

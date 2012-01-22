@@ -1,0 +1,9 @@
+simplejson
+Django>=1.3
+PIL
+django-tinymce
+django-extensions
+django-debug-toolbar
+django-flatpages
+South
+MySQL-python

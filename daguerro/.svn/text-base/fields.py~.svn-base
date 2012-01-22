@@ -1,0 +1,7 @@
+from django import forms
+
+class DaguerroImageField(forms.ImageField):
+    
+    def __unicode__:
+        return self
+

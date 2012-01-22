@@ -1,0 +1,173 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# Django settings for daguerro project.
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    # ('Your Name', 'your_email@domain.com'),
+)
+
+MANAGERS = ADMINS
+
+DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME = '<DB_NAME>'             # Or path to database file if using sqlite3.
+DATABASE_USER = '<DB_USER>'             # Not used with sqlite3.
+DATABASE_PASSWORD = '<DB_PASSWORD>'         # Not used with sqlite3.
+DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+
+INTERNAL_IPS = ('127.0.0.1',)
+DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
+
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# If running in a Windows environment this must be set to the same as your
+# system time zone.
+TIME_ZONE = 'Europe/Madrid'
+
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = 'es'
+
+SITE_ID = 1
+
+# If you set this to False, Django will make some optimizations so as not
+# to load the internationalization machinery.
+USE_I18N = True
+USE_L10N = True
+
+STATIC_URL = "/static/"
+STATIC_ROOT = "/var/www/barres/static/"
+
+# Absolute path to the directory that holds media.
+# Example: "/home/media/media.lawrence.com/"
+MEDIA_ROOT = '/var/www/barres/media/'
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
+MEDIA_URL = '/media/'
+
+# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+# trailing slash.
+# Examples: "http://foo.com/media/", "/media/".
+ADMIN_MEDIA_PREFIX = '/admin_media/'
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'oxadadwn7xx5yksdsop&93dasdas-d@1!!cz62^6-iadsda9a@0w@^!j5nl9^dasdaszpr5xr0w6e'
+
+# List of callables that know how to import templates from various sources.
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.load_template_source',
+    'django.template.loaders.app_directories.load_template_source',
+#     'django.template.loaders.eggs.load_template_source',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS =(
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.static",
+    "django.core.context_processors.media",
+    "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
+    "daguerro.context_processors.current_site",    
+    "website.context_processors.header_info",    
+)
+
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'contrib.breadcrumbs.middleware.BreadcrumbsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
+
+ROOT_URLCONF = 'barres.urls'
+
+LOGIN_URL = '/daguerro/login/'
+LOGIN_REDIRECT_URL = '/daguerro/'
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    "/var/www/barres/templates",
+    "/var/www/barres/daguerro/templates",
+    "/var/www/barres/search/templates",
+)
+
+
+INSTALLED_APPS = (
+    'daguerro',
+    'website',
+    'form_utils',
+    'photologue',
+    'tinymce',
+    'south',
+    'debug_toolbar',
+    'django_extensions',
+    'django.contrib.auth',
+    'django.contrib.admin',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'django.contrib.humanize',
+    'django.contrib.staticfiles',
+)
+
+# DAG_NO_PICT_GALLERY_PATH = 'daguerro/img/no_picture_gallery.png'
+# DAG_NO_PICT_GALLERY_MINI_PATH = 'daguerro/img/no_picture_gallery_mini.png'
+DAG_PHOTO_THUMB_SIZE_KEY = 'photo'
+DAG_PHOTO_ORIGINAL_SIZE_KEY = 'original'
+DAG_GALLERY_THUMB_SIZE_KEY = 'gallery'
+DAG_NO_IMAGE = {DAG_PHOTO_ORIGINAL_SIZE_KEY: 'daguerro/img/no_picture_photo.png',
+                DAG_PHOTO_THUMB_SIZE_KEY: 'daguerro/img/no_picture_photo.png',
+                DAG_GALLERY_THUMB_SIZE_KEY: 'daguerro/img/no_picture_gallery.png'
+                }
+DAG_ADD_PHOTO_IN_ROOT = False
+DAG_PHOTO_SLUG = 'foto'
+
+THUMBNAIL_QUALITY = 95
+THUMBNAIL_EXTENSION = 'png'
+
+TINYMCE_DEFAULT_CONFIG = {'theme': "advanced", 
+                          'relative_urls': False, 
+                          'theme_advanced_buttons1' : "bold,italic,underline,strikethrough," \
+                              "separator,fontsizeselect,separator,justifyleft,justifycenter," \
+                              "justifyright,justifyfull,bullist,numlist,separator,cut,copy,paste," \
+                              "undo,redo,separator,link,unlink,anchor",
+                          'theme_advanced_buttons2': '',
+                          'theme_advanced_buttons3': '',
+                          'theme_advanced_toolbar_location' : 'top'}
+
+MAPS_API_KEY = 'ABQIAAAApl773DNd8gKqDs88IJGhqxR1gbanoinoe2pNkEynQ_zYcd12shSqHBj5hvwPZUdIJHq1blEDrOIEHw'
+
+DAGUERRO_CART_SESSION_KEY = 'daguerro-cart'
+
+# TODO Move this to DB
+EMAIL_HOST = 'smtp.strato.com'
+EMAIL_HOST_USER = 'pedidos@barresfotonatura.com '
+EMAIL_HOST_PASSWORD = 'barresFOTO'
+
+DAGUERRO_EMAIL_BODY =  """<p>Su pedido ha sido enviado correctamente y se atenderá en breve.</p>
+                          <p>Para cualquier aclaración o consulta, escriba a %s</p>""" % EMAIL_HOST_USER
+
+"""
+Local settings importing
+"""
+try:
+    import platform
+    hostname = platform.node().replace('.','_').replace('-', '_')
+    exec "from local_settings.%s import *" % hostname
+    print "loaded ", hostname
+except ImportError, e:
+    print e
+
+
