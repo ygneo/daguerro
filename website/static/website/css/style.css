@@ -41,7 +41,36 @@ div#container {
         #header #side #searcher { margin-top: 3ex;font-size: 90%; text-align: right; }        
         #header #searcher #search { float:right;}
         #header #searcher #search label { display: block; padding-bottom: .5ex;}
-        #header #searcher #search input[type=text] { width:15em; color: grey; border: 0; border: 2px solid white;}
+        form#search input[type=text] { height: 16px; color: grey; border: 2px solid white; float:left;}
+
+        form#search input[type=text] { 
+                               color: grey; 
+                               border: 2px solid white; 
+                               float:left;
+                               font-size: 120%; 
+                               height: 24px; 
+                               padding: 1px;
+                               margin-right: .5ex;
+                               width: 15em;      
+                               border-radius: 4px;
+                               ms-border-radius: 4px;
+                               moz-border-radius: 4px;
+                               webkit-border-radius: 4px;
+                               khtml-border-radius: 4px;
+        }
+        #header #searcher #search input[type=submit] { 
+                                height: 30px;
+                                width: 30px; 
+                                border-color: transparent;
+                                border-radius: 4px;
+                                ms-border-radius: 4px;
+                                moz-border-radius: 4px;
+                                webkit-border-radius: 4px;
+                                khtml-border-radius: 4px;
+                                background: url('../../img/zoom.png') center no-repeat #555; 
+        }
+       #header #searcher #search input[type=submit]:hover { background-color: #58880C; cursor: pointer; }
+      
 
 div#content {
         width: 88%;    

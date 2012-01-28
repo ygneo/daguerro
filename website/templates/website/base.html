@@ -1,4 +1,5 @@
 {% load l10n %}
+{% load i18n %}
 {% load flatpages website %}
 {% get_flatpages as flatpages %}
 {% get_flatpages "/josep" as contact_flatpages %}
@@ -44,7 +45,7 @@
             <div id="searcher">
               <form id="search" method="GET" action="{% url website-search-photos %}">
                 <input type="text" id="query" name="query" value="{{ query|default:'Buscar fotografías' }}" data:default="Buscar fotografías"/>
-                <input type="submit" value="Buscar"/>
+              <input type="submit" id="search_button" alt="{% trans Search %}" title="{% trans Search %}" value=""/>
               </form>
             </div>
             <div id="tools">
