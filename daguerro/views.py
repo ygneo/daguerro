@@ -205,7 +205,7 @@ def pages_index(request):
         if form.is_valid():
             apply_batch_action(request)
     return render_to_response(
-        'pages.html', {
+        'daguerro/pages.html', {
             'form': ResultListForm(),
             'pages': DaguerroFlatPage.objects.all(),
             'current_action': 'pages',
