@@ -1,0 +1,55 @@
+{% extends "daguerro/gallery.html" %}
+{% load i18n %}
+{% load tabs %}
+{% load form_filters %}
+
+{% block section %}{{ current_action_title }}{% endblock %}
+{% block extra_media %} {{ form.media }} {% endblock %} 
+
+{% block nav%}
+{% activetab "topnav" "gallery" %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% block breadcrumb %}
+    {{ block.super }}
+    {% endblock breadcrumb %}
+<form action="" method="post" enctype="multipart/form-data">
+   <fieldset id="form-layout">
+    {% for fieldset in form.fieldsets %}
+      <fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
+        {% if fieldset.legend %}
+        <legend>{{ fieldset.legend }}</legend>
+        {% endif %}
+        {% if fieldset.description %}
+        <p class="description">{{ fieldset.description }}</p>
+        {% endif %}
+          {% for field in fieldset %}
+              {% if field.is_hidden %}
+                  {{ field }}
+              {% else %}
+                  <div {% if field.errors %}{{ field|merge_attrs:'class="wrong_field"' }}{% else %}{{ field.row_attrs }}{% endif %}>
+                      {% if field|field_type:'checkboxinput' %}
+                      {{ field }} {{ field.label_tag }}
+                      {% else %}
+                      {{ field.label_tag }}  {{ field }}
+                      {{ field.errors }}
+                      {% endif %}
+                      <span class="help_text">{{ field.help_text }}</span>
+                  </div>
+              {% endif %}
+          {% endfor %}
+      </fieldset>
+    {% endfor %}
+  </fieldset>
+  <div id="buttons">
+    {% ifequal current_action "edit" %}
+    <div id="delete-button">
+      <a class="ui-delete-button" href="{% url daguerro-gallery-delete current_category.slugs_path %}">{% trans "Delete" %}</a>
+    </div>     
+    {% endifequal %}
+    <input type="submit" value="{% trans "Save" %}" id="save" />
+  </div>
+</form>
+{% endblock %}

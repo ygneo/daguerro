@@ -3,7 +3,7 @@ from django.conf.urls.defaults import *
 # Generic views
 urlpatterns = patterns(
     '',
-    (r'login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    (r'login/$', 'django.contrib.auth.views.login', {'template_name': 'daguerro/login.html'}),
     (r'logout/$', 'django.contrib.auth.views.logout_then_login'),
 )
 

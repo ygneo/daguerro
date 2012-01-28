@@ -1,0 +1,48 @@
+{% extends "daguerro/base_admin.html" %}
+{% load i18n %}
+{% load tabs %}
+{% load form_filters %}
+
+{% block extra_media %} {{ form.media }} {% endblock %}
+
+{% block section %}{{ current_action_title }}{% endblock %}
+
+{% block nav%}
+{% activetab "topnav" "users" %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% block breadcrumb %}
+    {{ block.super }}
+    {% endblock breadcrumb %}
+<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+   {% ifequal current_action "add" %}
+    <p id="form-help">{% trans "First type an username and password. Then you can edit rest of the user data." %}</p>
+   {% endifequal %}
+   {% ifequal current_action "change_password" %}
+    <p id="form-help">{% trans "Type a new password for user" %} <em>{{ user }}</em></p>
+   {% endifequal %}
+   <fieldset id="form-layout">
+        {% for field in form %}
+          {% if field.is_hidden %}
+            {{ field }}
+          {% else %}
+            <div  {% if field.errors %}{{ field|merge_attrs:'class="wrong_field"' }}{% else %}{{ field.row_attrs }}{% endif %}{{ field.row_attrs }}>
+               {% if field|field_type:'checkboxinput' %}
+                      {{ field }} {{ field.label_tag }}
+                      {% else %}
+                      {{ field.label_tag }}  {{ field }}
+                      {% endif %}
+                      <span class="help_text">{{ field.help_text }}</span>
+                      {{ field.errors }}
+                  </div>
+              {% endif %}
+          {% endfor %}
+      </fieldset>
+  </fieldset>
+  <div id="buttons">
+    <input type="submit" value="{% trans "Save" %}" id="save" />
+  </div>
+</form>
+{% endblock %}

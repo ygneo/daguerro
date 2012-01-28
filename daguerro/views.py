@@ -30,7 +30,7 @@ def index(request, slugs=None):
     user_groups = request.user.groups.all().values_list("name", flat=True)
     if 'Editor' in user_groups and len(user_groups) == 1:
         return HttpResponseRedirect(reverse("daguerro-pages-index"))
-    return render_to_response('gallery.html', 
+    return render_to_response('daguerro/gallery.html', 
                               {'categories': categories,
                                'current_category': current_category,
                                'photos': photos,
@@ -71,7 +71,7 @@ def photo(request, action='add', slugs=None, slug=None):
     else:
         form = PhotoForm(instance=photo, initial={'galleries': initial_galleries}) 
 
-    return render_to_response('photo.html', 
+    return render_to_response('daguerro/photo.html', 
                               {'form': form,
                                'extra_context': extra_context,
                                'current_category': current_category,
@@ -139,7 +139,7 @@ def gallery(request, action='add', slugs=None):
     else:
         form = GalleryForm(instance=gallery, initial={'parent': parent_gallery})
         
-    return render_to_response('gallery_form.html', 
+    return render_to_response('daguerro/gallery_form.html', 
                               {'form': form,
                                'current_category': current_category,
                                'current_action_title': current_action_title,
@@ -185,7 +185,7 @@ def search_photo(request, format):
         no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         num_results = len(photos)
         response = render_to_response(
-            'gallery.html', {
+            'daguerro/gallery.html', {
                 'categories': {},
                 'current_category': None,                
                 'photos': photos,
@@ -235,7 +235,7 @@ def page(request, action, id=None):
     else:
         form = FlatPageForm(instance=page)
 
-    return render_to_response('page_form.html', 
+    return render_to_response('daguerro/page_form.html', 
                               {'form': form,
                                'current_action_title': current_action_title,
                                'current_action': action, 
@@ -254,7 +254,7 @@ def users_index(request):
     else:
         form = ResultListForm()
     return render_to_response(
-        'users.html', {
+        'daguerro/users.html', {
             'form': form,
             'users': User.objects.filter(is_superuser=False),
             'current_action': 'users',
@@ -291,7 +291,7 @@ def user(request, action, id=None):
     else:
         form = Form(instance=user)
 
-    return render_to_response('user_form.html', 
+    return render_to_response('daguerro/user_form.html', 
                               {'form': form,
                                'current_action_title': current_action_title,
                                'current_action': action, 
@@ -318,7 +318,7 @@ def user_change_password(request, id):
     else:
         form = SetPasswordForm(user)
 
-    return render_to_response('user_form.html', 
+    return render_to_response('daguerro/user_form.html', 
                               {'form': form,
                                'current_action_title': current_action_title,
                                'current_action': action, 

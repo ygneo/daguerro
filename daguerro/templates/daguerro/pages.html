@@ -1,0 +1,67 @@
+{% extends "daguerro/base_admin.html" %}
+
+{% load tabs %}
+{% load i18n %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/results-list.js"></script>
+{% endblock %}
+
+{% block section %} {% trans "Pages" %}{% endblock %}
+
+{% block nav%}
+{% activetab "topnav" "pages" %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+{% if pages %}
+<div id="results">
+  <form method="POST" action="">
+    <input type="hidden" name="item_type" value="page"/>
+    <table id="results-list" cellspacing="0">
+      <thead>
+        <td class="checkbox-column"><input type="checkbox" id="select-all"/></td>
+        <td>{% trans "Title" %}</td>
+        <td class="public-column">{% trans "Public" %}</td>
+      </thead>
+      {% for page in pages %}
+      <tr class="{% cycle 'even' 'odd' %}">
+        <td class="checkbox-column">
+          <input type="checkbox" name="page[]" value="{{ page.id }}" class="selectable"/>
+        </td>
+        <td><a href="{% url daguerro-page page.id %}">{{ page.title }}</a></td>
+        <td class="public-column">
+          {% if not page.registration_required %}
+          <img src="{{ STATIC_URL }}daguerro/img/checkmark.png"" alt="{% trans "Sí" %}" title="{% trans "Sí" %}"/>
+          {% else %}
+          <img src="{{ STATIC_URL }}daguerro/img/cancel.png" alt="{% trans "No" %}" title="{% trans "No" %}"/>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <div id="batch-actions"
+       <label for="actions">
+         {% trans "For selected pages" %}
+         <select name="action">
+           <option value="publish">{% trans "Publish"  %}</option>
+           <option value="unpublish">{% trans "Unpublish"  %}</option>
+           <option value="delete">{% trans "Delete"  %}</option>
+         </select>
+       </label>
+       <button class="ui-delete-button-bulk" value="0" name="ok" title="{% trans "Run selected action" %}" type="submit">{% trans "Ok" %}</button>
+    </div>
+  </form>
+</div>
+{% else %}
+<div id="message" class="no-items">
+  <p>{% trans "No pages" %}</p>
+</div>
+{% endif %}
+<div id="buttons">
+  <ul>
+    <li id="add-page"><a href="{% url daguerro-page-add %}">{% trans "Create page"%}</a></li>
+  </ul>
+</div>
+{% endblock %}
