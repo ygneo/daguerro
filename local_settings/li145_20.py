@@ -17,6 +17,9 @@ MEDIA_ROOT = '/var/www/barres/media/'
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = 'http://www.barresfotonatura.com/barres/media/'
 
+STATIC_ROOT = '/var/www/barres/media/static'
+STATIC_URL = 'http://www.barresfotonatura.com/barres/media/static/'
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
