@@ -75,7 +75,7 @@
 <div id="buttons">
   <form id="search" action="{% url daguerro-search-photo %}">
     <input type="text" name="term" id="term" class="{% if term %}active{% endif %}" value="{% if term %}{{ term }}{% else %}{% trans "Search image" %}{% endif %}"/>
-    <input type="image" id="search_button" alt="{% trans Search %}" src="{{ STATIC_URL }}daguerro/img/zoom.png"/>
+    <input type="image" id="search_button" alt="{% trans Search %}" src="{{ STATIC_URL }}img/zoom.png"/>
   </form>
   {% ifnotequal behaviour "search_results" %}
   <ul>

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Django settings for daguerro project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -42,7 +43,9 @@ USE_L10N = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = "/var/www/barres/static/"
-
+STATICFILES_DIRS = ( 
+    os.path.join(os.path.dirname( __file__ ), 'static'),
+)
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = '/var/www/barres/media/'
