@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block extra_js %}
-<script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/results-list.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/results-list.js"></script>
 {% endblock %}
 
 {% block section %} {% trans "Pages" %}{% endblock %}
@@ -33,9 +33,9 @@
         <td><a href="{% url daguerro-page page.id %}">{{ page.title }}</a></td>
         <td class="public-column">
           {% if not page.registration_required %}
-          <img src="{{ MEDIA_URL }}/daguerro/img/checkmark.png"" alt="{% trans "Sí" %}" title="{% trans "Sí" %}"/>
+          <img src="{{ STATIC_URL }}daguerro/img/checkmark.png"" alt="{% trans "Sí" %}" title="{% trans "Sí" %}"/>
           {% else %}
-          <img src="{{ MEDIA_URL }}/daguerro/img/cancel.png" alt="{% trans "No" %}" title="{% trans "No" %}"/>
+          <img src="{{ STATIC_URL }}daguerro/img/cancel.png" alt="{% trans "No" %}" title="{% trans "No" %}"/>
           {% endif %}
         </td>
       </tr>

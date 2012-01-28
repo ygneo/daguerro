@@ -4,10 +4,10 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <link rel="stylesheet" href="{{MEDIA_URL}}daguerro/css/styles.css" />
-    <script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/jquery-1.4.4.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/jquery-ui-1.8.6.custom.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/daguerro.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}daguerro/css/styles.css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/jquery-ui-1.8.6.custom.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/daguerro.js"></script>
     {% block extra_js %}{% endblock %} 
     {% block extra_style %}{% endblock %} 
     {% block extra_media %}{% endblock %} 

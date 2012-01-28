@@ -4,9 +4,9 @@
 {% load i18n %}
 
 {% block extra_js %}
-<script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/gallery.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/jquery.daguerro.search.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}/daguerro/js/ajaxupload.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/gallery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/jquery.daguerro.search.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/ajaxupload.js"></script>
 {% endblock %}
 
 {% block section %} {{ parent_categories|last|default:_("Home") }}{% endblock %}
@@ -75,7 +75,7 @@
 <div id="buttons">
   <form id="search" action="{% url daguerro-search-photo %}">
     <input type="text" name="term" id="term" class="{% if term %}active{% endif %}" value="{% if term %}{{ term }}{% else %}{% trans "Search image" %}{% endif %}"/>
-    <input type="image" id="search_button" alt="{% trans Search %}" src="{{ MEDIA_URL }}/daguerro/img/zoom.png"/>
+    <input type="image" id="search_button" alt="{% trans Search %}" src="{{ STATIC_URL }}daguerro/img/zoom.png"/>
   </form>
   {% ifnotequal behaviour "search_results" %}
   <ul>
