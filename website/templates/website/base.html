@@ -44,9 +44,9 @@
 {% endcomment %}
             <div id="searcher">
               <form id="search" method="GET" action="{% url website-search-photos %}">
-                <input type="text" id="query" name="query" value="{{ query|default:'Buscar fotografías' }}" data:default="Buscar fotografías"/>
-              <input type="submit" id="search_button" alt="{% trans Search %}" title="{% trans Search %}" value=""/>
-              <a id="ui-advanced-search-link" href="">Afinar búsqueda</a>
+              <input type="text" id="query" name="query" value="{{ query }}"/>
+              <input type="submit" id="search_button" alt="{% trans "Search" %}" title="{% trans "Search" %}" value=""/>
+              <a id="ui-advanced-search-link" href="">{% trans "Search options" %}</a>
               </form>
             </div>
             <div id="tools">
