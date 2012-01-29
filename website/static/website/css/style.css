@@ -48,7 +48,7 @@ div#container {
                                font-size: 120%; 
                                height: 24px; 
                                padding: 1px;
-                               margin-right: .2ex;
+                               margin-right: .3ex;
                                width: 17em;      
                                border-radius: 4px;
                                ms-border-radius: 4px;
@@ -68,7 +68,7 @@ div#container {
                                 background: url('../../img/zoom.png') center no-repeat #555; 
         }
        #header #searcher #search input[type=submit]:hover { background-color: #58880C; cursor: pointer; }
-       #header #searcher a#ui-advanced-search-link { display: block; clear: both; float: left; font-size: 90%; margin-top: .5ex;}
+       #header #searcher a#ui-advanced-search-link { display: block; clear: both; font-size: 90%; margin-top: .5ex;}
        
 
 div#content {
