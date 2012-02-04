@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('Antonio Barcia', 'antonio.barcia@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -124,6 +124,56 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.staticfiles',
 )
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s [%(module)s] %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(asctime)s [%(module)s] %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level':'DEBUG',
+            'class':'django.utils.log.NullHandler',
+        },
+        'file':{
+            'level':'DEBUG',
+            'class':'logging.handlers.WatchedFileHandler',
+            'filename': '/var/log/barres/barres.log',
+            'formatter': 'simple',
+        },
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'verbose',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers':['null'],
+            'propagate': True,
+            'level':'INFO',
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'daguerro': {
+            'handlers': ['console', 'file', 'mail_admins'],
+            'level': 'DEBUG',
+        }
+    }
+}
 
 # DAG_NO_PICT_GALLERY_PATH = 'daguerro/img/no_picture_gallery.png'
 # DAG_NO_PICT_GALLERY_MINI_PATH = 'daguerro/img/no_picture_gallery_mini.png'

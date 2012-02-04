@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import urllib
+import logging
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from django import forms
@@ -9,6 +10,7 @@ from django.utils.safestring import mark_safe
 from photologue.models import Photo, PhotoSize
 from form_utils.widgets import ImageWidget
 
+logger = logging.getLogger(__name__)
 
 class DaguerroPhotoWidget(ImageWidget):
     """ Simple extension to django-form-utils' ImageWidget providing templating when no image """ 
@@ -37,6 +39,7 @@ class DaguerroPhotoWidget(ImageWidget):
         Wrapper to super class render, providing a "no image" thumbnail when there's no picture,
         and getting the thumbnail image path if there's.
         """
+        logger.debug("Going to render DaguerroPhotoWidget name=%s, value=%s" % (name, value)) 
         if not value:
             try:
                 value = settings.DAG_NO_IMAGE[self.photo_size]
