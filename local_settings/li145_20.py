@@ -26,7 +26,7 @@ STATIC_URL = 'http://www.barresfotonatura.com/barres/media/static/'
 ADMIN_MEDIA_PREFIX = '/barres/admin_media/'
 
 
-TINYMCE_JS_URL = MEDIA_URL + 'daguerro/js/tiny_mce/tiny_mce.js'
-TINYMCE_JS_ROOT = MEDIA_ROOT + 'daguerro/js/tiny_mce'
+TINYMCE_JS_URL = STATIC_URL + 'daguerro/js/tiny_mce/tiny_mce.js'
+TINYMCE_JS_ROOT = STATIC_ROOT + 'daguerro/js/tiny_mce'
 
 
