@@ -9,7 +9,7 @@ parts of this code taken from http://www.djangosnippets.org/snippets/934/
 """
 import os
 import posixpath
-
+import logging
 from django import forms
 from django.conf import settings
 from django.utils.functional import curry
@@ -17,6 +17,9 @@ from django.utils.safestring import mark_safe
 from django.core.files.uploadedfile import SimpleUploadedFile as UploadedFile
 
 from form_utils.settings import JQUERY_URL, FORM_UTILS_MEDIA_URL
+
+
+logger = logging.getLogger(__name__)
 
 try:
     from sorl.thumbnail.main import DjangoThumbnail
@@ -38,8 +41,8 @@ class ImageWidget(forms.FileInput):
         super(ImageWidget, self).__init__(attrs)
     
     def render(self, name, value, attrs=None):
-        from PIL import Image
-        input_html = super(forms.FileInput, self).render(name, value, attrs)
+	from PIL import Image
+	input_html = super(forms.FileInput, self).render(name, value, attrs)
         file_name = str(value)
         file_path = os.path.join(settings.MEDIA_ROOT, file_name)
         try: # is image
@@ -48,7 +51,8 @@ class ImageWidget(forms.FileInput):
             output = self.template % {'input': input_html,
                                       'image': image_html}
         except IOError: # not image
-            output = input_html
+            logger.warning("IOError %s" % file_path)
+	    output = input_html
         return mark_safe(output)
 
 class ClearableFileInput(forms.MultiWidget):

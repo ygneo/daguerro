@@ -171,7 +171,11 @@ LOGGING = {
         'daguerro': {
             'handlers': ['console', 'file', 'mail_admins'],
             'level': 'DEBUG',
-        }
+        },
+	'form_utils': {
+            'handlers': ['console', 'file', 'mail_admins'],
+            'level': 'DEBUG',
+	}	
     }
 }
 

@@ -39,7 +39,6 @@ class DaguerroPhotoWidget(ImageWidget):
         Wrapper to super class render, providing a "no image" thumbnail when there's no picture,
         and getting the thumbnail image path if there's.
         """
-        logger.debug("Going to render DaguerroPhotoWidget name=%s, value=%s" % (name, value)) 
         if not value:
             try:
                 value = settings.DAG_NO_IMAGE[self.photo_size]
@@ -56,7 +55,7 @@ class DaguerroPhotoWidget(ImageWidget):
                 extension = os.path.basename(value.name).split('.')[-1]
                 filename = smart_unicode(os.path.basename(value.name).replace('.%s' % extension, ''))
                 value.name = "%s/cache/%s_%s.%s" % (path_dir, filename, self.photo_size, extension)
-        self.template = self.template % {'photo_label': _('Photo'),}
+      	self.template = self.template % {'photo_label': _('Photo'),}
         return ImageWidget.render(self, name, value, attrs=attrs)
 
 
