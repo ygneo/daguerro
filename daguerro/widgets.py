@@ -27,7 +27,7 @@ class DaguerroPhotoWidget(ImageWidget):
 
     class Media:
         js = (
-            settings.MEDIA_URL + '/daguerro/js/widgets/photo.js',
+            settings.STATIC_URL + '/daguerro/js/widgets/photo.js',
         )
 
     def __init__(self, photo_size,  *args, **kwargs):
@@ -76,7 +76,7 @@ class DaguerroGalleryPhotoWidget(DaguerroPhotoWidget):
 
     class Media:
         js = (
-            settings.MEDIA_URL + '/daguerro/js/widgets/photo.js',
+            settings.STATIC_URL + '/daguerro/js/widgets/photo.js',
         )
 
 
@@ -86,7 +86,7 @@ class DaguerroGalleryWidget(forms.Select):
 
     class Media:
         js = (
-            settings.MEDIA_URL + '/daguerro/js/widgets/gallery.js',
+            settings.STATIC_URL + '/daguerro/js/widgets/gallery.js',
         )
 
     def __init__(self, multiple, *args, **kwargs):
@@ -111,7 +111,7 @@ class GoogleMapsWidget(forms.TextInput):
     class Media:
         js = (
             'http://maps.google.com/maps/api/js?sensor=true',
-            settings.MEDIA_URL + '/daguerro/js/widgets/google_maps.js',
+            settings.STATIC_URL + '/daguerro/js/widgets/google_maps.js',
             )
 
 
@@ -180,10 +180,10 @@ class WikipediaWidget(forms.TextInput):
     
     class Media:
         js = (
-            settings.MEDIA_URL + '/daguerro/js/widgets/wikipedia-widget.js',
+            settings.STATIC_URL + '/daguerro/js/widgets/wikipedia-widget.js',
             )
         css = {
-            'screen': (settings.MEDIA_URL + '/daguerro/css/widgets/wikipedia-widget.css',),
+            'screen': (settings.STATIC_URL + '/daguerro/css/widgets/wikipedia-widget.css',),
         }
 
     def __init__(self, url_field,  *args, **kwargs):

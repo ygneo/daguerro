@@ -51,7 +51,7 @@ class ImageWidget(forms.FileInput):
             output = self.template % {'input': input_html,
                                       'image': image_html}
         except IOError: # not image
-            logger.warning("IOError %s" % file_path)
+            log.warning("IOError accessing %s" % file_path)
 	    output = input_html
         return mark_safe(output)
 
