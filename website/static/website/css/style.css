@@ -42,11 +42,11 @@ div#container {
         #header #searcher #search { float:right;}
         #header #searcher #search label { display: block; padding-bottom: .5ex;}
         form#search input[type=text] { 
-                               color: grey; 
+                               color: black; 
                                border: 2px solid white; 
                                float:left;
                                font-size: 120%; 
-                               height: 24px; 
+                               height: 26px; 
                                padding: 1px;
                                margin-right: .3ex;
                                width: 17em;      
@@ -57,17 +57,17 @@ div#container {
                                khtml-border-radius: 4px;
         }
         #header #searcher #search input[type=submit] { 
-                                height: 30px;
-                                width: 30px; 
+                                height: 32px;
+                                width: 64px; 
                                 border-color: transparent;
                                 border-radius: 4px;
                                 ms-border-radius: 4px;
                                 moz-border-radius: 4px;
                                 webkit-border-radius: 4px;
                                 khtml-border-radius: 4px;
-                                background: url('../../img/zoom.png') center no-repeat #555; 
+                                background: url('../../img/zoom.png') center no-repeat #58880C; 
         }
-       #header #searcher #search input[type=submit]:hover { background-color: #58880C; cursor: pointer; }
+       #header #searcher #search input[type=submit]:hover { cursor: pointer; border: 1px solid white;}
        #header #searcher a#ui-advanced-search-link { display: block; clear: both; font-size: 90%; margin-top: .5ex;}
        
 
