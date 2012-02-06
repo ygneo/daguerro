@@ -5,7 +5,6 @@ class ShoppingCartForm(forms.Form):
     pass
 
 
-
 class SearchOptionsForm(BetterForm):
 
     title = forms.BooleanField(required=False, initial=True)
