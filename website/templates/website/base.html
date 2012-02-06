@@ -46,9 +46,8 @@
               <form id="search" method="GET" action="{% url website-search-photos %}">
               <input type="text" id="query" name="query" value="{{ query }}"/>
               <input type="submit" id="search_button" alt="{% trans "Search" %}" title="{% trans "Search" %}" value=""/>
-              <!-- <a id="ui-advanced-search-link" href="">{% trans "Options" %}</a> -->
+              {% include "website/search_options_form.html" %}
               </form>
-              {{ search_form }}
             </div>
             <div id="tools">
               <div id="shop">

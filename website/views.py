@@ -28,7 +28,7 @@ def gallery(request, slugs=None):
     template = 'website/gallery.html' if slugs else 'website/index.html'    
     return render_to_response(template, {'gallery': current_gallery, 
                                          'brother_galleries': brother_galleries, 
-                                         'search_form': SearchOptionsForm(),
+                                         'search_options_form': SearchOptionsForm(),
                                          }, context_instance=RequestContext(request)
                               )
 

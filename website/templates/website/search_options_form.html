@@ -1,0 +1,7 @@
+{% for fieldset in search_options_form.fieldsets %}
+<fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
+  {% for field in fieldset %}
+    {{ field }}
+  {% endfor %}
+{% endfor %}
+</fieldset>

@@ -1,10 +1,11 @@
 from django import forms
+from form_utils.forms import BetterForm
 
 class ShoppingCartForm(forms.Form):
     pass
 
 
-class SearchOptionsForm(forms.Form):
+class SearchOptionsForm(BetterForm):
 
     title = forms.BooleanField(required=False, initial=True)
     alternative_title = forms.BooleanField(required=False, initial=True)
