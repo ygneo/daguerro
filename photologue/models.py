@@ -451,7 +451,7 @@ class ImageModel(models.Model):
                     return
                 except KeyError:
                     pass
-            dpi = im.info['dpi'] if 'dpi' in im.info else 300
+            dpi = im.info['dpi'] if 'dpi' in im.info else (300, 300)
             im.save(im_filename, 'JPEG', quality=int(photosize.quality), dpi=dpi, optimize=True)
         except IOError, e:
             if os.path.isfile(im_filename):
