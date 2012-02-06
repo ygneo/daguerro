@@ -13,7 +13,7 @@ from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 from photologue.models import Gallery, Photo
 from daguerro.utils import process_category_thread
-from website.forms import ShoppingCartForm
+from website.forms import ShoppingCartForm, SearchOptionsForm
 
 
 def gallery(request, slugs=None):
@@ -28,6 +28,7 @@ def gallery(request, slugs=None):
     template = 'website/gallery.html' if slugs else 'website/index.html'    
     return render_to_response(template, {'gallery': current_gallery, 
                                          'brother_galleries': brother_galleries, 
+                                         'search_form': SearchOptionsForm(),
                                          }, context_instance=RequestContext(request)
                               )
 
