@@ -5,13 +5,13 @@ Requisitos
 
  * El directorio que aloja este proyecto django se debe llamar 'barres'.
 
- * Se recomienda instalar en una distribución GNU/Linux, preferentemente una basada en Debian, pues es ha sido validado en una Ubuntu 10.04.
+ * Se recomienda instalar en una distribución GNU/Linux, preferentemente una basada en Debian.
 
  * En Ubuntu 10.4 se necesita instalar estos paquetes para poder compilar PIL:
 
   sudo apt-get install python-dev zlib1g-dev libjpeg62-dev libfreetype6-dev
 
-  * Es posible que sea necesario este paquete installar estos paquetes para poder compilar MySQL-python
+  * Es posible que sea necesario estos paquetes para poder compilar MySQL-python
 
   sudo apt-get build-dep python-mysqldb
 
@@ -25,6 +25,10 @@ Instalación
  * El resto de requisitos, incluyendo el propio django, se instalan ejecutando:
 
    sudo pip install -r pip_requirements
+
+ * Es necesario crear un directorio para los fichero de logs:
+   
+   sudo mkdir /var/log/barres
 
  * La base de datos ha de configurarse en el fichero settings.py, en la variable DATABASES.
 
