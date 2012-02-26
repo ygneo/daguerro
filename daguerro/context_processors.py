@@ -4,7 +4,11 @@ from django.shortcuts import get_object_or_404
 from photologue.models import Gallery
 
 def current_site(request):
-    return {'current_site': Site.objects.get_current()}
+    try:
+        current_site =  Site.objects.get_current()
+    except:
+        current_site = None
+    return {'current_site': current_site}
 
 
 def category_thread(request):    
