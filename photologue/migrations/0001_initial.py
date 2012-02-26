@@ -60,7 +60,7 @@ class Migration(SchemaMigration):
             ('order', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
             ('is_public', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('tags', self.gf('photologue.models.TagField')(max_length=255, blank=True)),
-            ('location', self.gf('photologue.widgets.LocationField')(max_length=255, blank=True)),
+            ('location', self.gf('django.db.models.fields.CharField')(max_length=300, blank=True, null=True)),
             ('location_title', self.gf('django.db.models.fields.CharField')(max_length=300, null=True, blank=True)),
             ('family', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
         ))
@@ -173,7 +173,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
             'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'location': ('photologue.widgets.LocationField', [], {'max_length': '255', 'blank': 'True'}),
+            'location': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             'location_title': ('django.db.models.fields.CharField', [], {'max_length': '300', 'null': 'True', 'blank': 'True'}),
             'order': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'tags': ('photologue.models.TagField', [], {'max_length': '255', 'blank': 'True'}),

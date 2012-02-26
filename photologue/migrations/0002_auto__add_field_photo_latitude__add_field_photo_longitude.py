@@ -63,7 +63,7 @@ class Migration(SchemaMigration):
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
             'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'latitude': ('django.db.models.fields.FloatField', [], {'null': 'True'}),
-            'location': ('photologue.widgets.LocationField', [], {'max_length': '255', 'blank': 'True'}),
+            'location': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             'location_title': ('django.db.models.fields.CharField', [], {'max_length': '300', 'null': 'True', 'blank': 'True'}),
             'longitude': ('django.db.models.fields.FloatField', [], {'null': 'True'}),
             'order': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
