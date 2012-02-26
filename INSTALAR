@@ -7,13 +7,9 @@ Requisitos
 
  * Se recomienda instalar en una distribución GNU/Linux, preferentemente una basada en Debian.
 
- * En Ubuntu 10.4 se necesita instalar estos paquetes para poder compilar PIL:
+ * En Ubuntu 10.4 se puede necesitar instalar estos paquetes:
 
-  sudo apt-get install python-dev zlib1g-dev libjpeg62-dev libfreetype6-dev
-
-  * Es posible que sea necesario estos paquetes para poder compilar MySQL-python
-
-  sudo apt-get build-dep python-mysqldb
+  sudo apt-get install python-dev zlib1g-dev libjpeg62-dev libfreetype6-dev build-dep python-mysqldb
 
 Instalación
 ----------
