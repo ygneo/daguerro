@@ -1,3 +1,5 @@
+DEBUG = True
+
 DATABASE_NAME = 'barres'
 DATABASE_USER = 'root'
 DATABASE_PASSWORD = 'root'

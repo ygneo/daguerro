@@ -1,4 +1,5 @@
 import os
+import django
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.views.generic.simple import direct_to_template
@@ -14,7 +15,6 @@ urlpatterns = patterns('website.views',
 
 if settings.DEBUG:
     urlpatterns = patterns('',
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
+                           url(r'^media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': settings.MEDIA_ROOT,}),
+                           url(r'^admin_media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': os.path.join(django.__path__[0], "contrib/admin/media/")}),
    ) + urlpatterns
