@@ -67,8 +67,11 @@ div#container {
                                 khtml-border-radius: 4px;
                                 background: url('../../img/zoom.png') center no-repeat #58880C; 
         }
-       #header #searcher #search input[type=submit]:hover { cursor: pointer; border: 1px solid white;}
+       #header #searcher form#search input[type=submit]:hover { cursor: pointer; border: 1px solid white;}
+       #header #searcher form#search fieldset#default-fields { clear: both; width: 100%; background: white; padding: 1ex; text-align: left; }
+       #header #searcher form#search fieldset#default-fields input { margin: .5ex; }
        #header #searcher a#ui-advanced-search-link { display: block; clear: both; font-size: 90%; margin-top: .5ex;}
+
        
 
 div#content {
