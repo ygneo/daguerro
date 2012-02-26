@@ -223,8 +223,7 @@ try:
     import platform
     hostname = platform.node().replace('.','_').replace('-', '_')
     exec "from local_settings.%s import *" % hostname
-    print "loaded ", hostname
 except ImportError, e:
-    print e
+    pass
 
 
