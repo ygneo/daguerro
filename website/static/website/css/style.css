@@ -75,15 +75,25 @@ div#container {
                                 width: 24px; 
                                 background: url('../img/zoom.png') center no-repeat #58880C; 
 				float: left;
-				margin: 1ex;
+				margin-top: .5ex;
+				margin-left: 1ex;
         }
-       #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
+        #header #searcher form#search input[type=submit]:hover,  #header #searcher form#search input[type=button]:hover { 
+	    cursor: pointer; 
+	    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	    filter: alpha(opacity=70);
+	    -moz-opacity:0.7;
+	    -khtml-opacity: 0.7;
+	    opacity: 0.7;
+
+	}
         #header #searcher #search input#search_options_button { 
                                 height: 24px;
                                 width: 24px; 
                                 background: url('../img/cog.png') center no-repeat #58880C; 
 				float: right;
-				margin: 1ex;
+				margin-top: .5ex;
+				margin-right: 1ex;
         }
        #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
 
