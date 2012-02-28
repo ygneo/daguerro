@@ -18,7 +18,7 @@
       <div id="prev">
       {% comment TODO %}
       {% if prev_photo %}
-      <a href="{% url website-photo gallery_slugs=gallery_slugs photo_slug=prev_photo.title_slug %}"><img src="{{ STATIC_URL }}website/img/assets/prev.png" alt="&laquo; Anterior" title="&laquo; Anterior"/></a>
+      <a href="{% url website-photo gallery_slugs=gallery_slugs photo_slug=prev_photo.title_slug %}"><img src="{{ STATIC_URL }}website/img/prev.png" alt="&laquo; Anterior" title="&laquo; Anterior"/></a>
       {% endif %}
       {% endcomment %}
       </div>
@@ -26,19 +26,19 @@
       <div id="next">
       {% comment TODO %}
       {% if next_photo %}
-      <a href="{% url website-photo gallery_slugs=gallery_slugs photo_slug=next_photo.title_slug %}"><img src="{{ STATIC_URL }}website/img/assets/next.png" alt="&raquo; Siguiente" title="Siguiente &raquo;"></a>
+      <a href="{% url website-photo gallery_slugs=gallery_slugs photo_slug=next_photo.title_slug %}"><img src="{{ STATIC_URL }}website/img/next.png" alt="&raquo; Siguiente" title="Siguiente &raquo;"></a>
       {% endif %}
         {% endcomment %}
       </div>
     </div>
     <div id="photo_info">
       {% if photo.caption %}
-      <img src="{{ STATIC_URL }}website/img/assets/info.png" alt="Descripción" title="Descripción"/>
+      <img src="{{ STATIC_URL }}website/img/info.png" alt="Descripción" title="Descripción"/>
       <p>{{ photo.caption }}</p>
       <hr/>
       {% endif %}
       {% if photo.alternative_title or photo.family %}
-      <img src="{{ STATIC_URL }}website/img/assets/desc.png" alt="Descripción">
+      <img src="{{ STATIC_URL }}website/img/desc.png" alt="Descripción">
         <div id="description" class="tab">
           <em>
             {% if photo.alternative_title_url %}<a href="http://es.wikipedia.org/w/index.php?title=Especial%3ABuscar&search={{ photo.alternative_title }}" target="_blank">{% endif %}
@@ -54,7 +54,7 @@
          {% localize off %}
          <a href="http://maps.google.com/maps?q={{ photo.latitude }},+{{ photo.longitude }}+%28{{ photo.location_title }}%29&iwloc=A&" target="_blank">
          {% endlocalize %}
-         <img src="{{ STATIC_URL }}website/img/assets/globe.png" alt="Geolocalización">
+         <img src="{{ STATIC_URL }}website/img/globe.png" alt="Geolocalización">
          </a>
         <div class="tab">
           {% localize off %}
@@ -64,14 +64,14 @@
       {% endif %}
        
          {% if photo.tags %} 
-            <img src="{{ STATIC_URL }}website/img/assets/tag.png" alt="Etiquetas">
+            <img src="{{ STATIC_URL }}website/img/tag.png" alt="Etiquetas">
           <div class="tab">
             {{  photo.tags|lower }}
           </div>
           {% endif %}  
             <div class="last-tab">
               <a id="ui-add-to-cart" href="#" data:item_id="{{ photo.id }}" data:item_thumb_url="{{ photo.get_thumbnail_url }}" data:item_title="{{ photo.title }}">
-                <img src="{{ STATIC_URL }}website/img/assets/shop_cart.png" alt="Solicitar" title="Solicitar">
+                <img src="{{ STATIC_URL }}website/img/shop_cart.png" alt="Solicitar" title="Solicitar">
                 </a>
                 </div>
             </div>

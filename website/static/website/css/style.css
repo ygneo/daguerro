@@ -41,6 +41,7 @@ div#container {
         #header #side #searcher { font-size: 90%; text-align: right; margin-top: 1ex; }        
         #header #searcher #search { float:right;}
         #header #searcher #search label { display: block; padding-bottom: .5ex;}
+        form#search input { border: 0 }
         form#search input[type=text] { 
                                color: black; 
                                border: 2px solid white; 
@@ -56,30 +57,35 @@ div#container {
                                webkit-border-radius: 4px;
                                khtml-border-radius: 4px;
         }
-        #header #searcher #search input[type=submit] { 
+        #header #searcher #search #search_buttons { 
+	                        float: right;
                                 height: 32px;
-                                width: 64px; 
+                                width: 72px; 
                                 border-color: transparent;
                                 border-radius: 4px;
                                 ms-border-radius: 4px;
                                 moz-border-radius: 4px;
                                 webkit-border-radius: 4px;
                                 khtml-border-radius: 4px;
-                                background: url('../../img/zoom.png') center no-repeat #58880C; 
+				background: #58880C; 
         }
-       #header #searcher form#search input[type=submit]:hover { cursor: pointer; border: 1px solid white;}
+
+        #header #searcher #search input[type=submit] {
+                                height: 24px;
+                                width: 24px; 
+                                background: url('../img/zoom.png') center no-repeat #58880C; 
+				float: left;
+				margin: 1ex;
+        }
+       #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
         #header #searcher #search input#search_options_button { 
-                                height: 32px;
-                                width: 64px; 
-                                border-color: transparent;
-                                border-radius: 4px;
-                                ms-border-radius: 4px;
-                                moz-border-radius: 4px;
-                                webkit-border-radius: 4px;
-                                khtml-border-radius: 4px;
-                                background: url('../img/dog.png') center no-repeat #58880C; 
+                                height: 24px;
+                                width: 24px; 
+                                background: url('../img/cog.png') center no-repeat #58880C; 
+				float: right;
+				margin: 1ex;
         }
-       #header #searcher form#search input[type=submit]:hover { cursor: pointer; border: 1px solid white;}
+       #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
 
        #header #searcher form#search div#search_options { clear: both; width: 100%; background: white; padding: 1.5ex; text-align: left; }
        #header #searcher form#search fieldset#default-fields input { margin: .5ex; }
