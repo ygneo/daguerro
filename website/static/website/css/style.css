@@ -68,9 +68,21 @@ div#container {
                                 background: url('../../img/zoom.png') center no-repeat #58880C; 
         }
        #header #searcher form#search input[type=submit]:hover { cursor: pointer; border: 1px solid white;}
-       #header #searcher form#search fieldset#default-fields { clear: both; width: 100%; background: white; padding: 1ex; text-align: left; }
+        #header #searcher #search input#search_options_button { 
+                                height: 32px;
+                                width: 64px; 
+                                border-color: transparent;
+                                border-radius: 4px;
+                                ms-border-radius: 4px;
+                                moz-border-radius: 4px;
+                                webkit-border-radius: 4px;
+                                khtml-border-radius: 4px;
+                                background: url('../img/dog.png') center no-repeat #58880C; 
+        }
+       #header #searcher form#search input[type=submit]:hover { cursor: pointer; border: 1px solid white;}
+
+       #header #searcher form#search div#search_options { clear: both; width: 100%; background: white; padding: 1.5ex; text-align: left; }
        #header #searcher form#search fieldset#default-fields input { margin: .5ex; }
-       #header #searcher a#ui-advanced-search-link { display: block; clear: both; font-size: 90%; margin-top: .5ex;}
 
        
 

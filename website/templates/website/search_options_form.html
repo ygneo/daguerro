@@ -1,8 +1,12 @@
-{% for fieldset in search_options_form.fieldsets %}
-<fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
-  {{ fieldset.legend }}
-  {% for field in fieldset %}
-    {{ field }} {{ field.label }}
-  {% endfor %}
-{% endfor %}
-</fieldset>
+{% load i18n %}
+
+<div id="search_options">
+  {% trans "Search in" %}
+  {% for fieldset in search_options_form.fieldsets %}
+  <fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
+    {% for field in fieldset %}
+     {{ field }} {{ field.label }}
+    {% endfor %}
+    {% endfor %}
+  </fieldset>
+</div>
