@@ -60,7 +60,7 @@ div#container {
         #header #searcher #search #search_buttons { 
 	                        float: right;
                                 height: 32px;
-                                width: 72px; 
+                                width: 94px; 
                                 border-color: transparent;
                                 border-radius: 4px;
                                 ms-border-radius: 4px;
@@ -72,11 +72,12 @@ div#container {
 
         #header #searcher #search input[type=submit] {
                                 height: 24px;
-                                width: 24px; 
+                                width: 48px; 
                                 background: url('../img/zoom.png') center no-repeat #58880C; 
 				float: left;
 				margin-top: .5ex;
 				margin-left: 1ex;
+				padding-right: 8px;
         }
         #header #searcher form#search input[type=submit]:hover,  #header #searcher form#search input[type=button]:hover { 
 	    cursor: pointer; 
@@ -88,12 +89,12 @@ div#container {
 
 	}
         #header #searcher #search input#search_options_button { 
-                                height: 24px;
-                                width: 24px; 
+                                height: 16px;
+                                width: 36px; 
                                 background: url('../img/cog.png') center no-repeat #58880C; 
 				float: right;
-				margin-top: .5ex;
-				margin-right: 1ex;
+				margin-top: 8px;
+				border-left: 1px solid white;
         }
        #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
 
