@@ -97,7 +97,6 @@ div#container {
                                 background: url('../img/cog.png') center no-repeat #58880C; 
 				float: right;
 				margin-top: 8px;
-				border-left: 1px solid white;
         }
        #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
 
@@ -114,7 +113,10 @@ div#container {
                                 webkit-border-radius: 2px;
                                 khtml-border-radius: 2px;
 				line-height: 150%; 
-}
+       }
+       #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
+			  margin-left: 4px;
+			}
 
        
 
