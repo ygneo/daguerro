@@ -40,7 +40,7 @@ div#container {
         #header #side #languages span {font-weight:bold;}
         #header #side #searcher { font-size: 90%; text-align: right; margin-top: 1ex; }        
         #header #searcher #search { float:right;}
-        #header #searcher #search label { display: block; padding-bottom: .5ex;}
+        #header #searcher #search label { display: block; }
         form#search input { border: 0 }
         form#search input[type=text] { 
                                color: black; 
@@ -69,14 +69,17 @@ div#container {
                                 khtml-border-radius: 4px;
 				background: #58880C; 
         }
-
+        #search_options label, #search_options input  { float: left; }
+        #search_options fieldset  { clear: left; margin-bottom: 1ex;}
+        #search_options fieldset input { margin: .5ex; }
+        #search_options fieldset label { margin-right: 1.5ex; }
         #header #searcher #search input[type=submit] {
                                 height: 24px;
                                 width: 48px; 
                                 background: url('../img/zoom.png') center no-repeat #58880C; 
 				float: left;
 				margin-top: .5ex;
-				margin-left: 1ex;
+				margin-left: 4px;
 				padding-right: 8px;
         }
         #header #searcher form#search input[type=submit]:hover,  #header #searcher form#search input[type=button]:hover { 
@@ -98,8 +101,20 @@ div#container {
         }
        #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
 
-       #header #searcher form#search div#search_options { clear: both; width: 100%; background: white; padding: 1.5ex; text-align: left; }
-       #header #searcher form#search fieldset#default-fields input { margin: .5ex; }
+       #header #searcher form#search div#search_options {
+	                        clear: both; 
+				position: relative;
+				top: .2ex;                                  
+				background: white; 
+				padding: 1.5ex; 
+				text-align: left; 
+				border-radius: 2px;
+                                ms-border-radius: 2px;
+                                moz-border-radius: 2px;
+                                webkit-border-radius: 2px;
+                                khtml-border-radius: 2px;
+				line-height: 150%; 
+}
 
        
 
