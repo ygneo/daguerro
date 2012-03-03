@@ -81,11 +81,11 @@ div#container {
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
         #header #searcher #search input[type=submit] {
-                                height: 24px;
+                                height: 28px;
                                 width: 48px; 
                                 background: url('../img/zoom.png') center no-repeat #58880C; 
 				float: left;
-				margin-top: .5ex;
+				margin-top: 2px;
 				margin-left: 4px;
 				padding-right: 8px;
         }
@@ -100,11 +100,11 @@ div#container {
 	}
         #header #searcher #search input#search_options_button { 
 				outline: none;
-                                height: 16px;
+                                height: 28px;
                                 width: 36px; 
                                 background: url('../img/cog.png') center no-repeat #58880C; 
 				float: right;
-				margin-top: 8px;
+				margin-top: 2px;
         }
         #header #searcher #search input#search_options_button.active {  
                                background: url('../img/cog-active.png') center no-repeat #58880C; }
@@ -130,7 +130,7 @@ div#container {
        #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
 			  margin-left: 4px; margin-right: 2px; 
 			}
-
+       #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center transparent; height: 24px; width: 36px; }
        
 
 div#content {
