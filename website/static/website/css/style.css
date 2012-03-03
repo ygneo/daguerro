@@ -41,6 +41,13 @@ div#container {
         #header #side #searcher { font-size: 90%; text-align: right; margin-top: 1ex; }        
         #header #searcher #search { float:right;}
         #header #searcher #search label { display: block; }
+	button::-moz-focus-inner,
+	input[type="reset"]::-moz-focus-inner,
+	input[type="button"]::-moz-focus-inner,
+	input[type="submit"]::-moz-focus-inner,
+	input[type="file"] > input[type="button"]::-moz-focus-inner {
+	    border: none;
+	}
         form#search input { border: 0 }
         form#search input[type=text] { 
                                color: black; 
@@ -92,29 +99,34 @@ div#container {
 
 	}
         #header #searcher #search input#search_options_button { 
+				outline: none;
                                 height: 16px;
                                 width: 36px; 
                                 background: url('../img/cog.png') center no-repeat #58880C; 
 				float: right;
 				margin-top: 8px;
         }
+        #header #searcher #search input#search_options_button.active {  
+                               background: url('../img/cog-active.png') center no-repeat #58880C; }
        #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
 
        #header #searcher form#search div#search_options {
 	                        display: none;
 	                        clear: both; 
 				position: absolute;
-				background: white; 
-				padding: 8px; 
+				background: white;
+				color: #111;
+				padding: 12px; 
 				text-align: left; 
-				border-radius: 2px;
-                                ms-border-radius: 2px;
-                                moz-border-radius: 2px;
-                                webkit-border-radius: 2px;
-                                khtml-border-radius: 2px;
+				border-radius: 4px;
+                                ms-border-radius: 4px;
+                                moz-border-radius: 4px;
+                                webkit-border-radius: 4px;
+                                khtml-border-radius: 4px;
 				line-height: 150%; 
 				z-index: 99;
        }
+
        #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
 			  margin-left: 4px; margin-right: 2px; 
 			}
