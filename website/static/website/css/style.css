@@ -47,7 +47,7 @@ div#container {
                                border: 2px solid white; 
                                float:left;
                                font-size: 120%; 
-                               height: 28px; 
+                               height: 26px; 
                                padding: 1px;
                                margin-right: .3ex;
                                width: 22em;      
@@ -69,7 +69,6 @@ div#container {
                                 khtml-border-radius: 4px;
 				background: #58880C; 
         }
-	#search_options { display: none; }
         #search_options label, #search_options input  { float: left; }
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
@@ -102,11 +101,11 @@ div#container {
        #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
 
        #header #searcher form#search div#search_options {
+	                        display: none;
 	                        clear: both; 
-				position: relative;
-				top: .2ex;                                  
+				position: absolute;
 				background: white; 
-				padding: 1.5ex; 
+				padding: 8px; 
 				text-align: left; 
 				border-radius: 2px;
                                 ms-border-radius: 2px;
@@ -114,6 +113,7 @@ div#container {
                                 webkit-border-radius: 2px;
                                 khtml-border-radius: 2px;
 				line-height: 150%; 
+				z-index: 99;
        }
        #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
 			  margin-left: 4px; margin-right: 2px; 
