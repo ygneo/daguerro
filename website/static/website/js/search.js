@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $("<div id='ui-arrow-down'>").insertAfter($('input#search_options_button'));
+    $("<div id='ui-open-galleries'>").insertBefore($('fieldset#galleries label:not(fieldset#galleries ul label)'));
 
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
@@ -18,6 +19,10 @@ $(document).ready(function() {
 				     left: button_offset.left - $("#seach_options").css("width")
 				    });
 
+    });
+
+    $('#ui-open-galleries').click(function (e) {
+	$("fieldset#galleries ul").toggle();
     });
 
 });

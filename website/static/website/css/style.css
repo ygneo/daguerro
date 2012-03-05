@@ -76,10 +76,32 @@ div#container {
                                 khtml-border-radius: 4px;
 				background: #58880C; 
         }
+       #header #searcher form#search div#search_options {
+	                        display: none;
+	                        clear: both; 
+				position: absolute;
+				background: white;
+				color: #111;
+				padding: 12px; 
+				text-align: left; 
+				border-radius: 4px;
+                                ms-border-radius: 4px;
+                                moz-border-radius: 4px;
+                                webkit-border-radius: 4px;
+                                khtml-border-radius: 4px;
+				-webkit-box-shadow: 1px 1px 0px 0px #58880C;
+				-moz-box-shadow: 1px 1px 0px 0px #58880C;
+				box-shadow: 1px 1px 0px 0px #58880C;
+				line-height: 150%; 
+				z-index: 99;
+       }
         #search_options label, #search_options input  { float: left; }
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
+        #search_options fieldset#galleries ul  { list-style: none;  display: none; }
+	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cusor: pointer; }
+
         #header #searcher #search input[type=submit] {
                                 height: 28px;
                                 width: 48px; 
@@ -109,23 +131,6 @@ div#container {
         #header #searcher #search input#search_options_button.active {  
                                background: url('../img/cog-active.png') center no-repeat #58880C; }
        #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
-
-       #header #searcher form#search div#search_options {
-	                        display: none;
-	                        clear: both; 
-				position: absolute;
-				background: white;
-				color: #111;
-				padding: 12px; 
-				text-align: left; 
-				border-radius: 4px;
-                                ms-border-radius: 4px;
-                                moz-border-radius: 4px;
-                                webkit-border-radius: 4px;
-                                khtml-border-radius: 4px;
-				line-height: 150%; 
-				z-index: 99;
-       }
 
        #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
 			  margin-left: 4px; margin-right: 2px; 

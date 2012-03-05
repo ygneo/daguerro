@@ -19,36 +19,36 @@ msgstr ""
 
 #: forms.py:12
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: forms.py:13
 msgid "Alternative title"
-msgstr ""
+msgstr "Nombre científico"
 
 #: forms.py:14
 msgid "Family"
-msgstr ""
+msgstr "Familia"
 
 #: forms.py:15
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: forms.py:16
 msgid "Caption"
-msgstr ""
+msgstr "Pie de foto"
 
 #: forms.py:17
 msgid "Location"
-msgstr ""
+msgstr "Localización"
 
 #: forms.py:18
 msgid "Galleries"
-msgstr ""
+msgstr "Categoría(s)"
 
 #: templates/website/base.html:50
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: templates/website/base.html:52
 msgid "Search options"
-msgstr ""
+msgstr "Opciones de búsqueda"

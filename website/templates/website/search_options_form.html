@@ -8,7 +8,8 @@
      {% if field|field_type:'checkboxinput' %}
      {{ field }} {{ field.label_tag }}
      {% else %}
-     {{ field.label_tag }} {{ field }}
+      {{ field.label_tag }}
+      {{ field }}
      {% endif %}
     {% endfor %}
   </fieldset>

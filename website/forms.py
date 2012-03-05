@@ -2,6 +2,7 @@ from django import forms
 from form_utils.forms import BetterForm
 from django.utils.translation import ugettext as _
 from photologue.models import Gallery
+from website.widgets import SearchGalleryWidget
 
 class ShoppingCartForm(forms.Form):
     pass
@@ -14,10 +15,10 @@ class SearchOptionsForm(BetterForm):
     tags = forms.BooleanField(required=False, initial=True, label=_("Tags"),)
     caption = forms.BooleanField(required=False, initial=False, label=_("Caption"))
     location_title = forms.BooleanField(required=False, initial=False, label=_("Location"))
-    galleries = forms.ModelMultipleChoiceField(
+    galleries = SearchGalleryWidget(
         queryset=Gallery.objects.all(), 
-        widget=forms.widgets.SelectMultiple(attrs = {'size': 2}),
-        label=_('Category(s)'),
+        widget=forms.widgets.CheckboxSelectMultiple(attrs = {'id': 'galleries'}),
+        label=_("Galleries"),
         )
     
     class Meta:
@@ -30,9 +31,13 @@ class SearchOptionsForm(BetterForm):
                                    'family', 'tags']}),
                      ('advanced-fields',
                       {'fields': ['caption', 
-                                  'location_title']}),
+                                  'location_title',
+                                  ]}),
                      ('galleries', 
-                      {'fields': ['galleries']}),
+                      {'fields': ['galleries'
+                                  ],
+                       }
+                      ),
                      ]
          
                       
