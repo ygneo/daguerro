@@ -99,7 +99,7 @@ div#container {
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
-        #search_options fieldset#galleries ul  { list-style: none;  display: none; }
+        #search_options fieldset#galleries ul  { list-style: none;  display: none; clear: both; }
 	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cusor: pointer; }
 
         #header #searcher #search input[type=submit] {
