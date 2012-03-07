@@ -19,6 +19,7 @@ from django.utils.encoding import smart_unicode
 from django.core.paginator import Paginator
 
 from south.modelsinspector import add_introspection_rules
+from mptt.models import MPTTModel, TreeForeignKey
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -123,9 +124,6 @@ for n in dir(ImageFilter):
 IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
 class GalleryManager(models.Manager):
-    """
-    Custom manager for Gallery objects.
-    """
     
     def public(self):
         """
@@ -134,12 +132,12 @@ class GalleryManager(models.Manager):
         return self.filter(is_public=True)
         
 
-class Gallery(models.Model):
+class Gallery(MPTTModel):
     date_added = models.DateTimeField(_('Creation date'), default=datetime.now)
     title = models.CharField(_('Title'), max_length=100, unique=True)
     title_slug = models.SlugField(_('Slug'), unique=True,
                                   help_text=_('A "slug" is a unique URL-friendly title for an object.'))
-    parent = models.ForeignKey('Gallery', verbose_name=_("Parent category"), blank=True, null=True)
+    parent = TreeForeignKey('self', verbose_name=_("Parent category"), blank=True, null=True, related_name='children')
     order = models.IntegerField(verbose_name=_("Order"), blank=True, null=True)
     description = models.TextField(_('Description'), blank=True)
     photo = models.ForeignKey('Photo', verbose_name=_("Photo"), blank=True, null=True)

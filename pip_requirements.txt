@@ -6,3 +6,4 @@ django-extensions
 django-debug-toolbar
 South
 MySQL-python
+django-mptt

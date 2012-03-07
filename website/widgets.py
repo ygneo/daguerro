@@ -11,3 +11,6 @@ class SearchGalleryWidget(forms.ModelMultipleChoiceField):
 
     def __init__(self, *args, **kwargs):
         super(SearchGalleryWidget, self).__init__(*args, **kwargs)
+
+    def render(self, name, value):
+        pass

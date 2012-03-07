@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.humanize',
     'django.contrib.staticfiles',
+    'mptt',
 )
 
 LOGGING = {
