@@ -99,8 +99,9 @@ div#container {
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
-        #search_options fieldset#galleries ul  { list-style: none;  display: none; clear: both; }
-	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cusor: pointer; }
+        #search_options fieldset#galleries ul  { list-style: none;  display: none; clear: both; position: relative; top: 1ex; }
+	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
+	#search_options fieldset#galleries #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent;  }
 
         #header #searcher #search input[type=submit] {
                                 height: 28px;
@@ -130,13 +131,15 @@ div#container {
         }
         #header #searcher #search input#search_options_button.active {  
                                background: url('../img/cog-active.png') center no-repeat #58880C; }
-       #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
-
-       #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
+        #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
+ 
+        #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
 			  margin-left: 4px; margin-right: 2px; 
 			}
-       #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center transparent; height: 24px; width: 36px; }
-       
+        #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center transparent; height: 24px; width: 36px; }
+        #ui-open-galleries.active {  }
+        #ui-open-galleries + label { cursor: pointer; }
+	#ui-open-galleries + label:hover { text-decoration: underline; }
 
 div#content {
         width: 88%;    
