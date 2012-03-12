@@ -1,8 +1,9 @@
 from django import forms
 from form_utils.forms import BetterForm
 from django.utils.translation import ugettext as _
+from mptt.forms import TreeNodeMultipleChoiceField
 from photologue.models import Gallery
-from website.widgets import SearchGalleryWidget
+from website.widgets import TreeCheckboxSelectMultipleWidget
 
 class ShoppingCartForm(forms.Form):
     pass
@@ -15,10 +16,11 @@ class SearchOptionsForm(BetterForm):
     tags = forms.BooleanField(required=False, initial=True, label=_("Tags"),)
     caption = forms.BooleanField(required=False, initial=False, label=_("Caption"))
     location_title = forms.BooleanField(required=False, initial=False, label=_("Location"))
-    galleries = SearchGalleryWidget(
+    galleries = TreeNodeMultipleChoiceField(
         queryset=Gallery.objects.all(), 
-        widget=forms.widgets.CheckboxSelectMultiple(attrs = {'id': 'galleries'}),
         label=_("Galleries"),
+        widget = TreeCheckboxSelectMultipleWidget(attrs = {'id': 'galleries'}),
+        level_indicator=u'-'
         )
     
     class Meta:
@@ -41,5 +43,4 @@ class SearchOptionsForm(BetterForm):
                      ]
          
                       
-    
                           

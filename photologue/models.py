@@ -20,6 +20,7 @@ from django.core.paginator import Paginator
 
 from south.modelsinspector import add_introspection_rules
 from mptt.models import MPTTModel, TreeForeignKey
+from mptt.managers import TreeManager
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -123,7 +124,7 @@ for n in dir(ImageFilter):
             filter_names.append(klass.__name__)
 IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
-class GalleryManager(models.Manager):
+class GalleryManager(TreeManager):
     
     def public(self):
         """
@@ -152,6 +153,10 @@ class Gallery(MPTTModel):
         get_latest_by = 'date_added'
         verbose_name = _('categoria')
         verbose_name_plural = _('categorias')
+
+    class MPTTMeta:
+        order_insertion_by = ['order']
+        parent_attr = 'parent'
 
     def __unicode__(self):
         return self.title

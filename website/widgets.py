@@ -1,16 +1,39 @@
 from django import forms
 from django.conf import settings
+from django.forms.widgets import CheckboxSelectMultiple
+from django.utils.safestring import mark_safe
+from mptt.forms import TreeNodeMultipleChoiceField
 
-class SearchGalleryWidget(forms.ModelMultipleChoiceField):
-    allow_multiple_selection = True
 
-    class Media:
-        js = (
-            settings.STATIC_URL + '/daguerro/js/widgets/search.js',
-        )
+class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
 
     def __init__(self, *args, **kwargs):
-        super(SearchGalleryWidget, self).__init__(*args, **kwargs)
+        super(TreeCheckboxSelectMultipleWidget, self).__init__(*args, **kwargs)
 
-    def render(self, name, value):
-        pass
+    def render(self, name, value, attrs):
+        output = "<ul>"
+        depth = 0
+        for choice in self.choices:
+            choice_id, choice_name = choice[0], choice[1]
+            choice_level = self._get_level(choice_name)
+            if choice_level < depth:
+                for i in range(0, (depth - choice_level)):
+                    output += "</li></ul>"
+            elif choice_level > depth:
+                output += '<ul>'
+            output += "<li><input type='checkbox' name='%s'>%s</input>" % (name, choice_name)
+            if choice_level == depth:
+                output += "</li>"
+            depth = choice_level 
+        output += "</ul>" 
+        return mark_safe(output)
+
+    def _get_level(self, choice_name):
+        level = 0
+        for char in choice_name:
+            if char == "-":
+                level += 1
+            else:
+                return level
+        return level    
+            

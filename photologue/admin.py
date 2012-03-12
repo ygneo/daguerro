@@ -3,8 +3,9 @@
 """
 from django.contrib import admin
 from models import *
+from mptt.admin import MPTTModelAdmin
 
-class GalleryAdmin(admin.ModelAdmin):
+class GalleryAdmin(MPTTModelAdmin):
     exclude = ('order', 'date_added',)
     list_display = ('title', 'is_public')
     list_filter = ['is_public']

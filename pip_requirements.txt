@@ -7,3 +7,4 @@ django-debug-toolbar
 South
 MySQL-python
 django-mptt
+ipython==0.10
