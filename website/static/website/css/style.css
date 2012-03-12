@@ -97,7 +97,8 @@ div#container {
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
-        #search_options fieldset#galleries ul  { display: none; clear: both; list-style-type: none; text-align: left; line-height: 100%;  }
+        #search_options fieldset#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; }
+        #search_options fieldset#galleries > ul  { display: none; position: relative; top: 1ex; }
         #search_options fieldset#galleries ul  li {  clear: both; padding: 0; margin: 0; }
 	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
 	#search_options fieldset#galleries #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent;  }

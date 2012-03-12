@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     $('#ui-open-galleries, #ui-open-galleries + label').click(function (e) {
 	$("#ui-open-galleries").toggleClass("active");
-	$("fieldset#galleries ul").toggle();
+	$("fieldset#galleries > ul").toggle();
     });
 
 });
