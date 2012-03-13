@@ -24,7 +24,10 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
                     output += "</li></ul>"
             elif choice_level > depth:
                 output += '<ul>'
-            output += "<li><input type='checkbox' name='%s'>%s</input>" % (name, choice_name)
+            output += """<li>
+                          <input type='checkbox' name='%s' value='%s'/>
+                          <label>%s</label>
+                      """  % (name, choice_id, choice_name)
             if choice_level == depth:
                 output += "</li>"
             depth = choice_level 
