@@ -98,12 +98,16 @@ div#container {
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
         #search_options fieldset#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 1.5ex;  margin-bottom: 1ex; }
-        #search_options fieldset#galleries > ul  { display: none; position: relative; top: 1ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 0; }
+        #search_options fieldset#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 0; width: 100%; }
         #search_options fieldset#galleries li { clear: both;  float: left; display: block; }
 	#search_options fieldset#galleries li { clear: both;  float: left; display: block; }
         #search_options fieldset#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
 	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
-	#search_options fieldset#galleries #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent;  }
+	#search_options fieldset#galleries #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
+        #ui-open-galleries + label { cursor: pointer; }
+	#ui-open-galleries + label:hover { text-decoration: underline; }
+	hr#ui-separator { position: relative; top: .5ex; border-left: 0; border-right: 0; border-top: 0; border-bottom: 1px dotted #111; height: 1px; display: none; clear: both; padding: 0; 
+			  margin: 0 0 .8ex 0; width: 95%; }
 
         #header #searcher #search input[type=submit] {
                                 height: 28px;
@@ -139,9 +143,8 @@ div#container {
 			  margin-left: 4px; margin-right: 2px; 
 			}
         #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center transparent; height: 24px; width: 36px; }
-        #ui-open-galleries.active {  }
-        #ui-open-galleries + label { cursor: pointer; }
-	#ui-open-galleries + label:hover { text-decoration: underline; }
+	#ui-tree-node-handler { float: left; font-size: 90%; height: 16px; width: 16px;}
+	#ui-tree-node-handler.open-node {background: url('../img/round_plus.png') center transparent; }
 
 div#content {
         width: 88%;    

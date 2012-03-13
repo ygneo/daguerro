@@ -1,6 +1,9 @@
 $(document).ready(function() {
     $("<div id='ui-arrow-down'>").insertAfter($('input#search_options_button'));
     $("<div id='ui-open-galleries'>").insertBefore($('fieldset#galleries label:not(fieldset#galleries ul label)'));
+    $('fieldset#galleries input[type=checkbox]').each( function( index ) {
+	$('<div id="ui-tree-node-handler" class="open-node"></div>').insertBefore($(this));
+    });
 
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
@@ -23,6 +26,7 @@ $(document).ready(function() {
 
     $('#ui-open-galleries, #ui-open-galleries + label').click(function (e) {
 	$("#ui-open-galleries").toggleClass("active");
+	$("hr#ui-separator").toggle();
 	$("fieldset#galleries > ul").toggle();
     });
 
