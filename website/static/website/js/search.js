@@ -26,7 +26,6 @@ $(document).ready(function() {
 
     $('#ui-open-galleries, #ui-open-galleries + label').click(function (e) {
 	$("#ui-open-galleries").toggleClass("active");
-	$("hr#ui-separator").toggle();
 	$("fieldset#galleries > ul").toggle();
     });
 

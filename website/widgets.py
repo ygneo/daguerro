@@ -14,7 +14,7 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
 
     def render(self, name, value, attrs):
         output = "<ul>"
-        depth = 0
+        depth = i =  0
         for choice in self.choices:
             choice_id, choice_name = choice[0], choice[1]
             choice_level = self._get_level(choice_name)
@@ -24,13 +24,15 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
                     output += "</li></ul>"
             elif choice_level > depth:
                 output += '<ul>'
+            choice_dom_id = "%s%s" % (name, i)
             output += """<li>
-                          <input type='checkbox' name='%s' value='%s'/>
-                          <label>%s</label>
-                      """  % (name, choice_id, choice_name)
+                          <input type="checkbox" name="%s" value="%s" id="%s"/>
+                          <label for="%s">%s</label>
+                      """  % (name, choice_id, choice_dom_id, choice_dom_id, choice_name)
             if choice_level == depth:
                 output += "</li>"
             depth = choice_level 
+            i += 1
         output += "</ul>" 
         return mark_safe(output)
 
