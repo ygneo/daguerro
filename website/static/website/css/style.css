@@ -1,3 +1,4 @@
+* { margin: 0; padding: 0; }
 html,body {height:100%; font-family: Verdana, Arial; color: #111; margin: 0; padding: 0; }
 p { line-height:1.5; margin:0 0 1em; }
 img { border:0; }
@@ -98,7 +99,7 @@ div#container {
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
         #search_options fieldset#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 1.5ex;  margin-bottom: 1ex;  }
-        #search_options fieldset#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 2.5ex; height: 20ex; overflow: auto; padding-left: 0; width: 100%; }
+        #search_options fieldset#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 0; width: 100%; }
         #search_options fieldset#galleries li { clear: both;  float: left; display: block; }
 	#search_options fieldset#galleries li { clear: both;  float: left; display: block; }
         #search_options fieldset#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }

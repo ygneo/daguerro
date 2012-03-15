@@ -29,7 +29,7 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
                           <input type="checkbox" name="%s" value="%s" id="%s"/>
                           <label for="%s">%s</label>
                       """  % (name, choice_id, choice_dom_id, choice_dom_id, choice_name)
-            if choice_level == depth:
+            if depth > 0 and choice_level == depth:
                 output += "</li>"
             depth = choice_level 
             i += 1

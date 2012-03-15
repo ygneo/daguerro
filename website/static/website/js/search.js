@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$('<div id="ui-tree-node-handler" class="open-node"></div>').insertBefore($(this));
     });
 
+
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
     options_padding = 24;
