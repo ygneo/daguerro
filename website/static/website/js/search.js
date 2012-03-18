@@ -2,7 +2,13 @@ $(document).ready(function() {
     $("<div id='ui-arrow-down'>").insertAfter($('input#search_options_button'));
     $("<div id='ui-open-galleries'>").insertBefore($('fieldset#galleries label:not(fieldset#galleries ul label)'));
     $('fieldset#galleries input[type=checkbox]').each( function( index ) {
-	$('<div id="ui-tree-node-handler" class="open-node"></div>').insertBefore($(this));
+	subtree = $(this).nextAll("ul");
+	if (subtree.length) {
+	    $('<div id="ui-tree-node-handler" class="open-node"></div>').insertBefore($(this));
+	}
+	else {
+	    $(this).parent("li").css("margin-left", "14px");
+	}
     });
     $('fieldset#galleries li ul').children().hide();
 
