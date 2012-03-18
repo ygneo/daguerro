@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('fieldset#galleries input[type=checkbox]').each( function( index ) {
 	$('<div id="ui-tree-node-handler" class="open-node"></div>').insertBefore($(this));
     });
-
+    $('fieldset#galleries li ul').children().hide();
 
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
@@ -28,6 +28,11 @@ $(document).ready(function() {
     $('#ui-open-galleries, #ui-open-galleries + label').click(function (e) {
 	$("#ui-open-galleries").toggleClass("active");
 	$("fieldset#galleries > ul").toggle();
+    });
+
+    $('#ui-tree-node-handler.open-node').click(function (e) {
+	$(this).toggleClass("close-node");
+	$(this).nextAll("ul").children().toggle();
     });
 
 });

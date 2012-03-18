@@ -143,7 +143,7 @@ div#container {
 			}
         #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center no-repeat transparent; height: 24px; width: 36px; }
 	#ui-tree-node-handler { float: left; font-size: 90%; height: 14px; width: 14px; margin-top: 2px; }
-	#ui-tree-node-handler.open-node {background: url('../img/sq_plus.png') center no-repeat transparent; }
+	#ui-tree-node-handler {background: url('../img/sq_plus.png') center no-repeat transparent; }
 	#ui-tree-node-handler.close-node {background: url('../img/sq_minus.png') center no-repeat transparent; }
 
 div#content {
