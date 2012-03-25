@@ -98,15 +98,14 @@ div#container {
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
-        #search_options fieldset#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 1.5ex;  margin-bottom: 1ex;  }
-        #search_options fieldset#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 0; width: 100%; }
+        #search_options fieldset#galleries div#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 16px;  margin-bottom: 1ex;  }
+        #search_options fieldset#galleries div#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 16px; width: 95%; }
         #search_options fieldset#galleries li { clear: both;  float: left; display: block; }
-	#search_options fieldset#galleries li { clear: both;  float: left; display: block; }
-        #search_options fieldset#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
+        #search_options fieldset#galleries div#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
 	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
 	#search_options fieldset#galleries #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
         #ui-open-galleries + label { cursor: pointer; }
-	#ui-open-galleries + label:hover { color: #58880C; text-decoration: underline; }
+	#ui-open-galleries + label:hover { text-decoration: underline; }
 
         #header #searcher #search input[type=submit] {
                                 height: 28px;
@@ -142,8 +141,7 @@ div#container {
 			  margin-left: 4px; margin-right: 2px; 
 			}
         #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center no-repeat transparent; height: 24px; width: 36px; }
-	#ui-tree-node-handler { float: left; font-size: 90%; height: 14px; width: 14px; margin-top: 2px; }
-	#ui-tree-node-handler {background: url('../img/sq_plus.png') center no-repeat transparent; }
+	#ui-tree-node-handler { float: left; font-size: 90%; height: 14px; width: 14px; margin-top: 2px; background: url('../img/sq_plus.png') center no-repeat transparent; margin-left: 0;}
 	#ui-tree-node-handler.close-node {background: url('../img/sq_minus.png') center no-repeat transparent; }
 
 div#content {

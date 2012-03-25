@@ -6,12 +6,13 @@
   <fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
     {% for field in fieldset %}
      {% if field|field_type:'checkboxinput' %}
-     {{ field }} {{ field.label_tag }}
+      {{ field }} {{ field.label_tag }}
      {% else %}
-      {{ field.label_tag }}
-      {{ field }} 
+     <div id="{{ field.name }}">
+       {{ field }}
+     </div>
      {% endif %}
-    {% endfor %}
+   {% endfor %}
   </fieldset>
   {% endfor %}
 </div>

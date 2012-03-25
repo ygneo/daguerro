@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("<div id='ui-arrow-down'>").insertAfter($('input#search_options_button'));
     $("<div id='ui-open-galleries'>").insertBefore($('fieldset#galleries label:not(fieldset#galleries ul label)'));
-    $('fieldset#galleries input[type=checkbox]').each( function( index ) {
+    $('fieldset#galleries input[type=checkbox]').each(function(index) {
 	subtree = $(this).nextAll("ul");
 	if (subtree.length) {
 	    $('<div id="ui-tree-node-handler" class="open-node"></div>').insertBefore($(this));
@@ -31,14 +31,34 @@ $(document).ready(function() {
 
     });
 
-    $('#ui-open-galleries, #ui-open-galleries + label').click(function (e) {
-	$("#ui-open-galleries").toggleClass("active");
-	$("fieldset#galleries > ul").toggle();
+    $('#search_in_galleries_1').click(function (e) {
+	$("div#galleries ul").show();
+    });
+
+    $('#search_in_galleries_0').click(function (e) {
+	$("div#galleries ul").hide();
     });
 
     $('#ui-tree-node-handler.open-node').click(function (e) {
 	$(this).toggleClass("close-node");
 	$(this).nextAll("ul").children().toggle();
     });
+
+    $('#ui-open-galleries, #ui-open-galleries + label').click(function (e) {
+	$("#ui-open-galleries").toggleClass("active");
+	$("fieldset#galleries > ul").toggle();
+    });
+
+    $('div#galleries input[type=checkbox]').click(function (e) {
+	console.log($(this).nextAll("ul").find("input"));
+	if ($(this).is(':checked')) {
+	    $(this).nextAll("ul").find("input").attr("checked", true);
+	}
+	else {
+	    $(this).nextAll("ul").find("input").attr("checked", false);
+	}
+
+    });
+    
 
 });

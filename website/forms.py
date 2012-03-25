@@ -11,12 +11,21 @@ class ShoppingCartForm(forms.Form):
 
 
 class SearchOptionsForm(BetterForm):
+    SEARCH_GALLERIES_CHOICES = (
+        ("ALL", _('All galleries')),
+        ("SELECTED", _('Only some galleries')),
+        )
     title = forms.BooleanField(required=False, initial=True, label=_("Title"))
     alternative_title = forms.BooleanField(required=False, initial=True, label=_("Alternative title"))
     family = forms.BooleanField(required=False, initial=True, label=_("Family"))
     tags = forms.BooleanField(required=False, initial=True, label=_("Tags"),)
     caption = forms.BooleanField(required=False, initial=False, label=_("Caption"))
     location_title = forms.BooleanField(required=False, initial=False, label=_("Location"))
+    search_galleries_choices = forms.TypedChoiceField(choices=SEARCH_GALLERIES_CHOICES, 
+                                                     widget=forms.RadioSelect(attrs={'id':'search_in_galleries'}),
+                                                     coerce=bool,
+                                                     initial="ALL",
+                                                     label="",)
     galleries = TreeNodeMultipleChoiceField(
         queryset=Gallery.objects.all(), 
         label=_("Galleries"),
@@ -27,7 +36,8 @@ class SearchOptionsForm(BetterForm):
     class Meta:
         fields = ['title', 'alternative_title', 'family',
                   'caption', 'tags', 'location_title', 
-                  'galleries']
+                  'search_galleries_choices', 'galleries',]
+
         fieldsets = [('default-fields',
                       { 'fields': ['title', 
                                    'alternative_title',
@@ -37,7 +47,8 @@ class SearchOptionsForm(BetterForm):
                                   'location_title',
                                   ]}),
                      ('galleries', 
-                      {'fields': ['galleries'
+                      {'fields': ['search_galleries_choices',
+                                  'galleries',
                                   ],
                        }
                       ),
