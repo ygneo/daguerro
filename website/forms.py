@@ -6,6 +6,7 @@ from mptt.forms import TreeNodeMultipleChoiceField
 from photologue.models import Gallery
 from website.widgets import TreeCheckboxSelectMultipleWidget
 
+
 class ShoppingCartForm(forms.Form):
     pass
 
@@ -21,7 +22,7 @@ class SearchOptionsForm(BetterForm):
     tags = forms.BooleanField(required=False, initial=True, label=_("Tags"),)
     caption = forms.BooleanField(required=False, initial=False, label=_("Caption"))
     location_title = forms.BooleanField(required=False, initial=False, label=_("Location"))
-    search_galleries_choices = forms.TypedChoiceField(choices=SEARCH_GALLERIES_CHOICES, 
+    search_galleries_choice = forms.TypedChoiceField(choices=SEARCH_GALLERIES_CHOICES, 
                                                      widget=forms.RadioSelect(attrs={'id':'search_in_galleries'}),
                                                      coerce=bool,
                                                      initial="ALL",
@@ -36,7 +37,7 @@ class SearchOptionsForm(BetterForm):
     class Meta:
         fields = ['title', 'alternative_title', 'family',
                   'caption', 'tags', 'location_title', 
-                  'search_galleries_choices', 'galleries',]
+                  'search_galleries_choice', 'galleries',]
 
         fieldsets = [('default-fields',
                       { 'fields': ['title', 
@@ -47,7 +48,7 @@ class SearchOptionsForm(BetterForm):
                                   'location_title',
                                   ]}),
                      ('galleries', 
-                      {'fields': ['search_galleries_choices',
+                      {'fields': ['search_galleries_choice',
                                   'galleries',
                                   ],
                        }

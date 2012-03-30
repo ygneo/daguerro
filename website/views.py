@@ -47,17 +47,27 @@ def photo(request, gallery_slugs, photo_slug):
 
 
 def search_photos(request):
-    query = request.GET.get('query', '')
-    photos = Photo.objects.filter(~Q(galleries=None), Q(title__icontains=query)|Q(alternative_title__icontains=query)|Q(tags__icontains=query)|Q(family__icontains=query), is_public=True).order_by("title")
-    no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-    num_results = len(photos)
-    return render_to_response(
-        'website/search_results.html', {
-            'photos': photos,
-            'query': query,
-            'num_results': num_results,
-            'no_image_thumb_url': no_image_thumb_url,},
-         context_instance=RequestContext(request))
+    if request.method == 'GET': 
+        from pprint import pprint; pprint(request.GET)
+        form = SearchOptionsForm(request.GET)
+        
+        photos = Photo.objects.filter(~Q(galleries=None), 
+                                       Q(title__icontains=query)|
+                                       Q(alternative_title__icontains=query)|
+                                       Q(tags__icontains=query)|
+                                       Q(family__icontains=query), 
+                                       is_public=True).order_by("title")
+        no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+        num_results = len(photos)
+        return render_to_response(
+            'website/search_results.html', {
+                'photos': photos,
+                'query': query,
+                'num_results': num_results,
+                'no_image_thumb_url': no_image_thumb_url,},
+            context_instance=RequestContext(request))
+    else:
+        return HttpResponseBadRequest
 
 
 def send_request_photos(request):

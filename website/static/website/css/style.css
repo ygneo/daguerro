@@ -136,6 +136,25 @@ div#container {
         #header #searcher #search input#search_options_button.active {  
                                background: url('../img/cog-active.png') center no-repeat #58880C; }
         #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
+        #header #searcher #search #search_options input[type=submit] {
+	    background: #58880C;
+	    float: right; 
+	    text-align: center;
+	    color: white; 
+	    padding: 0;
+	    width: 4em;
+	    cursor: pointer;
+	}
+        #header #searcher #search #search_options input[type=submit].disabled {
+	    background: #58880C;
+	    float: right; 
+	    opacity: 0.5;
+	    text-align: center;
+	    color: white; 
+	    padding: 0;
+	    width: 4em;
+	    cursor: default;
+	}
  
         #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
 			  margin-left: 4px; margin-right: 2px; 

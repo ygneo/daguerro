@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $("<div id='ui-arrow-down'>").insertAfter($('input#search_options_button'));
+
     $("<div id='ui-open-galleries'>").insertBefore($('fieldset#galleries label:not(fieldset#galleries ul label)'));
+
     $('fieldset#galleries input[type=checkbox]').each(function(index) {
 	subtree = $(this).nextAll("ul");
 	if (subtree.length) {
@@ -10,8 +12,15 @@ $(document).ready(function() {
 	    $(this).parent("li").css("margin-left", "14px");
 	}
     });
-    $('fieldset#galleries li ul').children().hide();
 
+    $('fieldset#galleries li ul').children().hide();
+    $("#search_in_galleries_0").attr("checked", true);
+
+    if ($('#search input#query').val() != "") {
+	$("div#search_options input[type=submit]").removeClass("disabled");
+	$("div#search_options input[type=submit]").removeAttr("disabled");
+    };
+    
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
     options_padding = 24;
@@ -50,7 +59,6 @@ $(document).ready(function() {
     });
 
     $('div#galleries input[type=checkbox]').click(function (e) {
-	console.log($(this).nextAll("ul").find("input"));
 	if ($(this).is(':checked')) {
 	    $(this).nextAll("ul").find("input").attr("checked", true);
 	}
@@ -59,6 +67,51 @@ $(document).ready(function() {
 	}
 
     });
-    
+
+    $('#search input#query').keyup(function () {
+	if ($(this).val() != '') {
+	    $("div#search_options input[type=submit]").removeClass("disabled");
+	    $("div#search_options input[type=submit]").removeAttr("disabled");
+	}
+	else {
+	    $("div#search_options input[type=submit]").addClass("disabled");
+	    $("div#search_options input[type=submit]").attr("disabled", true);
+	}
+    });
+
+
+    $('#search input[type=submit]').click(function (e) {
+	if ($("input#query").val() == "" || ) {
+	    e.preventDefault();
+	    $(this).qtip({
+		content: gettext("You must enter a query"),
+		position: {
+		    corner: {
+			target: 'bottomMiddle',
+                tooltip: 'topMiddle'
+		    },
+		},
+		style: { 
+		    tip: {
+			corner: 'topMiddle',
+			color: '#58880C',
+		    },
+		    background: "#58880C",
+		    color: "white",
+		    border: {
+			width: 0,
+			radius: 4,
+			color: "#58880C",
+		    },
+		    'font-size': 'small',
+		},
+		show: { ready: true }
+	    });
+	}
+	else {
+	    $("input[type=submit]").qtip("destroy");
+	}
+    });
+
 
 });
