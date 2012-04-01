@@ -7,7 +7,6 @@ from django.template import RequestContext
 from django.core.paginator import Paginator, InvalidPage
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
-from django.db.models import Q
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives, EmailMessage
@@ -48,26 +47,19 @@ def photo(request, gallery_slugs, photo_slug):
 
 def search_photos(request):
     if request.method == 'GET': 
-        from pprint import pprint; pprint(request.GET)
         form = SearchOptionsForm(request.GET)
-        
-        photos = Photo.objects.filter(~Q(galleries=None), 
-                                       Q(title__icontains=query)|
-                                       Q(alternative_title__icontains=query)|
-                                       Q(tags__icontains=query)|
-                                       Q(family__icontains=query), 
-                                       is_public=True).order_by("title")
-        no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+        photos = Photo.objects.build_search_filter(form.cleaned_data).order_by("title")
         num_results = len(photos)
+        no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         return render_to_response(
             'website/search_results.html', {
                 'photos': photos,
-                'query': query,
+                'query': form.cleaned_data['query'],
                 'num_results': num_results,
                 'no_image_thumb_url': no_image_thumb_url,},
             context_instance=RequestContext(request))
     else:
-        return HttpResponseBadRequest
+        return HttpResponseBadRequest()
 
 
 def send_request_photos(request):

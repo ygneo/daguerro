@@ -17,6 +17,7 @@ from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import smart_unicode
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 from south.modelsinspector import add_introspection_rules
 from mptt.models import MPTTModel, TreeForeignKey
@@ -523,6 +524,12 @@ class PhotoManager(models.Manager):
         """
         return self.filter(is_public=True)
         
+
+    def build_search_filter(self, form_data):
+        queryset = self.get_query_set()
+        queryset.filter(~Q(galleries=None), is_public = True)
+        return queryset
+
 
 
 add_introspection_rules([], ["^photologue\.models\.TagField"])

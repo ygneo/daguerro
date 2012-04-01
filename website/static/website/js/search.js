@@ -63,47 +63,71 @@ $(document).ready(function() {
 
     });
 
+
+    function show_qtip(target, message) { 
+	target.qtip({
+	    content: gettext(message),
+	    position: {
+		corner: {
+		    target: 'bottomLeft',
+		},
+	    },
+	    style: { 
+		tip: {
+		    corner: 'topMiddle',
+		    color: '#58880C',
+		    size: {
+			x: 20,
+			y: 8
+		    },
+		},
+		background: "#58880C",
+		color: "white",
+		border: {
+		    width: 0,
+		    radius: 4,
+		    color: "#58880C",
+		},
+		'font-size': 'small',
+	    },
+	    show: { ready: true,
+		    target: target
+		  },
+	    hide: { when: { target: target,
+			    event: 'mouseout'
+			  },
+		    effect: { type: 'fade' } 
+		  }
+	});
+    }
+
+    
+    function no_galleries_selected() {
+	return ($("#search_in_galleries_1").is(':checked') && $("#galleries input[type=checkbox]:checked").length == 0);
+    }
+
+
     $('.ui-search-button').click(function(event) {
+	var error_message = "";
 	if ($("input#query").val() == "") {
+	    error_message = gettext("You must enter a query");
+	    target = $("input#query");
+	}
+	else if (no_galleries_selected()) {
+	    error_message = gettext("You must choose at least one gallery");
+	    target = $("#search_in_galleries_1");
+	}
+	if (error_message) {
 	    event.preventDefault();
-	    $("input#query").qtip({
-		content: gettext("You must enter a query"),
-		position: {
-		    corner: {
-			target: 'bottomLeft',
-		    },
-		},
-		style: { 
-		    tip: {
-			corner: 'topMiddle',
-			color: '#58880C',
-			size: {
-			    x: 20,
-			    y: 8
-			},
-		    },
-		    background: "#58880C",
-		    color: "white",
-		    border: {
-			width: 0,
-			radius: 4,
-			color: "#58880C",
-		    },
-		    'font-size': 'small',
-		},
-		show: { ready: true,
-		        target: $(this)
-		      },
-		hide: { when: { target: $(this),
-				event: 'mouseout'
-			      },
-			effect: { type: 'fade' } 
-		      }
-	    });
+	    show_qtip(target, error_message);
 	}
     });
 
-
-    $("input#query").mouseover(function() { $(this).qtip("destroy"); });
+    $('.ui-search-button').mouseout(function() { 
+	$(".qtip").each(function() {
+	    $(this).qtip("destroy");
+	});
+    } );
+    $("input#query").keyup(function() { $(this).qtip("destroy"); });
 
 });

@@ -20,5 +20,5 @@ msgstr ""
 msgid "You must enter a query"
 msgstr "Introduce una búsqueda"
 
-msgid "Select at least one galleries"
-msgstr "Selecciona al menos una galería"
+msgid "You must choose at least one gallery"
+msgstr "Selecciona al menos una categoría"

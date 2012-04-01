@@ -45,7 +45,7 @@
             </div>-->
 {% endcomment %}
             <div id="searcher">
-              <form id="search" method="POST" action="{% url website-search-photos %}">
+              <form id="search" method="GET" action="{% url website-search-photos %}">
               <input type="text" id="query" name="query" value="{{ query }}"/>
 	      <div id="search_buttons">
 		<input type="submit" id="search_button" class="ui-search-button" alt="{% trans "Search" %}" title="{% trans "Search" %}" value=""/>
