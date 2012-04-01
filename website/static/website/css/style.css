@@ -144,16 +144,13 @@ div#container {
 	    padding: 0;
 	    width: 4em;
 	    cursor: pointer;
-	}
-        #header #searcher #search #search_options input[type=submit].disabled {
-	    background: #58880C;
-	    float: right; 
-	    opacity: 0.5;
-	    text-align: center;
-	    color: white; 
-	    padding: 0;
-	    width: 4em;
-	    cursor: default;
+	    border-radius: 4px;
+            ms-border-radius: 4px;
+            moz-border-radius: 4px;
+            webkit-border-radius: 4px;
+            khtml-border-radius: 4px;
+	    -webkit-box-shadow: 1px 1px 0px 0px #58880C;
+	    -moz-box-shadow: 1px 1px 0px 0px #58880C;
 	}
  
         #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 

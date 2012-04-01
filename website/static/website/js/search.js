@@ -16,11 +16,6 @@ $(document).ready(function() {
     $('fieldset#galleries li ul').children().hide();
     $("#search_in_galleries_0").attr("checked", true);
 
-    if ($('#search input#query').val() != "") {
-	$("div#search_options input[type=submit]").removeClass("disabled");
-	$("div#search_options input[type=submit]").removeAttr("disabled");
-    };
-    
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
     options_padding = 24;
@@ -68,33 +63,24 @@ $(document).ready(function() {
 
     });
 
-    $('#search input#query').keyup(function () {
-	if ($(this).val() != '') {
-	    $("div#search_options input[type=submit]").removeClass("disabled");
-	    $("div#search_options input[type=submit]").removeAttr("disabled");
-	}
-	else {
-	    $("div#search_options input[type=submit]").addClass("disabled");
-	    $("div#search_options input[type=submit]").attr("disabled", true);
-	}
-    });
-
-
-    $('#search input[type=submit]').click(function (e) {
-	if ($("input#query").val() == "" || ) {
-	    e.preventDefault();
-	    $(this).qtip({
+    $('.ui-search-button').click(function(event) {
+	if ($("input#query").val() == "") {
+	    event.preventDefault();
+	    $("input#query").qtip({
 		content: gettext("You must enter a query"),
 		position: {
 		    corner: {
-			target: 'bottomMiddle',
-                tooltip: 'topMiddle'
+			target: 'bottomLeft',
 		    },
 		},
 		style: { 
 		    tip: {
 			corner: 'topMiddle',
 			color: '#58880C',
+			size: {
+			    x: 20,
+			    y: 8
+			},
 		    },
 		    background: "#58880C",
 		    color: "white",
@@ -105,13 +91,19 @@ $(document).ready(function() {
 		    },
 		    'font-size': 'small',
 		},
-		show: { ready: true }
+		show: { ready: true,
+		        target: $(this)
+		      },
+		hide: { when: { target: $(this),
+				event: 'mouseout'
+			      },
+			effect: { type: 'fade' } 
+		      }
 	    });
-	}
-	else {
-	    $("input[type=submit]").qtip("destroy");
 	}
     });
 
+
+    $("input#query").mouseover(function() { $(this).qtip("destroy"); });
 
 });
