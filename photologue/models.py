@@ -514,21 +514,22 @@ class ImageModel(models.Model):
         super(ImageModel, self).delete()
 
 class PhotoManager(models.Manager):
-    """
-    Custom manager for Photo objects.
-    """
     
     def public(self):
-        """
-        Returns only public galleries
-        """
         return self.filter(is_public=True)
-        
 
-    def build_search_filter(self, form_data):
+    def search_filter(self, query_string):
+        query = query_string['query']
         queryset = self.get_query_set()
-        queryset.filter(~Q(galleries=None), is_public = True)
-        return queryset
+        queryset = queryset.filter(~Q(galleries=None), is_public=True)
+        query_filters = []
+        for key, value in query_string.iteritems():
+            if value == 'on':
+                query_filters.append(Q(**{'%s__icontains' % key: query}))
+        query_filter = query_filters.pop()
+        for qfilter in query_filters:
+            query_filter |= qfilter
+        return queryset.filter(query_filter)
 
 
 

@@ -10,6 +10,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives, EmailMessage
+
 from photologue.models import Gallery, Photo
 from daguerro.utils import process_category_thread
 from website.forms import ShoppingCartForm, SearchOptionsForm
@@ -42,24 +43,28 @@ def photo(request, gallery_slugs, photo_slug):
             'photo': photo, 
             'parent_category': parent_category,
             'gallery_slugs': gallery_slugs,
+            'search_options_form': SearchOptionsForm(),
             }, context_instance=RequestContext(request))
 
 
 def search_photos(request):
-    if request.method == 'GET': 
+    query = request.GET.get("query", None)
+    if request.method == 'GET' and query: 
         form = SearchOptionsForm(request.GET)
-        photos = Photo.objects.build_search_filter(form.cleaned_data).order_by("title")
-        num_results = len(photos)
+        photos = Photo.objects.search_filter(request.GET).order_by("title")
         no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-        return render_to_response(
+        response = render_to_response(
             'website/search_results.html', {
                 'photos': photos,
-                'query': form.cleaned_data['query'],
-                'num_results': num_results,
-                'no_image_thumb_url': no_image_thumb_url,},
+                'query': request.GET.get("query", None),
+                'num_results': len(photos),
+                'no_image_thumb_url': no_image_thumb_url,
+                'search_options_form': SearchOptionsForm(),
+                },
             context_instance=RequestContext(request))
     else:
-        return HttpResponseBadRequest()
+        response = HttpResponseBadRequest()
+    return response
 
 
 def send_request_photos(request):

@@ -46,13 +46,13 @@
 {% endcomment %}
             <div id="searcher">
               <form id="search" method="GET" action="{% url website-search-photos %}">
-              <input type="text" id="query" name="query" value="{{ query }}"/>
-	      <div id="search_buttons">
-		<input type="submit" id="search_button" class="ui-search-button" alt="{% trans "Search" %}" title="{% trans "Search" %}" value=""/>
-		<div id="vertical-border"></div>
-		<input type="button" id="search_options_button" alt="{% trans "Search options" %}" title="{% trans "Search options" %}" value=""/>
-	      </div>
-              {% include "website/search_options_form.html" %}
+		<input type="text" id="query" name="query" value="{{ query }}"/>
+		<div id="search_buttons">
+		  <input type="submit" id="search_button" class="ui-search-button" alt="{% trans "Search" %}" title="{% trans "Search" %}" value=""/>
+		  <div id="vertical-border"></div>
+		  <input type="button" id="search_options_button" alt="{% trans "Search options" %}" title="{% trans "Search options" %}" value=""/>
+		</div>
+		{% include "website/search_options_form.html" %}
               </form>
             </div>
             <div id="tools">
