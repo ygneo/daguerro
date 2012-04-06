@@ -525,7 +525,8 @@ class PhotoManager(models.Manager):
         query_filters = []
         for key, value in query_string.iteritems():
             if value == 'on':
-                query_filters.append(Q(**{'%s__icontains' % key: query}))
+                pattern= r"[[:<:]]%s[[:>:]]" % query
+                query_filters.append(Q(**{'%s__iregex' % key: pattern}))
         query_filter = query_filters.pop()
         for qfilter in query_filters:
             query_filter |= qfilter

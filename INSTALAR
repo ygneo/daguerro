@@ -14,9 +14,9 @@ Requisitos
 Instalación
 ----------
  
- * Se requiere tener instalado pip (http://www.pip-installer.org/en/latest/index.html). En Ubuntu 10.04 se puede instalar con:
+ * Se requiere tener instalado pip y mysql (http://www.pip-installer.org/en/latest/index.html). En Ubuntu 10.04 se puede instalar con:
    
-   sudo apt-get install pip
+   sudo apt-get install pip mysql-server mysql-client
 
  * El resto de requisitos, incluyendo el propio django, se instalan ejecutando:
 
