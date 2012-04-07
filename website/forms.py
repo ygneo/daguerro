@@ -12,21 +12,29 @@ class ShoppingCartForm(forms.Form):
 
 
 class SearchOptionsForm(BetterForm):
+    SEARCH_MODE_CHOICES = (
+        ("TOTAL", _("Total match")),
+        ("PARTIAL", _("Partial match")),
+    )
     SEARCH_GALLERIES_CHOICES = (
         ("ALL", _('All galleries')),
         ("SELECTED", _('Only some galleries')),
-        )
+    )
+    search_mode = forms.ChoiceField(required=True, 
+                                    widget=forms.RadioSelect(attrs={'id':'search_mode'}),
+                                    initial="TOTAL", 
+                                    choices=SEARCH_MODE_CHOICES, 
+                                    label="")
     title = forms.BooleanField(required=False, initial=True, label=_("Title"))
     alternative_title = forms.BooleanField(required=False, initial=True, label=_("Alternative title"))
     family = forms.BooleanField(required=False, initial=True, label=_("Family"))
     tags = forms.BooleanField(required=False, initial=True, label=_("Tags"),)
     caption = forms.BooleanField(required=False, initial=False, label=_("Caption"))
     location_title = forms.BooleanField(required=False, initial=False, label=_("Location"))
-    search_galleries_choice = forms.TypedChoiceField(choices=SEARCH_GALLERIES_CHOICES, 
-                                                     widget=forms.RadioSelect(attrs={'id':'search_in_galleries'}),
-                                                     coerce=bool,
-                                                     initial="ALL",
-                                                     label="",)
+    search_galleries_choice = forms.ChoiceField(choices=SEARCH_GALLERIES_CHOICES, 
+                                                widget=forms.RadioSelect(attrs={'id':'search_in_galleries'}),
+                                                initial="ALL",
+                                                label="",)
     galleries = TreeNodeMultipleChoiceField(
         queryset=Gallery.objects.all(), 
         label=_("Galleries"),
@@ -35,18 +43,23 @@ class SearchOptionsForm(BetterForm):
         )
     
     class Meta:
-        fields = ['title', 'alternative_title', 'family',
+        fields = ['search_mode', 'title', 'alternative_title', 'family',
                   'caption', 'tags', 'location_title', 
                   'search_galleries_choice', 'galleries',]
-
-        fieldsets = [('default-fields',
-                      { 'fields': ['title', 
-                                   'alternative_title',
-                                   'family', 'tags']}),
+        
+        fieldsets = [('search-mode-fields',
+                      {'fields': ['search_mode']}
+                      ),
+                     ('default-fields',
+                      {'fields': ['title', 
+                                  'alternative_title',
+                                  'family', 'tags']}
+                      ),
                      ('advanced-fields',
                       {'fields': ['caption', 
                                   'location_title',
-                                  ]}),
+                                  ]}
+                      ),
                      ('galleries', 
                       {'fields': ['search_galleries_choice',
                                   'galleries',

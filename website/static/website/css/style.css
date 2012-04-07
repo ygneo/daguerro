@@ -94,6 +94,7 @@ div#container {
 				line-height: 150%; 
 				z-index: 99;
        }
+       #header #searcher form#search div#search_options ul { list-style: none; }
         #search_options label, #search_options input  { float: left; }
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }

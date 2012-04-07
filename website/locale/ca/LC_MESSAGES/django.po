@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-25 23:56+0200\n"
+"POT-Creation-Date: 2012-04-08 00:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,46 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: forms.py:15
-msgid "All galleries"
-msgstr ""
-
 #: forms.py:16
-msgid "Only some galleries"
+msgid "Total match"
 msgstr ""
 
-#: forms.py:18
-msgid "Title"
-msgstr ""
-
-#: forms.py:19
-msgid "Alternative title"
+#: forms.py:17
+msgid "Partial match"
 msgstr ""
 
 #: forms.py:20
-msgid "Family"
+msgid "All galleries"
 msgstr ""
 
 #: forms.py:21
-msgid "Tags"
+msgid "Only some galleries"
 msgstr ""
 
-#: forms.py:22
-msgid "Caption"
+#: forms.py:28
+msgid "Title"
 msgstr ""
 
-#: forms.py:23
-msgid "Location"
+#: forms.py:29
+msgid "Alternative title"
+msgstr ""
+
+#: forms.py:30
+msgid "Family"
 msgstr ""
 
 #: forms.py:31
+msgid "Tags"
+msgstr ""
+
+#: forms.py:32
+msgid "Caption"
+msgstr ""
+
+#: forms.py:33
+msgid "Location"
+msgstr ""
+
+#: forms.py:40
 msgid "Galleries"
 msgstr ""
 
-#: templates/website/base.html:50
+#: templates/website/base.html:51
+#: templates/website/search_options_form.html:19
 msgid "Search"
 msgstr ""
 
-#: templates/website/base.html:52
+#: templates/website/base.html:53
 msgid "Search options"
 msgstr ""
