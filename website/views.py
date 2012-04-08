@@ -48,15 +48,16 @@ def photo(request, gallery_slugs, photo_slug):
 
 
 def search_photos(request):
-    query = request.GET.get("query", None)
-    if request.method == 'GET' and query: 
+    if request.method == 'GET':
+        query = request.GET.get("query", None)
         form = SearchOptionsForm(request.GET)
         photos = Photo.objects.search_filter(request.GET).order_by("title")
-        no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+        no_image_thumb_url = os.path.join(settings.MEDIA_URL, 
+                                          settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         response = render_to_response(
             'website/search_results.html', {
                 'photos': photos,
-                'query': request.GET.get("query", None),
+                'query': query,
                 'num_results': len(photos),
                 'no_image_thumb_url': no_image_thumb_url,
                 'search_options_form': SearchOptionsForm(),

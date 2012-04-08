@@ -41,6 +41,8 @@ class SearchOptionsForm(BetterForm):
         widget = TreeCheckboxSelectMultipleWidget(attrs = {'id': 'galleries'}),
         level_indicator=u'-'
         )
+    gallery_ids = forms.CharField(widget=forms.HiddenInput, required=False)
+
     
     class Meta:
         fields = ['search_mode', 'title', 'alternative_title', 'family',
@@ -63,6 +65,7 @@ class SearchOptionsForm(BetterForm):
                      ('galleries', 
                       {'fields': ['search_galleries_choice',
                                   'galleries',
+                                  'gallery_ids',
                                   ],
                        }
                       ),

@@ -117,9 +117,21 @@ $(document).ready(function() {
 	    error_message = gettext("You must choose at least one gallery");
 	    target = $("#search_in_galleries_1");
 	}
+
 	if (error_message) {
 	    event.preventDefault();
 	    show_qtip(target, error_message);
+	}
+	else {
+	    var gallery_ids = $('input[name=galleries]:checked').map(function() {
+		return $(this).val();
+	    }).get();
+	    gallery_ids = gallery_ids.join(',');
+	    if (gallery_ids.length > 0) {
+		$('input[name="gallery_ids"]').val(gallery_ids);
+		// Prevent sending galleries values (resulting URL can be long)
+		$('div#galleries ul').remove();
+	    }
 	}
     });
 

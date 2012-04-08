@@ -520,16 +520,28 @@ class PhotoManager(models.Manager):
 
     def search_filter(self, query_string):
         query = query_string['query']
+        search_mode = query_string['search_mode']
+        search_galleries = query_string['search_galleries_choice']
+
         queryset = self.get_query_set()
         queryset = queryset.filter(~Q(galleries=None), is_public=True)
         query_filters = []
         for key, value in query_string.iteritems():
             if value == 'on':
-                pattern= r"[[:<:]]%s[[:>:]]" % query
-                query_filters.append(Q(**{'%s__iregex' % key: pattern}))
+                if search_mode == "TOTAL":
+                    pattern= r"[[:<:]]%s[[:>:]]" % query
+                    query_filters.append(Q(**{'%s__iregex' % key: pattern}))
+                else:
+                    query_filters.append(Q(**{'%s__icontains' % key: query}))
+
         query_filter = query_filters.pop()
         for qfilter in query_filters:
             query_filter |= qfilter
+
+        if search_galleries == 'SELECTED':
+            gallery_ids = query_string['gallery_ids'].split(",")
+            queryset = queryset.filter(galleries__in=gallery_ids)
+
         return queryset.filter(query_filter)
 
 
