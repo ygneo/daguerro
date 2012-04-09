@@ -22,10 +22,10 @@ def gallery(request, slugs=None):
     # TODO Find a better way to do this (parent by default for a category, i.e. root)
     if current_gallery and current_gallery.parent:
         brother_galleries = Gallery.objects.filter(parent=current_gallery.parent, is_public=True)
+        children_galleries = current_gallery.get_children().filter(is_public=True)
     else:
         brother_galleries = None
-
-    children_galleries = current_gallery.get_children().filter(is_public=True)
+        children_galleries = None
     
     template = 'website/gallery.html' if slugs else 'website/index.html'    
     return render_to_response(template, {'gallery': current_gallery, 
