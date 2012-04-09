@@ -143,7 +143,7 @@ LOGGING = {
         'file':{
             'level':'DEBUG',
             'class':'logging.handlers.WatchedFileHandler',
-            'filename': os.path.expanduser('~/.barres/barres.log'),
+            'filename': os.path.expanduser('/var/log/barres/barres.log'),
             'formatter': 'simple',
         },
         'console':{
