@@ -125,15 +125,6 @@ for n in dir(ImageFilter):
             filter_names.append(klass.__name__)
 IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
-class GalleryManager(TreeManager):
-    
-    def public(self):
-        """
-        Returns only public galleries
-        """
-        return self.filter(is_public=True)
-        
-
 class Gallery(MPTTModel):
     date_added = models.DateTimeField(_('Creation date'), default=datetime.now)
     title = models.CharField(_('Title'), max_length=100, unique=True)
@@ -147,7 +138,6 @@ class Gallery(MPTTModel):
     photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
-    objects = GalleryManager()
 
     class Meta:
         ordering = ['order']
