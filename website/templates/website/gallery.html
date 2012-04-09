@@ -6,11 +6,10 @@
 
 {% include "website/subheader.html" %}
 
-{% if gallery.gallery_set.public %}
-
+{% if gallery.get_children %}
 <div id="subgallery">
   <ul>
-    {% for subgal in gallery.gallery_set.public %}
+    {% for subgal in gallery.get_children %}
     <li {% if forloop.counter0|divisibleby:"3" %}class="first"{% endif %}>
       <a href="{% url website-gallery subgal.slugs_path %}"><img src="{{ subgal.photo.get_gallery_url }}" alt="{{ subgal.title }}" title="{{ subgal.title }}"/></a><a href="{% url website-gallery subgal.slugs_path %}">{{ subgal.title }}</a>
     </li>
@@ -18,6 +17,7 @@
   </ul>
 </div>
 {% endif %}
+
 {% if gallery.photos.public %}
 <div id="photos">
   <ul>
