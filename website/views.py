@@ -20,9 +20,9 @@ def gallery(request, slugs=None):
     parent_slug, current_gallery = process_category_thread(request, slugs)
     
     # TODO Find a better way to do this (parent by default for a category, i.e. root)
-    if current_gallery and current_gallery.parent:
-        brother_galleries = Gallery.objects.filter(parent=current_gallery.parent, is_public=True)
+    if current_gallery:
         children_galleries = current_gallery.get_children().filter(is_public=True)
+        brother_galleries = current_gallery.get_siblings(include_self=True).filter(is_public=True)
     else:
         brother_galleries = None
         children_galleries = None
