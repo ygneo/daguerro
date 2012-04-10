@@ -519,7 +519,7 @@ class PhotoManager(models.Manager):
         for key, value in query_string.iteritems():
             if value == 'on':
                 if search_mode == "TOTAL":
-                    pattern= r"[[:<:]]%s[[:>:]]" % query
+                    pattern = self.build_pattern(query)
                     query_filters.append(Q(**{'%s__iregex' % key: pattern}))
                 else:
                     query_filters.append(Q(**{'%s__icontains' % key: query}))
@@ -534,6 +534,17 @@ class PhotoManager(models.Manager):
 
         return queryset.filter(query_filter)
 
+    def build_pattern(self, query):
+        accented_vowel = {'a': u'á', 'e': u'é', 'i': u'í', 'o': u'ó', 'u': u'ú', 
+                          'A': u'À', 'E': u'É', 'I': u'Í', 'O': u'Ó', 'U': u'Ú'}
+        pattern = ""
+        for char in query:
+            if char in set('aeiouAEIOU'):
+                char = u"[%s%s]" % (char, accented_vowel[char])
+            pattern += char
+        return r"[[:<:]]%s[[:>:]]" % pattern
+
+        
 
 
 add_introspection_rules([], ["^photologue\.models\.TagField"])
