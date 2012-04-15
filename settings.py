@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.staticfiles',
     'mptt',
+    'haystack',
 )
 
 LOGGING = {
@@ -178,6 +179,10 @@ LOGGING = {
 	}	
     }
 }
+
+HAYSTACK_SITECONF = 'barres.website.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = os.path.join(os.path.dirname(__file__), 'whoosh_index')
 
 # DAG_NO_PICT_GALLERY_PATH = 'daguerro/img/no_picture_gallery.png'
 # DAG_NO_PICT_GALLERY_MINI_PATH = 'daguerro/img/no_picture_gallery_mini.png'

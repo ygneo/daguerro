@@ -7,17 +7,14 @@ Requisitos
 
  * Se recomienda instalar en una distribución GNU/Linux, preferentemente una basada en Debian.
 
- * En Ubuntu 10.4 se puede necesitar instalar estos paquetes:
+ * En Ubuntu 10.4 se pueden instalar los paquetes requeridos ejecutando:
 
-  sudo apt-get install python-dev zlib1g-dev libjpeg62-dev libfreetype6-dev build-dep python-mysqldb
+  sudo apt-get install python-dev zlib1g-dev libjpeg62-dev libfreetype6-dev build-dep python-mysqldb pip mysql-server mysql-client
+
 
 Instalación
 ----------
  
- * Se requiere tener instalado pip y mysql (http://www.pip-installer.org/en/latest/index.html). En Ubuntu 10.04 se puede instalar con:
-   
-   sudo apt-get install pip mysql-server mysql-client
-
  * El resto de requisitos, incluyendo el propio django, se instalan ejecutando:
 
    sudo pip install -r pip_requirements
