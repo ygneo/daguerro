@@ -8,3 +8,5 @@ South
 MySQL-python
 django-mptt
 ipython==0.10
+whoosh
+django-haystack
