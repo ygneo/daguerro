@@ -581,13 +581,6 @@ class Photo(ImageModel):
         self.title_slug = slugify(self.title)
         super(Photo, self).save(*args, **kwargs)
 
-    def slugs_path(self):
-        try:
-            slugs = self.galleries.all()[0].slugs_path()
-        except IndexError:
-            slugs = ''
-        return slugs
-
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
         return self.galleries.filter(is_public=True)
@@ -602,6 +595,13 @@ class Photo(ImageModel):
         else:
             slugs_paht = ''
         return reverse('daguerro-gallery-photo', args=[slugs_path, self.title_slug])
+
+    def get_website_url(self):
+        try:
+            slugs = self.galleries.all()[0].slugs_path()
+        except IndexError:
+            slugs = ''
+        return slugs + "/foto/" + self.title_slug
 
     def get_previous_in_gallery(self, gallery):
         try:
