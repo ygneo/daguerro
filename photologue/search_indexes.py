@@ -11,7 +11,7 @@ class PhotoIndex(RealTimeSearchIndex):
     location_title = CharField(model_attr='location_title', null=True)
     family = CharField(model_attr='family', null=True)
 
-    # def index_queryset(self):
-    #     return Photo.objects.public()
+    def index_queryset(self):
+        return Photo.objects.public()
 
 site.register(Photo, PhotoIndex)
