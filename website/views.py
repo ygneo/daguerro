@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+from urllib import urlencode
 from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -62,6 +63,7 @@ class SearchPhotosView(SearchView):
         return {'num_results': len(self.results),
                 'no_image_thumb_url': no_image_thumb_url,
                 'search_options_form': SearchOptionsForm(),
+                'getvars': urlencode(self.request.GET),
                 }
 
 
