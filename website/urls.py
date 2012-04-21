@@ -3,7 +3,7 @@ import django
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.views.generic.simple import direct_to_template
-from haystack.views import SearchView
+from website.views import SearchPhotosView
 
 js_info_dict = {
     'packages': ('website',),
@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 
 urlpatterns = urlpatterns + patterns('website.views',
 #                       url(r'^buscar/$', 'search_photos', name='website-search-photos'),
-                       url(r'^buscar', SearchView(template='website/search_results.html'), 
+                       url(r'^buscar', SearchPhotosView(template='website/search_results.html',), 
                            name='website-search-photos'),
                        url(r'^solicitar-fotos/$', 'send_request_photos', 
                            name='website-send-request-photos'),
