@@ -27,6 +27,11 @@
 </div>
 {% if page.has_previous or page.has_next %}
 <div class="pagination">
+    {% ifnotequal page.number 1 %}
+        <a href="?page=1&{{ getvars }}" class="first">&lsaquo;&lsaquo; {% trans "first" %}</a>
+    {% else %}
+        <span class="disabled first">&lsaquo;&lsaquo; {% trans "first" %}</span>
+    {% endifnotequal %}
     {% if page.has_previous %}
         <a href="?page={{ page.previous_page_number }}{{ getvars }}" class="prev">&lsaquo;&lsaquo; {% trans "previous" %}</a>
     {% else %}
@@ -44,6 +49,11 @@
     {% else %}
         <span class="disabled next">{% trans "next" %} &rsaquo;&rsaquo;</span>
     {% endif %}
+    {% ifnotequal page.number paginator.num_pages %}
+        <a href="?page={{ paginator.num_pages }}&{{ getvars }}" class="last">&rsaquo;&rsaquo; {% trans "last" %}</a>
+    {% else %}
+        <span class="disabled last">&lsaquo;&lsaquo; {% trans "last" %}</span>
+    {% endifnotequal %}
 </div>
 {% endif %}
 <div class="push"></div>

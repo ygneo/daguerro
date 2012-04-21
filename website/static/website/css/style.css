@@ -274,6 +274,8 @@ div#photo div.last-tab  { float:right; }
     #shopping-cart fieldset#request-form { display: none; clear: both;  }
     #shopping-cart input[type=text], #shopping-cart textarea { color: grey; font-size: small; width: 99%; float: right; margin-bottom: .5ex; font-family: Verdana, Arial;}
     #shopping-cart input[type=submit], #shopping-cart input[type=button] { color: black; float: right; }
+
+div.pagination { clear: both; float: right; height: 48px; }
     
 
 div#footer {
