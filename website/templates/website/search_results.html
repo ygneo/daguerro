@@ -32,11 +32,11 @@
     {% else %}
         <span class="disabled prev">&lsaquo;&lsaquo; {% trans "previous" %}</span>
     {% endif %}
-    {% for page_obj in pages %}
-        {% ifequal page_obj page.number %}
-         <span class="current page">{{ page }}</span>
+    {% for page_num in paginator.page_range %}
+        {% ifequal page_num page.number %}
+         <span class="current page">{{ page_num }}</span>
         {% else %}
-         <a href="?page={{ page_obj }}&{{ getvars }}" class="page">{{ page_obj }}</a>
+         <a href="?page={{ page_num }}&{{ getvars }}" class="page">{{ page_num }}</a>
         {% endifequal %}
     {% endfor %}
     {% if page.has_next %}
