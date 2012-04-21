@@ -10,8 +10,8 @@ from django.core.mail import send_mail, BadHeaderError
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives, EmailMessage
-
 from photologue.models import Gallery, Photo
+from haystack.views import SearchView
 from daguerro.utils import process_category_thread
 from website.forms import ShoppingCartForm, SearchOptionsForm
 
@@ -50,25 +50,19 @@ def photo(request, gallery_slugs, photo_slug):
             }, context_instance=RequestContext(request))
 
 
-def search_photos(request):
-    if request.method == 'GET':
-        query = request.GET.get("query", None)
-        form = SearchOptionsForm(request.GET)
-        photos = Photo.objects.search_filter(request.GET).order_by("title")
+class SearchPhotosView(SearchView):
+    def __name__(self):
+        return "SearchPhotosView"
+
+    def extra_context(self):
+        form = SearchOptionsForm(self.request.GET)
+        #photos = Photo.objects.search_filter(request.GET).order_by("title")
         no_image_thumb_url = os.path.join(settings.MEDIA_URL, 
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-        response = render_to_response(
-            'website/search_results.html', {
-                'photos': photos,
-                'query': query,
-                'num_results': len(photos),
+        return {'num_results': len(self.results),
                 'no_image_thumb_url': no_image_thumb_url,
                 'search_options_form': SearchOptionsForm(),
-                },
-            context_instance=RequestContext(request))
-    else:
-        response = HttpResponseBadRequest()
-    return response
+                }
 
 
 def send_request_photos(request):
