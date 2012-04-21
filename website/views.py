@@ -56,14 +56,18 @@ class SearchPhotosView(SearchView):
         return "SearchPhotosView"
 
     def extra_context(self):
+        try:
+            getvars = urlencode(dict(self.request.GET).pop("page"))
+        except KeyError:
+            getvars = urlencode(self.request.GET)
         form = SearchOptionsForm(self.request.GET)
         #photos = Photo.objects.search_filter(request.GET).order_by("title")
         no_image_thumb_url = os.path.join(settings.MEDIA_URL, 
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         return {'num_results': len(self.results),
                 'no_image_thumb_url': no_image_thumb_url,
-                'search_options_form': SearchOptionsForm(),
-                'getvars': urlencode(self.request.GET),
+                'search_options_form': form,
+                'getvars': getvars,
                 }
 
 
