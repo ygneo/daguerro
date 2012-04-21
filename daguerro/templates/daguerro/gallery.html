@@ -55,7 +55,7 @@
        {% if photo.galleries.all %}
        <li id="photo_{{ photo.id }}">
          <div class="photo">
-           <a href="{% url daguerro-gallery-photo photo.slugs_path photo.title_slug %}">
+           <a href="{{ photo.get_daguerro_url }}">
              <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}" title="{{ photo.title }}"/>
            </a>
          </div>

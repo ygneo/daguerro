@@ -594,7 +594,7 @@ class Photo(ImageModel):
         if galleries:
             slugs_path = galleries[0].slugs_path() 
         else:
-            slugs_paht = ''
+            slugs_path = ''
         return reverse('daguerro-gallery-photo', args=[slugs_path, self.title_slug])
 
     def get_website_url(self):

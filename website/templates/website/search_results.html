@@ -1,5 +1,7 @@
 {% extends "website/base.html" %}
 
+{% load i18n %}
+
 {% block title %}Barres foto natura | Búsqueda | {{ query }}{% endblock %}
 
 {% block content %}
@@ -23,5 +25,26 @@
 <div id="search_count" style="float:left; width: 15em; backgroud: white;">
   <p><em>{{ num_results }}</em> fotografías encontradas.</p>
 </div>
+{% if page.has_previous or page.has_next %}
+<div class="pagination">
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}{{ getvars }}" class="prev">&lsaquo;&lsaquo; {% trans "previous" %}</a>
+    {% else %}
+        <span class="disabled prev">&lsaquo;&lsaquo; {% trans "previous" %}</span>
+    {% endif %}
+    {% for page_obj in pages %}
+        {% ifequal page_obj page.number %}
+         <span class="current page">{{ page }}</span>
+        {% else %}
+         <a href="?page={{ page_obj }}&{{ getvars }}" class="page">{{ page_obj }}</a>
+        {% endifequal %}
+    {% endfor %}
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}&{{ getvars }}" class="next">{% trans "next" %} &rsaquo;&rsaquo;</a>
+    {% else %}
+        <span class="disabled next">{% trans "next" %} &rsaquo;&rsaquo;</span>
+    {% endif %}
+</div>
+{% endif %}
 <div class="push"></div>
 {% endblock %}
