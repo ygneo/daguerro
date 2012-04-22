@@ -14,7 +14,6 @@ $(document).ready(function() {
     });
 
     $('fieldset#galleries li ul').children().hide();
-    $("#search_in_galleries_0").attr("checked", true);
 
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
