@@ -13,8 +13,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns = urlpatterns + patterns('website.views',
-#                       url(r'^buscar/$', 'search_photos', name='website-search-photos'),
-                       url(r'^buscar', SearchPhotosView(template='website/search_results.html',), 
+                       url(r'^buscar', SearchPhotosView(), 
                            name='website-search-photos'),
                        url(r'^solicitar-fotos/$', 'send_request_photos', 
                            name='website-send-request-photos'),

@@ -508,10 +508,6 @@ class PhotoManager(models.Manager):
         return self.filter(is_public=True)
 
     def search_filter(self, query_string):
-        query = query_string['query']
-        search_mode = query_string['search_mode']
-        search_galleries = query_string['search_galleries_choice']
-
         queryset = self.get_query_set()
         queryset = queryset.filter(~Q(galleries=None), is_public=True)
         query_filters = []

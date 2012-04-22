@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
-from urllib import urlencode
 from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -52,21 +51,34 @@ def photo(request, gallery_slugs, photo_slug):
 
 
 class SearchPhotosView(SearchView):
-    def __name__(self):
-        return "SearchPhotosView"
+    template = 'website/search_results.html'
+
+    def __init__(self, *args, **kwargs):
+        kwargs['form_class'] = SearchOptionsForm
+        super(SearchPhotosView, self).__init__(*args, **kwargs)
+
+    
+    def build_form(self):
+        form = super(SearchPhotosView, self).build_form()
+        for gallery_id in form.data['gallery_ids']:
+            pass
+        return form
 
     def extra_context(self):
-        try:
-            getvars = urlencode(dict(self.request.GET).pop("page"))
-        except KeyError:
-            getvars = urlencode(self.request.GET)
-        form = SearchOptionsForm(self.request.GET)
-        #photos = Photo.objects.search_filter(request.GET).order_by("title")
+        if 'page' in self.request.GET:
+            getvars = self.request.GET.pop("page").urlencode()
+        else:
+            getvars = self.request.GET.urlencode()
+        if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
+            show_galleries_tree = True
+        else: 
+            show_galleries_tree = False
         no_image_thumb_url = os.path.join(settings.MEDIA_URL, 
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         return {'num_results': len(self.results),
                 'no_image_thumb_url': no_image_thumb_url,
-                'search_options_form': form,
+                'search_options_form': self.form,
+                'show_galleries_tree': show_galleries_tree,
                 'getvars': getvars,
                 }
 
