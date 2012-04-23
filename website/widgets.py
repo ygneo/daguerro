@@ -9,7 +9,7 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
     level_indicator = u'-'
     remove_level_indicator = True
     item_template = """<li>
-                        <input type="checkbox" name="%(choice_name)s value="%(value)s" id="%(dom_id)s" %(checked)s />
+                        <input type="checkbox" name="%(choice_name)s" value="%(value)s" id="%(dom_id)s" %(checked)s />
                         <label for="%(name)s">%(name)s</label>
                     """
 
@@ -25,20 +25,19 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
         depth = 0
         for choice in self._cleaned_choices():            
             choice_id, choice_name, choice_level = choice[0], choice[1], choice[2]
-            item_output = ""
             if choice_level < depth:
                 for i in range(0, (depth - choice_level)):
-                    item_output += "</li></ul>"
+                    output += "</li></ul>"
             elif choice_level > depth:
-                item_output += '<ul>'
+                output += '<ul>'
             choice_dom_id = "%s%s" % (name, choice_id)
-            item_output += self.item_template % {'choice_name': choice_name, 'value': choice_id, 
-                                                 'name': choice_name, 'dom_id': choice_dom_id,
-                                                 'checked': 'checked="checked"'}
+            checked = 'checked="checked"' if self.is_checked(value, choice_id) else ""
+            output += self.item_template % {'choice_name': name, 'value': choice_id, 
+                                            'name': choice_name, 'dom_id': choice_dom_id,
+                                            'checked': checked}
             if depth > 0 and choice_level == depth:
-                item_output += "</li>"
+                output += "</li>"
             depth = choice_level 
-            output += item_output
         output = "<ul>%s</ul>" % output
         return mark_safe(output)
 
@@ -50,6 +49,9 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
             else:
                 return level
         return level    
+
+    def is_checked(self, value, choice_id):
+        return value and str(choice_id) in value
 
     def _cleaned_choices(self):
         for choice in self.choices:

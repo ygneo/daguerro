@@ -58,12 +58,6 @@ class SearchPhotosView(SearchView):
         super(SearchPhotosView, self).__init__(*args, **kwargs)
 
     
-    def build_form(self):
-        form = super(SearchPhotosView, self).build_form()
-        for gallery_id in form.data['gallery_ids']:
-            pass
-        return form
-
     def extra_context(self):
         if 'page' in self.request.GET:
             getvars = self.request.GET.pop("page").urlencode()

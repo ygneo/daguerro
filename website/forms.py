@@ -40,7 +40,6 @@ class SearchOptionsForm(BetterForm, SearchForm):
                                                   show_empty_choices=False),
         level_indicator=u'-'
         )
-    gallery_ids = forms.CharField(widget=forms.HiddenInput, required=False)
    
     class Meta:
         fields = ['title', 'alternative_title', 'family',
@@ -60,12 +59,14 @@ class SearchOptionsForm(BetterForm, SearchForm):
                      ('galleries', 
                       {'fields': ['search_galleries_choice',
                                   'galleries',
-                                  'gallery_ids',
                                   ],
                        }
                       ),
                      ]
 
+    def clean(self):
+        cleaned_data = super(SearchOptionsForm, self).clean()
+        return cleaned_data
 
 
     def search(self):
