@@ -34,7 +34,7 @@ class SearchOptionsForm(BetterForm, SearchForm):
                                                 label="",)
     galleries = TreeNodeMultipleChoiceField(
         required=False,
-        queryset=Gallery.objects.all(), 
+        queryset=Gallery.objects.filter(is_public=True), 
         label=_("Galleries"),
         widget = TreeCheckboxSelectMultipleWidget(attrs = {'id': 'galleries'}, 
                                                   show_empty_choices=False),

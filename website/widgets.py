@@ -35,8 +35,6 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
             output += self.item_template % {'choice_name': name, 'value': choice_id, 
                                             'name': choice_name, 'dom_id': choice_dom_id,
                                             'checked': checked}
-            if depth > 0 and choice_level == depth:
-                output += "</li>"
             depth = choice_level 
         output = "<ul>%s</ul>" % output
         return mark_safe(output)

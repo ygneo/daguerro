@@ -121,6 +121,11 @@ $(document).ready(function() {
 	    event.preventDefault();
 	    show_qtip(target, error_message);
 	}
+	else {
+	    if ($("#search_in_galleries_0").is(':checked')) {
+		$("#galleries input[type=checkbox]:checked").attr("checked", false);
+	    }
+	}
     });
 
     $('.ui-search-button').mouseout(function() { 
