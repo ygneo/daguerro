@@ -10,7 +10,7 @@ class TreeCheckboxSelectMultipleWidget(CheckboxSelectMultiple):
     remove_level_indicator = True
     item_template = """<li>
                         <input type="checkbox" name="%(choice_name)s" value="%(value)s" id="%(dom_id)s" %(checked)s />
-                        <label for="%(name)s">%(name)s</label>
+                        <label for="%(dom_id)s">%(name)s</label>
                     """
 
     def __init__(self, *args, **kwargs):        
