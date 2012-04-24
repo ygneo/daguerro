@@ -2,6 +2,7 @@
 from django import forms
 from form_utils.forms import BetterForm
 from django.utils.translation import ugettext as _
+from django.db.models import Q
 from mptt.forms import TreeNodeMultipleChoiceField
 from photologue.models import Gallery
 from website.widgets import TreeCheckboxSelectMultipleWidget
@@ -71,6 +72,23 @@ class SearchOptionsForm(BetterForm, SearchForm):
 
     def search(self):
         sqs = super(SearchOptionsForm, self).search()
+        # query = self.cleaned_data.get('query', None)
+        # galleries = self.cleaned_data.get('galleries', None)
+        # search_galleries = self.cleaned_data.get('search_galleries_choice', "ALL")
+        # if search_galleries == 'SELECTED':
+        #     sqs = sqs.filter(galleries__in=galleries)
+        # for key, value in query_string.iteritems():
+        #     if value == 'on':
+        #         if search_mode == "TOTAL":
+        #             pattern = self.build_pattern(query)
+        #             query_filters.append(Q(**{'%s__iregex' % key: pattern}))
+        #         else:
+        #             query_filters.append(Q(**{'%s__icontains' % key: query}))
+
+        # query_filter = query_filters.pop()
+        # for qfilter in query_filters:
+        #     query_filter |= qfilter
+
         return sqs
         
         

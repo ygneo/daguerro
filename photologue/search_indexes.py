@@ -2,6 +2,7 @@ import datetime
 from haystack.indexes import *
 from haystack import site
 from photologue.models import Photo
+from django.db.models import Q
 
 
 class PhotoIndex(RealTimeSearchIndex):
@@ -12,6 +13,6 @@ class PhotoIndex(RealTimeSearchIndex):
     family = CharField(model_attr='family', null=True)
 
     def index_queryset(self):
-        return Photo.objects.public()
+        return Photo.objects.public().filter(~Q(galleries=None))
 
 site.register(Photo, PhotoIndex)
