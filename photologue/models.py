@@ -135,8 +135,8 @@ class Gallery(MPTTModel):
     description = models.TextField(_('Description'), blank=True)
     photo = models.ForeignKey('Photo', verbose_name=_("Photo"), blank=True, null=True, related_name="gallery_photo")
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public galleries will be displayed in the default views.'))
-#    photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
-#                                    null=True, blank=True)
+    photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
+                                    null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
@@ -559,7 +559,7 @@ class Photo(ImageModel):
     family = models.CharField(_('Family'), max_length=200, blank=True, null=True)
     latitude = models.FloatField(_('Latitude'), blank=True, null=True)
     longitude = models.FloatField(_('Longitude'), blank=True, null=True)
-    gallery = models.ForeignKey(Gallery, related_name="photos", null=True)
+#    gallery = models.ForeignKey(Gallery, related_name="photos", null=True)
     objects = PhotoManager()
 
     class Meta:

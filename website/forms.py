@@ -73,10 +73,10 @@ class SearchOptionsForm(BetterForm, SearchForm):
     def search(self):
         sqs = super(SearchOptionsForm, self).search()
         query = self.cleaned_data.get('query', None)
-#        galleries = [g.id for g in self.cleaned_data.get('galleries', [])]
+        galleries = [g.id for g in self.cleaned_data.get('galleries', [])]
         search_galleries = self.cleaned_data.get('search_galleries_choice', "ALL")
         if search_galleries == 'SELECTED':
-              sqs = sqs.filter(gallery_id=18)
+            sqs = sqs.filter(galleries__in=galleries)
         # for key, value in query_string.iteritems():
         #     if value == 'on':
         #         if search_mode == "TOTAL":
