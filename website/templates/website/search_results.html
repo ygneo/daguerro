@@ -14,7 +14,7 @@
         <a href="{{ photo.get_website_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>     
       </div>
       <p>
-        <a href="foto.php">{{ photo.title }}</a>
+        <a href="foto.php">{{ photo.title }} {{ photo.regions }}</a>
         <em>{% if photo.alternative_title %}{{ photo.alternative_title }}{% endif %}</em>
       </p>
      </li>
