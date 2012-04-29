@@ -11,7 +11,6 @@ class PhotoIndex(RealTimeSearchIndex):
     caption = CharField(model_attr='caption', null=True)
     location_title = CharField(model_attr='location_title', null=True)
     family = CharField(model_attr='family', null=True)
-#    title_slug = CharField(model_attr='title_slug', null=True)
     galleries = MultiValueField(null=True)
 
     def index_queryset(self):
