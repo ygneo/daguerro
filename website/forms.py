@@ -72,22 +72,18 @@ class SearchOptionsForm(BetterForm, SearchForm):
 
     def search(self):
         sqs = super(SearchOptionsForm, self).search()
-        query = self.cleaned_data.get('query', None)
+        query = self.cleaned_data.pop('q')
+        search_fields = [key for key, value in self.cleaned_data.iteritems() if value == True]
         galleries = [g.id for g in self.cleaned_data.get('galleries', [])]
         search_galleries = self.cleaned_data.get('search_galleries_choice', "ALL")
+
         if search_galleries == 'SELECTED':
             sqs = sqs.filter(galleries__in=galleries)
-        # for key, value in query_string.iteritems():
-        #     if value == 'on':
-        #         if search_mode == "TOTAL":
-        #             pattern = self.build_pattern(query)
-        #             query_filters.append(Q(**{'%s__iregex' % key: pattern}))
-        #         else:
-        #             query_filters.append(Q(**{'%s__icontains' % key: query}))
 
-        # query_filter = query_filters.pop()
-        # for qfilter in query_filters:
-        #     query_filter |= qfilter
+        # TODO filter document field
+        for key in search_fields:
+            sqs = sqs.filter_or(**{key: sqs.query.clean(query)})
+
         return sqs
         
         
