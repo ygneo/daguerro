@@ -11,6 +11,7 @@ class PhotoIndex(RealTimeSearchIndex):
     caption = CharField(model_attr='caption', null=True)
     location_title = CharField(model_attr='location_title', null=True)
     family = CharField(model_attr='family', null=True)
+    tags = MultiValueField(null=True)
     galleries = MultiValueField(null=True)
 
     def index_queryset(self):
@@ -18,5 +19,8 @@ class PhotoIndex(RealTimeSearchIndex):
 
     def prepare_galleries(self, obj):
         return [g.id for g in obj.galleries.all()]
+
+    def prepare_tags(self, obj):
+        return [tag for tag in obj.tags.split(" ")]
 
 site.register(Photo, PhotoIndex)

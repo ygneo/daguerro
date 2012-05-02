@@ -577,6 +577,7 @@ class Photo(ImageModel):
 
     def save(self, *args, **kwargs):
         self.title_slug = slugify(self.title)
+        self.tags = self.tags.lower()
         super(Photo, self).save(*args, **kwargs)
 
     def public_galleries(self):

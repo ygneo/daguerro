@@ -79,10 +79,12 @@ class SearchOptionsForm(BetterForm, SearchForm):
 
         if search_galleries == 'SELECTED':
             sqs = sqs.filter(galleries__in=galleries)
-
-        # TODO filter document field
+            
+        # TODO filter out the document field
         for key in search_fields:
             sqs = sqs.filter_or(**{key: sqs.query.clean(query)})
+            if key == "tags":
+                sqs = sqs.filter_or(tags__in=[sqs.query.clean(query.lower()).split(" ")])
 
         return sqs
         
