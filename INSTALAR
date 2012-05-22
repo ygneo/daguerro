@@ -9,7 +9,7 @@ Requisitos
 
  * En Ubuntu 10.4 se pueden instalar los paquetes requeridos ejecutando:
 
-  sudo apt-get install python-dev zlib1g-dev libjpeg62-dev libfreetype6-dev build-dep python-mysqldb pip mysql-server mysql-client
+  sudo apt-get install python-dev zlib1g-dev libjpeg62-dev libfreetype6-dev build-dep python-mysqldb pip mysql-server mysql-client libjpeg8-dev
 
 
 Instalación
