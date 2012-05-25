@@ -51,7 +51,6 @@ class ImageWidget(forms.FileInput):
                                       'image': image_html}
         except IOError: # not image
             image_html = thumbnail(str(os.path.join(settings.STATIC_URL, file_name)))
-	    output = input_html
         output = self.template % {'input': input_html,
                                   'image': image_html}
         return mark_safe(output)
