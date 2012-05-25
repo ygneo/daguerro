@@ -59,10 +59,7 @@ class SearchPhotosView(SearchView):
 
     
     def extra_context(self):
-        if 'page' in self.request.GET:
-            getvars = self.request.GET.pop("page").urlencode()
-        else:
-            getvars = self.request.GET.urlencode()
+        getvars = self.request.GET.urlencode()
         if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
             show_galleries_tree = True
         else: 
