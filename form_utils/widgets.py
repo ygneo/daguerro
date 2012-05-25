@@ -27,10 +27,9 @@ try:
         t = DjangoThumbnail(relative_source=image_path, requested_size=(200,200))
         return u'<img src="%s" alt="%s" />' % (t.absolute_url, image_path.decode(settings.DEFAULT_CHARSET))
 except ImportError:
-    def thumbnail(image_path):
-        image_path = image_path.decode(settings.DEFAULT_CHARSET)
-        absolute_url = posixpath.join(settings.MEDIA_URL, image_path)
-        return u'<img src="%s" alt="%s" />' % (absolute_url, image_path)
+    def thumbnail(image_url):
+        image_url = image_url.decode(settings.DEFAULT_CHARSET)
+        return u'<img src="%s"/>' % image_url
 
 class ImageWidget(forms.FileInput):
     template = '%(input)s<br />%(image)s'
@@ -47,12 +46,14 @@ class ImageWidget(forms.FileInput):
         file_path = os.path.join(settings.MEDIA_ROOT, file_name)
         try: # is image
             Image.open(file_path)
-            image_html = thumbnail(str(value))
+            image_html = thumbnail(str(os.path.join(settings.MEDIA_URL, file_name)))
             output = self.template % {'input': input_html,
                                       'image': image_html}
         except IOError: # not image
-            logger.warning("IOError accessing %s" % file_path)
+            image_html = thumbnail(str(os.path.join(settings.STATIC_URL, file_name)))
 	    output = input_html
+        output = self.template % {'input': input_html,
+                                  'image': image_html}
         return mark_safe(output)
 
 class ClearableFileInput(forms.MultiWidget):
