@@ -243,8 +243,7 @@ div#content {
 div#breadcrumbs { background:#222; font-size: 75%; margin-top: .5ex; margin-bottom: .5ex;}
 
 div#photo {
-   color: white; margin-bottom: 3ex; float: left; width: 100%; background: #222222; padding-bottom: 2ex; padding-left: 1.5ex;
-   -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px;
+   color: white; margin-bottom: 3ex; float: left; width: 100%; background: #222222; padding-bottom: 2ex; padding-left: 1.5ex; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px;
 }
 div#photo div#photo_title  { padding-top: .5ex; float: left; margin-bottom: 2ex;}
 div#photo div#photo_title h3 { font-size: 80%; font-weight: normal; }
@@ -276,10 +275,36 @@ div#photo div.last-tab  { float:right; }
     #shopping-cart input[type=text], #shopping-cart textarea { color: grey; font-size: small; width: 99%; float: right; margin-bottom: .5ex; font-family: Verdana, Arial;}
     #shopping-cart input[type=submit], #shopping-cart input[type=button] { color: black; float: right; }
 
-div.pagination { clear: both; float: right; height: 48px; }
-    
+#search_count { }
+
+div.pagination { clear: both; position: absolute; bottom: 4ex; right: 12ex; height: 32px; padding: 1ex; display: block; margin-bottom: 1.5ex;  color: white;  }
+
+div.pagination span, div.pagination a { display: block; float: left; margin-left: 1ex; }
+
+div.pagination .disabled { 
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+
+div.pagination .first { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_first.png') no-repeat; }
+
+div.pagination .last { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_last.png') no-repeat; }
+
+div.pagination .next { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_next.png') no-repeat; }
+
+div.pagination .prev { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_prev.png') no-repeat; }
+
+div.pagination .page { color: #CCC; background: #191919; height: 24px; width: 26px; margin-top: 1px; padding-top: 6px; border-radius: 4px; ms-border-radius: 4px; moz-border-radius: 4px; webkit-border-radius: 4px; khtml-border-radius: 4px; text-align: center; }    
+
+div.pagination a.page  { text-decoration: none; }
+
+div.pagination .current, div.pagination .page:hover { background-color: #58880C; }
+
+
 
 div#footer {
+        clear: both;
 	position:absolute;
 	bottom: 0; /* stick to bottom */
         font-size:60%;

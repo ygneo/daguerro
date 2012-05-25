@@ -5,6 +5,9 @@
 {% block title %}Barres foto natura | Búsqueda | {{ query }}{% endblock %}
 
 {% block content %}
+<div id="search_count">
+  <p><em>{{ num_results }}</em> {% trans "pictures found" %}</p>
+</div>
 <div id="photos">
   <ul>
     {% for result in page.object_list %}
@@ -22,20 +25,17 @@
     {% endfor %}
   </ul>
 </div>
-<div id="search_count" style="float:left; width: 15em; backgroud: white;">
-  <p><em>{{ num_results }}</em> fotografías encontradas.</p>
-</div>
 {% if page.has_previous or page.has_next %}
 <div class="pagination">
     {% ifnotequal page.number 1 %}
-        <a href="?page=1&{{ getvars }}" class="first">&lsaquo;&lsaquo; {% trans "first" %}</a>
+        <a href="?page=1&{{ getvars }}" class="first" alt="{% trans "first" %}" title="{% trans "first" %}">&lsaquo;&lsaquo; {% trans "first" %}</a>
     {% else %}
         <span class="disabled first">&lsaquo;&lsaquo; {% trans "first" %}</span>
     {% endifnotequal %}
     {% if page.has_previous %}
         <a href="?page={{ page.previous_page_number }}{{ getvars }}" class="prev">&lsaquo;&lsaquo; {% trans "previous" %}</a>
     {% else %}
-        <span class="disabled prev">&lsaquo;&lsaquo; {% trans "previous" %}</span>
+        <span class="disabled prev">&lsaquo; {% trans "previous" %}</span>
     {% endif %}
     {% for page_num in paginator.page_range %}
         {% ifequal page_num page.number %}
