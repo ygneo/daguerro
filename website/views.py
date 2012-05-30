@@ -5,7 +5,7 @@ from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.paginator import Paginator, InvalidPage
-from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, QueryDict
 from django.core.mail import send_mail, BadHeaderError
 from django.template import Context, Template
 from django.template.loader import get_template
@@ -59,7 +59,12 @@ class SearchPhotosView(SearchView):
 
     
     def extra_context(self):
-        getvars = self.request.GET.urlencode()
+        getvars = QueryDict(self.request.GET.urlencode(), mutable=True)
+        try:
+            getvars.pop("page")
+        except KeyError:
+            pass
+        getvars = getvars.urlencode()
         if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
             show_galleries_tree = True
         else: 
