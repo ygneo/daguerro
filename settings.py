@@ -4,7 +4,7 @@
 # Django settings for daguerro project.
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
