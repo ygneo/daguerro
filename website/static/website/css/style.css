@@ -211,7 +211,7 @@ div#content {
 #subgallery a { font-size: 100%; color: white; text-decoration: none; }
 #subgallery a:hover {margin-top: 1ex; color: white;  text-decoration: underline;}
 
-#photos {clear:both; margin: 0 auto; width: 77%; height: 100%; float: left;}
+#photos {clear:both; margin: 0 auto; height: 100%; float: left;}
 #photos ul { margin-bottom: 10px; clear: both; list-style:none; margin-bottom: 10px; width:100%; float: left; }
 #photos li { float: left;  width: 180px; font-size: 90%; color: white; margin-right: 4ex; margin-bottom: 10px; background-color: transparent; color: #222; text-align:center; padding-bottom: 7ex; }
 #photos p { margin: 0; padding: 0;  height: 3ex; }
@@ -275,9 +275,9 @@ div#photo div.last-tab  { float:right; }
     #shopping-cart input[type=text], #shopping-cart textarea { color: grey; font-size: small; width: 99%; float: right; margin-bottom: .5ex; font-family: Verdana, Arial;}
     #shopping-cart input[type=submit], #shopping-cart input[type=button] { color: black; float: right; }
 
-#search_count { }
+#search_count { font-size: 90%; text-align: right; color: #222; }
 
-div.pagination { clear: both; position: absolute; bottom: 4ex; right: 12ex; height: 32px; padding: 1ex; display: block; margin-bottom: 1.5ex;  color: white;  }
+div.pagination { clear: both; position: absolute; bottom: 4ex; right: 12ex; height: 32px; padding: 1ex; display: block; margin-bottom: 1.5ex;  color: white; height: 4ex; }
 
 div.pagination span, div.pagination a { display: block; float: left; margin-left: 1ex; }
 

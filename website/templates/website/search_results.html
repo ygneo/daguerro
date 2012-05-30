@@ -5,9 +5,6 @@
 {% block title %}Barres foto natura | Búsqueda | {{ query }}{% endblock %}
 
 {% block content %}
-<div id="search_count">
-  <p><em>{{ num_results }}</em> {% trans "pictures found" %}</p>
-</div>
 <div id="photos">
   <ul>
     {% for result in page.object_list %}
@@ -27,6 +24,9 @@
 </div>
 {% if page.has_previous or page.has_next %}
 <div class="pagination">
+  <div id="search_count">
+    <p>{{ num_results }} {% trans "pictures found" %}</p>
+  </div>
     {% ifnotequal page.number 1 %}
         <a href="?page=1&{{ getvars }}" class="first" alt="{% trans "first" %}" title="{% trans "first" %}">&lsaquo;&lsaquo; {% trans "first" %}</a>
     {% else %}
