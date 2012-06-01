@@ -146,7 +146,6 @@ class Gallery(MPTTModel):
         verbose_name_plural = _('categorias')
 
     class MPTTMeta:
-        order_insertion_by = ['order']
         parent_attr = 'parent'
 
     def __unicode__(self):
