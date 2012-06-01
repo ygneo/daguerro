@@ -275,9 +275,9 @@ div#photo div.last-tab  { float:right; }
     #shopping-cart input[type=text], #shopping-cart textarea { color: grey; font-size: small; width: 99%; float: right; margin-bottom: .5ex; font-family: Verdana, Arial;}
     #shopping-cart input[type=submit], #shopping-cart input[type=button] { color: black; float: right; }
 
-#search_count { font-size: 90%; text-align: right; color: #222; }
+#search_count p { font-size: 85%; text-align: right; color: #222; margin-bottom: 1ex; }
 
-div.pagination { clear: both; position: absolute; bottom: 4ex; right: 12ex; height: 32px; padding: 1ex; display: block; margin-bottom: 1.5ex;  color: white; height: 4ex; }
+div.pagination { clear: both; position: absolute; right: 12ex; bottom: 4ex; padding: 1ex; display: block; margin-top: 1.5ex; margin-bottom: 1.5ex;  color: white;  }
 
 div.pagination span, div.pagination a { display: block; float: left; margin-left: 1ex; }
 

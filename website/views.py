@@ -71,8 +71,7 @@ class SearchPhotosView(SearchView):
             show_galleries_tree = False
         no_image_thumb_url = os.path.join(settings.MEDIA_URL, 
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-        return {'num_results': len(self.results),
-                'no_image_thumb_url': no_image_thumb_url,
+        return {'no_image_thumb_url': no_image_thumb_url,
                 'search_options_form': self.form,
                 'show_galleries_tree': show_galleries_tree,
                 'getvars': getvars,

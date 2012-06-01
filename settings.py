@@ -183,7 +183,7 @@ LOGGING = {
 HAYSTACK_SITECONF = 'barres.website.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = os.path.join(os.path.dirname(__file__), 'whoosh_index')
-HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 20
 
 # DAG_NO_PICT_GALLERY_PATH = 'daguerro/img/no_picture_gallery.png'
 # DAG_NO_PICT_GALLERY_MINI_PATH = 'daguerro/img/no_picture_gallery_mini.png'
