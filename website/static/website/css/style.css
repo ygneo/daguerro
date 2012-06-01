@@ -212,7 +212,7 @@ div#content {
 #subgallery a:hover {margin-top: 1ex; color: white;  text-decoration: underline;}
 
 #photos {clear:both; margin: 0 auto; height: 100%; float: left;}
-#photos ul { margin-bottom: 10px; clear: both; list-style:none; margin-bottom: 10px; width:100%; float: left; }
+#photos ul { clear: both; list-style:none; width:100%; float: left; }
 #photos li { float: left;  width: 180px; font-size: 90%; color: white; margin-right: 4ex; margin-bottom: 10px; background-color: transparent; color: #222; text-align:center; padding-bottom: 7ex; }
 #photos p { margin: 0; padding: 0;  height: 3ex; }
 #photos em { display: block; font-weight: normal; font-style: italic; }
@@ -277,29 +277,30 @@ div#photo div.last-tab  { float:right; }
 
 #search_count p { font-size: 85%; text-align: right; color: #222; margin-bottom: 1ex; }
 
-div.pagination { clear: both; position: absolute; right: 12ex; bottom: 4ex; padding: 1ex; display: block; margin-top: 1.5ex; margin-bottom: 1.5ex;  color: white;  }
 
-div.pagination span, div.pagination a { display: block; float: left; margin-left: 1ex; }
+div#pagination { clear: both; float: right; margin-bottom: 2ex; }
 
-div.pagination .disabled { 
+div#pagination span, div#pagination a { display: block; float: left; margin-left: 1ex; }
+
+div#pagination .disabled { 
     zoom: 1;
     filter: alpha(opacity=50);
     opacity: 0.5;
 }
 
-div.pagination .first { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_first.png') no-repeat; }
+div#pagination .first { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_first.png') no-repeat; margin-left: 0; }
 
-div.pagination .last { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_last.png') no-repeat; }
+div#pagination .last { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_last.png') no-repeat; }
 
-div.pagination .next { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_next.png') no-repeat; }
+div#pagination .next { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_next.png') no-repeat; }
 
-div.pagination .prev { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_prev.png') no-repeat; }
+div#pagination .prev { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_prev.png') no-repeat; }
 
-div.pagination .page { color: #CCC; background: #191919; height: 24px; width: 26px; margin-top: 1px; padding-top: 6px; border-radius: 4px; ms-border-radius: 4px; moz-border-radius: 4px; webkit-border-radius: 4px; khtml-border-radius: 4px; text-align: center; }    
+div#pagination .page { color: #CCC; background: #191919; height: 24px; width: 26px; margin-top: 1px; padding-top: 6px; border-radius: 4px; ms-border-radius: 4px; moz-border-radius: 4px; webkit-border-radius: 4px; khtml-border-radius: 4px; text-align: center; }    
 
-div.pagination a.page  { text-decoration: none; }
+div#pagination a.page  { text-decoration: none; }
 
-div.pagination .current, div.pagination .page:hover { background-color: #58880C; }
+div#pagination .current, div.pagination .page:hover { background-color: #58880C; }
 
 
 

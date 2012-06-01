@@ -22,8 +22,9 @@
     {% endfor %}
   </ul>
 </div>
+
 {% if page.has_previous or page.has_next %}
-<div class="pagination">
+  <div id="pagination">
     {% ifnotequal page.number 1 %}
         <a href="?page=1&{{ getvars }}" class="first" alt="{% trans "first" %}" title="{% trans "first" %}">&lsaquo;&lsaquo; {% trans "first" %}</a>
     {% else %}
@@ -51,7 +52,8 @@
     {% else %}
         <span class="disabled last">&lsaquo;&lsaquo; {% trans "last" %}</span>
     {% endifnotequal %}
-</div>
+  </div>
 {% endif %}
+
 <div class="push"></div>
 {% endblock %}
