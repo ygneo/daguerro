@@ -1,7 +1,10 @@
 {% load i18n %}
 {% load form_filters %}
 
-<div id="search_options">
+<div id="search_options" {% if form.errors %}style="display:block;"{% endif %}>
+  {% if form.non_field_errors %}
+  {{ form.non_field_errors }}
+  {% endif %}
   {% for fieldset in search_options_form.fieldsets %}
   <fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
     {% for field in fieldset %}
