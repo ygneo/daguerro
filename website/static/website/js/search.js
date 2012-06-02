@@ -82,11 +82,13 @@ $(document).ready(function() {
 		},
 		'font-size': 'small',
 	    },
-	    show: { ready: true,
-		    target: target
+	    show: { ready: true, 
+		    when: { target: $('.ui-search-button'),
+			    event: 'click'
+			  },
 		  },
 	    hide: { when: { target: target,
-			    event: 'mouseout'
+			    event: 'keyup'
 			  },
 		    effect: { type: 'fade' } 
 		  }
@@ -98,8 +100,15 @@ $(document).ready(function() {
 	return ($("#search_in_galleries_1").is(':checked') && $("#galleries input[type=checkbox]:checked").length == 0);
     }
 
+    function hide_qtips() {
+	$(".qtip").each(function() {
+	    $(this).qtip("destroy");
+	});
+    }
+
 
     $('.ui-search-button').click(function(event) {
+	hide_qtips();
 	var error_message = "";
 	if ($("input#query").val() == "") {
 	    error_message = gettext("You must enter a query");
@@ -121,12 +130,7 @@ $(document).ready(function() {
 	}
     });
 
-    $('.ui-search-button').mouseout(function() { 
-	$(".qtip").each(function() {
-	    $(this).qtip("destroy");
-	});
-    } );
-    $("input#query").keyup(function() { $(this).qtip("destroy"); });
+    $("input#query").bin("keyup", "mouseover", hide_qtips());
 
 });
 
