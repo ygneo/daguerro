@@ -5,13 +5,13 @@ from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.paginator import Paginator, InvalidPage
-from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, QueryDict
 from django.core.mail import send_mail, BadHeaderError
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives, EmailMessage
-
 from photologue.models import Gallery, Photo
+from haystack.views import SearchView
 from daguerro.utils import process_category_thread
 from website.forms import ShoppingCartForm, SearchOptionsForm
 
@@ -50,25 +50,34 @@ def photo(request, gallery_slugs, photo_slug):
             }, context_instance=RequestContext(request))
 
 
-def search_photos(request):
-    if request.method == 'GET':
-        query = request.GET.get("query", None)
-        form = SearchOptionsForm(request.GET)
-        photos = Photo.objects.search_filter(request.GET).order_by("title")
+class SearchPhotosView(SearchView):
+    template = 'website/search_results.html'
+
+    def __init__(self, *args, **kwargs):
+        kwargs['form_class'] = SearchOptionsForm
+        super(SearchPhotosView, self).__init__(*args, **kwargs)
+
+    
+    def extra_context(self):
+        getvars = QueryDict(self.request.GET.urlencode(), mutable=True)
+        try:
+            getvars.pop("page")
+        except KeyError:
+            pass
+        getvars = getvars.urlencode()
+
+        show_galleries_tree = False
+        if self.form.is_valid():
+            if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
+                show_galleries_tree = True
+
         no_image_thumb_url = os.path.join(settings.MEDIA_URL, 
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-        response = render_to_response(
-            'website/search_results.html', {
-                'photos': photos,
-                'query': query,
-                'num_results': len(photos),
-                'no_image_thumb_url': no_image_thumb_url,
-                'search_options_form': SearchOptionsForm(),
-                },
-            context_instance=RequestContext(request))
-    else:
-        response = HttpResponseBadRequest()
-    return response
+        return {'no_image_thumb_url': no_image_thumb_url,
+                'search_options_form': self.form,
+                'show_galleries_tree': show_galleries_tree,
+                'getvars': getvars,
+                }
 
 
 def send_request_photos(request):

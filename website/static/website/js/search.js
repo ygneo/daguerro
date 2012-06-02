@@ -1,9 +1,7 @@
 $(document).ready(function() {
-    $("<div id='ui-arrow-down'>").insertAfter($('input#search_options_button'));
-
     $("<div id='ui-open-galleries'>").insertBefore($('fieldset#galleries label:not(fieldset#galleries ul label)'));
 
-    $('fieldset#galleries input[type=checkbox]').each(function(index) {
+    $('fieldset#galleries-fields input[type=checkbox]').each(function(index) {
 	subtree = $(this).nextAll("ul");
 	if (subtree.length) {
 	    $('<div id="ui-tree-node-handler" class="open-node"></div>').insertBefore($(this));
@@ -13,8 +11,7 @@ $(document).ready(function() {
 	}
     });
 
-    $('fieldset#galleries li ul').children().hide();
-    $("#search_in_galleries_0").attr("checked", true);
+    $('fieldset#galleries-fields li ul').children().hide();
 
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
@@ -26,13 +23,8 @@ $(document).ready(function() {
 	$("#ui-arrow-down").toggle();
 	$("#ui-arrow-down").offset({top: button_offset.top + offset - 1, 
 				    left: button_offset.left - (offset / 10)
-				    });
+				   });
 	$("#search_options").toggle();
-	$("#search_options").css("width", form_width - options_padding);
-	$("#search_options").offset({top: button_offset.top + offset, 
-				     left: button_offset.left - $("#seach_options").css("width")
-				    });
-
     });
 
     $('#search_in_galleries_1').click(function (e) {
@@ -40,6 +32,7 @@ $(document).ready(function() {
     });
 
     $('#search_in_galleries_0').click(function (e) {
+	hide_qtips();
 	$("div#galleries ul").hide();
     });
 
@@ -50,7 +43,7 @@ $(document).ready(function() {
 
     $('#ui-open-galleries, #ui-open-galleries + label').click(function (e) {
 	$("#ui-open-galleries").toggleClass("active");
-	$("fieldset#galleries > ul").toggle();
+	$("fieldset#galleries-fields > ul").toggle();
     });
 
     $('div#galleries input[type=checkbox]').click(function (e) {
@@ -90,24 +83,33 @@ $(document).ready(function() {
 		},
 		'font-size': 'small',
 	    },
-	    show: { ready: true,
-		    target: target
+	    show: { ready: true, 
+		    when: { target: $('.ui-search-button'),
+			    event: 'click'
+			  },
 		  },
 	    hide: { when: { target: target,
-			    event: 'mouseout'
+			    event: 'keyup'
 			  },
 		    effect: { type: 'fade' } 
-		  }
+		  },
 	});
     }
 
     
     function no_galleries_selected() {
-	return ($("#search_in_galleries_1").is(':checked') && $("#galleries input[type=checkbox]:checked").length == 0);
+	return ($("#search_in_galleries_1").is(':checked') && $("#galleries-fields input[type=checkbox]:checked").length == 0);
+    }
+
+    function hide_qtips() {
+	$(".qtip").each(function() {
+	    $(this).qtip("destroy");
+	});
     }
 
 
     $('.ui-search-button').click(function(event) {
+	hide_qtips();
 	var error_message = "";
 	if ($("input#query").val() == "") {
 	    error_message = gettext("You must enter a query");
@@ -123,23 +125,17 @@ $(document).ready(function() {
 	    show_qtip(target, error_message);
 	}
 	else {
-	    var gallery_ids = $('input[name=galleries]:checked').map(function() {
-		return $(this).val();
-	    }).get();
-	    gallery_ids = gallery_ids.join(',');
-	    if (gallery_ids.length > 0) {
-		$('input[name="gallery_ids"]').val(gallery_ids);
-		// Prevent sending galleries values (resulting URL can be long)
-		$('div#galleries ul').remove();
+	    if ($("#search_in_galleries_0").is(':checked')) {
+		$("#galleries-fields input[type=checkbox]:checked").attr("checked", false);
 	    }
 	}
     });
 
-    $('.ui-search-button').mouseout(function() { 
-	$(".qtip").each(function() {
-	    $(this).qtip("destroy");
-	});
-    } );
-    $("input#query").keyup(function() { $(this).qtip("destroy"); });
+    $("input#query").bind("keyup", "mouseover", hide_qtips());
+
+    $("#galleries ul li").live("mouseover", function () {
+	hide_qtips();
+    });
 
 });
+

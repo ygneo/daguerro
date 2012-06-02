@@ -1,3 +1,7 @@
 \#*#
 *.pyc
 *~
+.#urls.py
+ipython_log.py
+mysql_dump
+whoosh_index/

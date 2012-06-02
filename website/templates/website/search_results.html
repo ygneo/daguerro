@@ -1,25 +1,64 @@
 {% extends "website/base.html" %}
 
+{% load i18n %}
+
 {% block title %}Barres foto natura | Búsqueda | {{ query }}{% endblock %}
 
 {% block content %}
+
+{% if page.object_list %}
 <div id="photos">
   <ul>
-    {% for photo in photos %}
-    <li>
-      <div class="photo">
-        <a href="{% url website-photo photo.slugs_path, photo.title_slug %}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>      
+    {% for result in page.object_list %}
+     {% with photo=result.object %}
+     <li>
+       <div class="photo">
+        <a href="{{ photo.get_website_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>     
       </div>
       <p>
-        <a href="foto.php">{{ photo.title }}</a>
+        <a href="{{ photo.get_website_url }}">{{ photo.title }}</a>
         <em>{% if photo.alternative_title %}{{ photo.alternative_title }}{% endif %}</em>
       </p>
-    </li>
+     </li>
+     {% endwith %}
     {% endfor %}
   </ul>
 </div>
-<div id="search_count" style="float:left; width: 15em; backgroud: white;">
-  <p><em>{{ num_results }}</em> fotografías encontradas.</p>
-</div>
+{% else %}
+<p id="search_no_results">{% trans "No photo was found. You can try again with a different query or different search options." %}</p>
+{% endif %}
+
+{% if page.has_previous or page.has_next %}
+  <div id="pagination">
+    {% ifnotequal page.number 1 %}
+        <a href="?page=1&{{ getvars }}" class="first" alt="{% trans "first" %}" title="{% trans "first" %}">&lsaquo;&lsaquo; {% trans "first" %}</a>
+    {% else %}
+        <span class="disabled first">&lsaquo;&lsaquo; {% trans "first" %}</span>
+    {% endifnotequal %}
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}&{{ getvars }}" class="prev">&lsaquo;&lsaquo; {% trans "previous" %}</a>
+    {% else %}
+        <span class="disabled prev">&lsaquo; {% trans "previous" %}</span>
+    {% endif %}
+    {% for page_num in paginator.page_range %}
+        {% ifequal page_num page.number %}
+         <span class="current page">{{ page_num }}</span>
+        {% else %}
+         <a href="?page={{ page_num }}&{{ getvars }}" class="page">{{ page_num }}</a>
+        {% endifequal %}
+    {% endfor %}
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}&{{ getvars }}" class="next">{% trans "next" %} &rsaquo;&rsaquo;</a>
+    {% else %}
+        <span class="disabled next">{% trans "next" %} &rsaquo;&rsaquo;</span>
+    {% endif %}
+    {% ifnotequal page.number paginator.num_pages %}
+        <a href="?page={{ paginator.num_pages }}&{{ getvars }}" class="last">&rsaquo;&rsaquo; {% trans "last" %}</a>
+    {% else %}
+        <span class="disabled last">&lsaquo;&lsaquo; {% trans "last" %}</span>
+    {% endifnotequal %}
+  </div>
+{% endif %}
+
 <div class="push"></div>
 {% endblock %}

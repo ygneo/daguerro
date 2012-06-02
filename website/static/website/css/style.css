@@ -79,9 +79,11 @@ div#container {
 	                        display: none;
 	                        clear: both; 
 				position: absolute;
+				top: 48px; 
+				width: 466px;
 				background: white;
 				color: #111;
-				padding: 12px; 
+				padding: 8px; 
 				text-align: left; 
 				border-radius: 4px;
                                 ms-border-radius: 4px;
@@ -99,14 +101,41 @@ div#container {
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
-        #search_options fieldset#galleries div#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 16px;  margin-bottom: 1ex;  }
-        #search_options fieldset#galleries div#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 16px; width: 95%; }
-        #search_options fieldset#galleries li { clear: both;  float: left; display: block; }
-        #search_options fieldset#galleries div#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
-	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
-	#search_options fieldset#galleries #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
+        #search_options fieldset#galleries-fields div#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 16px;  margin-bottom: 1ex;  }
+        #search_options fieldset#galleries-fields div#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 16px; width: 95%; }
+        #search_options fieldset#galleries-fields div#galleries.active > ul  { display: block; }
+        #search_options fieldset#galleries-fields li { clear: both;  float: left; display: block; }
+        #search_options fieldset#galleries-fields div#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
+	#search_options fieldset#galleries-fields #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
+	#search_options fieldset#galleries-fields #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
         #ui-open-galleries + label { cursor: pointer; }
 	#ui-open-galleries + label:hover { text-decoration: underline; }
+	
+	ul.errorlist { background: url("../img/attention.png") 1ex 1ex #58880C no-repeat; 
+		       color: white; 
+		       margin: .5ex; 
+		       padding: 1ex; 
+		       padding-left: 4ex; 
+		       border-radius: 4px;
+                       ms-border-radius: 4px;
+                       moz-border-radius: 4px;
+                       webkit-border-radius: 4px;
+                       khtml-border-radius: 4px;
+		     }
+
+	p#search_no_results { 
+	    background: url("../img/attention_white_big.png") 1ex .5ex #58880C no-repeat; 
+	    font-size: 120%;
+	    color: white; 
+	    padding: 1.5ex; 	    
+	    padding-left: 7ex; 
+	    border-radius: 4px;
+            ms-border-radius: 4px;
+            moz-border-radius: 4px;
+            webkit-border-radius: 4px;
+            khtml-border-radius: 4px;
+	}
+
 
         #header #searcher #search input[type=submit] {
                                 height: 28px;
@@ -157,7 +186,7 @@ div#container {
         #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
 			  margin-left: 4px; margin-right: 2px; 
 			}
-        #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center no-repeat transparent; height: 24px; width: 36px; }
+        #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center no-repeat transparent; height: 24px; width: 36px; top: 47px; left: 1540px;}
 	#ui-tree-node-handler { float: left; font-size: 90%; height: 14px; width: 14px; margin-top: 2px; background: url('../img/sq_plus.png') center no-repeat transparent; margin-left: 0;}
 	#ui-tree-node-handler.close-node {background: url('../img/sq_minus.png') center no-repeat transparent; }
 
@@ -210,8 +239,9 @@ div#content {
 #subgallery a { font-size: 100%; color: white; text-decoration: none; }
 #subgallery a:hover {margin-top: 1ex; color: white;  text-decoration: underline;}
 
-#photos {clear:both; margin: 0 auto; width: 77%; height: 100%; float: left;}
-#photos ul { margin-bottom: 10px; clear: both; list-style:none; margin-bottom: 10px; width:100%; float: left; }
+#photos {clear:both; margin: 0 auto; height: 100%; float: left;}
+#photos.narrow { width: 78%; }
+#photos ul { clear: both; list-style:none; width:100%; float: left; }
 #photos li { float: left;  width: 180px; font-size: 90%; color: white; margin-right: 4ex; margin-bottom: 10px; background-color: transparent; color: #222; text-align:center; padding-bottom: 7ex; }
 #photos p { margin: 0; padding: 0;  height: 3ex; }
 #photos em { display: block; font-weight: normal; font-style: italic; }
@@ -242,8 +272,7 @@ div#content {
 div#breadcrumbs { background:#222; font-size: 75%; margin-top: .5ex; margin-bottom: .5ex;}
 
 div#photo {
-   color: white; margin-bottom: 3ex; float: left; width: 100%; background: #222222; padding-bottom: 2ex; padding-left: 1.5ex;
-   -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px;
+   color: white; margin-bottom: 3ex; float: left; width: 100%; background: #222222; padding-bottom: 2ex; padding-left: 1.5ex; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px;
 }
 div#photo div#photo_title  { padding-top: .5ex; float: left; margin-bottom: 2ex;}
 div#photo div#photo_title h3 { font-size: 80%; font-weight: normal; }
@@ -274,9 +303,38 @@ div#photo div.last-tab  { float:right; }
     #shopping-cart fieldset#request-form { display: none; clear: both;  }
     #shopping-cart input[type=text], #shopping-cart textarea { color: grey; font-size: small; width: 99%; float: right; margin-bottom: .5ex; font-family: Verdana, Arial;}
     #shopping-cart input[type=submit], #shopping-cart input[type=button] { color: black; float: right; }
-    
+
+#search_count p { font-size: 85%; text-align: right; color: #222; margin-bottom: 1ex; }
+
+
+div#pagination { clear: both; float: right; margin-bottom: 2ex; }
+
+div#pagination span, div#pagination a { display: block; float: left; margin-left: 1ex; }
+
+div#pagination .disabled { 
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+
+div#pagination .first { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_first.png') no-repeat; margin-left: 0; }
+
+div#pagination .last { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_last.png') no-repeat; }
+
+div#pagination .next { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_next.png') no-repeat; }
+
+div#pagination .prev { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_prev.png') no-repeat; }
+
+div#pagination .page { color: #CCC; background: #191919; height: 24px; width: 26px; margin-top: 1px; padding-top: 6px; border-radius: 4px; ms-border-radius: 4px; moz-border-radius: 4px; webkit-border-radius: 4px; khtml-border-radius: 4px; text-align: center; }    
+
+div#pagination a.page  { text-decoration: none; }
+
+div#pagination .current, div.pagination .page:hover { background-color: #58880C; }
+
+
 
 div#footer {
+        clear: both;
 	position:absolute;
 	bottom: 0; /* stick to bottom */
         font-size:60%;

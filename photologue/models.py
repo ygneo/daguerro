@@ -133,7 +133,7 @@ class Gallery(MPTTModel):
     parent = TreeForeignKey('self', verbose_name=_("Parent category"), blank=True, null=True, related_name='children')
     order = models.IntegerField(verbose_name=_("Order"), blank=True, null=True)
     description = models.TextField(_('Description'), blank=True)
-    photo = models.ForeignKey('Photo', verbose_name=_("Photo"), blank=True, null=True)
+    photo = models.ForeignKey('Photo', verbose_name=_("Photo"), blank=True, null=True, related_name="gallery_photo")
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public galleries will be displayed in the default views.'))
     photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
@@ -508,10 +508,6 @@ class PhotoManager(models.Manager):
         return self.filter(is_public=True)
 
     def search_filter(self, query_string):
-        query = query_string['query']
-        search_mode = query_string['search_mode']
-        search_galleries = query_string['search_galleries_choice']
-
         queryset = self.get_query_set()
         queryset = queryset.filter(~Q(galleries=None), is_public=True)
         query_filters = []
@@ -563,6 +559,7 @@ class Photo(ImageModel):
     family = models.CharField(_('Family'), max_length=200, blank=True, null=True)
     latitude = models.FloatField(_('Latitude'), blank=True, null=True)
     longitude = models.FloatField(_('Longitude'), blank=True, null=True)
+#    gallery = models.ForeignKey(Gallery, related_name="photos", null=True)
     objects = PhotoManager()
 
     class Meta:
@@ -579,14 +576,8 @@ class Photo(ImageModel):
 
     def save(self, *args, **kwargs):
         self.title_slug = slugify(self.title)
+        self.tags = self.tags.lower()
         super(Photo, self).save(*args, **kwargs)
-
-    def slugs_path(self):
-        try:
-            slugs = self.galleries.all()[0].slugs_path()
-        except IndexError:
-            slugs = ''
-        return slugs
 
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
@@ -600,8 +591,15 @@ class Photo(ImageModel):
         if galleries:
             slugs_path = galleries[0].slugs_path() 
         else:
-            slugs_paht = ''
+            slugs_path = ''
         return reverse('daguerro-gallery-photo', args=[slugs_path, self.title_slug])
+
+    def get_website_url(self):
+        try:
+            slugs = self.galleries.all()[0].slugs_path()
+        except IndexError:
+            slugs = ''
+        return slugs + "/foto/" + self.title_slug
 
     def get_previous_in_gallery(self, gallery):
         try:
