@@ -123,6 +123,19 @@ div#container {
                        khtml-border-radius: 4px;
 		     }
 
+	p#search_no_results { 
+	    background: url("../img/attention_white_big.png") 1ex .5ex #58880C no-repeat; 
+	    font-size: 120%;
+	    color: white; 
+	    padding: 1.5ex; 	    
+	    padding-left: 7ex; 
+	    border-radius: 4px;
+            ms-border-radius: 4px;
+            moz-border-radius: 4px;
+            webkit-border-radius: 4px;
+            khtml-border-radius: 4px;
+	}
+
 
         #header #searcher #search input[type=submit] {
                                 height: 28px;
@@ -227,6 +240,7 @@ div#content {
 #subgallery a:hover {margin-top: 1ex; color: white;  text-decoration: underline;}
 
 #photos {clear:both; margin: 0 auto; height: 100%; float: left;}
+#photos.narrow { width: 78%; }
 #photos ul { clear: both; list-style:none; width:100%; float: left; }
 #photos li { float: left;  width: 180px; font-size: 90%; color: white; margin-right: 4ex; margin-bottom: 10px; background-color: transparent; color: #222; text-align:center; padding-bottom: 7ex; }
 #photos p { margin: 0; padding: 0;  height: 3ex; }

@@ -19,7 +19,7 @@
 {% endif %}
 
 {% if gallery.photos.public %}
-<div id="photos">
+<div id="photos" class="narrow">
   <ul>
     {% for photo in gallery.photos.public %}
     <li>
@@ -27,7 +27,7 @@
         <a href="{% url website-photo gallery.slugs_path, photo.title_slug %}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>      
       </div>
       <p>
-        <a href="foto.php">{{ photo.title }}</a>
+        <a href="{{ photo.get_website_url }}">{{ photo.title }}</a>
         <em>{% if photo.alternative_title %}{{ photo.alternative_title }}{% endif %}</em>
       </p>
     </li>
