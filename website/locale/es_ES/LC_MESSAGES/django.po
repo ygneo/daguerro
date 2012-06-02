@@ -63,7 +63,7 @@ msgstr "Categoría(s)"
 
 #: forms.py:76
 msgid "At least one of these checkboxes need to be checked:"
-msgstr "Al menos una de éstas opciones debe marcarse:"
+msgstr "Al menos una de estas opciones debe marcarse:"
 
 #: templates/website/base.html:51
 #: templates/website/search_options_form.html:21

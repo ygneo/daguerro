@@ -57,7 +57,7 @@ class SearchOptionsForm(BetterForm, SearchForm):
                                   'location_title',
                                   ]}
                       ),
-                     ('galleries', 
+                     ('galleries-fields', 
                       {'fields': ['search_galleries_choice',
                                   'galleries',
                                   ],

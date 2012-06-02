@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("<div id='ui-open-galleries'>").insertBefore($('fieldset#galleries label:not(fieldset#galleries ul label)'));
 
-    $('fieldset#galleries input[type=checkbox]').each(function(index) {
+    $('fieldset#galleries-fields input[type=checkbox]').each(function(index) {
 	subtree = $(this).nextAll("ul");
 	if (subtree.length) {
 	    $('<div id="ui-tree-node-handler" class="open-node"></div>').insertBefore($(this));
@@ -11,7 +11,7 @@ $(document).ready(function() {
 	}
     });
 
-    $('fieldset#galleries li ul').children().hide();
+    $('fieldset#galleries-fields li ul').children().hide();
 
     offset = 31;
     form_width = parseInt($("form#search").css("width"));
@@ -32,6 +32,7 @@ $(document).ready(function() {
     });
 
     $('#search_in_galleries_0').click(function (e) {
+	hide_qtips();
 	$("div#galleries ul").hide();
     });
 
@@ -42,7 +43,7 @@ $(document).ready(function() {
 
     $('#ui-open-galleries, #ui-open-galleries + label').click(function (e) {
 	$("#ui-open-galleries").toggleClass("active");
-	$("fieldset#galleries > ul").toggle();
+	$("fieldset#galleries-fields > ul").toggle();
     });
 
     $('div#galleries input[type=checkbox]').click(function (e) {
@@ -91,13 +92,13 @@ $(document).ready(function() {
 			    event: 'keyup'
 			  },
 		    effect: { type: 'fade' } 
-		  }
+		  },
 	});
     }
 
     
     function no_galleries_selected() {
-	return ($("#search_in_galleries_1").is(':checked') && $("#galleries input[type=checkbox]:checked").length == 0);
+	return ($("#search_in_galleries_1").is(':checked') && $("#galleries-fields input[type=checkbox]:checked").length == 0);
     }
 
     function hide_qtips() {
@@ -125,12 +126,16 @@ $(document).ready(function() {
 	}
 	else {
 	    if ($("#search_in_galleries_0").is(':checked')) {
-		$("#galleries input[type=checkbox]:checked").attr("checked", false);
+		$("#galleries-fields input[type=checkbox]:checked").attr("checked", false);
 	    }
 	}
     });
 
-    $("input#query").bin("keyup", "mouseover", hide_qtips());
+    $("input#query").bind("keyup", "mouseover", hide_qtips());
+
+    $("#galleries ul li").live("mouseover", function () {
+	hide_qtips();
+    });
 
 });
 

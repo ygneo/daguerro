@@ -101,13 +101,13 @@ div#container {
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
-        #search_options fieldset#galleries div#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 16px;  margin-bottom: 1ex;  }
-        #search_options fieldset#galleries div#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 16px; width: 95%; }
-        #search_options fieldset#galleries div#galleries.active > ul  { display: block; }
-        #search_options fieldset#galleries li { clear: both;  float: left; display: block; }
-        #search_options fieldset#galleries div#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
-	#search_options fieldset#galleries #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
-	#search_options fieldset#galleries #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
+        #search_options fieldset#galleries-fields div#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 16px;  margin-bottom: 1ex;  }
+        #search_options fieldset#galleries-fields div#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 16px; width: 95%; }
+        #search_options fieldset#galleries-fields div#galleries.active > ul  { display: block; }
+        #search_options fieldset#galleries-fields li { clear: both;  float: left; display: block; }
+        #search_options fieldset#galleries-fields div#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
+	#search_options fieldset#galleries-fields #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
+	#search_options fieldset#galleries-fields #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
         #ui-open-galleries + label { cursor: pointer; }
 	#ui-open-galleries + label:hover { text-decoration: underline; }
 	
