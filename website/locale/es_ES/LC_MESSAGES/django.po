@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-02 17:59+0200\n"
+"POT-Creation-Date: 2012-06-02 22:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,26 +70,32 @@ msgstr "Al menos una de estas opciones debe marcarse:"
 msgid "Search"
 msgstr "Buscar"
 
-#: templates/website/base.html:53
+#: templates/website/base.html:54
 msgid "Search options"
 msgstr "Opciones de búsqueda"
 
-#: templates/website/search_results.html:29
-#: templates/website/search_results.html:31
-msgid "first"
-msgstr ""
+#: templates/website/search_results.html:28
+msgid ""
+"No photo was found. You can try again with a different query or different "
+"search options."
+msgstr "No se ha encontrado ninguna foto. Puedes intentarlo de nuevo con una consulta diferente o con diferentes opciones de búsqueda"
 
 #: templates/website/search_results.html:34
 #: templates/website/search_results.html:36
-msgid "previous"
+msgid "first"
 msgstr ""
 
-#: templates/website/search_results.html:46
-#: templates/website/search_results.html:48
-msgid "next"
+#: templates/website/search_results.html:39
+#: templates/website/search_results.html:41
+msgid "previous"
 msgstr ""
 
 #: templates/website/search_results.html:51
 #: templates/website/search_results.html:53
+msgid "next"
+msgstr ""
+
+#: templates/website/search_results.html:56
+#: templates/website/search_results.html:58
 msgid "last"
 msgstr ""
