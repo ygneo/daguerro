@@ -79,7 +79,7 @@ msgstr "Opciones de búsqueda"
 msgid ""
 "No photo was found. You can try again with a different query or different "
 "search options."
-msgstr "No se ha encontrado ninguna foto. Puedes intentarlo de nuevo con una consulta diferente o con diferentes opciones de búsqueda"
+msgstr "No se ha encontrado ninguna foto. Puedes intentarlo de nuevo con una consulta diferente o con diferentes opciones de búsqueda."
 
 #: templates/website/search_results.html:34
 #: templates/website/search_results.html:36
