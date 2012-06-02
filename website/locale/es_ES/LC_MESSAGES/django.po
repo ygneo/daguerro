@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-08 00:42+0200\n"
+"POT-Creation-Date: 2012-06-02 17:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,79 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:16
+#: forms.py:18
 msgid "Total match"
 msgstr "Coincidencia total"
 
-#: forms.py:17
+#: forms.py:19
 msgid "Partial match"
 msgstr "Coincidencia parcial"
 
-#: forms.py:20
+#: forms.py:22
 msgid "All galleries"
 msgstr "En todas las categorías"
 
-#: forms.py:21
+#: forms.py:23
 msgid "Only some galleries"
 msgstr "Algunas categorias"
 
-#: forms.py:28
+#: forms.py:25
 msgid "Title"
 msgstr "Título"
 
-#: forms.py:29
+#: forms.py:27
 msgid "Alternative title"
 msgstr "Nombre científico"
 
-#: forms.py:30
+#: forms.py:28
 msgid "Family"
 msgstr "Familia"
 
-#: forms.py:31
+#: forms.py:29
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: forms.py:32
+#: forms.py:30
 msgid "Caption"
 msgstr "Pie de foto"
 
-#: forms.py:33
+#: forms.py:31
 msgid "Location"
 msgstr "Localización"
 
-#: forms.py:40
+#: forms.py:39
 msgid "Galleries"
 msgstr "Categoría(s)"
 
+#: forms.py:76
+msgid "At least one of these checkboxes need to be checked:"
+msgstr "Al menos una de éstas opciones debe marcarse:"
+
 #: templates/website/base.html:51
-#: templates/website/search_options_form.html:19
+#: templates/website/search_options_form.html:21
 msgid "Search"
 msgstr "Buscar"
 
 #: templates/website/base.html:53
 msgid "Search options"
 msgstr "Opciones de búsqueda"
+
+#: templates/website/search_results.html:29
+#: templates/website/search_results.html:31
+msgid "first"
+msgstr ""
+
+#: templates/website/search_results.html:34
+#: templates/website/search_results.html:36
+msgid "previous"
+msgstr ""
+
+#: templates/website/search_results.html:46
+#: templates/website/search_results.html:48
+msgid "next"
+msgstr ""
+
+#: templates/website/search_results.html:51
+#: templates/website/search_results.html:53
+msgid "last"
+msgstr ""

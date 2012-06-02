@@ -7,7 +7,7 @@ from mptt.forms import TreeNodeMultipleChoiceField
 from photologue.models import Gallery
 from website.widgets import TreeCheckboxSelectMultipleWidget
 from haystack.forms import SearchForm
-
+from haystack.query import SearchQuerySet
 
 class ShoppingCartForm(forms.Form):
     pass
@@ -65,27 +65,41 @@ class SearchOptionsForm(BetterForm, SearchForm):
                       ),
                      ]
 
+    
     def clean(self):
-        cleaned_data = super(SearchOptionsForm, self).clean()
+        cleaned_data = self.cleaned_data
+        checkable_fields = [cleaned_data['title'], cleaned_data['alternative_title'],
+                            cleaned_data['family'], cleaned_data['caption'],
+                            cleaned_data['tags'], cleaned_data['location_title'],
+                            ]
+        if not any(checkable_fields):
+            raise forms.ValidationError(_("At least one of these checkboxes need to be checked:"))
+
+        # Always return the full collection of cleaned data.
         return cleaned_data
 
-
     def search(self):
-        sqs = super(SearchOptionsForm, self).search()
-        query = self.cleaned_data.pop('q')
+        if not hasattr(self, "cleaned_data"):
+            return self.no_query_found()
+        
         search_fields = [key for key, value in self.cleaned_data.iteritems() if value == True]
+        if 'title' not in search_fields:
+            sqs = SearchQuerySet()
+        else:
+            sqs = super(SearchOptionsForm, self).search()
+        query = self.cleaned_data.pop('q')
         galleries = [g.id for g in self.cleaned_data.get('galleries', [])]
         search_galleries = self.cleaned_data.get('search_galleries_choice', "ALL")
 
-        if search_galleries == 'SELECTED':
-            sqs = sqs.filter(galleries__in=galleries)
-            
         # TODO filter out the document field
         for key in search_fields:
             sqs = sqs.filter_or(**{key: sqs.query.clean(query)})
             if key == "tags":
                 sqs = sqs.filter_or(tags__in=[sqs.query.clean(query.lower()).split(" ")])
 
+        if search_galleries == 'SELECTED':
+            sqs = sqs.filter_and(galleries__in=galleries)
+            
         return sqs
         
         

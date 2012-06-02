@@ -65,10 +65,12 @@ class SearchPhotosView(SearchView):
         except KeyError:
             pass
         getvars = getvars.urlencode()
-        if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
-            show_galleries_tree = True
-        else: 
-            show_galleries_tree = False
+
+        show_galleries_tree = False
+        if self.form.is_valid():
+            if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
+                show_galleries_tree = True
+
         no_image_thumb_url = os.path.join(settings.MEDIA_URL, 
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         return {'no_image_thumb_url': no_image_thumb_url,

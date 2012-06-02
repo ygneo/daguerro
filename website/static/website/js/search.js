@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    $("<div id='ui-arrow-down'>").insertAfter($('input#search_options_button'));
-
     $("<div id='ui-open-galleries'>").insertBefore($('fieldset#galleries label:not(fieldset#galleries ul label)'));
 
     $('fieldset#galleries input[type=checkbox]').each(function(index) {
@@ -25,13 +23,8 @@ $(document).ready(function() {
 	$("#ui-arrow-down").toggle();
 	$("#ui-arrow-down").offset({top: button_offset.top + offset - 1, 
 				    left: button_offset.left - (offset / 10)
-				    });
+				   });
 	$("#search_options").toggle();
-	$("#search_options").css("width", form_width - options_padding);
-	$("#search_options").offset({top: button_offset.top + offset, 
-				     left: button_offset.left - $("#seach_options").css("width")
-				    });
-
     });
 
     $('#search_in_galleries_1').click(function (e) {
@@ -136,3 +129,4 @@ $(document).ready(function() {
     $("input#query").keyup(function() { $(this).qtip("destroy"); });
 
 });
+
