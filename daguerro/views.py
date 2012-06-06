@@ -109,7 +109,7 @@ def sort_items(request):
 
 
 @login_required
-def gallery(request, action='add', slugs=None):
+def gallery(request, action='add', slugs=""):
     # TODO This function is perfect for a request context processors reused in gallery pages...
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro', action)
 
@@ -131,11 +131,8 @@ def gallery(request, action='add', slugs=None):
         if form.is_valid(): 
             form.save()
             if slugs:
-                slugs = slugs.split('/')
-                slugs[-1] = form.cleaned_data['title_slug']
-            else:
-                slugs = []
-            return redirect_to_gallery("/".join(slugs))
+                slugs += "/" + form.cleaned_data['title_slug']
+            return redirect_to_gallery(slugs)
     else:
         form = GalleryForm(instance=gallery, initial={'parent': parent_gallery})
         
