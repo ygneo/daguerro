@@ -624,7 +624,7 @@ class Photo(ImageModel):
         
     def delete(self):
         """Override delete method so related gallery using a photo as its representation image is not deleted"""
-        self.gallery_set.clear()
+        self.galleries.clear()
         super(Photo, self).delete()
         
 
