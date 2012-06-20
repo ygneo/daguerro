@@ -130,18 +130,10 @@ def gallery(request, action='add', slugs=""):
         request.POST['title_slug'] = slugify(request.POST['title'])
         form = GalleryForm(request.POST, request.FILES, instance=gallery) 
         if form.is_valid(): 
-            try:
-                form.save()
-                saved = True
-            except IntegrityError:
-                form = GalleryForm(instance=gallery, initial={'parent': parent_gallery})
-                form.errors["title"] = _("A gallery with this title already exists, " \
-                                             "please write another one.")
-                saved = False
-            if saved:
-                if slugs:
-                    slugs += "/" + form.cleaned_data['title_slug']
-                return redirect_to_gallery(slugs)
+            form.save()
+            if slugs:
+                slugs += "/" + form.cleaned_data['title_slug']
+            return redirect_to_gallery(slugs)
     else:
         form = GalleryForm(instance=gallery, initial={'parent': parent_gallery})
         

@@ -95,6 +95,7 @@ class GalleryForm(BetterModelForm):
     description = forms.CharField(label=_("Description"), 
                                   widget=forms.Textarea(attrs={'rows':1, 'cols':40}), 
                                   required=False)
+    form_mode = forms.CharField(widget=forms.HiddenInput)
 
     class Meta:
         model = Gallery
@@ -107,28 +108,57 @@ class GalleryForm(BetterModelForm):
         row_attrs = {'photo': {'id': 'photo-related'}, 'is_public': {'class': 'inline'},}
         
 
-    def clean(self):
+    # def clean(self):
+    #     cleaned_data = self.cleaned_data
+    #     cleaned_data['id_photo'] = self.data['id_photo']
+    #     photo = cleaned_data.get('photo')
+    #     if isinstance(photo, long): 
+    #         try: 
+    #             cleaned_data['photo'] = Photo.objects.get(pk=photo)
+    #         except Photo.DoesNotExist:
+    #             raise forms.ValidationError(_('Photo does not exist'))
+    #     elif isinstance(photo, InMemoryUploadedFile) and 'title' in cleaned_data:
+    #         print "IS IN MEMORY"
+    #         new_photo = Photo(title=cleaned_data['title'], image=photo)
+    #         cleaned_data['photo'] = new_photo
+    #         if self.instance:
+    #             try:
+    #                 new_photo.save()
+    #             except IntegrityError:
+    #                 new_photo.title = new_photo.get_avaliable_title()
+    #                 new_photo.save()
+    #             self.instance.photo = new_photo        
+        
+    #     return cleaned_data
+
+    
+    def clean_photo(self):
         cleaned_data = self.cleaned_data
-        action = self.data['photo_action']
+        cleaned_data['id_photo'] = self.data['id_photo']
         photo = cleaned_data.get('photo')
         if isinstance(photo, long): 
             try: 
                 cleaned_data['photo'] = Photo.objects.get(pk=photo)
             except Photo.DoesNotExist:
                 raise forms.ValidationError(_('Photo does not exist'))
-        elif action == 'upload_new_photo' and isinstance(photo, InMemoryUploadedFile):
-            new_photo = Photo(title=cleaned_data['title'], image=photo)
+        elif isinstance(photo, InMemoryUploadedFile):
+            new_photo = Photo(title=photo.name, image=photo)
             cleaned_data['photo'] = new_photo
-            if self.instance:
-                try:
-                    new_photo.save()
-                except IntegrityError:
-                    new_photo.title = new_photo.get_avaliable_title()
-                    new_photo.save()
-                self.instance.photo = new_photo        
-
-        cleaned_data['id_photo'] = self.data['id_photo']
-        return cleaned_data
+            try:
+                new_photo.save()
+            except IntegrityError:
+                new_photo.title = new_photo.get_avaliable_title()
+                new_photo.save()            
+        return cleaned_data['photo']
+       
+    
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        from pprint import pprint; pprint(self.cleaned_data)
+        if not self.cleaned_data['id'] and Gallery.objects.filter(title=title).count():
+            raise forms.ValidationError(_('A gallery samed titled already exists.'))
+        return title
+        
 
     def save(self, force_insert=False, force_update=False, commit=True):
         if commit and self.cleaned_data['id_photo']:

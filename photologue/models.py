@@ -617,9 +617,12 @@ class Photo(ImageModel):
 
     def get_avaliable_title(self):
         avaliable_title = self.title
-        num_photos = Photo.objects.filter(title=self.title).count()
+        num_photos = Photo.objects.filter(title__startswith=self.title).count()
+        print self.title
+        print num_photos
         if num_photos:
-            avaliable_title = "%s-%s" % (self.title, num_photos)
+            avaliable_title = "%s-%s" % (self.title, num_photos + 1)
+            print avaliable_title
         return avaliable_title
         
     def delete(self):
