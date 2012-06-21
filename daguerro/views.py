@@ -128,12 +128,10 @@ def gallery(request, action='add', slugs=""):
     if request.method == 'POST': 
         # Force slugify, otherwise I need to fix photologue model or need client-side filling.
         request.POST['title_slug'] = slugify(request.POST['title'])
-        form = GalleryForm(request.POST, request.FILES, instance=gallery) 
+        form = GalleryForm(request.POST, request.FILES, instance=gallery)
         if form.is_valid(): 
             form.save()
-            if slugs:
-                slugs += "/" + form.cleaned_data['title_slug']
-            return redirect_to_gallery(slugs)
+        return redirect_to_gallery(slugs, gallery, action)
     else:
         form = GalleryForm(instance=gallery, initial={'parent': parent_gallery})
         
