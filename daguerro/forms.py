@@ -95,7 +95,6 @@ class GalleryForm(BetterModelForm):
     description = forms.CharField(label=_("Description"), 
                                   widget=forms.Textarea(attrs={'rows':1, 'cols':40}), 
                                   required=False)
-    form_mode = forms.CharField(widget=forms.HiddenInput)
 
     class Meta:
         model = Gallery
@@ -154,8 +153,7 @@ class GalleryForm(BetterModelForm):
     
     def clean_title(self):
         title = self.cleaned_data['title']
-        from pprint import pprint; pprint(self.cleaned_data)
-        if not self.cleaned_data['id'] and Gallery.objects.filter(title=title).count():
+        if not hasattr(self.instance, "id") and Gallery.objects.filter(title=title).count():
             raise forms.ValidationError(_('A gallery samed titled already exists.'))
         return title
         
