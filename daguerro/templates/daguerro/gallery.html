@@ -42,7 +42,7 @@
        {% for category in categories %}
        <li id="gallery_{{ category.id }}" >
          <a href="{% url daguerro-gallery category.slugs_path %}">
-           <img src="{% if category.photo %}{{ category.photo.get_gallery_url }}{% else %}{{ no_image_thumb_url }}{% endif %}" alt="{{ category.title }}" title="{{ category.title }}"/>
+           <img src="{% if category.photo %}{{ category.photo.get_gallery_url }}{% else %}{{ no_image_thumb_url }}{% endif %}" title="{{ category.title }}"/>
          </a> 
          <a href="{{ category.title_slug }}">{{ category.title }}</a>
        </li>        

@@ -11,7 +11,7 @@
   <ul>
     {% for subgal in children_galleries %}
     <li {% if forloop.counter0|divisibleby:"3" %}class="first"{% endif %}>
-      <a href="{% url website-gallery subgal.slugs_path %}"><img src="{{ subgal.photo.get_gallery_url }}" alt="{{ subgal.title }}" title="{{ subgal.title }}"/></a><a href="{% url website-gallery subgal.slugs_path %}">{{ subgal.title }}</a>
+      <a href="{% url website-gallery subgal.slugs_path %}"><img src="{{ subgal.photo.get_gallery_url }}" title="{{ subgal.title }}"/></a><a href="{% url website-gallery subgal.slugs_path %}">{{ subgal.title }}</a>
     </li>
     {% endfor %}
   </ul>

@@ -36,7 +36,7 @@ def index(request, slugs=None):
                                'current_category': current_category,
                                'photos': photos,
                                'add_photo_in_root': settings.DAG_ADD_PHOTO_IN_ROOT,
-                               'no_image_thumb_url': os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY]),
+                               'no_image_thumb_url': os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY]),
                                },
                               context_instance=RequestContext(request))
 
@@ -78,7 +78,7 @@ def photo(request, action='add', slugs=None, slug=None):
                                'current_category': current_category,
                                'current_action_title': current_action_title,
                                'current_action': action, 
-                               'no_image_thumb_url': os.path.join(settings.MEDIA_URL, 
+                               'no_image_thumb_url': os.path.join(settings.STATIC_URL, 
                                                      settings.DAG_NO_IMAGE[settings.DAG_PHOTO_THUMB_SIZE_KEY]),
                                },
                               context_instance=RequestContext(request))
@@ -140,7 +140,7 @@ def gallery(request, action='add', slugs=""):
                                'current_category': current_category,
                                'current_action_title': current_action_title,
                                'current_action': action, 
-                               'no_image_thumb_url': os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE['gallery']),
+                               'no_image_thumb_url': os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE['gallery']),
                                },
                               context_instance=RequestContext(request))
 
@@ -178,7 +178,7 @@ def search_photo(request, format):
                         'image': p.get_gallery_url(),
                         'id': p.id} for p in photos]))
     else:
-        no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+        no_image_thumb_url = os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         num_results = len(photos)
         response = render_to_response(
             'daguerro/gallery.html', {

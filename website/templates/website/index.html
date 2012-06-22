@@ -6,7 +6,8 @@
           <div id="gallery">
             <ul>
               {% for gallery in galleries %}
-              <li class="{% if forloop.last %}last{% endif %}"><a href="{% url website-gallery gallery.slugs_path %}"><img src="{{ gallery.photo.get_home_url }}" alt="{{ gallery.title }}" title="{{ gallery.title }}"/></a> <a href="{% url website-gallery gallery.slugs_path %}">{{ gallery.title }}</a></li>
+              <li class="{% if forloop.last %}last{% endif %}"><a href="{% url website-gallery gallery.slugs_path %}">
+                  <img src="{% if gallery.photo %} {{ gallery.photo.get_home_url }} {% else %} {{ no_image_thumb_url }} {% endif %}" title="{{ gallery.title }}"/></a> <a href="{% url website-gallery gallery.slugs_path %}">{{ gallery.title }}</a></li>
               {% endfor %}
             </ul>
             <div class="push"></div>

@@ -18,6 +18,8 @@ from website.forms import ShoppingCartForm, SearchOptionsForm
 
 def gallery(request, slugs=None):
     parent_slug, current_gallery = process_category_thread(request, slugs)
+    no_image_thumb_url = os.path.join(settings.STATIC_URL, 
+                                          settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
     
     # TODO Find a better way to do this (parent by default for a category, i.e. root)
     if current_gallery:
@@ -32,6 +34,7 @@ def gallery(request, slugs=None):
                                          'brother_galleries': brother_galleries, 
                                          'children_galleries': children_galleries,
                                          'search_options_form': SearchOptionsForm(),
+                                         'no_image_thumb_url': no_image_thumb_url,
                                          }, context_instance=RequestContext(request)
                               )
 
@@ -71,7 +74,7 @@ class SearchPhotosView(SearchView):
             if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
                 show_galleries_tree = True
 
-        no_image_thumb_url = os.path.join(settings.MEDIA_URL, 
+        no_image_thumb_url = os.path.join(settings.STATIC_URL, 
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         return {'no_image_thumb_url': no_image_thumb_url,
                 'search_options_form': self.form,
@@ -90,7 +93,7 @@ def send_request_photos(request):
         try:
             t = get_template('website/request_photos_mail.html')
             photos = Photo.objects.filter(pk__in=photo_items)
-            no_image_thumb_url = os.path.join(settings.MEDIA_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+            no_image_thumb_url = os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
             body = t.render(Context({'photos': photos, 
                                 'sender_email': sender_email,
                                 'message': message, 
