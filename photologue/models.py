@@ -559,7 +559,7 @@ class Photo(ImageModel):
     family = models.CharField(_('Family'), max_length=200, blank=True, null=True)
     latitude = models.FloatField(_('Latitude'), blank=True, null=True)
     longitude = models.FloatField(_('Longitude'), blank=True, null=True)
-#    gallery = models.ForeignKey(Gallery, related_name="photos", null=True)
+    gallery = models.ForeignKey(Gallery, related_name="photo_set", null=True)
     objects = PhotoManager()
 
     class Meta:
