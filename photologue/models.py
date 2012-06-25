@@ -23,6 +23,8 @@ from south.modelsinspector import add_introspection_rules
 from mptt.models import MPTTModel, TreeForeignKey
 from mptt.managers import TreeManager
 
+from photologue.utils.encoding import strip_accents
+
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
 try:
@@ -572,6 +574,9 @@ class Photo(ImageModel):
 
     def __str__(self):
         return self.__unicode__()
+
+    def ascii_title(self):
+        return strip_accents(self.title)
 
     def save(self, *args, **kwargs):
         self.title_slug = slugify(self.title)
