@@ -41,6 +41,7 @@ class SearchOptionsForm(BetterForm, SearchForm):
                                                   show_empty_choices=False),
         level_indicator=u'-'
         )
+    gallery_titles = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
    
     class Meta:
         fields = ['title', 'alternative_title', 'family',
@@ -60,6 +61,7 @@ class SearchOptionsForm(BetterForm, SearchForm):
                      ('galleries-fields', 
                       {'fields': ['search_galleries_choice',
                                   'galleries',
+                                  'gallery_titles',
                                   ],
                        }
                       ),
@@ -95,16 +97,21 @@ class SearchOptionsForm(BetterForm, SearchForm):
 
         query_words = query.split()
         for key in search_fields:
-             if key != "tags":
-                 for word in query_words:
-                     sqs = sqs.filter_or(**{key: word})
+             if key == "tags":
+                 sqs = sqs.filter_or(tags__in=[query_words])
+             elif key == "gallery_titles":
+                 sqs = self._filter_or_query_words(sqs, 'gallery_titles', query_words)
              else:
-                 sqs = sqs.filter_or(tags__in=[query.split(" ")])
+                 sqs = self._filter_or_query_words(sqs, key, query_words)
 
         if search_galleries == 'SELECTED':
             sqs = sqs.filter_and(galleries_ids__in=galleries)
             
-        #sqs = sqs.filter_or(galleries_titles=sqs.query.clean(query))
         return sqs
         
-        
+    
+    def _filter_or_query_words(self, sqs, key, query_words):
+        for word in query_words:
+            sqs = sqs.filter_or(**{key: word})
+        return sqs 
+

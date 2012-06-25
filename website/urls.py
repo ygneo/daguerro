@@ -13,18 +13,15 @@ urlpatterns = patterns('',
 )
 
 urlpatterns = urlpatterns + patterns('website.views',
-                       url(r'^buscar', SearchPhotosView(), 
-                           name='website-search-photos'),
-                       url(r'^solicitar-fotos/$', 'send_request_photos', 
-                           name='website-send-request-photos'),
-                       url(r'(?P<gallery_slugs>.+)/foto/(?P<photo_slug>.+)$', 'photo', 
-                           name='website-photo'),
-                       url(r'(?P<slugs>.+)$', 'gallery', name='website-gallery'),
-                       url(r'^$', 'gallery', {'slugs': None}, name='website-gallery'),
-)
-
-
-
+                                     url(r'^buscar', SearchPhotosView(), 
+                                         name='website-search-photos'),
+                                     url(r'^solicitar-fotos/$', 'send_request_photos', 
+                                         name='website-send-request-photos'),
+                                     url(r'(?P<gallery_slugs>.+)/foto/(?P<photo_slug>.+)$', 'photo', 
+                                         name='website-photo'),
+                                     url(r'(?P<slugs>.+)$', 'gallery', name='website-gallery'),
+                                     url(r'^$', 'gallery', {'slugs': None}, name='website-gallery'),
+                                     )
 
 if settings.DEBUG:
     urlpatterns = patterns('',

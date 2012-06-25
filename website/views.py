@@ -76,11 +76,14 @@ class SearchPhotosView(SearchView):
 
         no_image_thumb_url = os.path.join(settings.STATIC_URL, 
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+
         return {'no_image_thumb_url': no_image_thumb_url,
                 'search_options_form': self.form,
                 'show_galleries_tree': show_galleries_tree,
                 'getvars': getvars,
                 }
+
+
 
 
 def whoosh_search_index(request):
