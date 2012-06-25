@@ -98,7 +98,7 @@ class SearchOptionsForm(BetterForm, SearchForm):
         query_words = query.split()
         for key in search_fields:
              if key == "tags":
-                 sqs = sqs.filter_or(tags__in=[query_words])
+                 sqs = sqs.filter_or(tags__in=[query.lower() for query in query_words])
              elif key == "gallery_titles":
                  sqs = self._filter_or_query_words(sqs, 'gallery_titles', query_words)
              else:
