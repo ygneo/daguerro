@@ -5,7 +5,7 @@ env['project_path'] = "~/django_projects/barres"
 
 def git_status():
     with cd(env['project_path']):
-        run('cd ~/django_projects/barres; git status') 
+        run('cd ~/django_projects/barres; git fetch && git status') 
 
 def pushpull():
     local("git push origin master")
