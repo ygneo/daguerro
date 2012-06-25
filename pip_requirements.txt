@@ -9,5 +9,6 @@ MySQL-python
 django-mptt
 ipython==0.10
 whoosh
-django-haystack
 fabric
+# Careful with this, I intend to use django-haystack=2.0.0 
+git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack

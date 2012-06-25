@@ -83,6 +83,19 @@ class SearchPhotosView(SearchView):
                 }
 
 
+def whoosh_search_index(request):
+     from whoosh.index import open_dir
+     from whoosh.query import Every
+     from pprint import pprint
+     ix = open_dir(settings.HAYSTACK_CONNECTIONS['default']['PATH'])
+     results = ix.searcher().search(Every('text'), None)
+     output = ""
+     for result in results:
+         output += "\n" + str(result)
+     return HttpResponse(output)
+                        
+
+
 def send_request_photos(request):
     if request.method == 'POST': 
         subject = "[Barres Fotonatura] Solicitud de fotografías"

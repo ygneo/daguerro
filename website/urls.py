@@ -33,4 +33,5 @@ if settings.DEBUG:
                            url(r'^admin_media/(?P<path>.*)$', 'django.views.static.serve', 
                                {'document_root': os.path.join(django.__path__[0], 
                                                               "contrib/admin/media/")}),
+                           url(r'^wix', 'website.views.whoosh_search_index'),
    ) + urlpatterns

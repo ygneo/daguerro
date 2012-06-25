@@ -75,7 +75,6 @@ class SearchOptionsForm(BetterForm, SearchForm):
         if not any(checkable_fields):
             raise forms.ValidationError(_("At least one of these checkboxes need to be checked:"))
 
-        # Always return the full collection of cleaned data.
         return cleaned_data
 
     def search(self):
@@ -87,19 +86,25 @@ class SearchOptionsForm(BetterForm, SearchForm):
             sqs = SearchQuerySet()
         else:
             sqs = super(SearchOptionsForm, self).search()
-        query = self.cleaned_data.pop('q')
+            # title is a document field and has been used for filtering in super method search()
+            search_fields = [key for key in search_fields if key != 'title']
+
+        query = sqs.query.clean(self.cleaned_data.pop('q'))
         galleries = [g.id for g in self.cleaned_data.get('galleries', [])]
         search_galleries = self.cleaned_data.get('search_galleries_choice', "ALL")
 
-        # TODO filter out the document field
+        query_words = query.split()
         for key in search_fields:
-            sqs = sqs.filter_or(**{key: sqs.query.clean(query)})
-            if key == "tags":
-                sqs = sqs.filter_or(tags__in=[sqs.query.clean(query.lower()).split(" ")])
+             if key != "tags":
+                 for word in query_words:
+                     sqs = sqs.filter_or(**{key: word})
+             else:
+                 sqs = sqs.filter_or(tags__in=[query.split(" ")])
 
         if search_galleries == 'SELECTED':
-            sqs = sqs.filter_and(galleries__in=galleries)
+            sqs = sqs.filter_and(galleries_ids__in=galleries)
             
+        #sqs = sqs.filter_or(galleries_titles=sqs.query.clean(query))
         return sqs
         
         
