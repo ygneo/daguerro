@@ -86,12 +86,22 @@ class SearchPhotosView(SearchView):
 def whoosh_search_index(request):
      from whoosh.index import open_dir
      from whoosh.query import Every
-     from pprint import pprint
+     from whoosh.qparser import QueryParser
+     from django.utils.html import escape
+     
+     query = request.GET.get("q")
+     
      ix = open_dir(settings.HAYSTACK_CONNECTIONS['default']['PATH'])
-     results = ix.searcher().search(Every('text'), None)
-     output = ""
+     qp = QueryParser("text", schema=ix.schema)
+     if query:
+         q = qp.parse(query)
+     else:
+         q = Every("text")
+     results = ix.searcher().search(q, None)
+     output = "<ul>"
      for result in results:
-         output += "\n" + str(result)
+         output += "<li>" + escape(str(result)) + "</li>"
+     output += "</ul>"
      return HttpResponse(output)
                         
 
