@@ -194,7 +194,7 @@ class Gallery(MPTTModel):
         parent = self.parent
         parents = []
         while parent is not None:
-            parents.append(parent.title)
+            parents.append(parent)
             parent = parent.parent
         return parents
         
@@ -626,7 +626,7 @@ class Photo(ImageModel):
         return avaliable_title
         
     def delete(self):
-        """Override delete method so related gallery using a photo as its representation image is not deleted"""
+        """Related gallery using a photo as its representation image is not deleted"""
         self.galleries.clear()
         super(Photo, self).delete()
         
