@@ -3,9 +3,9 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':  'daguerro',
+        'NAME':  'barres',
         'USER': 'root',
-        'PASSWORD': 'password',
+        'PASSWORD': 'root',
         'DATABASE_HOST': 'localhost'
         }
 }
