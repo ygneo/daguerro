@@ -5,12 +5,12 @@ env['project_path'] = "~/django_projects/barres"
 
 def git_status():
     with cd(env['project_path']):
-        run('cd ~/django_projects/barres; git fetch && git status') 
+        run('git fetch && git status') 
 
 def pushpull():
     local("git push origin master")
     with cd(env['project_path']):
-        run('cd ~/django_projects/barres; git pull') 
+        run('git pull') 
 
 
 def reload_apache():
@@ -19,4 +19,6 @@ def reload_apache():
 
 def release():
     pushpull()
+    with cd(env['project_path']):
+        run('./manage.py collectstatic') 
     reload_apache()
