@@ -84,8 +84,6 @@ class SearchPhotosView(SearchView):
                 }
 
 
-
-
 def whoosh_search_index(request):
      from whoosh.index import open_dir
      from whoosh.query import Every
@@ -108,40 +106,49 @@ def whoosh_search_index(request):
      return HttpResponse(output)
                         
 
-
 def send_request_photos(request):
-    if request.method == 'POST': 
-        subject = "[Barres Fotonatura] Solicitud de fotografías"
-        message = request.POST.get("message", "")
-        sender_email = request.POST.get("email", "")
-        photo_items = request.POST.getlist("shopping-cart-items[]")
-        redirect_to_url = request.POST.get("redirect_to_url", "/")
-        try:
-            t = get_template('website/request_photos_mail.html')
-            photos = Photo.objects.filter(pk__in=photo_items)
-            no_image_thumb_url = os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-            body = t.render(Context({'photos': photos, 
-                                'sender_email': sender_email,
-                                'message': message, 
-                                'no_image_thumb_url': no_image_thumb_url}
-                               ))
-            _send_html_mail(EmailMultiAlternatives(subject, 
-                                         body, 
-                                         settings.EMAIL_HOST_USER,
-                                         [settings.EMAIL_HOST_USER],)
-                            )
-            _send_html_mail(EmailMultiAlternatives("[Barres Fotonatura] Pedido enviado", 
-                                         settings.DAGUERRO_EMAIL_BODY,
-                                         settings.EMAIL_HOST_USER,
-                                         [sender_email],)
-                            )
-        except BadHeaderError:
-            return HttpResponse('Invalid header found.')
-        response = HttpResponseRedirect(redirect_to_url)
-        response.delete_cookie(settings.DAGUERRO_CART_SESSION_KEY)
-        return response
+    form = ShoppingCartForm(request.POST)
+    if request.method == 'POST' : 
+        form = ShoppingCartForm(request.POST)
+        
+        if form.is_valid():
+            subject = "[Barres Fotonatura] Solicitud de fotografías"
+            message = request.POST.get("message", "")
+            sender_email = request.POST.get("email", "")
+            photo_items = request.POST.getlist("shopping-cart-items[]")
+            redirect_to_url = request.POST.get("redirect_to_url", "/")
+            _send_request_emails(subject, message, sender_email, photo_items)
+            response = HttpResponseRedirect(redirect_to_url)
+            response.delete_cookie(settings.DAGUERRO_CART_SESSION_KEY)
+            return response
+        else:
+            return HttpResponseBadRequest(form.errors)
     else: 
-        return HttpResponseBadRequest("Only POST method allowed.")
+        return HttpResponseBadRequest("POST only")
+
+
+def _send_request_emails(subject, message, sender_email, photo_items):
+    try:
+        t = get_template('website/request_photos_mail.html')
+        photos = Photo.objects.filter(pk__in=photo_items)
+        no_image_thumb_url = os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+        body = t.render(Context({'photos': photos, 
+                                 'sender_email': sender_email,
+                                 'message': message, 
+                                 'no_image_thumb_url': no_image_thumb_url}
+                                ))
+        _send_html_mail(EmailMultiAlternatives(subject, 
+                                               body, 
+                                               settings.EMAIL_HOST_USER,
+                                               [settings.EMAIL_HOST_USER],)
+                        )
+        _send_html_mail(EmailMultiAlternatives("[Barres Fotonatura] Pedido enviado", 
+                                               settings.DAGUERRO_EMAIL_BODY,
+                                               settings.EMAIL_HOST_USER,
+                                               [sender_email],)
+                        )
+    except BadHeaderError:
+        return HttpResponse('Invalid header found.')
  
 
 def _send_html_mail(msg):

@@ -84,55 +84,102 @@ $(document).ready(function() {
                     $(this).val($(this).attr("data:default"));
                 }
         });
-    
+
+    function validEmail(email) {
+	    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+	    if( !emailReg.test( email ) ) {
+		    return false;
+	    } else {
+		    return true;
+	    }
+    }
+
+    $("#shopping-cart-submit").live("click", function(e) { 
+        input_email = $("input[name=email]")
+        if (!validEmail(input_email.attr("value"))) {
+            e.preventDefault();
+	        input_email.qtip({
+	            content: gettext("You must enter a valid e-mail"),
+	            position: {
+		            corner: {
+		                target: 'bottomLeft',
+		            },
+	            },
+	            style: { 
+		            tip: {
+		                corner: 'topMiddle',
+		                color: '#58880C',
+		                size: {
+			                x: 20,
+			                y: 8
+		                },
+		            },
+		            background: "#58880C",
+		            color: "white",
+		            border: {
+		                width: 0,
+		                radius: 4,
+		                color: "#58880C",
+		            },
+		            'font-size': 'small',
+	            },
+	            show: { ready: true, },
+	            hide: { when: { target: input_email,
+			                    event: 'keyup'
+			                  },
+		                effect: { type: 'fade' } 
+		              },
+	        });
+        }
+    });
    
 
+    function renderShoppingCartTable(container_id) {
+        table = $("table#shopping-list");
+        table.html('');
+        photo_items = Array();
+        current_object = Object();
+        var items = JSON.parse($.cookie(cart_session_key), function (key, value) {
+	        if (typeof value === 'string') {
+		        if (key == 'id') {
+			        current_object = Object();
+			        current_object.id = value;
+		        }	
+		        else if (key == 'thumb_url') {
+			        current_object.thumb_url = value;
+		        }
+		        else if (key == 'title') {
+			        current_object.title = value;
+			        photo_items.push(current_object);
+		        }
+	        }
+        });
+        photo_items.forEach(function (photo, id) {
+            table.append('<tr><td><input type="checkbox" checked="checked" class="select-item"/><input type="hidden" name="shopping-cart-items[]" value ="' + photo.id + '" /><td><img src="'+ photo.thumb_url + '" alt="' + photo.title + 'title="' + photo.title + '"/></td><td>' + photo.title  + '</td></tr>');
+	    });
+    }
+
+    function renderShoppingCart() {
+        updateShoppingCartNumItems();
+        return $('<div id="shopping-cart"><div id="head"><h3>Cesta de fotografías</h3><a id="close-shopping-cart" href="#" title="Close">x</a></div><form action="/solicitar-fotos/" method="post"><table id="shopping-list"></table><input id="ui-shopping-cart-make-request" type="button" value="Solicitar"></input><fieldset id="request-form"><input type="text" name="email" value="tu correo electrónico" data:default="tu correo electrónico"/><textarea name="message" rows="5" data:default="tus comentarios (opcional)">tus comentarios (opcional)</textarea><input type="hidden" name="redirect_to_url" value="' + window.location + '"/><input type="submit" value="Enviar solicitud" id="shopping-cart-submit"/></fieldset></form></div>');
+    }
+
+    function numItemsInShoppingCar() {
+        var count=0;
+        var items = JSON.parse($.cookie(cart_session_key));
+        for (key in items) { count++; }
+        return count;
+    }
+
+    function updateShoppingCartNumItems() {
+        var num_items = numItemsInShoppingCar();
+        if (num_items > 0) {
+            $("#tools #shop").show();
+            $("#shopping-cart-num-items").html(num_items);
+        }
+    }
 });
 
-function renderShoppingCartTable(container_id) {
-    table = $("table#shopping-list");
-    table.html('');
-    photo_items = Array();
-    current_object = Object();
-    var items = JSON.parse($.cookie(cart_session_key), function (key, value) {
-	if (typeof value === 'string') {
-		if (key == 'id') {
-			current_object = Object();
-			current_object.id = value;
-		}	
-		else if (key == 'thumb_url') {
-			current_object.thumb_url = value;
-		}
-		else if (key == 'title') {
-			current_object.title = value;
-			photo_items.push(current_object);
-		}
-	}
-    });
-    photo_items.forEach(function (photo, id) {
-        table.append('<tr><td><input type="checkbox" checked="checked" class="select-item"/><input type="hidden" name="shopping-cart-items[]" value ="' + photo.id + '" /><td><img src="'+ photo.thumb_url + '" alt="' + photo.title + 'title="' + photo.title + '"/></td><td>' + photo.title  + '</td></tr>');
-	});
- }
-
-function renderShoppingCart() {
-    updateShoppingCartNumItems();
-    return $('<div id="shopping-cart"><div id="head"><h3>Cesta de fotografías</h3><a id="close-shopping-cart" href="#" title="Close">x</a></div><form action="/solicitar-fotos/" method="post"><table id="shopping-list"></table><input id="ui-shopping-cart-make-request" type="button" value="Solicitar"></input><fieldset id="request-form"><input type="text" name="email" value="tu correo electrónico" data:default="tu correo electrónico"/><textarea name="message" rows="5" data:default="tus comentarios (opcional)">tus comentarios (opcional)</textarea><input type="hidden" name="redirect_to_url" value="' + window.location + '"/><input type="submit" value="Enviar solicitud"/></fieldset></form></div>');
- }
-
-function numItemsInShoppingCar() {
-    var count=0;
-    var items = JSON.parse($.cookie(cart_session_key));
-    for (key in items) { count++; }
-    return count;
-}
-
-function updateShoppingCartNumItems() {
-    var num_items = numItemsInShoppingCar();
-    if (num_items > 0) {
-        $("#tools #shop").show();
-        $("#shopping-cart-num-items").html(num_items);
-    }
-}
 
 //This prototype is provided by the Mozilla foundation and
 //is distributed under the MIT license.

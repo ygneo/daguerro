@@ -10,7 +10,8 @@ from haystack.forms import SearchForm
 from haystack.query import SearchQuerySet
 
 class ShoppingCartForm(forms.Form):
-    pass
+    email = forms.EmailField(max_length=254)
+    message = forms.CharField(required=False)
 
 
 class SearchOptionsForm(BetterForm, SearchForm):
