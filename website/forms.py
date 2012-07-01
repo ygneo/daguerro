@@ -41,7 +41,6 @@ class SearchOptionsForm(BetterForm, SearchForm):
                                                   show_empty_choices=False),
         level_indicator=u'-'
         )
-    gallery_titles = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
    
     class Meta:
         fields = ['title', 'alternative_title', 'family',
@@ -61,7 +60,6 @@ class SearchOptionsForm(BetterForm, SearchForm):
                      ('galleries-fields', 
                       {'fields': ['search_galleries_choice',
                                   'galleries',
-                                  'gallery_titles',
                                   ],
                        }
                       ),
@@ -99,8 +97,6 @@ class SearchOptionsForm(BetterForm, SearchForm):
         for key in search_fields:
              if key == "tags":
                  sqs = sqs.filter_or(tags__in=[query.lower() for query in query_words])
-             elif key == "gallery_titles":
-                 sqs = self._filter_or_query_words(sqs, 'gallery_titles', query_words)
              else:
                  sqs = self._filter_or_query_words(sqs, key, query_words)
 

@@ -12,7 +12,6 @@ class PhotoIndex(RealTimeSearchIndex, Indexable):
     family = CharField(model_attr='family', null=True)
     tags = CharField(null=True)
     galleries_ids = MultiValueField(null=True)
-    gallery_titles = CharField(null=True)
 
     def get_model(self):
         return Photo
@@ -22,9 +21,6 @@ class PhotoIndex(RealTimeSearchIndex, Indexable):
 
     def prepare_galleries_ids(self, obj):
         return [g.id for g in obj.galleries.all()]
-
-    def prepare_gallery_titles(self, obj):
-        return ",".join([g.title for g in obj.galleries.all()])
 
     def prepare_tags(self, obj):
         return ",".join([tag for tag in obj.tags.split(" ")])

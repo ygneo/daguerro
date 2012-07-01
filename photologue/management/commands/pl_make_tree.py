@@ -2,6 +2,7 @@ from mptt.models import MPTTModelBase
 from django.core.management.base import BaseCommand, CommandError
 from photologue.models import Gallery
 
+
 class Command(BaseCommand):
     help = ('Migrate existing galleries to MPTT structure')
 
