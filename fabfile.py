@@ -3,9 +3,11 @@ from fabric.api import *
 env.hosts = ['ygneo@barresfotonatura.com']
 env['project_path'] = "~/django_projects/barres"
 
+
 def git_status():
     with cd(env['project_path']):
         run('git fetch && git status') 
+
 
 def pushpull():
     local("git push origin master")
@@ -20,5 +22,6 @@ def reload_apache():
 def release():
     pushpull()
     with cd(env['project_path']):
+        run('./manage.py migrate') 
         run('./manage.py collectstatic') 
     reload_apache()
