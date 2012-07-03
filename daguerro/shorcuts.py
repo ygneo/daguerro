@@ -11,7 +11,6 @@ def redirect_to_gallery(slugs, gallery=None, action=None):
 def _rebuild_slugs(slugs, gallery):
     slug_list = slugs.split("/")
     if len(slug_list) >= 1:
-        slugs = "/".join(slug_list[:-1])
-        slugs += "/" + gallery.title_slug
+        slugs = "/".join(slug_list[:-1] + [gallery.title_slug])
     return slugs
     
