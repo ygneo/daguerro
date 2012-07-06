@@ -210,7 +210,7 @@ div#content {
 
 #category { margin-bottom: 2ex; float: left; width: 100%; background: #222222; }
 #category #imgCat img { float: left; padding:0; margin: 0; width: 108px; height: 72px; }
-#category #title { float:left; color: white; padding-left: 2ex; height: 72px; }  
+#category #title { float:left; color: white; padding-left: 2ex; height: 72px; padding-top: .5ex; }  
 #category h2 { padding: 0; font-size: 130%; float: left; }      
 #category h3 { font-weight: normal; font-size: 90%; clear:left;}      
 
@@ -269,7 +269,8 @@ div#content {
 #menu ul li.current div.mini img { opacity:0.4;filter:alpha(opacity=40); }
 #menu ul li.current div.title_cat a, #menu ul li.current div.title_cat h2 { color: grey; }
 
-div#breadcrumbs { background:#222; font-size: 75%; margin-top: .5ex; margin-bottom: .5ex;}
+div#breadcrumbs { font-size: 75%; margin-bottom: 1ex; }
+div#breadcrumbs a { color: #58880c; }
 
 div#photo {
    color: white; margin-bottom: 3ex; float: left; width: 100%; background: #222222; padding-bottom: 2ex; padding-left: 1.5ex; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px;
