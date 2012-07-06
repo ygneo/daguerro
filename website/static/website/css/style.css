@@ -304,32 +304,29 @@ div#photo div.last-tab  { float:right; }
     #shopping-cart input[type=text], #shopping-cart textarea { color: grey; font-size: small; width: 99%; float: right; margin-bottom: .5ex; font-family: Verdana, Arial;}
     #shopping-cart input[type=submit], #shopping-cart input[type=button] { color: black; float: right; }
 
-#search_count p { font-size: 85%; text-align: right; color: #222; margin-bottom: 1ex; }
+div.pagination-info { clear: both; width: 100%; overflow: hidden; margin-bottom: 1.5ex; }
 
+div.pagination-info .results-number { display: block; float: left; line-height: 1;}
 
-div#pagination { clear: both; float: right; margin-bottom: 2ex; }
+div.pagination-info span.result-number { font-weight: bold; }
 
-div#pagination span, div#pagination a { display: block; float: left; margin-left: 1ex; }
+ul.pagination { float: right;  margin: 0; padding: 0; list-style: none; }
 
-div#pagination .disabled { 
-    zoom: 1;
-    filter: alpha(opacity=50);
-    opacity: 0.5;
-}
+ul.pagination span, ul#pagination a { color: #58880C; }
 
-div#pagination .first { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_first.png') no-repeat; margin-left: 0; }
+ul.pagination .first {  }
 
-div#pagination .last { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_last.png') no-repeat; }
+ul.pagination .last {  }
 
-div#pagination .next { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_next.png') no-repeat; }
+ul.pagination .next {  }
 
-div#pagination .prev { text-indent: -10000px; height: 32px; width: 32px; background: url('../img/sq_br_prev.png') no-repeat; }
+ul.pagination .prev {  }
 
-div#pagination .page { color: #CCC; background: #191919; height: 24px; width: 26px; margin-top: 1px; padding-top: 6px; border-radius: 4px; ms-border-radius: 4px; moz-border-radius: 4px; webkit-border-radius: 4px; khtml-border-radius: 4px; text-align: center; }    
+ul.pagination li { padding: .5ex; float: left;  }    
 
-div#pagination a.page  { text-decoration: none; }
+ul.pagination li a  { text-decoration: none;  }
 
-div#pagination .current, div.pagination .page:hover { background-color: #58880C; }
+ul.pagination .current { background-color: #58880C; color: white; }
 
 
 
