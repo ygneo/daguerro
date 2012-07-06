@@ -18,10 +18,13 @@
 </div>
 {% endif %}
 
-{% if photos %}
+{% if photos_page.object_list %}
+{% with photos_page as page %}
+{% include "website/pagination_info.html" %}
+{% endwith %}
 <div id="photos" class="narrow">
   <ul>
-    {% for photo in gallery.photos.public %}
+    {% for photo in photos_page.object_list %}
     <li>
       <div class="photo">
         <a href="{% url website-photo gallery.slugs_path, photo.title_slug %}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>      

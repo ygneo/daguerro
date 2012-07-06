@@ -32,6 +32,7 @@ def gallery(request, slugs=None):
         children_galleries = None
         photos = []
 
+    page_no = int(request.GET.get('page', 1))
     paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
     template = 'website/gallery.html' if slugs else 'website/index.html'  
     return render_to_response(template, {'gallery': current_gallery, 
@@ -39,7 +40,7 @@ def gallery(request, slugs=None):
                                          'children_galleries': children_galleries,
                                          'search_options_form': SearchOptionsForm(),
                                          'no_image_thumb_url': no_image_thumb_url,
-                                         'photos': photos,
+                                         'photos_page': paginator.page(page_no),
                                          }, context_instance=RequestContext(request)
                               )
 

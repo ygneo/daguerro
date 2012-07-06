@@ -2,7 +2,7 @@
 
 <div class="pagination-info">
  <div class="results-number">
-   {% trans "Showing" %} <span class="result-number">{{ page.start_index }}</span>-<span class="result-number">{{ page.end_index }}</span> {% trans "of" %} <span class="result-number">{{ page.paginator.count }} {% trans "results" %}</span>
+   {% trans "Showing" %} <span class="result-number">{{ page.start_index }}</span>-<span class="result-number">{{ page.end_index }}</span> {% trans "of" %} <span class="result-number">{{ page.paginator.count }}</span>
  </div>
  {% if page.has_previous or page.has_next %}
  <ul class="pagination">
