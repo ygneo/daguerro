@@ -178,9 +178,18 @@ LOGGING = {
     }
 }
 
-HAYSTACK_SEARCH_RESULTS_PER_PAGE = 20
-#HAYSTACK_SEARCH_ENGINE = 'haystack.backends.whoosh_backend.WhooshEngine'
-#HAYSTACK_WHOOSH_PATH = os.path.join(os.path.dirname(__file__), 'whoosh_index')
+DAG_PHOTO_THUMB_SIZE_KEY = 'photo'
+DAG_PHOTO_ORIGINAL_SIZE_KEY = 'original'
+DAG_GALLERY_THUMB_SIZE_KEY = 'gallery'
+DAG_NO_IMAGE = {DAG_PHOTO_ORIGINAL_SIZE_KEY: 'daguerro/img/no_picture_photo.png',
+                DAG_PHOTO_THUMB_SIZE_KEY: 'daguerro/img/no_picture_photo.png',
+                DAG_GALLERY_THUMB_SIZE_KEY: 'daguerro/img/no_picture_gallery.png'
+                }
+DAG_ADD_PHOTO_IN_ROOT = False
+DAG_PHOTO_SLUG = 'foto'
+DAG_RESULTS_PER_PAGE = 20
+
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = DAG_RESULTS_PER_PAGE
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'search_backends.search_engines.FoldingWhooshEngine',
@@ -188,8 +197,6 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-# DAG_NO_PICT_GALLERY_PATH = 'daguerro/img/no_picture_gallery.png'
-# DAG_NO_PICT_GALLERY_MINI_PATH = 'daguerro/img/no_picture_gallery_mini.png'
 DAG_PHOTO_THUMB_SIZE_KEY = 'photo'
 DAG_PHOTO_ORIGINAL_SIZE_KEY = 'original'
 DAG_GALLERY_THUMB_SIZE_KEY = 'gallery'
