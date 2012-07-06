@@ -7,21 +7,24 @@
  {% if page.has_previous or page.has_next %}
  <ul class="pagination">
    {% ifnotequal page.number 1 %}
-   <li><a href="?page=1&{{ getvars }}" class="first" alt="{% trans "first" %}" title="{% trans "first" %}">&lsaquo;&lsaquo; {% trans "first" %}</a></li>
+      <li><a href="?page=1&{{ getvars }}" class="first" alt="{% trans "first" %}" title="{% trans "first" %}">&lsaquo;&lsaquo; {% trans "first" %}</a></li>
    {% endifnotequal %}
    {% if page.has_previous %}
-   <li><a href="?page={{ page.previous_page_number }}&{{ getvars }}" class="prev">&lsaquo;&lsaquo; {% trans "previous" %}</a></li>
+      <li><a href="?page={{ page.previous_page_number }}&{{ getvars }}" class="prev">&lsaquo;&lsaquo; {% trans "previous" %}</a></li>
    {% endif %}
-   {% for page_num in paginator.page_range %}
-   {% ifequal page_num page.number %}
-   <li class="current">{{ page_num }}</li>
-   {% else %}
-   <li><a href="?page={{ page_num }}&{{ getvars }}" class="page">{{ page_num }}</a></li>
-   {% endifequal %}
+   {% for page_num in page.page_range %}
+      {% if not page_num %}<li>...</li>
+      {% else %}
+        {% ifequal page_num page.number %}
+           <li class="current">{{ page_num }}</li>
+        {% else %}
+           <li><a href="?page={{ page_num }}&{{ getvars }}" class="page">{{ page_num }}</a></li>
+        {% endifequal %}
+      {% endif %}
    {% endfor %}
    {% if page.has_next %}
-   <li><a href="?page={{ page.next_page_number }}&{{ getvars }}" class="next">{% trans "next" %} &gt;</a></li>
+      <li><a href="?page={{ page.next_page_number }}&{{ getvars }}" class="next">{% trans "next" %} &gt;</a></li>
    {% endif %}
  </ul>
-  {% endif %}
+ {% endif %}
 </div>

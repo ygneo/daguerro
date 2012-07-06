@@ -13,6 +13,7 @@ from django.core.mail import EmailMultiAlternatives, EmailMessage
 from photologue.models import Gallery, Photo
 from haystack.views import SearchView
 from daguerro.utils import process_category_thread
+from daguerro.paginator import DiggPaginator
 from website.forms import ShoppingCartForm, SearchOptionsForm
 
 
@@ -25,16 +26,19 @@ def gallery(request, slugs=None):
     if current_gallery:
         children_galleries = current_gallery.get_children().filter(is_public=True)
         brother_galleries = current_gallery.get_siblings(include_self=True).filter(is_public=True)
+        photos = current_gallery.photos.public()
     else:
         brother_galleries = None
         children_galleries = None
-    
+        photos = []
+
     template = 'website/gallery.html' if slugs else 'website/index.html'    
     return render_to_response(template, {'gallery': current_gallery, 
                                          'brother_galleries': brother_galleries, 
                                          'children_galleries': children_galleries,
                                          'search_options_form': SearchOptionsForm(),
                                          'no_image_thumb_url': no_image_thumb_url,
+                                         'photos': photos,
                                          }, context_instance=RequestContext(request)
                               )
 
@@ -59,6 +63,36 @@ class SearchPhotosView(SearchView):
     def __init__(self, *args, **kwargs):
         kwargs['form_class'] = SearchOptionsForm
         super(SearchPhotosView, self).__init__(*args, **kwargs)
+
+    
+    def build_page(self):
+        """
+        Paginates the results appropriately.
+
+        In case someone does not want to use Django's built-in pagination, it
+        should be a simple matter to override this method to do what they would
+        like.
+        """
+        try:
+            page_no = int(self.request.GET.get('page', 1))
+        except (TypeError, ValueError):
+            raise Http404("Not a valid number for page.")
+
+        if page_no < 1:
+            raise Http404("Pages should be 1 or greater.")
+
+        start_offset = (page_no - 1) * self.results_per_page
+        self.results[start_offset:start_offset + self.results_per_page]
+
+        paginator = DiggPaginator(self.results, self.results_per_page, body=5, tail=2)
+        print paginator.page(page_no)
+
+        try:
+            page = paginator.page(page_no)
+        except InvalidPage:
+            raise Http404("No such page!")
+
+        return (paginator, page)
 
     
     def extra_context(self):
