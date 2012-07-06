@@ -32,7 +32,8 @@ def gallery(request, slugs=None):
         children_galleries = None
         photos = []
 
-    template = 'website/gallery.html' if slugs else 'website/index.html'    
+    paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
+    template = 'website/gallery.html' if slugs else 'website/index.html'  
     return render_to_response(template, {'gallery': current_gallery, 
                                          'brother_galleries': brother_galleries, 
                                          'children_galleries': children_galleries,
@@ -84,8 +85,7 @@ class SearchPhotosView(SearchView):
         start_offset = (page_no - 1) * self.results_per_page
         self.results[start_offset:start_offset + self.results_per_page]
 
-        paginator = DiggPaginator(self.results, self.results_per_page, body=5, tail=2)
-        print paginator.page(page_no)
+        paginator = DiggPaginator(self.results, self.results_per_page)
 
         try:
             page = paginator.page(page_no)

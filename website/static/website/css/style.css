@@ -320,7 +320,7 @@ ul.pagination .next {  }
 
 ul.pagination .prev {  }
 
-ul.pagination li { padding: .5ex; float: left;  }    
+ul.pagination li { padding: .5ex; float: left;  color: #58880C; }    
 
 ul.pagination li a  { text-decoration: none; color: #58880C; }
 
