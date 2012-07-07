@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<div class="pagination-info">
+ <div class="results-number">
+   <span class="result-number">{{ page.start_index }}</span>-<span class="result-number">{{ page.end_index }}</span> {% trans "of" %} <span class="result-number">{{ page.paginator.count }}</span> {% trans "photos" %}
+ </div>
+ {% if page.has_previous or page.has_next %}
+ <ul class="pagination">
+   {% if page.has_previous %}
+      <li><a href="?page={{ page.previous_page_number }}&{{ getvars }}" class="prev">&lsaquo;&lsaquo; {% trans "previous" %}</a></li>
+   {% endif %}
+   {% for page_num in page.page_range %}
+      {% if not page_num %}<li>...</li>
+      {% else %}
+        {% ifequal page_num page.number %}
+           <li class="current">{{ page_num }}</li>
+        {% else %}
+           <li><a href="?page={{ page_num }}&{{ getvars }}" class="page">{{ page_num }}</a></li>
+        {% endifequal %}
+      {% endif %}
+   {% endfor %}
+   {% if page.has_next %}
+      <li><a href="?page={{ page.next_page_number }}&{{ getvars }}" class="next">{% trans "next" %} &gt;</a></li>
+   {% endif %}
+ </ul>
+ {% endif %}
+</div>

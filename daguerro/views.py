@@ -20,6 +20,8 @@ from daguerro.utils import process_category_thread
 from daguerro.shorcuts import redirect_to_gallery
 from daguerro.models import DaguerroFlatPage
 from daguerro.utils import apply_batch_action
+from daguerro.paginator import DiggPaginator
+
 
 @login_required
 def index(request, slugs=None):
@@ -28,13 +30,17 @@ def index(request, slugs=None):
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
     categories = Gallery.objects.filter(parent__title_slug=parent_slug)
     photos = current_category.photos.all() if current_category else []
+    
     user_groups = request.user.groups.all().values_list("name", flat=True)
     if 'Editor' in user_groups and len(user_groups) == 1:
         return HttpResponseRedirect(reverse("daguerro-pages-index"))
+    
+    page_no = int(request.GET.get('page', 1))
+    paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
     return render_to_response('daguerro/gallery.html', 
                               {'categories': categories,
                                'current_category': current_category,
-                               'photos': photos,
+                               'photos_page': paginator.page(page_no),
                                'add_photo_in_root': settings.DAG_ADD_PHOTO_IN_ROOT,
                                'no_image_thumb_url': os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY]),
                                },
