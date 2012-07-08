@@ -25,6 +25,3 @@ class PhotoIndex(RealTimeSearchIndex, Indexable):
     def prepare_tags(self, obj):
         return ",".join([tag for tag in obj.tags.split(" ")])
 
-    def prepare_template(self, obj):
-        print super(PhotoIndex, self).prepare_template(self, obj)
-        return super(PhotoIndex, self).prepare_template(self, obj)

@@ -133,7 +133,7 @@ def whoosh_search_index(request):
          q = qp.parse(query)
      else:
          q = Every("text")
-     results = ix.searcher().search(q, None)
+     results = ix.searcher().search(q)
      output = "<ul>"
      for result in results:
          output += "<li>" + escape(str(result)) + "</li>"
