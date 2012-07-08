@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'mptt',
     'haystack',
+    'custom_fields'
 )
 
 LOGGING = {
