@@ -58,7 +58,6 @@ class WatermarkAdmin(admin.ModelAdmin):
     list_display = ('name', 'opacity', 'style')
 
 
-# Some of the models are intended commented to simplify admin site on initial stage
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(GalleryUpload)
 admin.site.register(Photo, PhotoAdmin)

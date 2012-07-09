@@ -23,6 +23,8 @@ from south.modelsinspector import add_introspection_rules
 from mptt.models import MPTTModel, TreeForeignKey
 from mptt.managers import TreeManager
 
+from django.contrib.contenttypes import generic
+from custom_fields.models import GenericCustomField
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -503,6 +505,7 @@ class ImageModel(models.Model):
         self.clear_cache()
         super(ImageModel, self).delete()
 
+
 class PhotoManager(models.Manager):
     
     def public(self):
@@ -540,8 +543,6 @@ class PhotoManager(models.Manager):
             pattern += char
         return r"[[:<:]]%s[[:>:]]" % pattern
 
-        
-
 
 add_introspection_rules([], ["^photologue\.models\.TagField"])
 class Photo(ImageModel):
@@ -560,6 +561,7 @@ class Photo(ImageModel):
     family = models.CharField(_('Family'), max_length=200, blank=True, null=True)
     latitude = models.FloatField(_('Latitude'), blank=True, null=True)
     longitude = models.FloatField(_('Longitude'), blank=True, null=True)
+    custom_fields = generic.GenericRelation(GenericCustomField)
     objects = PhotoManager()
 
     class Meta:
