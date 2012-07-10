@@ -23,13 +23,11 @@ $(document).ready(function() {
         button = $('input#search_options_button');
 	    button_offset = button.offset();
         if (force_hide) {
-            console.log("hide");
             button.removeClass("active");
 	        $("#ui-arrow-down").hide();
 	        $("#search_options").hide();
         }
         else {
-            console.log("not hide");
 	        button.toggleClass("active");
 	        $("#ui-arrow-down").toggle();
 	        $("#ui-arrow-down").offset({top: button_offset.top + offset - 1, 
@@ -39,20 +37,19 @@ $(document).ready(function() {
         }
     }
 
-    $('*').not("#search_options > *").click(function (e) {
+    $('html').click(function() {
+        toggle_search_options(force_hide=true);
+    });
+
+    $('#search_options').click(function(e) {
         e.stopPropagation();
-        console.log($(this));
-        id = $(this).attr("id");
-        if (id != "search_options" && id != "query" && id != "search_options_button") {
-            toggle_search_options(force_hide=true);
-        }
     });
 
     $('input#search_options_button').click(function (e) {
         e.stopPropagation();
         toggle_search_options();
     });
-
+    
     $('#search_in_galleries_1').click(function (e) {
 	    $("div#galleries ul").show();
     });
