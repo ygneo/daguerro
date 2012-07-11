@@ -30,7 +30,7 @@ class CustomField(models.Model):
 
 class GenericCustomField(models.Model):
     field = models.ForeignKey(CustomField)
-    raw_value = models.TextField()
+    raw_value = models.TextField(null=True, blank=True)
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
