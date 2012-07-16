@@ -12,9 +12,10 @@ from form_utils.forms import BetterModelForm
 from daguerro.widgets import DaguerroPhotoWidget, \
     DaguerroGalleryPhotoWidget, DaguerroGalleryWidget, \
     UserWidget, GoogleMapsWidget, WikipediaWidget
+from custom_fields.forms import CustomFieldsMixin
+            
 
-
-class PhotoForm(BetterModelForm):
+class PhotoForm(BetterModelForm, CustomFieldsMixin):
     image = forms.ImageField(
         label='', 
         widget=DaguerroPhotoWidget(
@@ -79,7 +80,7 @@ class PhotoForm(BetterModelForm):
         return m
 
 
-class GalleryForm(BetterModelForm):
+class GalleryForm(BetterModelForm, CustomFieldsMixin):
     photo = forms.ImageField(
         label='', 
         widget=DaguerroGalleryPhotoWidget(
