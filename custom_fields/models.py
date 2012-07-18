@@ -18,6 +18,7 @@ class CustomField(models.Model):
     name = models.CharField(max_length=255)
     field_type = models.CharField(max_length=5, choices=FIELD_TYPE_CHOICES)
     content_type = models.ForeignKey(ContentType)
+    required = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
