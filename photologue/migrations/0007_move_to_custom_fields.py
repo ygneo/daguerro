@@ -3,18 +3,26 @@ import datetime
 from south.db import db
 from south.v2 import DataMigration
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
 from photologue.models import Photo
 from custom_fields.models import CustomField, GenericCustomField
+
 
 class Migration(DataMigration):
 
     def forwards(self, orm):
-        f1, _ = CustomField.objects.get_or_create(name="Nombre científico", field_type="LF")
-        f2, _ = CustomField.objects.get_or_create(name="Familia", field_type="CF")
+        ctype = ContentType.objects.get(app_label="photologue", model="photo")
+        f1, _ = CustomField.objects.get_or_create(
+            name="Nombre científico", 
+            field_type="LF",
+            content_type=ctype
+            )
+        f2, _ = CustomField.objects.get_or_create(name="Familia", field_type="CF",
+                                                  content_type=ctype)
         for p in Photo.objects.all():
             print p.title.encode("utf-8")
-            p.custom_fields.add(GenericCustomField(field=f1, 
-                                                   raw_value='{"title": "%s", "url": "%s"}' % 
+            p.custom_fields.add(GenericCustomField(field=f1,
+                                                   value='{"title": "%s", "url": "%s"}' % 
                                                    (p.alternative_title, p.alternative_title_url)))
             p.custom_fields.add(GenericCustomField(field=f2, raw_value=p.family))
             p.save()
