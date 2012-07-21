@@ -14,17 +14,22 @@ class Migration(DataMigration):
         ctype = ContentType.objects.get(app_label="photologue", model="photo")
         f1, _ = CustomField.objects.get_or_create(
             name="Nombre científico", 
-            field_type="LF",
-            content_type=ctype
+            field_type="CharField",
+            content_type=ctype,
+            searchable=True,
             )
-        f2, _ = CustomField.objects.get_or_create(name="Familia", field_type="CF",
-                                                  content_type=ctype)
+        f2, _ = CustomField.objects.get_or_create(
+            name="Familia", 
+            field_type="CharField",
+            content_type=ctype,
+            searchable=True,)
         for p in Photo.objects.all():
             print p.title.encode("utf-8")
-            p.custom_fields.add(GenericCustomField(field=f1,
-                                                   value='{"title": "%s", "url": "%s"}' % 
-                                                   (p.alternative_title, p.alternative_title_url)))
-            p.custom_fields.add(GenericCustomField(field=f2, raw_value=p.family))
+            p.custom_fields.add(GenericCustomField(
+                    field=f1,
+                    value=p.alternative_title)
+            )
+            p.custom_fields.add(GenericCustomField(field=f2, value=p.family))
             p.save()
             
 
