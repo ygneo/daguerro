@@ -49,10 +49,12 @@ def photo(request, gallery_slugs, photo_slug):
     parent_slug, current_gallery = process_category_thread(request, gallery_slugs)
     parent_category = current_gallery.parent
 
-    photo = Photo.objects.get(title_slug=photo_slug)    
+    photo = Photo.objects.get(title_slug=photo_slug)
+    custom_fields = photo.custom_fields.exclude(value='')
     
     return render_to_response('website/photo.html', {
-            'photo': photo, 
+            'photo': photo,
+            'custom_fields': custom_fields,
             'parent_category': parent_category,
             'gallery_slugs': gallery_slugs,
             'search_options_form': SearchOptionsForm(),

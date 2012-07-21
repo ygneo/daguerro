@@ -8,7 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 
 FIELD_TYPE_CHOICES = (
     ('CharField', _('CharField')),
-    ('TextField', _('TextField')),
     ('IntegerField', _('IntegerField')),
     ('FloatField', _('FloatField')),
     ('URLField', _('URLField')),

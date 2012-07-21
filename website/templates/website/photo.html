@@ -1,5 +1,6 @@
  {% extends "website/base.html" %}
 
+{% load i18n %}
 {% load l10n %}
 
 {% block title %}Barres foto natura | Botánica{% endblock %}
@@ -33,24 +34,23 @@
     </div>
     <div id="photo_info">
       {% if photo.caption %}
-      <img src="{{ STATIC_URL }}website/img/info.png" alt="Descripción" title="Descripción"/>
-      <p>{{ photo.caption }}</p>
-      <hr/>
+      <p id="caption">{{ photo.caption }}</p>
       {% endif %}
-      {% if photo.alternative_title or photo.family %}
-      <img src="{{ STATIC_URL }}website/img/desc.png" alt="Descripción">
-        <div id="description" class="tab">
-          <em>
-            {% if photo.alternative_title_url %}<a href="http://es.wikipedia.org/w/index.php?title=Especial%3ABuscar&search={{ photo.alternative_title }}" target="_blank">{% endif %}
-              {{ photo.alternative_title }}
-            {% if photo.alternative_title_url %}</a>{% endif %}
-          </em>
-          {% if photo.family %}
-          <p>{{ photo.family }}</p>
-          {% endif %}
-        </div>
+      {% if custom_fields %}
+      <div class="info first" id="custom-fields">
+        <img src="{{ STATIC_URL }}website/img/info.png" alt="{% trans Tags %}">
+        <ul>
+          {% for field in custom_fields %}
+          <li>
+            <span id="field-name">{{ field.name }}</span>
+            <span id="value">{{ field.value }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
       {% endif %}
       {% if photo.location_title and photo.latitude and photo.longitude %}
+      <div class="info">
          {% localize off %}
          <a href="http://maps.google.com/maps?q={{ photo.latitude }},+{{ photo.longitude }}+%28{{ photo.location_title }}%29&iwloc=A&" target="_blank">
          {% endlocalize %}
@@ -61,21 +61,23 @@
           <a href="http://maps.google.com/maps?q={{ photo.latitude }},+{{ photo.longitude }}+%28{{ photo.location_title }}%29&iwloc=A&" target="_blank">{{ photo.location_title }}</a>
           {% endlocalize %}
         </div>
+      </div>
       {% endif %}
-       
-         {% if photo.tags %} 
-            <img src="{{ STATIC_URL }}website/img/tag.png" alt="Etiquetas">
-          <div class="tab">
-            {{  photo.tags|lower }}
-          </div>
-          {% endif %}  
-            <div class="last-tab">
-              <a id="ui-add-to-cart" href="#" data:item_id="{{ photo.id }}" data:item_thumb_url="{{ photo.get_thumbnail_url }}" data:item_title="{{ photo.title }}">
-                <img src="{{ STATIC_URL }}website/img/shop_cart.png" alt="Solicitar" title="Solicitar">
-                </a>
-                </div>
-            </div>
-          </div>      
-          <div class="push"></div>
+      {% if photo.tags %} 
+      <div class="info" id="tags">
+        <img src="{{ STATIC_URL }}website/img/tag.png" alt="{% trans Tags %}">
+        <ul>
+          <li><a href="<search-url>">{{  photo.tags|lower }}</a></li>
+        </ul>
+      </div>
+      {% endif %}  
+      <div class="last-info">
+        <a id="ui-add-to-cart" href="#" data:item_id="{{ photo.id }}" data:item_thumb_url="{{ photo.get_thumbnail_url }}" data:item_title="{{ photo.title }}">
+          <img src="{{ STATIC_URL }}website/img/shop_cart.png" alt="Solicitar" title="Solicitar">
+        </a>
+      </div>
+    </div>
+  </div>      
+  <div class="push"></div>
 {% endblock %}
 

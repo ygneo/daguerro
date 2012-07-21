@@ -276,23 +276,39 @@ div#photo {
    color: white; margin-bottom: 3ex; float: left; width: 100%; background: #222222; padding-bottom: 2ex; padding-left: 1.5ex; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px;
 }
 div#photo div#photo_title  { padding-top: .5ex; float: left; margin-bottom: 2ex;}
+
 div#photo div#photo_title h3 { font-size: 80%; font-weight: normal; }
 div#photo div#photo_title h2 span { font-weight: normal; font-style:italic;}
+
 div#photo div#photo_area { clear: both; float: left; width: 100%; height: 100%; text-align:center;}
 div#photo div#photo_area div#picture { width: 50%; margin: 0 auto; }
 div#photo div#photo_area div#prev { float: left; width: 25%; }
 div#photo div#photo_area div#prev img { position:relative; margin-top: 50%;  }
 div#photo div#photo_area div#next { float: left; width: 25%;  }
 div#photo div#photo_area div#next img { position:relative; margin-top: 50%;  }
-div#photo div#photo_info  { clear:both;  margin-top: 2.5ex; background-color: #111; float: left; width: 97%; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px; color: white; padding: 1ex; font-size:90%;}
+div#photo div#photo_info  { clear:both;  margin-top: 2.5ex; background-color: #111; float: left; width: 97%; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius:10px 10px 10px 10px; color: white; padding: 2ex; font-size:90%;}
+
 div#photo div#photo_info em  {  font-style: italic; font-weight: normal;}
-div#photo div#photo_info p  {  margin: 0 }
-div#photo div#photo_info img  {  float:left; margin-left: 1ex; margin-right: 1ex; }
+div#photo div#photo_info p  { margin-bottom: 1.5ex;  }
+div#photo div#photo_info img  {  float:left; margin-right: 1em; }
+
 div#photo div#description  { float: left; margin-right: 4ex;}
-div#photo hr { clear: both; border: 0; height: 2ex; }
-div#photo div.tab  { float: left; width: 12em;   margin-left: 1ex; }
-div#photo div.tab ul  { list-style: none; }
-div#photo div.last-tab  { float:right; }
+
+div.info { float: left;  height: 100%; margin-left: 4em; }
+div.info.first { margin-left: 0; }
+div.info img { margin-top: .5ex; }
+div.info ul {
+    list-style: none;
+    float: left;
+    margin-left: 1ex; 
+}
+
+div.tab { float: left; }
+
+div#custom-fields ul li span { display: block; }
+div#custom-fields ul li span#field-name { font-weight: bold; }
+
+div#photo div.last-info { float: right; }
 
 #shopping-cart { }
     #shopping-cart #head h3 { font-size: normal; display: block; float: left; }
@@ -326,7 +342,6 @@ ul.pagination li { padding: .5ex; float: left;  color: #58880C; }
 ul.pagination li a  { text-decoration: none; color: #58880C; }
 
 ul.pagination .current { background-color: #58880C; color: white; }
-
 
 
 div#footer {
