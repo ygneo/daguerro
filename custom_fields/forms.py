@@ -1,6 +1,6 @@
 from models import CustomField
 from django import forms
-
+from utils import normalize_unicode
 
 class CustomFieldsMixin(forms.ModelForm):
     
@@ -22,8 +22,9 @@ class CustomFieldsMixin(forms.ModelForm):
         cfs = CustomField.objects.filter(
             content_type__model=model_name)
         for cf in cfs:
-            field_class_name = cf.get_field_type_display()
+            field_class_name = cf.field_type
             FieldClass = getattr(forms, field_class_name)
-            custom_fields[cf.name] = FieldClass(required=cf.required)
+            field = FieldClass(label=cf.name, required=cf.required)
+            custom_fields[normalize_unicode(cf.name)] = field
         return custom_fields
 

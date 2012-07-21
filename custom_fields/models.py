@@ -4,7 +4,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from utils import get_class
 
 
 FIELD_TYPE_CHOICES = (
