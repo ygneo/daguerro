@@ -10,12 +10,10 @@ class CustomFieldsMixin(forms.ModelForm):
         
         custom_fields = self._get_custom_fields()
         self.fields.update(custom_fields)
-        self.fieldsets.fieldsets.append(
-            ('custom_fields', {'fields': 
-                               custom_fields.keys(),
-                               'legend': ''}
-            )
-        )
+        for i in range(len(self.fieldsets.fieldsets)):
+            fs = self.fieldsets.fieldsets[i]
+            if fs[0] == "basic-metadata":
+                fs[1]['fields'].extend(custom_fields.keys())
         return self
 
     def _get_custom_fields(self):
