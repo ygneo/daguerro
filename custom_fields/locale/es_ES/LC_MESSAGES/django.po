@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-21 19:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:11
+msgid "CharField"
+msgstr "Texto"
+
+#: models.py:12
+msgid "TextField"
+msgstr "Texto largo"
+
+#: models.py:13
+msgid "IntegerField"
+msgstr "Número entero"
+
+#: models.py:14
+msgid "FloatField"
+msgstr "Número con decimales"
+
+#: models.py:15
+msgid "URLField"
+msgstr "URL"
+
+#: models.py:20
+msgid "Name"
+msgstr "Nombre"
+
+#: models.py:21
+msgid "Field type"
+msgstr "Tipo de campo"
+
+#: models.py:23
+msgid "Required"
+msgstr "Requerido"
+
+#: models.py:24
+msgid "Searchable"
+msgstr "Buscable"

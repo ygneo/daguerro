@@ -3,22 +3,25 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 from utils import get_class
 
+
 FIELD_TYPE_CHOICES = (
-    ('CF', 'CharField'),
-    ('TF', 'TextField'),
-    ('TF', 'IntegerField'),
-    ('FF', 'FloatField'),
-    ('UF', 'URLField'),
+    ('CharField', _('CharField')),
+    ('TextField', _('TextField')),
+    ('IntegerField', _('IntegerField')),
+    ('FloatField', _('FloatField')),
+    ('URLField', _('URLField')),
     )
 
 
 class CustomField(models.Model):
-    name = models.CharField(max_length=255)
-    field_type = models.CharField(max_length=5, choices=FIELD_TYPE_CHOICES)
+    name = models.CharField(_('Name'), max_length=255)
+    field_type = models.CharField(_('Field type'), max_length=15, choices=FIELD_TYPE_CHOICES)
     content_type = models.ForeignKey(ContentType)
-    required = models.BooleanField(default=False)
+    required = models.BooleanField(_('Required'), default=False)
+    searchable = models.BooleanField(_('Searchable'), default=False)
 
     def __unicode__(self):
         return self.name
