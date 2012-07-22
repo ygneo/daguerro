@@ -18,13 +18,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import smart_unicode
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.contenttypes import generic
 
 from south.modelsinspector import add_introspection_rules
 from mptt.models import MPTTModel, TreeForeignKey
 from mptt.managers import TreeManager
 
-from django.contrib.contenttypes import generic
-from custom_fields.models import GenericCustomField
+from custom_fields.models import GenericCustomField, CustomFieldsMixin
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -128,7 +128,7 @@ for n in dir(ImageFilter):
             filter_names.append(klass.__name__)
 IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern "FILTER_ONE->FILTER_TWO->FILTER_THREE". Image filters will be applied in order. The following filters are available: %s.' % (', '.join(filter_names)))
 
-class Gallery(MPTTModel):
+class Gallery(MPTTModel, CustomFieldsMixin):
     date_added = models.DateTimeField(_('Creation date'), default=datetime.now)
     title = models.CharField(_('Title'), max_length=100, unique=True)
     title_slug = models.SlugField(_('Slug'), unique=True,
@@ -545,7 +545,7 @@ class PhotoManager(models.Manager):
 
 
 add_introspection_rules([], ["^photologue\.models\.TagField"])
-class Photo(ImageModel):
+class Photo(ImageModel, CustomFieldsMixin):
     title = models.CharField(_('Title'), max_length=100, unique=True)
     title_slug = models.SlugField(_('Slug'), unique=True,
                                   help_text=('A "slug" is a unique URL-friendly title for an object.'))

@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+from django.utils.functional import curry
 from utils import normalize_unicode
 
 FIELD_TYPE_CHOICES = (
@@ -12,6 +13,27 @@ FIELD_TYPE_CHOICES = (
     ('FloatField', _('FloatField')),
     ('URLField', _('URLField')),
     )
+
+
+class CustomFieldsMixin(models.Model):
+
+    class Meta:
+        abstract = True
+
+    def _get_FIELD(self, name):
+        return self.custom_fields.get_value(name)
+
+    def __init__(self, *args, **kwargs):
+        super(CustomFieldsMixin, self).__init__(*args, **kwargs)
+        ctype = ContentType.objects.get_for_model(self)
+        for custom_field in CustomField.objects.filter(content_type=ctype):
+            field_name = normalize_unicode(custom_field.name).strip()
+            field_name = field_name.replace(" ", "_").lower()
+            setattr(self, 'get_custom_%s' % field_name,
+                    curry(self._get_FIELD,
+                          name=custom_field.name))
+
+
 
 
 class CustomField(models.Model):
@@ -29,11 +51,10 @@ class GenericCustomFieldManager(models.Manager):
 
     def get_value(self, name):
         try:
-            value = self.get(field__name=name).value
+            return self.get(field__name=name).value
         except GenericCustomField.DoesNotExist:
-            value = None
-        return value
-    
+            return None
+
 
 class GenericCustomField(models.Model):
     field = models.ForeignKey(CustomField)
