@@ -549,8 +549,6 @@ class Photo(ImageModel, CustomFieldsMixin):
     title = models.CharField(_('Title'), max_length=100, unique=True)
     title_slug = models.SlugField(_('Slug'), unique=True,
                                   help_text=('A "slug" is a unique URL-friendly title for an object.'))
-    alternative_title = models.CharField(_('Alternative title'), max_length=200, blank=True, null=True)
-    alternative_title_url = models.URLField(_('Alternative title URL'), blank=True, null=True,)
     caption = models.TextField(blank=True)
     date_added = models.DateTimeField(_('Date added'), default=datetime.now, editable=False)
     order = models.IntegerField(_('Order'), blank=True, null=True)
@@ -558,7 +556,6 @@ class Photo(ImageModel, CustomFieldsMixin):
                                     help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('Tags'))
     location_title = models.CharField(_('Location'), max_length=300, blank=True, null=True,)
-    family = models.CharField(_('Family'), max_length=200, blank=True, null=True)
     latitude = models.FloatField(_('Latitude'), blank=True, null=True)
     longitude = models.FloatField(_('Longitude'), blank=True, null=True)
     custom_fields = generic.GenericRelation(GenericCustomField)

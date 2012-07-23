@@ -54,7 +54,7 @@ class PhotoForm(BetterModelForm, CustomFieldsMixin):
 
     class Meta:
         model = Photo
-        fields = ['image', 'title', 'title_slug', 'galleries', 'alternative_title', 'alternative_title_url', 'family', 
+        fields = ['image', 'title', 'title_slug', 'galleries',  
                   'is_public', 'caption', 'tags', 'location_title', 'latitude', 'longitude',]
         fieldsets = [('basic-metadata', 
                       {'fields': ['title', 'title_slug', 
