@@ -1,21 +1,17 @@
 from models import CustomField, GenericCustomField
 from django import forms
 from utils import normalize_unicode
+from form_utils.forms import BetterModelForm
 
-class CustomFieldsMixin(forms.ModelForm):
-    
+
+class CustomFieldsMixin:
+
     def __init__(self, *args, **kwargs):
-        super(CustomFieldsMixin , self).__init__(
-            *args, **kwargs)
-
         self.custom_fields = self._get_custom_fields()
         self.custom_form_fields = self._get_custom_form_fields()
         self.fields.update(self.custom_form_fields)
-        if self.instance:
-            self._add_custom_fields_initial_values()
         if self.fieldsets:
             self._add_custom_fields_to_fieldset()
-        return self
 
     def _get_custom_form_fields(self):
         custom_fields = {}
@@ -37,28 +33,38 @@ class CustomFieldsMixin(forms.ModelForm):
             if fs[0] == "basic-metadata":
                 fs[1]['fields'].extend(self.custom_form_fields.keys())
 
+
+class CustomFieldsModelForm(BetterModelForm,
+                            CustomFieldsMixin):
+
+    def __init__(self, *args, **kwargs):
+        BetterModelForm.__init__(
+            self, *args, **kwargs)
+        CustomFieldsMixin.__init__(self)
+
+        if self.instance:
+            self._add_custom_fields_initial_values()
+
     def _add_custom_fields_initial_values(self):
         for custom_field in self.custom_fields:
-            field_name = normalize_unicode(custom_field.name)
-            value = self.instance.custom_fields.get_value(field_name)
+            field_name = normalize_unicode(
+                custom_field.name)
+            value = self.instance.custom_fields.get_value(
+                field_name)
             self.initial[field_name] = value
 
-    def save(self, force_insert=False, force_update=False, commit=True):
-        model = super(CustomFieldsMixin, self).save(commit=False)
-        if commit:
-            for custom_field in self.custom_fields:
-                field_name = normalize_unicode(custom_field.name)
-                obj, created = model.custom_fields.get_or_create(
-                    field__name=custom_field.name,
-                    field=custom_field,
-                    content_type=custom_field.content_type,
-                    object_id=self.instance.pk,
-                    )
-                obj.value = self.cleaned_data[field_name]
-                obj.save()
+    def save(self, *args, **kwargs):
+        model = super(CustomFieldsModelForm, self).save(
+            *args, **kwargs)
+        for custom_field in self.custom_fields:
+            field_name = normalize_unicode(
+                custom_field.name)
+            obj, _ = model.custom_fields.get_or_create(
+                field__name=custom_field.name,
+                field=custom_field,
+                content_type=custom_field.content_type,
+                object_id=model.pk,
+                )
+            obj.value = self.cleaned_data[field_name]
+            obj.save()
         return model
-
-    def custom_fields(self):
-        for name in self.custom_form_fields():
-            yield (self.fields[name].label, value)
-
