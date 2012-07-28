@@ -26,9 +26,11 @@ class PhotoForm(CustomFieldsModelForm):
         widget=forms.widgets.HiddenInput,)
     alternative_title = forms.CharField(
         label=_("Alternative title"),
-        widget=WikipediaWidget(url_field='alternative_title_url'),
+        widget=WikipediaWidget(
+            url_field='alternative_title_url'),
         required=False)
-    alternative_title_url = forms.URLField(widget=forms.widgets.HiddenInput, required=False)
+    alternative_title_url = forms.URLField(
+        widget=forms.widgets.HiddenInput, required=False)
     caption = forms.CharField(
         label=_("Caption"), 
         widget=forms.Textarea(attrs={'rows':1, 
@@ -64,7 +66,8 @@ class PhotoForm(CustomFieldsModelForm):
                                   'family','galleries', 
                                   'tags', 'location_title',
                                   'latitude', 'longitude',],
-                       'legend': '',}),
+                       'legend': '',
+                       'add_custom_fields': True}),
                      ('photo-area', 
                       {'fields': ['image',], 'legend':''})]
         row_attrs = {'image': {'id': 'photo-related', 

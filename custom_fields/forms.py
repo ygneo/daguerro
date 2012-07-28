@@ -29,9 +29,12 @@ class CustomFieldsMixin:
 
     def _add_custom_fields_to_fieldset(self):
         for i in range(len(self.fieldsets.fieldsets)):
-            fs = self.fieldsets.fieldsets[i]
-            if fs[0] == "basic-metadata":
-                fs[1]['fields'].extend(self.custom_form_fields.keys())
+            fs_fields = self.fieldsets.fieldsets[i][1]
+            add_cfields = fs_fields.get('add_custom_fields',
+                                        False)
+            if add_cfields:
+                fs_fields['fields'].extend(
+                    self.custom_form_fields.keys())
 
 
 class CustomFieldsModelForm(BetterModelForm,
