@@ -6,10 +6,8 @@ from django.db.models import Q
 
 class PhotoIndex(RealTimeSearchIndex, Indexable):
     text = CharField(document=True, model_attr='title')
-    alternative_title = CharField(model_attr='alternative_title', null=True)
     caption = CharField(model_attr='caption', null=True)
     location_title = CharField(model_attr='location_title', null=True)
-    family = CharField(model_attr='family', null=True)
     tags = CharField(null=True)
     galleries_ids = MultiValueField(null=True)
 
