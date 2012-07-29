@@ -2,8 +2,11 @@
 
 """
 from django.contrib import admin
+from django.contrib.contenttypes.generic import GenericTabularInline
 from models import *
+from custom_fields.models import GenericCustomField
 from mptt.admin import MPTTModelAdmin
+
 
 class GalleryAdmin(MPTTModelAdmin):
     exclude = ('order', 'date_added',)
@@ -12,6 +15,11 @@ class GalleryAdmin(MPTTModelAdmin):
     prepopulated_fields = {'title_slug': ('title',)}
     filter_horizontal = ('photos',)
 
+
+class CustomFieldsInline(GenericTabularInline):
+    model = GenericCustomField
+
+
 class PhotoAdmin(admin.ModelAdmin):
     exclude = ('crop_from', 'effect', 'order', )
     list_display = ('title',  'is_public',  'admin_thumbnail')
@@ -19,6 +27,8 @@ class PhotoAdmin(admin.ModelAdmin):
     search_fields = ['title', 'caption']
     list_per_page = 10
     prepopulated_fields = {'title_slug': ('title',)}
+    inlines = (CustomFieldsInline,)
+
 
 class PhotoEffectAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'color', 'brightness', 'contrast', 'sharpness', 'filters', 'admin_sample')
@@ -40,6 +50,7 @@ class PhotoEffectAdmin(admin.ModelAdmin):
         }),
     )
 
+
 class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'effect', 'increment_count')
     fieldsets = (
@@ -53,6 +64,7 @@ class PhotoSizeAdmin(admin.ModelAdmin):
             'fields': ('effect', 'watermark',)
         }),
     )
+
 
 class WatermarkAdmin(admin.ModelAdmin):
     list_display = ('name', 'opacity', 'style')

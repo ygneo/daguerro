@@ -189,6 +189,10 @@ DAG_NO_IMAGE = {DAG_PHOTO_ORIGINAL_SIZE_KEY: 'daguerro/img/no_picture_photo.png'
 DAG_ADD_PHOTO_IN_ROOT = False
 DAG_PHOTO_SLUG = 'foto'
 DAG_RESULTS_PER_PAGE = 20
+DAG_SEARCH_FIELDS_INITIAL = {"title": True, "tags": True, 
+                             "nombre cientifico": True,
+                             "familia": True}
+                             
 
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = DAG_RESULTS_PER_PAGE
 HAYSTACK_CONNECTIONS = {

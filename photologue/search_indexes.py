@@ -1,15 +1,17 @@
 import datetime
-from haystack.indexes import *
+from haystack import indexes
 from photologue.models import Photo
 from django.db.models import Q
+from custom_fields.indexes import CustomFieldsIndex
 
 
-class PhotoIndex(RealTimeSearchIndex, Indexable):
-    text = CharField(document=True, model_attr='title')
-    caption = CharField(model_attr='caption', null=True)
-    location_title = CharField(model_attr='location_title', null=True)
-    tags = CharField(null=True)
-    galleries_ids = MultiValueField(null=True)
+class PhotoIndex(CustomFieldsIndex, indexes.Indexable):
+    text = indexes.CharField(document=True, model_attr='title')
+    caption = indexes.CharField(model_attr='caption', null=True)
+    location_title = indexes.CharField(model_attr='location_title', null=True)
+    tags = indexes.CharField(null=True)
+    galleries_ids = indexes.MultiValueField(null=True)
+    custom_fields = indexes.CharField(null=True)
 
     def get_model(self):
         return Photo
@@ -22,4 +24,6 @@ class PhotoIndex(RealTimeSearchIndex, Indexable):
 
     def prepare_tags(self, obj):
         return ",".join([tag for tag in obj.tags.split(" ")])
+
+            
 

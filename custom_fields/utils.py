@@ -1,5 +1,7 @@
 import unicodedata
 
 
-def normalize_unicode(s):
-    return unicodedata.normalize('NFKD', s).encode('ascii','ignore')
+def safe_custom_field_name(s):
+    s = unicodedata.normalize('NFKD', s).encode('ascii','ignore').lower()
+    return s.lstrip().rstrip().replace(" ", "_")
+    

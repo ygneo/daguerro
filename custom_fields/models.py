@@ -5,7 +5,7 @@ from django.contrib.contenttypes import generic
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.utils.functional import curry
-from utils import normalize_unicode
+from utils import safe_custom_field_name
 
 FIELD_TYPE_CHOICES = (
     ('CharField', _('CharField')),
@@ -27,13 +27,11 @@ class CustomFieldsMixin(models.Model):
         super(CustomFieldsMixin, self).__init__(*args, **kwargs)
         ctype = ContentType.objects.get_for_model(self)
         for custom_field in CustomField.objects.filter(content_type=ctype):
-            field_name = normalize_unicode(custom_field.name).strip()
+            field_name = safe_custom_field_name(custom_field.name)
             field_name = field_name.replace(" ", "_").lower()
             setattr(self, 'get_custom_%s' % field_name,
                     curry(self._get_FIELD,
                           name=custom_field.name))
-
-
 
 
 class CustomField(models.Model):
@@ -41,7 +39,7 @@ class CustomField(models.Model):
     field_type = models.CharField(_('Field type'), max_length=15, choices=FIELD_TYPE_CHOICES)
     content_type = models.ForeignKey(ContentType)
     required = models.BooleanField(_('Required'), default=False)
-    searchable = models.BooleanField(_('Searchable'), default=False)
+    
 
     def __unicode__(self):
         return self.name

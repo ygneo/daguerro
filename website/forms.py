@@ -3,18 +3,21 @@ from django import forms
 from form_utils.forms import BetterForm
 from django.utils.translation import ugettext as _
 from django.db.models import Q
+from django.conf import settings
 from mptt.forms import TreeNodeMultipleChoiceField
 from photologue.models import Gallery
 from website.widgets import TreeCheckboxSelectMultipleWidget
 from haystack.forms import SearchForm
 from haystack.query import SearchQuerySet
+from custom_fields.forms import CustomFieldsMixin
+
 
 class ShoppingCartForm(forms.Form):
     email = forms.EmailField(max_length=254)
     message = forms.CharField(required=False)
 
 
-class SearchOptionsForm(BetterForm, SearchForm):
+class SearchOptionsForm(BetterForm, SearchForm, CustomFieldsMixin):
     SEARCH_MODE_CHOICES = (
         ("TOTAL", _("Total match")),
         ("PARTIAL", _("Partial match")),
@@ -24,9 +27,6 @@ class SearchOptionsForm(BetterForm, SearchForm):
         ("SELECTED", _('Only some galleries')),
     )
     title = forms.BooleanField(required=False, initial=True, label=_("Title"))
-    alternative_title = forms.BooleanField(required=False, initial=True, 
-                                           label=_("Alternative title"))
-    family = forms.BooleanField(required=False, initial=True, label=_("Family"))
     tags = forms.BooleanField(required=False, initial=True, label=_("Tags"),)
     caption = forms.BooleanField(required=False, initial=False, label=_("Caption"))
     location_title = forms.BooleanField(required=False, initial=False, label=_("Location"))
@@ -51,7 +51,8 @@ class SearchOptionsForm(BetterForm, SearchForm):
         fieldsets = [('default-fields',
                       {'fields': ['title', 
                                   'alternative_title',
-                                  'family', 'tags']}
+                                  'family', 'tags'],
+                       'add_custom_fields': True,}
                       ),
                      ('advanced-fields',
                       {'fields': ['caption', 
@@ -66,13 +67,20 @@ class SearchOptionsForm(BetterForm, SearchForm):
                       ),
                      ]
 
-    
+
+    def __init__(self, *args, **kwargs):
+        super(SearchOptionsForm, self).__init__(*args, **kwargs)
+        CustomFieldsMixin.__init__(self, model_name='Photo',
+                                   FieldClass=forms.BooleanField,
+                                   initial=settings.DAG_SEARCH_FIELDS_INITIAL
+                                   )
+        
     def clean(self):
         cleaned_data = self.cleaned_data
-        checkable_fields = [cleaned_data['title'], cleaned_data['alternative_title'],
-                            cleaned_data['family'], cleaned_data['caption'],
-                            cleaned_data['tags'], cleaned_data['location_title'],
-                            ]
+        checkable_fields = [cleaned_data[key] 
+                            for key, field in self.fields.iteritems()
+                            if isinstance(field, forms.BooleanField)]
+        
         if not any(checkable_fields):
             raise forms.ValidationError(_("At least one of these checkboxes need to be checked:"))
 

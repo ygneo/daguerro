@@ -1,31 +1,46 @@
 from models import CustomField, GenericCustomField
 from django import forms
-from utils import normalize_unicode
+from utils import safe_custom_field_name
 from form_utils.forms import BetterModelForm
 
 
 class CustomFieldsMixin:
 
-    def __init__(self, *args, **kwargs):
-        self.custom_fields = self._get_custom_fields()
-        self.custom_form_fields = self._get_custom_form_fields()
+    def __init__(self, 
+                 model_name=None,
+                 FieldClass=None,
+                 filter_qs=None, 
+                 initial={}):
+        self.custom_fields = self._get_custom_fields(model_name, filter_qs)
+        self.custom_form_fields = self._get_custom_form_fields(
+            FieldClass, initial)
         self.fields.update(self.custom_form_fields)
         if self.fieldsets:
             self._add_custom_fields_to_fieldset()
 
-    def _get_custom_form_fields(self):
+    def _get_custom_form_fields(self, FieldClass=None, initial={}):
         custom_fields = {}
-        for cf in self.custom_fields:
-            field_class_name = cf.field_type
-            FieldClass = getattr(forms, field_class_name)
-            field = FieldClass(label=cf.name, required=cf.required)
-            custom_fields[normalize_unicode(cf.name)] = field
+        for key, cf in self.custom_fields.iteritems():
+            if not FieldClass:
+                field_class_name = cf.field_type
+                FieldClass = getattr(forms, field_class_name)            
+            field = FieldClass(label=cf.name, required=cf.required,
+                               initial=initial.get(key, None))
+            custom_fields[key] = field
         return custom_fields
 
-    def _get_custom_fields(self):
-        model_name = self._meta.model.__name__
-        return CustomField.objects.filter(
+    def _get_custom_fields(self, model_name=None, filter_qs=None):
+        if not model_name:
+            model_name = self._meta.model.__name__
+        cfields_objects = CustomField.objects.filter(
             content_type__model=model_name) 
+        if filter_qs:
+            cfields_objects = cfields_objects.filter_qs()
+        custom_fields = {}
+        for cfield in cfields_objects:
+            field_name = safe_custom_field_name(cfield.name).lower()
+            custom_fields[field_name] = cfield
+        return custom_fields
 
     def _add_custom_fields_to_fieldset(self):
         for i in range(len(self.fieldsets.fieldsets)):
@@ -49,25 +64,20 @@ class CustomFieldsModelForm(BetterModelForm,
             self._add_custom_fields_initial_values()
 
     def _add_custom_fields_initial_values(self):
-        for custom_field in self.custom_fields:
-            field_name = normalize_unicode(
-                custom_field.name)
-            value = self.instance.custom_fields.get_value(
-                field_name)
-            self.initial[field_name] = value
+        for key, custom_field in self.custom_fields.iteritems():
+            value = self.instance.custom_fields.get_value(custom_field.name)
+            self.initial[key] = value
 
     def save(self, *args, **kwargs):
         model = super(CustomFieldsModelForm, self).save(
             *args, **kwargs)
-        for custom_field in self.custom_fields:
-            field_name = normalize_unicode(
-                custom_field.name)
+        for key, custom_field in self.custom_fields.iteritems():
             obj, _ = model.custom_fields.get_or_create(
                 field__name=custom_field.name,
                 field=custom_field,
                 content_type=custom_field.content_type,
                 object_id=model.pk,
                 )
-            obj.value = self.cleaned_data[field_name]
+            obj.value = self.cleaned_data[key]
             obj.save()
         return model
