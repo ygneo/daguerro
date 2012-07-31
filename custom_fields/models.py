@@ -29,9 +29,7 @@ class CustomFieldsMixin(models.Model):
         for custom_field in CustomField.objects.filter(content_type=ctype):
             field_name = safe_custom_field_name(custom_field.name)
             field_name = field_name.replace(" ", "_").lower()
-            setattr(self, 'get_custom_%s' % field_name,
-                    curry(self._get_FIELD,
-                          name=custom_field.name))
+            setattr(self, '%s' % field_name, self._get_FIELD(custom_field.name))
 
 
 class CustomField(models.Model):
@@ -39,10 +37,17 @@ class CustomField(models.Model):
     field_type = models.CharField(_('Field type'), max_length=15, choices=FIELD_TYPE_CHOICES)
     content_type = models.ForeignKey(ContentType)
     required = models.BooleanField(_('Required'), default=False)
-    
+
 
     def __unicode__(self):
         return self.name
+
+    def clean(self):
+        Class = self.content_type.model_class()
+        if self.name in [f.name for f in Class._meta.fields]:
+            raise ValidationError("Content type %s already has a field named %s" %
+                                  (self.content_type, self.name))
+
 
 
 class GenericCustomFieldManager(models.Manager):
@@ -77,5 +82,6 @@ class GenericCustomField(models.Model):
         if self.field.content_type != self.content_type:
             raise ValidationError("Not a valid custom field for content type %s" %
                                   self.content_type)
-                                      
+            
+        
     
