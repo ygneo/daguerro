@@ -190,9 +190,9 @@ DAG_ADD_PHOTO_IN_ROOT = False
 DAG_PHOTO_SLUG = 'foto'
 DAG_RESULTS_PER_PAGE = 20
 DAG_SEARCH_FIELDS_INITIAL = {"title": True, "tags": True, 
-                             "nombre cientifico": True,
-                             "familia": True}
-                             
+                             "nombre_cientifico": True,
+                             "familia": True,
+                             }
 
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = DAG_RESULTS_PER_PAGE
 HAYSTACK_CONNECTIONS = {
