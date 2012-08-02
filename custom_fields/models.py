@@ -25,10 +25,16 @@ class CustomFieldsMixin(models.Model):
 
     def __init__(self, *args, **kwargs):
         super(CustomFieldsMixin, self).__init__(*args, **kwargs)
+        self.add_custom_fields_to_attrs()
+
+    def save(self, *args, **kwargs):
+        self.add_custom_fields_to_attrs()
+        super(CustomFieldsMixin, self).save(*args, **kwargs)
+
+    def add_custom_fields_to_attrs(self):
         ctype = ContentType.objects.get_for_model(self)
         for custom_field in CustomField.objects.filter(content_type=ctype):
             field_name = safe_custom_field_name(custom_field.name)
-            field_name = field_name.replace(" ", "_").lower()
             setattr(self, '%s' % field_name, self._get_FIELD(custom_field.name))
 
 

@@ -130,7 +130,8 @@ IMAGE_FILTERS_HELP_TEXT = _('Chain multiple filters using the following pattern 
 
 class Gallery(MPTTModel, CustomFieldsMixin):
     date_added = models.DateTimeField(_('Creation date'), default=datetime.now)
-    title = models.CharField(_('Title'), max_length=100, unique=True)
+    title = models.CharField(_('Title'), max_length=100, unique=True,
+                             blank=False)
     title_slug = models.SlugField(_('Slug'), unique=True,
                                   help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     parent = TreeForeignKey('self', verbose_name=_("Parent category"), blank=True, null=True, related_name='children')
@@ -141,6 +142,7 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
+    custom_fields = generic.GenericRelation(GenericCustomField)
 
     class Meta:
         ordering = ['order']

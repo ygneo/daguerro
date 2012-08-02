@@ -11,7 +11,6 @@ class PhotoIndex(CustomFieldsIndex, indexes.Indexable):
     location_title = indexes.CharField(model_attr='location_title', null=True)
     tags = indexes.CharField(null=True)
     galleries_ids = indexes.MultiValueField(null=True)
-    custom_fields = indexes.CharField(null=True)
 
     def get_model(self):
         return Photo
@@ -25,5 +24,4 @@ class PhotoIndex(CustomFieldsIndex, indexes.Indexable):
     def prepare_tags(self, obj):
         return ",".join([tag for tag in obj.tags.split(" ")])
 
-            
 
