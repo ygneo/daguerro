@@ -16,13 +16,12 @@ class Migration(DataMigration):
             name="Nombre científico", 
             field_type="CharField",
             content_type=ctype,
-            searchable=True,
             )
         f2, _ = CustomField.objects.get_or_create(
             name="Familia", 
             field_type="CharField",
             content_type=ctype,
-            searchable=True,)
+            )
         for p in Photo.objects.all():
             print p.title.encode("utf-8")
             p.custom_fields.add(GenericCustomField(
