@@ -90,6 +90,7 @@ class GalleryForm(CustomFieldsModelForm):
             photo_size=settings.DAG_GALLERY_THUMB_SIZE_KEY, 
             ),
         required=False)
+    title = forms.CharField(label=_("Title"), required=True)
     title_slug = forms.SlugField(widget=forms.widgets.HiddenInput)
     parent = forms.ModelChoiceField(label=_("Parent category"), 
                                     queryset=Gallery.objects.all(), 
@@ -106,7 +107,9 @@ class GalleryForm(CustomFieldsModelForm):
         fieldsets = [('basic-metadata', {'fields': 
                                          ['title', 'title_slug', 'is_public', 'description', 
                                           'parent', 'tags'], 
-                                         'legend':''}),
+                                         'legend':'',
+                                         'add_custom_fields': True
+                                         }),
                      ('photo-area', {'fields': ['photo'], 'legend':''}),]
         row_attrs = {'photo': {'id': 'photo-related'}, 'is_public': {'class': 'inline'},}
 
@@ -127,7 +130,7 @@ class GalleryForm(CustomFieldsModelForm):
                 new_photo.save()
             except IntegrityError:
                 new_photo.title = new_photo.get_avaliable_title()
-                new_photo.save()            
+                new_photo.save()
         return cleaned_data['photo']
        
         
