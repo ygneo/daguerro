@@ -135,9 +135,9 @@ def gallery(request, action='add', slugs=""):
         # Force slugify, otherwise I need to fix photologue model or need client-side filling.
         request.POST['title_slug'] = slugify(request.POST['title'])
         form = GalleryForm(request.POST, request.FILES, instance=gallery)
-        if form.is_valid(): 
+        if form.is_valid():
             form.save()
-        return redirect_to_gallery(slugs, gallery, action)
+            return redirect_to_gallery(slugs, gallery, action)
     else:
         form = GalleryForm(instance=gallery, initial={'parent': parent_gallery})
         
