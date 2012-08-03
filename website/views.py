@@ -10,6 +10,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives, EmailMessage
+from django.http import Http404
 from photologue.models import Gallery, Photo
 from haystack.views import SearchView
 from daguerro.utils import process_category_thread
@@ -48,8 +49,11 @@ def gallery(request, slugs=None):
 def photo(request, gallery_slugs, photo_slug):
     parent_slug, current_gallery = process_category_thread(request, gallery_slugs)
     parent_category = current_gallery.parent
-
-    photo = Photo.objects.get(title_slug=photo_slug)
+    
+    try:
+        photo = Photo.objects.get(title_slug=photo_slug)
+    except Photo.DoesNotExist:
+        raise Http404
     custom_fields = photo.custom_fields.exclude(value='')
     
     return render_to_response('website/photo.html', {
