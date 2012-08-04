@@ -94,7 +94,7 @@ li.disabled { background-color: #CCC !important;}
 
 #gallery { clear: both; float: left; width: 75%; }
 
-#buttons { float: right; width: 20%;}
+#buttons { float: right; width: 25%;}
 #buttons ul { list-style: none; float: right; }
 #buttons ul li, form #buttons input { 
    display: block; 
@@ -254,30 +254,69 @@ form #buttons #delete-button { display: block; float: left; background: url('../
 form #buttons #delete-button a { color: white; text-decoration: none;}
 form #buttons #delete-button:hover { background-color: red;}
 
-form#search { margin-bottom: 2ex; padding:0; float: right; }
+form#search { margin-bottom: 1ex; padding:0; float: right; }
+form#search input { clear: none; float: left; }
 form#search input[type=text] { 
                                font-size: 120%; 
-                               height: 31px; 
+                               height: 26px; 
                                padding: 1px;
                                width: 10em;      
+                               margin-right: .5ex; 
                                border-radius: 4px;
                                ms-border-radius: 4px;
                                moz-border-radius: 4px;
                                webkit-border-radius: 4px;
                                khtml-border-radius: 4px;
 }
-form#search input[type=text].active {  color: black; }
-form#search input[type=image] { 
-                                height: 24px;
-                                background: #222; 
-                                padding:6px; 
-                                border-radius: 4px;
-                                ms-border-radius: 4px;
-                                moz-border-radius: 4px;
-                                webkit-border-radius: 4px;
-                                khtml-border-radius: 4px;
-}
-form#search input[type=image]:hover { background-color:#58880C; }
+input#search_options_button { 
+                              outline: none;
+                              height: 28px;
+                              width: 36px; 
+                              background: url('../img/cog.png') center no-repeat #222; 
+                              float: right;
+                              margin-top: 2px;
+                              }
+#search_buttons { 
+                  clear: none;
+                  float: left;
+                  height: 32px;
+                  width: 96px; 
+                  border-color: transparent;
+                  border-radius: 4px;
+                  ms-border-radius: 4px;
+                  moz-border-radius: 4px;
+                  webkit-border-radius: 4px;
+                  khtml-border-radius: 4px;
+                  background: #222; 
+        }
+input#search_options_button.active { background: url('../img/cog-active.png') center no-repeat #58880C; }
+form#search input { border:0; }
+form#search input[type=submit] {
+                             height: 28px;
+                             width: 48px; 
+                             background: url('../img/zoom.png') center no-repeat #222; 
+                             float: left;
+                             margin-top: 2px;
+                             margin-left: 4px;
+                             padding-right: 8px;
+                            
+        }
+form#search input[type=submit]:hover, form#search input[type=button]:hover { 
+	    cursor: pointer; 
+	    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	    filter: alpha(opacity=70);
+	    -moz-opacity:0.7;
+	    -khtml-opacity: 0.7;
+	    opacity: 0.7;
+
+	}
+
+
+#vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; margin-left: 4px; margin-right: 2px; }
+
+#ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center no-repeat transparent; height: 24px; width: 36px; top: 47px; left: 1540px;}
+
+
 p#results-info { font-size: 80%; margin-top: 0; margin-bottom:1ex; }
 p#results-info span#num-results { font-weight: bold; }
 p#results-info span.marked { background-color: #222; color: white; padding: .3ex;}
