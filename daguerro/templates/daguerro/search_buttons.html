@@ -1,0 +1,29 @@
+{% load i18n %}
+{% load form_filters %}
+
+<div id="search_buttons">
+  <input type="submit" id="search_button" class="ui-search-button" alt="{% trans "Search" %}" title="{% trans "Search" %}" value=""/>
+  <div id="vertical-border"></div>
+  <div id="ui-arrow-down" {% if form.errors %}style="display:block;"{% endif %}></div>
+  <input type="button" id="search_options_button" alt="{% trans "Search options" %}" title="{% trans "Search options" %}" value=""/ {% if form.errors %}class="active"{% endif %}>
+</div>
+
+<div id="search_options" {% if form.errors %}style="display:block;"{% endif %}>
+  {% if form.non_field_errors %}
+  {{ form.non_field_errors }}
+  {% endif %}
+  {% for fieldset in search_options_form.fieldsets %}
+  <fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
+    {% for field in fieldset %}
+     {% if field|field_type:'checkboxinput' %} 
+      {{ field }} {{ field.label_tag }}
+     {% else %}
+     <div id="{{ field.name }}" {% if field.name == "galleries" and show_galleries_tree %}class="active"{% endif %}>
+       {{ field }}
+     </div>
+     {% endif %}
+   {% endfor %}
+  </fieldset>
+  {% endfor %}
+  <input type="submit" class="ui-search-button" value="{% trans "Search" %}"/>
+</div>

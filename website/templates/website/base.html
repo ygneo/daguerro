@@ -18,7 +18,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}website/js/json2.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}website/js/jquery.cookie.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}website/js/cart.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}website/js/search.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/search.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}website/js/efectos.js"></script>
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
     {% block extraJS %}
@@ -45,19 +45,13 @@
               <a href="#">Catalan</a> | <span>Castellano</span> | <a href="#">English</a>
             </div>-->
 {% endcomment %}
-            <div id="searcher">
-              <form id="search" method="GET" action="{% url website-search-photos %}">
-		<input type="text" id="query" name="q" value="{{ query }}"/>
-		<div id="search_buttons">
-		  <input type="submit" id="search_button" class="ui-search-button" alt="{% trans "Search" %}" title="{% trans "Search" %}" value=""/>
-		  <div id="vertical-border"></div>
-		  <div id="ui-arrow-down" {% if form.errors %}style="display:block;"{% endif %}></div>
-		  <input type="button" id="search_options_button" alt="{% trans "Search options" %}" title="{% trans "Search options" %}" value=""/ {% if form.errors %}class="active"{% endif %}>
-		</div>
-		{% include "website/search_options_form.html" %}
-              </form>
-            </div>
-            <div id="tools">
+           <div id="searcher">
+             <form id="search" method="GET" action="{% url website-search-photos %}">
+		       <input type="text" id="query" name="q" value="{{ query }}"/>
+               {% include "daguerro/search_buttons.html" %}
+             </form>
+             </div>
+             <div id="tools">
               <div id="shop">
                 <div id="shop_info"><em id="shopping-cart-num-items">0</em> fotografía/s en la <a href="#" id="open-shopping-cart">cesta</a></div>
                 <img id="shop_ico" src="{{ STATIC_URL }}website/img/shop_cart.png" alt="Ver cesta" title="Arrastra aquí imágenes para solicitarlas"/>
