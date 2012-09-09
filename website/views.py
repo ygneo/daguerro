@@ -15,7 +15,9 @@ from photologue.models import Gallery, Photo
 from haystack.views import SearchView
 from daguerro.utils import process_category_thread
 from daguerro.paginator import DiggPaginator
-from website.forms import ShoppingCartForm, SearchOptionsForm
+from daguerro.forms import SearchOptionsForm
+from website.forms import ShoppingCartForm
+
 
 
 def gallery(request, slugs=None):
