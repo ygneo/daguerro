@@ -3,8 +3,8 @@ import django
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.views.generic.simple import direct_to_template
-from website.views import SearchPhotosView
 from django.views.generic.simple import redirect_to
+from daguerro.views import SearchPhotosView
 
 js_info_dict = {
     'packages': ('website',),
@@ -14,13 +14,15 @@ urlpatterns = patterns('',
 )
 
 urlpatterns = urlpatterns + patterns('website.views',
-                                     url(r'^buscar', SearchPhotosView(), 
+                                     url(r'^buscar', 
+                                         SearchPhotosView(template='website/search_results.html'),
                                          name='website-search-photos'),
                                      url(r'^solicitar-fotos/$', 'send_request_photos', 
                                          name='website-send-request-photos'),
-                                     (r'^favicon.ico$', redirect_to, {'url':'/static/website/img/favicon.ico'}),
-                                     url(r'(?P<gallery_slugs>.+)/foto/(?P<photo_slug>.+)$', 'photo', 
-                                         name='website-photo'),
+                                     (r'^favicon.ico$', redirect_to, 
+                                      {'url':'/static/website/img/favicon.ico'}),
+                                     url(r'(?P<gallery_slugs>.+)/foto/(?P<photo_slug>.+)$', 
+                                         'photo', name='website-photo'),
                                      url(r'(?P<slugs>.+)$', 'gallery', name='website-gallery'),
                                      url(r'^$', 'gallery', {'slugs': None}, name='website-gallery'),
                                      )
@@ -32,5 +34,4 @@ if settings.DEBUG:
                            url(r'^admin_media/(?P<path>.*)$', 'django.views.static.serve', 
                                {'document_root': os.path.join(django.__path__[0], 
                                                               "contrib/admin/media/")}),
-                           url(r'^wix', 'website.views.whoosh_search_index'),
    ) + urlpatterns

@@ -1,4 +1,6 @@
 from django.conf.urls.defaults import *
+from daguerro.views import SearchPhotosView
+
 
 # Generic views
 urlpatterns = patterns(
@@ -29,7 +31,10 @@ urlpatterns += patterns(
     url(r'^gallery/(?P<slugs>.+)$', 'index', name='daguerro-gallery'),
 
     # Searching urls
-    url(r'^search-photo\.?(?P<format>json|html)?', 'search_photo',  name='daguerro-search-photo'),
+    #url(r'^search-photo\.?(?P<format>json|html)?', 
+    url(r'^search-photo/$', 
+        SearchPhotosView(template='daguerro/gallery.html'),
+        name='daguerro-search-photo'),
 
     # Sorting url
     url(r'^sort-items', 'sort_items',  name='daguerro-sort-items'),
@@ -44,4 +49,6 @@ urlpatterns += patterns(
     url(r'^user/add', 'user', {'action': 'add'}, name='daguerro-user-add'),
     url(r'^user/(?P<id>\d+)/password/$', 'user_change_password', name='daguerro-user-change-password'),
     url(r'^user/(?P<id>\d+)/', 'user', {'action': 'edit'}, name='daguerro-user'),
+
+    url(r'^wix', 'whoosh_search_index'),
 )

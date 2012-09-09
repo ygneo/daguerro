@@ -5,19 +5,17 @@ from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.paginator import Paginator, InvalidPage
-from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, QueryDict
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 from django.http import Http404
 from photologue.models import Gallery, Photo
-from haystack.views import SearchView
 from daguerro.utils import process_category_thread
 from daguerro.paginator import DiggPaginator
 from daguerro.forms import SearchOptionsForm
 from website.forms import ShoppingCartForm
-
 
 
 def gallery(request, slugs=None):
@@ -66,88 +64,6 @@ def photo(request, gallery_slugs, photo_slug):
             'search_options_form': SearchOptionsForm(),
             }, context_instance=RequestContext(request))
 
-
-class SearchPhotosView(SearchView):
-    template = 'website/search_results.html'
-
-    def __init__(self, *args, **kwargs):
-        kwargs['form_class'] = SearchOptionsForm
-        super(SearchPhotosView, self).__init__(*args, **kwargs)
-
-    
-    def build_page(self):
-        """
-        Paginates the results appropriately.
-
-        In case someone does not want to use Django's built-in pagination, it
-        should be a simple matter to override this method to do what they would
-        like.
-        """
-        try:
-            page_no = int(self.request.GET.get('page', 1))
-        except (TypeError, ValueError):
-            raise Http404("Not a valid number for page.")
-
-        if page_no < 1:
-            raise Http404("Pages should be 1 or greater.")
-
-        start_offset = (page_no - 1) * self.results_per_page
-        self.results[start_offset:start_offset + self.results_per_page]
-
-        paginator = DiggPaginator(self.results, self.results_per_page)
-
-        try:
-            page = paginator.page(page_no)
-        except InvalidPage:
-            raise Http404("No such page!")
-
-        return (paginator, page)
-
-    
-    def extra_context(self):
-        getvars = QueryDict(self.request.GET.urlencode(), mutable=True)
-        try:
-            getvars.pop("page")
-        except KeyError:
-            pass
-        getvars = getvars.urlencode()
-
-        show_galleries_tree = False
-        if self.form.is_valid():
-            if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
-                show_galleries_tree = True
-
-        no_image_thumb_url = os.path.join(settings.STATIC_URL, 
-                                          settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-
-        return {'no_image_thumb_url': no_image_thumb_url,
-                'search_options_form': self.form,
-                'show_galleries_tree': show_galleries_tree,
-                'getvars': getvars,
-                }
-
-
-def whoosh_search_index(request):
-     from whoosh.index import open_dir
-     from whoosh.query import Every
-     from whoosh.qparser import QueryParser
-     from django.utils.html import escape
-     
-     query = request.GET.get("q")
-     
-     ix = open_dir(settings.HAYSTACK_CONNECTIONS['default']['PATH'])
-     qp = QueryParser("text", schema=ix.schema)
-     if query:
-         q = qp.parse(query)
-     else:
-         q = Every("text")
-     results = ix.searcher().search(q)
-     output = "<ul>"
-     for result in results:
-         output += "<li>" + escape(str(result)) + "</li>"
-     output += "</ul>"
-     return HttpResponse(output)
-                        
 
 def send_request_photos(request):
     form = ShoppingCartForm(request.POST)

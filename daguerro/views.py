@@ -3,7 +3,7 @@ import os
 import simplejson
 from django.conf import settings
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect,QueryDict
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -14,7 +14,9 @@ from django.utils.translation import ugettext as _
 from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django.http import HttpResponseRedirect
 from photologue.models import Gallery, Photo
-from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm
+from haystack.views import SearchView
+from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm, \
+    SearchOptionsForm
 from daguerro.context_processors import category_thread
 from daguerro.utils import process_category_thread
 from daguerro.shorcuts import redirect_to_gallery
@@ -171,6 +173,88 @@ def add_photo(request, gallery_id, photo_id):
     photo.save()	
     return HttpResponse(status=200)
 
+
+class SearchPhotosView(SearchView):
+
+    def __init__(self, *args, **kwargs):
+        kwargs['form_class'] = SearchOptionsForm
+        super(SearchPhotosView, self).__init__(*args, **kwargs)
+
+    
+    def build_page(self):
+        """
+        Paginates the results appropriately.
+
+        In case someone does not want to use Django's built-in pagination, it
+        should be a simple matter to override this method to do what they would
+        like.
+        """
+        try:
+            page_no = int(self.request.GET.get('page', 1))
+        except (TypeError, ValueError):
+            raise Http404("Not a valid number for page.")
+
+        if page_no < 1:
+            raise Http404("Pages should be 1 or greater.")
+
+        start_offset = (page_no - 1) * self.results_per_page
+        self.results[start_offset:start_offset + self.results_per_page]
+
+        paginator = DiggPaginator(self.results, self.results_per_page)
+
+        try:
+            page = paginator.page(page_no)
+        except InvalidPage:
+            raise Http404("No such page!")
+
+        return (paginator, page)
+
+    
+    def extra_context(self):
+        getvars = QueryDict(self.request.GET.urlencode(), mutable=True)
+        try:
+            getvars.pop("page")
+        except KeyError:
+            pass
+        getvars = getvars.urlencode()
+
+        show_galleries_tree = False
+        if self.form.is_valid():
+            if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
+                show_galleries_tree = True
+
+        no_image_thumb_url = os.path.join(settings.STATIC_URL, 
+                                          settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+
+        return {'no_image_thumb_url': no_image_thumb_url,
+                'search_options_form': self.form,
+                'show_galleries_tree': show_galleries_tree,
+                'getvars': getvars,
+                }
+
+
+@login_required
+def whoosh_search_index(request):
+     from whoosh.index import open_dir
+     from whoosh.query import Every
+     from whoosh.qparser import QueryParser
+     from django.utils.html import escape
+     
+     query = request.GET.get("q")
+     
+     ix = open_dir(settings.HAYSTACK_CONNECTIONS['default']['PATH'])
+     qp = QueryParser("text", schema=ix.schema)
+     if query:
+         q = qp.parse(query)
+     else:
+         q = Every("text")
+     results = ix.searcher().search(q)
+     output = "<ul>"
+     for result in results:
+         output += "<li>" + escape(str(result)) + "</li>"
+     output += "</ul>"
+     return HttpResponse(output)
+                        
 
 @login_required
 def search_photo(request, format):
