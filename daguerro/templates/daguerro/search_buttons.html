@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load form_filters %}
 
+{% with search_options_form as form %}
 <div id="search_buttons">
   <input type="submit" id="search_button" class="ui-search-button" alt="{% trans "Search" %}" title="{% trans "Search" %}" value=""/>
   <div id="vertical-border"></div>
@@ -12,7 +13,7 @@
   {% if form.non_field_errors %}
   {{ form.non_field_errors }}
   {% endif %}
-  {% for fieldset in search_options_form.fieldsets %}
+  {% for fieldset in form.fieldsets %}
   <fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
     {% for field in fieldset %}
      {% if field|field_type:'checkboxinput' %} 
@@ -27,3 +28,4 @@
   {% endfor %}
   <input type="submit" class="ui-search-button" value="{% trans "Search" %}"/>
 </div>
+{% endwith %}

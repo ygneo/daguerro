@@ -33,7 +33,7 @@ urlpatterns += patterns(
     # Searching urls
     #url(r'^search-photo\.?(?P<format>json|html)?', 
     url(r'^search-photo/$', 
-        SearchPhotosView(template='daguerro/gallery.html'),
+        SearchPhotosView(template='daguerro/search_results.html'),
         name='daguerro-search-photo'),
 
     # Sorting url

@@ -36,6 +36,7 @@
       </ul>
     </div>
     {% endblock %}
+    {% if request.breadcrumbs %}
     <div id="breadcrumbs">
       {% for breadcrumb in request.breadcrumbs %}
       {% if not forloop.last %}
@@ -45,4 +46,7 @@
       {% endif %}
       {% endfor %}
     </div>
-{% endblock %}
+    {% endif %}
+    {% block buttons %}
+    {% endblock buttons %}
+{% endblock header %}

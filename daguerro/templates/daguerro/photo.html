@@ -7,10 +7,12 @@
 
 {% block section %}{{ current_action_title }}{% endblock %}
 
-{% block nav%}
+{% block nav %}
 {% activetab "topnav" "gallery" %}
 {{ block.super }}
-{% endblock %}
+{% endblock nav %}
+
+{% block buttons %}{% endblock buttons %}
 
 {% block content %}
 {% block breadcrumb %}

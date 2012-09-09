@@ -10,18 +10,16 @@
 {% include "website/pagination_info.html" %}
 <div id="photos">
   <ul>
-    {% for result in page.object_list %}
-     {% with photo=result.object %}
-     <li>
-       <div class="photo">
-        <a href="{{ photo.get_website_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>     
-      </div>
-      <p>
-        <a href="{{ photo.get_website_url }}">{{ photo.title }}</a>
-        <em>{% if photo.nombre_cientifico %}{{ photo.nombre_cientifico }}{% endif %}</em>
-      </p>
-     </li>
-     {% endwith %}
+    {% for item in page.object_list %}
+     {% if item.object %}
+      {% with photo=item.object %}
+       {% include "daguerro/photo_li.html" %}
+      {% endwith %}
+     {% else %}
+      {% with photo=item %}
+       {% include "daguerro/photo_li.html" %}
+      {% endwith %}
+     {% endif %}
     {% endfor %}
   </ul>
 </div>

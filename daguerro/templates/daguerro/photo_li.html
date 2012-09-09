@@ -1,0 +1,8 @@
+<li id="photo_{{ photo.id }}">
+  <div class="photo">
+    <a href="{{ photo.get_daguerro_url }}">
+      <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}" title="{{ photo.title }}"/>
+    </a>
+       </div>
+  <p><a href="{{ photo.title_slug }}">{{ photo.title }}</a></p>
+</li>

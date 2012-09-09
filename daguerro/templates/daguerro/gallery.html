@@ -7,14 +7,34 @@
 <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/gallery.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/jquery.daguerro.search.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/ajaxupload.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/search.js"></script>
 {% endblock %}
 
 {% block section %} {{ parent_categories|last|default:_("Home") }}{% endblock %}
 
-{% block nav%}
+{% block nav %}
 {% activetab "topnav" "gallery" %}
 {{ block.super }}
-{% endblock %}
+{% endblock nav %}
+
+{% block buttons %}
+<div id="buttons">
+  {% ifnotequal behaviour "search_results" %}
+  <ul>
+    {% if current_category or add_photo_in_root %}
+    <li id="upload-photo">
+      <a href="{% if current_category.slugs_path %} {% url daguerro-gallery-photo-add current_category.slugs_path %} {% else %} {% url daguerro-gallery-photo-add %} {% endif %}" alt="{% trans "Upload image" %}" title="{% trans "Upload image" %}">{% trans "Upload image"%}</a>
+    </li>
+    {% endif %}
+    <li id="add-category"><a href="{% if current_category.slugs_path %} {% url daguerro-gallery-add current_category.slugs_path %} {% else %} {% url daguerro-gallery-add %} {% endif %}">{% trans "Create category"%}</a></li>
+  </ul>
+  {% endifnotequal %}
+  <form id="search" method="GET" action="{% url daguerro-search-photo %}">
+	<input type="text" id="query" name="q" value="{{ query }}"/>
+    {% include "daguerro/search_buttons.html" %}
+  </form>
+</div>
+{% endblock buttons %}
 
 {% block content %}
 {% if current_category %}
@@ -38,61 +58,26 @@
   <p id="results-info"><span id="num-results">{{ num_results }}</span> {% trans "photo(s) title contains" %} <span class="marked">{{ term }}</span></p>
   {% endifequal %}
   {% if categories %}
-     <ul id="categories" class="sortable">
-       {% for category in categories %}
-       <li id="gallery_{{ category.id }}" >
-         <a href="{% url daguerro-gallery category.slugs_path %}">
-           <img src="{% if category.photo %}{{ category.photo.get_gallery_url }}{% else %}{{ no_image_thumb_url }}{% endif %}" title="{{ category.title }}"/>
-         </a> 
-         <a href="{{ category.title_slug }}">{{ category.title }}</a>
-       </li>        
-       {% endfor %}
-     </ul>
+  <ul id="categories" class="sortable">
+    {% for category in categories %}
+    <li id="gallery_{{ category.id }}" >
+      <a href="{% url daguerro-gallery category.slugs_path %}">
+        <img src="{% if category.photo %}{{ category.photo.get_gallery_url }}{% else %}{{ no_image_thumb_url }}{% endif %}" title="{{ category.title }}"/>
+      </a> 
+      <a href="{{ category.title_slug }}">{{ category.title }}</a>
+    </li>        
+    {% endfor %}
+  </ul>
   {% endif %}
   {% if photos_page.object_list %}
-     {% with photos_page as page %}
-     {% include "daguerro/pagination_info.html" %}
-     {% endwith %}
-     {% with photos_page.object_list as photos %}
-     <ul id="photos" class="sortable">
-       {% for photo in photos %}
-         {% if photo.galleries.all %}
-         <li id="photo_{{ photo.id }}">
-           <div class="photo">
-             <a href="{{ photo.get_daguerro_url }}">
-               <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}" title="{{ photo.title }}"/>
-             </a>
-           </div>
-           <p><a href="{{ photo.title_slug }}">{{ photo.title }}</a></p>
-         {% endif %}
-       {% endfor %}
-     </ul>
-     {% endwith %}
-   {% endif %}
-   {% if not photos_page.object_list and not categories %}
-    <div id="message" class="no-gallery">
-      <p>{% trans "No categories nor images" %}</p>
-    </div>
-    {% endif %}
+   {% with photos_page as page %}
+    {% include "daguerro/photos.html" %}
+   {% endwith %}
+  {% endif %}
+  {% if not photos_page.object_list and not categories %}
+  <div id="message" class="no-gallery">
+    <p>{% trans "No categories nor images" %}</p>
+  </div>
+  {% endif %}
 </div>
-<div id="buttons">
-  <form id="search" action="{% url daguerro-search-photo %}">
-    <input type="text" name="term" id="term" class="{% if term %}active{% endif %}" value="{% if term %}{{ term }}{% else %}{% trans "Search image" %}{% endif %}"/>
-    <input type="image" id="search_button" alt="{% trans Search %}" src="{{ STATIC_URL }}daguerro/img/zoom.png"/>
-  </form>
-  {% ifnotequal behaviour "search_results" %}
-  <ul>
-    <li id="upload-photo" {% if not current_category and not add_photo_in_root %}class="disabled"{% endif %}>
-      {% if not current_category and not add_photo_in_root %}
-      <a href="#" alt="{% trans "Upload image" %}" title="{% trans "Upload image" %}">{% trans "Upload image"%}</a>
-      {% else %} 
-      <a href="{% if current_category.slugs_path %} {% url daguerro-gallery-photo-add current_category.slugs_path %} {% else %} {% url daguerro-gallery-photo-add %} {% endif %}" alt="{% trans "Upload image" %}" title="{% trans "Upload image" %}">{% trans "Upload image"%}</a>
-      {% endif %}
-</li>
-    <li id="add-category"><a href="{% if current_category.slugs_path %} {% url daguerro-gallery-add current_category.slugs_path %} {% else %} {% url daguerro-gallery-add %} {% endif %}">{% trans "Create category"%}</a></li>
-  </ul>
-  {% endifnotequal %}
-</div>
-
-{% endblock %}
-</div>
+{% endblock content %}
