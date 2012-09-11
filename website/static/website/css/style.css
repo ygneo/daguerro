@@ -47,33 +47,33 @@ div#container {
 	input[type="file"] > input[type="button"]::-moz-focus-inner {
 	    border: none;
 	}
-        form#search input { border: 0 }
-        form#search input[type=text] { 
-                               color: black; 
-                               border: 2px solid white; 
-                               float:left;
-                               font-size: 120%; 
-                               height: 26px; 
-                               padding: 1px;
-                               margin-right: .3ex;
-                               width: 22em;      
-                               border-radius: 4px;
-                               ms-border-radius: 4px;
-                               moz-border-radius: 4px;
-                               webkit-border-radius: 4px;
-                               khtml-border-radius: 4px;
-        }
-        #header #searcher #search #search_buttons { 
-	                        float: right;
-                                height: 32px;
-                                width: 96px; 
-                                border-color: transparent;
-                                border-radius: 4px;
-                                ms-border-radius: 4px;
-                                moz-border-radius: 4px;
-                                webkit-border-radius: 4px;
-                                khtml-border-radius: 4px;
-				background: #58880C; 
+    form#search input { border: 0 }
+    form#search input[type=text] { 
+        color: black; 
+        border: 2px solid white; 
+        float:left;
+        font-size: 120%; 
+        height: 26px; 
+        padding: 1px;
+        margin-right: .3ex;
+        width: 22em;      
+        border-radius: 4px;
+        ms-border-radius: 4px;
+        moz-border-radius: 4px;
+        webkit-border-radius: 4px;
+        khtml-border-radius: 4px;
+    }
+    #header #searcher #search #search_buttons { 
+	        float: right;
+            height: 32px;
+            width: 96px; 
+            border-color: transparent;
+            border-radius: 4px;
+            ms-border-radius: 4px;
+            moz-border-radius: 4px;
+            webkit-border-radius: 4px;
+            khtml-border-radius: 4px;
+			background: #58880C; 
         }
        #header #searcher form#search div#search_options {
 	       display: none;

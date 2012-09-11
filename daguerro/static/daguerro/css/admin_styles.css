@@ -280,7 +280,7 @@ form#search input[type=text] {
                   moz-border-radius: 4px;
                   webkit-border-radius: 4px;
                   khtml-border-radius: 4px;
-                  background: #222; 
+                  background: #58880C; 
 }
 input#search_button { 
     border-radius: 4px;
@@ -294,7 +294,6 @@ input#search_button {
 input#search_button:hover { background-color: #58880C; }
 
 div#search_options {
-	       display: none;
 	       clear: both; 
 		   position: absolute;
 		   top: 48px; 
@@ -313,14 +312,29 @@ div#search_options {
 		   box-shadow: 1px 1px 0px 0px #58880C;
 		   line-height: 150%; 
 		   z-index: 99;
-       }
-
-
+}
+#search_options fieldset  { clear: left; margin-bottom: 1ex;}
+#search_options ul { list-style: none; margin: 0; }
+        #search_options ul li { padding:0; background: none; color: black; margin: 0; }
+        #search_options ul li:hover { background: none; }
+        #search_options label, #search_options input  { float: left; }
+        #search_options fieldset  { clear: left; margin-bottom: 1ex;}
+        #search_options fieldset input { margin: .5ex; }
+        #search_options fieldset label { margin-right: 1.5ex; }
+        #search_options fieldset#galleries-fields div#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 16px;  margin-bottom: 1ex;  }
+        #search_options fieldset#galleries-fields div#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 16px; width: 95%; }
+        #search_options fieldset#galleries-fields div#galleries.active > ul  { display: block; }
+        #search_options fieldset#galleries-fields li { clear: both;  float: left; display: block; }
+        #search_options fieldset#galleries-fields div#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
+	#search_options fieldset#galleries-fields #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
+	#search_options fieldset#galleries-fields #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
+        #ui-open-galleries + label { cursor: pointer; }
+	#ui-open-galleries + label:hover { text-decoration: underline; }
 input#search_options_button { 
                               outline: none;
                               height: 28px;
                               width: 36px; 
-                              background: url('../img/cog.png') center no-repeat #222; 
+                              background: url('../img/cog.png') center no-repeat; 
                               float: right;
                               margin-top: 2px;
                               }
@@ -328,7 +342,7 @@ input#search_options_button.active { background: url('../img/cog-active.png') ce
 form#search input[type=submit] {
                              height: 28px;
                              width: 48px; 
-                             background: url('../img/zoom.png') center no-repeat #222; 
+                             background: url('../img/zoom.png') center no-repeat; 
                              float: left;
                              margin-top: 2px;
                              margin-left: 4px;
