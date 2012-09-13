@@ -121,7 +121,7 @@ li.disabled { background-color: #CCC !important;}
 #buttons ul li#upload-photo:hover a { display:block; padding-left: 24px;}
 #buttons ul li#add-category a { background: url('../img/folder_plus.png') no-repeat; }
 
-#buttons form input[type=text] { height: 16px; border: 2px solid white; float:left;}
+#buttons form input[type=text] { height: 16px; float:left;}
 #tools form input[type=image] { width: 16px; height: 16px; background: #CCC; padding: 2px; float:left;}
 #tools form input[type=image]:hover { background: #58880c;}
 
@@ -342,7 +342,7 @@ div#search_options {
     display: none;
 	clear: both; 
 	position: absolute;
-	top: 144px; 
+	top: 146px; 
 	width: 435px;
 	background: white;
 	color: #111;
