@@ -342,7 +342,7 @@ div#search_options {
     display: none;
 	clear: both; 
 	position: absolute;
-	top: 146px; 
+	top: 144px; 
 	width: 435px;
 	background: white;
 	color: #111;
@@ -391,9 +391,9 @@ input#search_options_button.active { background: url('../img/cog-active.png') ce
 #ui-tree-node-handler { float: left; font-size: 90%; height: 14px; width: 14px; margin-top: 2px; background: url('../img/sq_plus.png') center no-repeat transparent; margin-left: 0; margin-bottom: 0; }
 #ui-tree-node-handler.close-node {background: url('../img/sq_minus.png') center no-repeat transparent; }
 
-div#search_form { float:left;  margin-left: 1ex; margin-top: 1.5ex; }
+div#search_form { float:left;  margin-left: .8ex; margin-top: 1.5ex; }
 
-div#search_form form#search { float: left; }
+div#search_form form#search { float: left; margin-bottom: 0; }
 
 p#results-info { font-size: 80%; margin-top: 0; margin-bottom:1ex; }
 p#results-info span#num-results { font-weight: bold; }
