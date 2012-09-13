@@ -280,7 +280,6 @@ def search_photo(request, format):
                 'photos': photos,
                 'term': term,
                 'num_results': num_results,
-                'behaviour': 'search_results',
                 'add_photo_in_root': settings.DAG_ADD_PHOTO_IN_ROOT,
                 'no_image_thumb_url': no_image_thumb_url,},
             context_instance=RequestContext(request))
