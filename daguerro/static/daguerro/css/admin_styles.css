@@ -121,7 +121,7 @@ li.disabled { background-color: #CCC !important;}
 #buttons ul li#upload-photo:hover a { display:block; padding-left: 24px;}
 #buttons ul li#add-category a { background: url('../img/folder_plus.png') no-repeat; }
 
-#buttons form input[type=text] { height: 16px; color: grey; border: 2px solid white; float:left;}
+#buttons form input[type=text] { height: 16px; border: 2px solid white; float:left;}
 #tools form input[type=image] { width: 16px; height: 16px; background: #CCC; padding: 2px; float:left;}
 #tools form input[type=image]:hover { background: #58880c;}
 
@@ -293,39 +293,85 @@ input#search_button {
 }
 input#search_button:hover { background-color: #58880C; }
 
+#search_buttons input#search_button {
+    height: 28px;
+    width: 48px; 
+    background: url('../img/zoom.png') center no-repeat #58880C; 
+	float: left;
+	margin-top: 2px;
+	margin-left: 4px;
+	padding-right: 8px;
+}
+#search_buttons input[type=submit]:hover { 
+	cursor: pointer; 
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
+	-moz-opacity:0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
+}
+
+#search_options input[type=submit]:hover, #search_options input[type=button]:hover { 
+	cursor: pointer; 
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
+	-moz-opacity:0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
+}
+
+#search_options input[type=submit] {
+	background: #58880C;
+	float: right; 
+	text-align: center;
+	color: white; 
+	padding: 0;
+	width: 4em;
+	cursor: pointer;
+    padding: 1ex; 
+	border-radius: 4px;
+    ms-border-radius: 4px;
+    moz-border-radius: 4px;
+    webkit-border-radius: 4px;
+    khtml-border-radius: 4px;
+	-webkit-box-shadow: 1px 1px 0px 0px #58880C;
+	-moz-box-shadow: 1px 1px 0px 0px #58880C;
+}
+
 div#search_options {
-	       clear: both; 
-		   position: absolute;
-		   top: 48px; 
-		   width: 466px;
-		   background: white;
-		   color: #111;
-		   padding: 8px; 
-		   text-align: left; 
-		   border-radius: 4px;
-           ms-border-radius: 4px;
-           moz-border-radius: 4px;
-           webkit-border-radius: 4px;
-           khtml-border-radius: 4px;
-		   -webkit-box-shadow: 1px 1px 0px 0px #58880C;
-		   -moz-box-shadow: 1px 1px 0px 0px #58880C;
-		   box-shadow: 1px 1px 0px 0px #58880C;
-		   line-height: 150%; 
-		   z-index: 99;
+    display: none;
+	clear: both; 
+	position: absolute;
+	top: 146px; 
+	width: 435px;
+	background: white;
+	color: #111;
+	padding: 8px; 
+	text-align: left; 
+	border-radius: 4px;
+    ms-border-radius: 4px;
+    moz-border-radius: 4px;
+    webkit-border-radius: 4px;
+    khtml-border-radius: 4px;
+	-webkit-box-shadow: 1px 1px 0px 0px #58880C;
+	-moz-box-shadow: 1px 1px 0px 0px #58880C;
+	box-shadow: 1px 1px 0px 0px #58880C;
+	line-height: 150%; 
+	z-index: 99;
 }
 #search_options fieldset  { clear: left; margin-bottom: 1ex;}
 #search_options ul { list-style: none; margin: 0; }
-        #search_options ul li { padding:0; background: none; color: black; margin: 0; }
+        #search_options ul li { padding:0; background: none; color: black; margin: 0; border: 0; }
         #search_options ul li:hover { background: none; }
         #search_options label, #search_options input  { float: left; }
         #search_options fieldset  { clear: left; margin-bottom: 1ex;}
         #search_options fieldset input { margin: .5ex; }
         #search_options fieldset label { margin-right: 1.5ex; }
-        #search_options fieldset#galleries-fields div#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 16px;  margin-bottom: 1ex;  }
+        #search_options fieldset#galleries-fields div#galleries ul  { clear: both; list-style-type: none; text-align: left; line-height: 100%; padding-left: 16px;  margin-bottom: .5ex;  }
         #search_options fieldset#galleries-fields div#galleries > ul  { display: none; float: left; margin-top: .5ex; margin-left: 0; height: 20ex; overflow: auto; padding-left: 16px; width: 95%; }
         #search_options fieldset#galleries-fields div#galleries.active > ul  { display: block; }
         #search_options fieldset#galleries-fields li { clear: both;  float: left; display: block; }
-        #search_options fieldset#galleries-fields div#galleries ul li label { margin-top: .5ex; margin-bottom: 1ex; }
+        #search_options fieldset#galleries-fields div#galleries ul li label { margin-top: .5ex; margin-bottom: 0; }
 	#search_options fieldset#galleries-fields #ui-open-galleries { background: url('../img/rnd_br_down.png') left no-repeat transparent; width: 16px; height: 16px; float: left; margin-right: 4px; margin-top: 1px; cursor: pointer; }
 	#search_options fieldset#galleries-fields #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
         #ui-open-galleries + label { cursor: pointer; }
@@ -339,21 +385,12 @@ input#search_options_button {
                               margin-top: 2px;
                               }
 input#search_options_button.active { background: url('../img/cog-active.png') center no-repeat #58880C; }
-form#search input[type=submit] {
-                             height: 28px;
-                             width: 48px; 
-                             background: url('../img/zoom.png') center no-repeat; 
-                             float: left;
-                             margin-top: 2px;
-                             margin-left: 4px;
-                             padding-right: 8px;
-                            
-        }
 
 
 #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; margin-left: 4px; margin-right: 2px; }
-
 #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center no-repeat transparent; height: 24px; width: 36px; top: 47px; left: 1540px;}
+#ui-tree-node-handler { float: left; font-size: 90%; height: 14px; width: 14px; margin-top: 2px; background: url('../img/sq_plus.png') center no-repeat transparent; margin-left: 0; margin-bottom: 0; }
+#ui-tree-node-handler.close-node {background: url('../img/sq_minus.png') center no-repeat transparent; }
 
 
 p#results-info { font-size: 80%; margin-top: 0; margin-bottom:1ex; }
