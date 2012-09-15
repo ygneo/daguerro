@@ -17,7 +17,7 @@ from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import smart_unicode
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.contrib.contenttypes import generic
 
 from south.modelsinspector import add_introspection_rules
@@ -162,6 +162,13 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     def get_absolute_url(self):
         return reverse('pl-gallery', args=[self.title_slug])
 
+    def delete(self):
+        if self.photo and self.photo.related_gallery.count() == 1:
+            self.photo.delete()
+        if self.photos:
+            Photo.objects.only_in_gallery(self).delete()
+        super(Gallery, self).delete()
+        
     def latest(self, limit=0, public=True):
         if limit == 0:
             limit = self.photo_count()
@@ -518,7 +525,11 @@ class PhotoQuerySet(models.query.QuerySet):
 
     def orphans(self):
         return self.exclude_gallery_thumbs().filter(galleries=None)
-    
+
+    def only_in_gallery(self, gallery):
+        qs = self.annotate(galleries_count=Count("galleries"))
+        return qs.filter(galleries_count=1, galleries__id__exact=gallery.pk)
+
 
 class PhotoManager(models.Manager):
 

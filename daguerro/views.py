@@ -96,7 +96,7 @@ def photo(request, action='add', slugs=None, slug=None):
                               context_instance=RequestContext(request))
 
 
-@login_required
+@login_required 
 def photo_delete(request, slugs=None, id=None):
     photo = get_object_or_404(Photo, id=id)
     photo.delete()
