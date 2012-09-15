@@ -1,7 +1,7 @@
 import datetime
 from django.db.models import Q
 from haystack import indexes
-from photologue.models import Photo, PhotoManager
+from photologue.models import Photo, PhotoQuerySet
 from custom_fields.indexes import CustomFieldsIndex
 from haystack.query import SearchQuerySet
 
@@ -16,6 +16,9 @@ class PhotoIndex(CustomFieldsIndex, indexes.Indexable):
     def get_model(self):
         return Photo
 
+    def index_queryset(self):
+        return Photo.objects.exclude_gallery_thumbs()
+
     def prepare_galleries_ids(self, obj):
         return [g.id for g in obj.galleries.all()]
 
@@ -23,7 +26,7 @@ class PhotoIndex(CustomFieldsIndex, indexes.Indexable):
         return ",".join([tag for tag in obj.tags.split(" ")])
 
 
-class PhotoSearchQuerySet(SearchQuerySet, PhotoManager):
+class PhotoSearchQuerySet(SearchQuerySet, PhotoQuerySet):
     pass
 
 PublicPhotosSearchQuerySet = PhotoSearchQuerySet().public()
