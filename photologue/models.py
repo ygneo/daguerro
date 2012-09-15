@@ -168,6 +168,11 @@ class Gallery(MPTTModel, CustomFieldsMixin):
         if self.photos:
             Photo.objects.only_in_gallery(self).delete()
         super(Gallery, self).delete()
+
+    def save(self, *args, **kwargs):
+        if not self.title_slug:
+            self.title_slug = slugify(self.title)
+        super(Gallery, self).save(*args, **kwargs)
         
     def latest(self, limit=0, public=True):
         if limit == 0:
