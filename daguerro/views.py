@@ -31,7 +31,10 @@ def index(request, slugs=None):
     # in gallery pages...
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
     categories = Gallery.objects.filter(parent__title_slug=parent_slug)
-    photos = current_category.photos.all() if current_category else []
+    if current_category:
+        photos = current_category.photos.all()
+    else:
+        photos = Photo.objects.orphans()
     
     user_groups = request.user.groups.all().values_list("name", flat=True)
     if 'Editor' in user_groups and len(user_groups) == 1:
