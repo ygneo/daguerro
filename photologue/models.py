@@ -137,7 +137,7 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     parent = TreeForeignKey('self', verbose_name=_("Parent category"), blank=True, null=True, related_name='children')
     order = models.IntegerField(verbose_name=_("Order"), blank=True, null=True)
     description = models.TextField(_('Description'), blank=True)
-    photo = models.ForeignKey('Photo', verbose_name=_("Photo"), blank=True, null=True, related_name="gallery_photo")
+    photo = models.ForeignKey('Photo', verbose_name=_("Photo"), blank=True, null=True, related_name="related_gallery")
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public galleries will be displayed in the default views.'))
     photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
@@ -508,42 +508,29 @@ class ImageModel(models.Model):
         super(ImageModel, self).delete()
 
 
-class PhotoManager(models.Manager):
-    
+class PhotoQuerySet(models.query.QuerySet):
+
     def public(self):
         return self.filter(is_public=True)
 
-    def search_filter(self, query_string):
-        queryset = self.get_query_set()
-        queryset = queryset.filter(~Q(galleries=None), is_public=True)
-        query_filters = []
-        for key, value in query_string.iteritems():
-            if value == 'on':
-                if search_mode == "TOTAL":
-                    pattern = self.build_pattern(query)
-                    query_filters.append(Q(**{'%s__iregex' % key: pattern}))
-                else:
-                    query_filters.append(Q(**{'%s__icontains' % key: query}))
+    def exclude_gallery_thumbs(self):
+        return self.filter(is_gallery_thumbnail=False)
 
-        query_filter = query_filters.pop()
-        for qfilter in query_filters:
-            query_filter |= qfilter
+    def orphans(self):
+        return self.exclude_gallery_thumbs().filter(galleries=None)
+    
 
-        if search_galleries == 'SELECTED':
-            gallery_ids = query_string['gallery_ids'].split(",")
-            queryset = queryset.filter(galleries__in=gallery_ids)
+class PhotoManager(models.Manager):
 
-        return queryset.filter(query_filter)
+    def get_query_set(self): 
+        model = models.get_model('photologue', 'Photo')
+        return PhotoQuerySet(model)
 
-    def build_pattern(self, query):
-        accented_vowel = {'a': u'á', 'e': u'é', 'i': u'í', 'o': u'ó', 'u': u'ú', 
-                          'A': u'À', 'E': u'É', 'I': u'Í', 'O': u'Ó', 'U': u'Ú'}
-        pattern = ""
-        for char in query:
-            if char in set('aeiouAEIOU'):
-                char = u"[%s%s]" % (char, accented_vowel[char])
-            pattern += char
-        return r"[[:<:]]%s[[:>:]]" % pattern
+    def __getattr__(self, attr, *args):
+        try:
+            return getattr(self.__class__, attr, *args)
+        except AttributeError:
+            return getattr(self.get_query_set(), attr, *args)
 
 
 add_introspection_rules([], ["^photologue\.models\.TagField"])
@@ -556,6 +543,8 @@ class Photo(ImageModel, CustomFieldsMixin):
     order = models.IntegerField(_('Order'), blank=True, null=True)
     is_public = models.BooleanField(_('Public'), default=True, 
                                     help_text=_('Public photographs will be displayed in the default views.'))
+    is_gallery_thumbnail = models.BooleanField(_('Gallery thumbnail'), default=False, 
+                                               help_text=_('Indicates wether or not photo is being used as gallery thumbnail.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('Tags'))
     location_title = models.CharField(_('Location'), max_length=300, blank=True, null=True,)
     latitude = models.FloatField(_('Latitude'), blank=True, null=True)
@@ -573,11 +562,12 @@ class Photo(ImageModel, CustomFieldsMixin):
         return self.title
 
     def __str__(self):
-        return self.__unicode__()
+        return str(self.title)
 
     def save(self, *args, **kwargs):
         self.title_slug = slugify(self.title)
         self.tags = self.tags.lower()
+        self.is_gallery_thumbnail = self.related_gallery.count()
         super(Photo, self).save(*args, **kwargs)
 
     def public_galleries(self):
