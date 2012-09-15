@@ -31,7 +31,7 @@ def gallery(request, slugs=None):
     else:
         brother_galleries = None
         children_galleries = None
-        photos = []
+        photos = Photo.objects.public().orphans()
 
     page_no = int(request.GET.get('page', 1))
     paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
