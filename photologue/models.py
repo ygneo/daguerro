@@ -569,7 +569,7 @@ class Photo(ImageModel, CustomFieldsMixin):
     objects = PhotoManager()
 
     class Meta:
-        ordering = ['order', 'title']
+        ordering = settings.DAG_DEFAULT_PHOTO_ORDERING
         get_latest_by = 'date_added'
         verbose_name = _("photo")
         verbose_name_plural = _("photos")

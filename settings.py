@@ -211,6 +211,8 @@ DAG_NO_IMAGE = {DAG_PHOTO_ORIGINAL_SIZE_KEY: 'daguerro/img/no_picture_photo.png'
                 }
 DAG_ADD_PHOTO_IN_ROOT = False
 DAG_PHOTO_SLUG = 'foto'
+DAG_DEFAULT_PHOTO_ORDERING = ['order', 'title']
+
 
 THUMBNAIL_QUALITY = 95
 THUMBNAIL_EXTENSION = 'png'
