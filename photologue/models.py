@@ -141,6 +141,8 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public galleries will be displayed in the default views.'))
     photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
+    photos_ordering = models.CharField(_('Photos ordering'), max_length=100, null=True,
+                                       blank=True)
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     custom_fields = generic.GenericRelation(GenericCustomField)
 
