@@ -22,6 +22,7 @@ $(document).ready(function() {
         force_hide = typeof force_hide !== 'undefined' ? force_hide : false;
         button = $('input#search_options_button');
 	    button_offset = button.offset();
+	    $("#search_options").css("top",button_offset.top + offset);
         if (force_hide) {
             button.removeClass("active");
 	        $("#ui-arrow-down").hide();
@@ -34,6 +35,7 @@ $(document).ready(function() {
 				                        left: button_offset.left - (offset / 10)
 				                       });
 	        $("#search_options").toggle();
+
         }
     }
 
