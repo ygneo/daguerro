@@ -4,7 +4,7 @@ li.first { clear: both; }
 
 li.disabled { background-color: #CCC !important;}
 
-#header { background-color: #222; color: white; padding: 1.5ex; font-size: 100%; border-bottom: 3px solid #58880C;}
+#header { background-color: #222; color: white; padding: 1.5ex; font-size: 100%; border-bottom: 2px solid #58880C;}
 
 #header #branding { background: url('../img/picture.png') no-repeat; padding-left: 42px; line-height: 100%;}
 #header #branding h2 { font-size: 70%; color: grey;  font-weight: normal; }
@@ -39,7 +39,7 @@ li.disabled { background-color: #CCC !important;}
 #tabs ul li.active a, #tabs ul li:hover a { color: #222; }
 #tabs ul li.active a { font-weight: bold; }
 
-#content { clear: both; padding: 1ex; float: left; width: 98%; }
+#content { clear: both; padding: 1ex; float: left;  }
 #content h2 { font-size: 100%; font-weight: normal; }
 
 #content #message {    
@@ -81,21 +81,27 @@ li.disabled { background-color: #CCC !important;}
   }
 
 #subheader { 
+  clear: left;
   border-radius: 4px;
   -ms-border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
   float: left; 
-  margin-bottom: 2ex; 
+  margin-top: 1ex; 
+  margin-left: 2ex; 
+}
+#subheader-holder {
+    margin-top: 1ex; 
+    float: left; 
 }
 #inner-content #subheader h1 { margin-top:.5ex; padding: 0; font-size: 24px; float: left; color: black; font-weight: normal;}
 #subheader img { float: left; }
 
 #gallery { clear: both; float: left; }
 
-#buttons { float: left; width: 100%; margin-top: 1ex; }
-#buttons ul { list-style: none; float: left; margin-left: 1ex; }
+#buttons { clear: left; float: left; margin-top: 1ex;  }
+#buttons ul { list-style: none; float: left; margin-left: 2ex; }
 #buttons ul li, form #buttons input { 
    display: block; 
    background: #222;
@@ -111,7 +117,7 @@ li.disabled { background-color: #CCC !important;}
    border-color: transparent;
    cursor: pointer;
 }
-#buttons li { margin-left: 1ex; }
+#buttons li { margin-right: 1ex; }
 #buttons ul li a { color: white; text-decoration:none; padding-top:.2ex; padding-left: 24px; display: block; height: 16px; }
 #buttons ul li:hover { background: #58880C; }
 #buttons ul li:hover a { color: white; }
@@ -173,7 +179,7 @@ ul#categories li img {display:block;margin-bottom: 1ex; margin: 0 auto; margin-b
 ul#categories li a { font-size: 100%; color: white; text-decoration: none; }
 
 
-#breadcrumbs { margin-top: 1ex; margin-left: 1.5ex; font-size: 85%; float: left;}
+#breadcrumbs { marigin-top: 1ex; margin-left: 2ex; font-size: 85%; float: left;}
 #breadcrumbs a { color: #58880C; text-decoration:none; font-weight: bold; }
 #breadcrumbs a:hover { text-decoration: underline; }
 
@@ -253,13 +259,13 @@ form #buttons #delete-button { display: block; float: left; background: url('../
 form #buttons #delete-button a { color: white; text-decoration: none;}
 form #buttons #delete-button:hover { background-color: red;}
 
-form#search { margin-bottom: 1ex; margin-right: 2ex; padding:0; float: right; clear: none; }
+form#search { margin-top: 2ex; margin-bottom: 1ex; margin-right: 2ex; padding:0; float: right; clear: none; }
 form#search input { clear: none; float: left; border: 0;}
 form#search input[type=text] { 
     font-size: 120%; 
     height: 30px; 
     padding: 1px;
-    width: 20em;      
+    width: 15em;      
     margin-right: .5ex; 
     border-radius: 4px;
     ms-border-radius: 4px;
@@ -278,29 +284,31 @@ form#search input[type=text] {
                   moz-border-radius: 4px;
                   webkit-border-radius: 4px;
                   khtml-border-radius: 4px;
-                  background: #58880C; 
+                  background: #222; 
 }
+#search_buttons:hover, #search_buttons.active { background-color: #58880C; }
+
 input#search_button { 
     border-radius: 4px;
     ms-border-radius: 4px;
     moz-border-radius: 4px;
     webkit-border-radius: 4px;
     khtml-border-radius: 4px;
-    background: url('../img/zoom.png') center no-repeat #222;
+    background: url('../img/zoom.png') center no-repeat;
     cursor: pointer; 
 }
-input#search_button:hover { background-color: #58880C; }
+
 
 #search_buttons input#search_button {
     height: 28px;
     width: 48px; 
-    background: url('../img/zoom.png') center no-repeat #58880C; 
+    background: url('../img/zoom.png') center no-repeat; 
 	float: left;
 	margin-top: 2px;
 	margin-left: 4px;
 	padding-right: 8px;
 }
-#search_buttons input[type=submit]:hover { 
+#search_buttons input[type=submit]:hover, #search_buttons input[type=button]:hover { 
 	cursor: pointer; 
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 	filter: alpha(opacity=70);
@@ -313,7 +321,7 @@ div#search_options {
     display: none;
 	clear: both; 
 	position: absolute;
-	width: 435px;
+	width: 345px;
 	background: white;
 	color: #111;
 	padding: 8px; 
@@ -390,7 +398,7 @@ input#search_options_button.active { background: url('../img/cog-active.png') ce
 #ui-tree-node-handler { float: left; font-size: 90%; height: 14px; width: 14px; margin-top: 2px; background: url('../img/sq_plus.png') center no-repeat transparent; margin-left: 0; margin-bottom: 0; }
 #ui-tree-node-handler.close-node {background: url('../img/sq_minus.png') center no-repeat transparent; }
 
-div#search_form { float:left;  margin-left: .8ex; margin-top: 1.5ex; }
+div#search_form { float:left;  margin-left: 1.5ex; margin-top: 1.5ex; }
 
 div#search_form form#search { float: left; margin-bottom: 0; }
 

@@ -35,18 +35,28 @@
 <!--        <li class="{% ifactivetab "topnav" "settings" %}active{% else %}inactive{% endifactivetab %}"><a href="">Configuración</a></li>-->
       </ul>
     </div>
-    {% endblock %}
-    {% if request.breadcrumbs %}
-    <div id="breadcrumbs">
-      {% for breadcrumb in request.breadcrumbs %}
-      {% if not forloop.last %}
-      <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a> ›
-      {% else %}
-      {{ breadcrumb.name }}
-      {% endif %}
-      {% endfor %}
+    {% endblock nav %}
+
+    <div id="subheader-holder">
+      <div id="breadcrumbs">
+        {% for breadcrumb in request.breadcrumbs %}
+          {% if not forloop.last %}
+            <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a> ›
+          {% else %}
+           {{ breadcrumb.name }}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {% block subheader %}
+      {% endblock subheader %}
+
+      {% block buttons %}
+      {% endblock buttons %}
     </div>
-    {% endif %}
-    {% block buttons %}
-    {% endblock buttons %}
+
+    {% block search_form %}
+      {% include "daguerro/search_form.html" %}
+    {% endblock %}
+    
 {% endblock header %}

@@ -26,11 +26,10 @@
     {% endif %}
     <li id="add-category"><a href="{% if current_category.slugs_path %} {% url daguerro-gallery-add current_category.slugs_path %} {% else %} {% url daguerro-gallery-add %} {% endif %}">{% trans "Create category"%}</a></li>
   </ul>
-  {% include "daguerro/search_form.html" %}
 </div>
 {% endblock buttons %}
 
-{% block content %}
+{% block subheader %}
 {% if current_category %}
 <div id="subheader">
   <img src="{{ current_category.photo.get_gallery_title_url }}" alt=""/>
@@ -47,6 +46,9 @@
   </div>
 </div>
 {% endif %}
+{% endblock subheader %}
+
+{% block content %}
 <div id="gallery">
   {% ifequal behaviour "search_results" %}
   <p id="results-info"><span id="num-results">{{ num_results }}</span> {% trans "photo(s) title contains" %} <span class="marked">{{ term }}</span></p>

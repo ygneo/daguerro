@@ -24,11 +24,13 @@ $(document).ready(function() {
 	    button_offset = button.offset();
 	    $("#search_options").css("top",button_offset.top + offset);
         if (force_hide) {
+            $("#search_buttons").removeClass("active");
             button.removeClass("active");
 	        $("#ui-arrow-down").hide();
 	        $("#search_options").hide();
         }
         else {
+            $("#search_buttons").toggleClass("active");
 	        button.toggleClass("active");
 	        $("#ui-arrow-down").toggle();
 	        $("#ui-arrow-down").offset({top: button_offset.top + offset - 1, 
