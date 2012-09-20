@@ -4,6 +4,20 @@
  <div class="results-number">
    <span class="result-number">{{ page.start_index }}</span>-<span class="result-number">{{ page.end_index }}</span> {% trans "of" %} <span class="result-number">{{ page.paginator.count }}</span> {% trans "photos" %}
  </div>
+ <form id="ordering" method="POST" action="{% url daguerro-sort-photos %}">
+   <input type="hidden" name="gallery_id" value="{{ current_category.id }}"/>
+   <input type="hidden" name="slugs_path" value="{{ current_category.slugs_path }}"/>
+   <label for="ordering_fields">{% trans "Ordenar" %}</label>
+   <select id="ordering_fields" name="ordering_field">  
+     {% for field in settings.default_photo_ordering_fields %}
+       <option value="{{ field.name }}"
+               {% if field.name == current_category.photos_ordering %}selected="selected"{% endif %}>
+         {{ field.verbose_name }}
+       </option>
+     {% endfor %}
+   </select>
+   <input type="submit" value="OK"/>
+ </form>
  {% if page.has_previous or page.has_next %}
  <ul class="pagination">
    {% if page.has_previous %}

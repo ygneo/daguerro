@@ -76,8 +76,9 @@ TEMPLATE_CONTEXT_PROCESSORS =(
     "django.core.context_processors.media",
     "django.contrib.messages.context_processors.messages",
     'django.core.context_processors.request',
-    "daguerro.context_processors.current_site",    
-    "website.context_processors.header_info",    
+    "daguerro.context_processors.current_site",
+    "daguerro.context_processors.settings_processor",
+    "website.context_processors.header_info",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -211,7 +212,13 @@ DAG_NO_IMAGE = {DAG_PHOTO_ORIGINAL_SIZE_KEY: 'daguerro/img/no_picture_photo.png'
                 }
 DAG_ADD_PHOTO_IN_ROOT = False
 DAG_PHOTO_SLUG = 'foto'
-DAG_DEFAULT_PHOTO_ORDERING = ['order', 'title']
+DAG_DEFAULT_PHOTO_ORDERING_FIELDS = [
+    {'name': 'order', 'verbose_name': 'Manualmente'},
+    {'name': 'title', 'verbose_name': 'Titulo'},
+    {'name': 'date_added', 'verbose_name': 'Fecha de creacion'},
+    {'name': 'nombre_cientifico', 'verbose_name': 'Nombre cientifico'},
+    ]
+DAG_DEFAULT_PHOTO_ORDERING = 'title'
 
 
 THUMBNAIL_QUALITY = 95

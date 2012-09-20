@@ -31,3 +31,10 @@ def category_thread(request):
     return {'parent_categories': parent_categories, 
             'current_category': current_category}
 
+
+def settings_processor(request):
+    if 'daguerro' in request.path:
+        settings_dict = {'default_photo_ordering_fields':
+                             settings.DAG_DEFAULT_PHOTO_ORDERING_FIELDS}
+        return {'settings': settings_dict}
+    return {}

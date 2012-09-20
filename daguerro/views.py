@@ -32,7 +32,8 @@ def index(request, slugs=None):
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
     categories = Gallery.objects.filter(parent__title_slug=parent_slug)
     if current_category:
-        photos = current_category.photos.all()
+        order_by = current_category.photos_ordering.split(",")
+        photos = current_category.photos.all().order_by(*order_by)
     else:
         photos = Photo.objects.orphans()
     
@@ -102,6 +103,22 @@ def photo_delete(request, slugs=None, id=None):
     photo.delete()
     return redirect_to_gallery(slugs)
 
+
+@login_required
+def sort_photos(request):
+    if request.method == 'POST':
+        slugs_path = request.POST['slugs_path']
+        ordering_field = request.POST['ordering_field']
+        gallery_id = request.POST['gallery_id']
+        if gallery_id:
+            try:
+                gallery = Gallery.objects.get(pk=gallery_id)
+            except Gallery.DoesNotExist:
+                return redirect_to_gallery(slugs_path)
+            gallery.photos_ordering = ordering_field
+            gallery.save()
+            return redirect_to_gallery(slugs_path)
+            
 
 @login_required
 def sort_items(request):

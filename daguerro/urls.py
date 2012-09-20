@@ -36,8 +36,9 @@ urlpatterns += patterns(
         SearchPhotosView(template='daguerro/search_results.html'),
         name='daguerro-search-photo'),
 
-    # Sorting url
+    # Sorting urls
     url(r'^sort-items', 'sort_items',  name='daguerro-sort-items'),
+    url(r'^sort-photos', 'sort_photos',  name='daguerro-sort-photos'),
 
     # Pages urls
     url(r'^page/$', 'pages_index',  name='daguerro-pages-index'),

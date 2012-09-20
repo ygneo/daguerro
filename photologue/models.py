@@ -174,7 +174,10 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     def save(self, *args, **kwargs):
         if not self.title_slug:
             self.title_slug = slugify(self.title)
+        if not self.photos_ordering:
+            self.photos_ordering = ",".join(settings.DAG_DEFAULT_PHOTO_ORDERING)
         super(Gallery, self).save(*args, **kwargs)
+
         
     def latest(self, limit=0, public=True):
         if limit == 0:
@@ -571,7 +574,6 @@ class Photo(ImageModel, CustomFieldsMixin):
     objects = PhotoManager()
 
     class Meta:
-        ordering = settings.DAG_DEFAULT_PHOTO_ORDERING
         get_latest_by = 'date_added'
         verbose_name = _("photo")
         verbose_name_plural = _("photos")
