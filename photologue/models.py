@@ -164,6 +164,12 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     def get_absolute_url(self):
         return reverse('pl-gallery', args=[self.title_slug])
 
+    def photos_ordering_type(self):
+        if self.photos_ordering.startswith("-"):
+            return "-"
+        else:
+            return ""
+
     def delete(self):
         if self.photo and self.photo.related_gallery.count() == 1:
             self.photo.delete()
@@ -175,7 +181,7 @@ class Gallery(MPTTModel, CustomFieldsMixin):
         if not self.title_slug:
             self.title_slug = slugify(self.title)
         if not self.photos_ordering:
-            self.photos_ordering = ",".join(settings.DAG_DEFAULT_PHOTO_ORDERING)
+            self.photos_ordering = settings.DAG_DEFAULT_PHOTO_ORDERING
         super(Gallery, self).save(*args, **kwargs)
 
         

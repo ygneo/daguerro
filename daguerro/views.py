@@ -109,15 +109,16 @@ def sort_photos(request):
     if request.method == 'POST':
         slugs_path = request.POST['slugs_path']
         ordering_field = request.POST['ordering_field']
+        ordering_type = request.POST['ordering_type']
         gallery_id = request.POST['gallery_id']
         if gallery_id:
             try:
                 gallery = Gallery.objects.get(pk=gallery_id)
             except Gallery.DoesNotExist:
                 return redirect_to_gallery(slugs_path)
-            gallery.photos_ordering = ordering_field
+            gallery.photos_ordering = "%s%s" % (ordering_type, ordering_field)
             gallery.save()
-            return redirect_to_gallery(slugs_path)
+        return redirect_to_gallery(slugs_path)
             
 
 @login_required

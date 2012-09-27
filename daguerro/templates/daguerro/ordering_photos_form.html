@@ -1,0 +1,24 @@
+{% load i18n %}
+{% load form_filters %}
+
+<form id="ordering" method="POST" action="{% url daguerro-sort-photos %}">
+  <input type="hidden" name="gallery_id" value="{{ current_category.id }}"/>
+  <input type="hidden" name="slugs_path" value="{{ current_category.slugs_path }}"/>
+  <label for="ordering_fields">{% trans "Ordenar" %}</label>
+  <select id="ordering_fields" name="ordering_field">  
+    {% for field in settings.default_photo_ordering_fields %}
+    <option value="{{ field.name }}"
+            {% if field.name == current_category.photos_ordering %}selected="selected"{% endif %}>
+      {{ field.verbose_name }}
+    </option>
+    {% endfor %}
+  </select>
+  <select id="ordering_type" name="ordering_type">  
+    <option value=""
+            {% if current_category.photos_ordering_type == "" %}selected="selected"{% endif %}>
+      {% trans "Ascending" %}</option>
+    <option value="-" {% if current_category.photos_ordering_type == "-" %}selected="selected"{% endif %}>
+      {% trans "Descending" %}</option>
+  </select>
+  <input type="submit" value="OK"/>
+</form>

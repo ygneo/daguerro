@@ -39,7 +39,7 @@ li.disabled { background-color: #CCC !important;}
 #tabs ul li.active a, #tabs ul li:hover a { color: #222; }
 #tabs ul li.active a { font-weight: bold; }
 
-#content { clear: both; padding: 1ex; float: left;  }
+#content { clear: both; padding-left: .5%; padding-left: .5%; float: left; width: 99%; }
 #content h2 { font-size: 100%; font-weight: normal; }
 
 #content #message {    
@@ -47,7 +47,6 @@ li.disabled { background-color: #CCC !important;}
    color: white;
    padding-left: 48px; 
    font-size: 80%; 
-   width: 75%; 
    float: left;
    background-color:  grey; 
    padding: 1ex; 
@@ -98,7 +97,7 @@ li.disabled { background-color: #CCC !important;}
 #inner-content #subheader h1 { margin-top:.5ex; padding: 0; font-size: 24px; float: left; color: black; font-weight: normal;}
 #subheader img { float: left; }
 
-#gallery { clear: both; float: left; }
+#gallery { clear: both; float: left; width: 100%; }
 
 #buttons { clear: left; float: left; margin-top: 1ex;  }
 #buttons ul { list-style: none; float: left; margin-left: 2ex; }
@@ -495,3 +494,25 @@ li#add-user a { background: url('../img/user.png') no-repeat; }
 p#form-help { font-size: 80%; padding: 0; }
 
 #change_password { margin-left: 1ex; }
+
+div.pagination-info { clear: both; width: 100%; overflow: hidden; margin-bottom: 1.5ex; }
+
+div.pagination-info .results-number { display: block; float: left; line-height: 1;}
+
+div.pagination-info span.result-number { font-weight: bold; }
+
+ul.pagination { float: right;  margin: 0; padding: 0; list-style: none; }
+
+ul.pagination li { padding: .5ex; float: left;  color: #58880C; }    
+
+ul.pagination li a  { text-decoration: none; color: #58880C; }
+
+ul.pagination .current { background-color: #58880C; color: white; }
+
+form#ordering { clear: none; float: right; }
+
+form#ordering label, form#ordering select, form#ordering input { clear: none; float: left; }
+
+form#ordering label { margin-top: .5ex; margin-right: .5ex;   }
+
+form#ordering input[type=submit] { margin-left: 1ex; }
