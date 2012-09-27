@@ -495,11 +495,15 @@ p#form-help { font-size: 80%; padding: 0; }
 
 #change_password { margin-left: 1ex; }
 
-div.pagination-info { clear: both; width: 100%; overflow: hidden; margin-bottom: 1.5ex; }
+#photos-browsing { margin-bottom: 1.5ex; float: left; width: 100%; }
 
-div.pagination-info .results-number { display: block; float: left; line-height: 1;}
+#photos-browsing-controls {float: right; }
 
-div.pagination-info span.result-number { font-weight: bold; }
+div.pagination-info { float: left; overflow: hidden; }
+
+div.results-number { display: block; float: left; line-height: 1;}
+
+span.result-number { font-weight: bold; }
 
 ul.pagination { float: right;  margin: 0; padding: 0; list-style: none; }
 
@@ -509,7 +513,7 @@ ul.pagination li a  { text-decoration: none; color: #58880C; }
 
 ul.pagination .current { background-color: #58880C; color: white; }
 
-form#ordering { clear: none; float: right; }
+form#ordering { clear: none; float: left; margin-top: 0; margin-bottom: 0; margin-right: 2ex; }
 
 form#ordering label, form#ordering select, form#ordering input { clear: none; float: left; }
 

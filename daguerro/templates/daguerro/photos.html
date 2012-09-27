@@ -1,21 +1,37 @@
-{% include "daguerro/ordering_photos_form.html" %}
+{% load i18n %}
 
-{% if page.has_previous or page.has_next %}
-  {% include "daguerro/pagination_info.html" %}
-{% endif %}
+<div id="photos-browsing">
+  <div class="results-number">
+    {% if page.has_previous or page.has_next %}
+    <span class="result-number">{{ page.start_index }}</span>-<span class="result-number">{{ page.end_index }}</span> {% trans "of" %} <span class="result-number">{{ page.paginator.count }}</span> 
+    {% else %}
+    {{ page.paginator.count }}
+    {% endif %}
+    {% trans "photos" %}
+  </div>
+
+  <div id="photos-browsing-controls">
+    {% include "daguerro/ordering_photos_form.html" %}
+   
+    {% if page.has_previous or page.has_next %}
+      {% include "daguerro/pagination_info.html" %}
+    {% endif %}
+  </div>
+</div>
 
 {% with page.object_list as photos %}
 <ul id="photos" class="sortable">
   {% for item in photos %}
-    {% if item.object %}
-     {% with photo=item.object %}
-      {% include "daguerro/photo_li.html" %}
-     {% endwith %}
-    {% else %}
-     {% with photo=item %}
-      {% include "daguerro/photo_li.html" %}
-     {% endwith %}
-    {% endif %}
+  {% if item.object %}
+  {% with photo=item.object %}
+  {% include "daguerro/photo_li.html" %}
+  {% endwith %}
+  {% else %}
+  {% with photo=item %}
+  {% include "daguerro/photo_li.html" %}
+  {% endwith %}
+  {% endif %}
   {% endfor %}
 </ul>
 {% endwith %}
+
