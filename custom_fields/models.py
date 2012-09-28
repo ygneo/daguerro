@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.functional import curry
 from utils import safe_custom_field_name
 
+
 FIELD_TYPE_CHOICES = (
     ('CharField', _('CharField')),
     ('IntegerField', _('IntegerField')),
@@ -20,33 +21,26 @@ class CustomFieldsMixin(models.Model):
     class Meta:
         abstract = True
 
-    def _get_FIELD(self, name):
-        return self.custom_fields.get_value(name)
-
-    def __init__(self, *args, **kwargs):
-        super(CustomFieldsMixin, self).__init__(*args, **kwargs)
-        self.add_custom_fields_to_attrs()
-
-    def save(self, *args, **kwargs):
-        self.add_custom_fields_to_attrs()
-        super(CustomFieldsMixin, self).save(*args, **kwargs)
-
-    def add_custom_fields_to_attrs(self):
-        ctype = ContentType.objects.get_for_model(self)
-        for custom_field in CustomField.objects.filter(content_type=ctype):
-            field_name = safe_custom_field_name(custom_field.name)
-            setattr(self, '%s' % field_name, self._get_FIELD(custom_field.name))
+    def __getattr__(cls, key):
+        if key and key.startswith("cf_"):
+            return cls.custom_fields.get_value(key)
+        else:
+            return super(CustomFieldsMixin).__getattr__(cls, key)
 
 
 class CustomField(models.Model):
-    name = models.CharField(_('Name'), max_length=255)
+    name = models.CharField(_('Field name'), max_length=50, blank=True)
+    verbose_name = models.CharField(_('Verbose name'), max_length=50)
     field_type = models.CharField(_('Field type'), max_length=15, choices=FIELD_TYPE_CHOICES)
     content_type = models.ForeignKey(ContentType)
     required = models.BooleanField(_('Required'), default=False)
 
-
     def __unicode__(self):
-        return self.name
+        return self.verbose_name
+
+    def save(self, *args, **kwargs):
+        self.name = "cf_%s" % safe_custom_field_name(self.verbose_name)
+        super(CustomField, self).save(*args, **kwargs)
 
     def clean(self):
         Class = self.content_type.model_class()
@@ -55,14 +49,13 @@ class CustomField(models.Model):
                                   (self.content_type, self.name))
 
 
-
 class GenericCustomFieldManager(models.Manager):
 
     def get_value(self, name):
         try:
             return self.get(field__name=name).value
         except GenericCustomField.DoesNotExist:
-            return None
+            raise AttributeError
 
 
 class GenericCustomField(models.Model):

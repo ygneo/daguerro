@@ -24,7 +24,7 @@ class CustomFieldsMixin:
             if not FieldClass:
                 field_class_name = cf.field_type
                 FieldClass = getattr(forms, field_class_name)            
-            field = FieldClass(label=cf.name, required=cf.required,
+            field = FieldClass(label=cf.verbose_name, required=cf.required,
                                initial=initial.get(key, None))
             custom_fields[key] = field
         return custom_fields
