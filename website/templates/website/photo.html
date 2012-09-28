@@ -13,7 +13,7 @@
            <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a> {% if not forloop.last %}&raquo; {% endif %}
          {% endfor %}
     </div>
-      <h2>{{ photo.title }} {% if photo.get_custom_nombre_cientifico %}<span>{{ photo.get_custom_nombre_cientifico  }}</span>{% endif %}</h2>
+      <h2>{{ photo.title }} {% if photo.cf_nombre_cientifico %}<span>{{ photo.cf_nombre_cientifico }}</span>{% endif %}</h2>
     </div>
     <div id="photo_area">
       <div id="prev">
@@ -42,7 +42,7 @@
         <ul>
           {% for field in custom_fields %}
           <li>
-            <span id="field-name">{{ field.name }}</span>
+            <span id="field-name">{{ field }}</span>
             <span id="value">{{ field.value }}</span>
           </li>
           {% endfor %}
