@@ -10,7 +10,7 @@ class CustomFieldsIndexBase(indexes.DeclarativeMetaclass):
             field_name = safe_custom_field_name(cf.name)
             attrs.update({field_name: indexes.CharField(
                         null=True,
-                        model_attr="%s" % field_name)})
+                        model_attr="cf_%s" % field_name)})
         return super(CustomFieldsIndexBase, cls).__new__(cls, name, bases, attrs)
 
 

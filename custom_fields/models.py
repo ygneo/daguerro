@@ -54,8 +54,9 @@ class GenericCustomFieldManager(models.Manager):
     def get_value(self, name):
         try:
             return self.get(field__name=name).value
+        
         except GenericCustomField.DoesNotExist:
-            raise AttributeError
+            return None
 
 
 class GenericCustomField(models.Model):
