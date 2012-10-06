@@ -11,15 +11,19 @@
 <div id="photos">
   <ul>
     {% for item in page.object_list %}
-     {% if item.object %}
-      {% with photo=item.object %}
-       {% include "daguerro/photo_li.html" %}
-      {% endwith %}
-     {% else %}
-      {% with photo=item %}
-       {% include "daguerro/photo_li.html" %}
-      {% endwith %}
-     {% endif %}
+    {% with photo=item.object %}
+    <li id="photo_{{ photo.id }}">
+      <div class="photo">
+        <a href="{{ photo.get_website_url }}">
+          <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}" title="{{ photo.title }}"/>
+        </a>
+      </div>
+      <p>
+        <a href="{{ photo.title_slug }}">{{ photo.title }}</a>
+        <em>{{ photo.cf_nombre_cientifico }}</em>
+      </p>
+    </li>
+    {% endwith %}
     {% endfor %}
   </ul>
 </div>
