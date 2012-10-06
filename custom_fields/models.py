@@ -25,7 +25,7 @@ class CustomFieldsMixin(models.Model):
         if key and key.startswith("cf_"):
             return cls.custom_fields.get_value(key)
         else:
-            return super(CustomFieldsMixin).__getattr__(cls, key)
+            raise AttributeError
 
 
 class CustomField(models.Model):
@@ -39,7 +39,7 @@ class CustomField(models.Model):
         return self.verbose_name
 
     def save(self, *args, **kwargs):
-        self.name = "cf_%s" % safe_custom_field_name(self.verbose_name)
+        self.name = "cf_" + safe_custom_field_name(self.verbose_name)
         super(CustomField, self).save(*args, **kwargs)
 
     def clean(self):
