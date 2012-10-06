@@ -1,11 +1,9 @@
 import os
 import django
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import patterns, url
 from django.conf import settings
-from django.views.generic.simple import direct_to_template
 from django.views.generic.simple import redirect_to
 from daguerro.views import SearchPhotosView
-from photologue.models import Photo
 from photologue.search_indexes import PublicPhotosSearchQuerySet
 
 js_info_dict = {

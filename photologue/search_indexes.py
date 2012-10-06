@@ -1,5 +1,3 @@
-import datetime
-from django.db.models import Q
 from haystack import indexes
 from photologue.models import Photo, PhotoQuerySet
 from custom_fields.indexes import CustomFieldsIndex
