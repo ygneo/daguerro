@@ -1,27 +1,22 @@
 # -*- coding: utf-8 -*-
 import datetime
 from south.db import db
-from south.v2 import SchemaMigration
+from south.v2 import DataMigration
 from django.db import models
+from custom_fields.utils import safe_custom_field_name
 
-
-class Migration(SchemaMigration):
-
-    depends_on = (
-        ("custom_fields", "0001_add_field_CustomField_verbose_name"),
-    )
+class Migration(DataMigration):
 
     def forwards(self, orm):
-        # Adding field 'Photo.is_gallery_thumbnail'
-        db.add_column('photologue_photo', 'is_gallery_thumbnail',
-                      self.gf('django.db.models.fields.BooleanField')(default=True),
-                      keep_default=False)
-
+        print "Updating custom fields..."
+        for cf in orm.CustomField.objects.all():
+            print cf.verbose_name, cf.name
+            cf.verbose_name = cf.name
+            cf.name = "cf_" + safe_custom_field_name(cf.verbose_name)
+            cf.save()
 
     def backwards(self, orm):
-        # Deleting field 'Photo.is_gallery_thumbnail'
-        db.delete_column('photologue_photo', 'is_gallery_thumbnail')
-
+        pass
 
     models = {
         'contenttypes.contenttype': {
@@ -36,8 +31,9 @@ class Migration(SchemaMigration):
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
             'field_type': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'required': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
+            'required': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'verbose_name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
         'custom_fields.genericcustomfield': {
             'Meta': {'unique_together': "(('field', 'content_type', 'object_id'),)", 'object_name': 'GenericCustomField'},
@@ -59,6 +55,7 @@ class Migration(SchemaMigration):
             'parent': ('mptt.fields.TreeForeignKey', [], {'blank': 'True', 'related_name': "'children'", 'null': 'True', 'to': "orm['photologue.Gallery']"}),
             'photo': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'related_gallery'", 'null': 'True', 'to': "orm['photologue.Photo']"}),
             'photos': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'galleries'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['photologue.Photo']"}),
+            'photos_ordering': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'rght': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
             'tags': ('photologue.models.TagField', [], {'max_length': '255', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
@@ -77,7 +74,7 @@ class Migration(SchemaMigration):
             'zip_file': ('django.db.models.fields.files.FileField', [], {'max_length': '100'})
         },
         'photologue.photo': {
-            'Meta': {'ordering': "['order', 'title']", 'object_name': 'Photo'},
+            'Meta': {'object_name': 'Photo'},
             'caption': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'crop_from': ('django.db.models.fields.CharField', [], {'default': "'center'", 'max_length': '10', 'blank': 'True'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
@@ -85,7 +82,7 @@ class Migration(SchemaMigration):
             'effect': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'photo_related'", 'null': 'True', 'to': "orm['photologue.PhotoEffect']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'is_gallery_thumbnail': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'is_gallery_thumbnail': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'is_public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'latitude': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
             'location_title': ('django.db.models.fields.CharField', [], {'max_length': '300', 'null': 'True', 'blank': 'True'}),
@@ -137,3 +134,4 @@ class Migration(SchemaMigration):
     }
 
     complete_apps = ['photologue']
+    symmetrical = True

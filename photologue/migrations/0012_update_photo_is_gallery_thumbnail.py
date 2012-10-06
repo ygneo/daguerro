@@ -7,6 +7,10 @@ from photologue.models import Photo
 
 class Migration(DataMigration):
 
+    depends_on = (
+        ("custom_fields", "0002_update_custom_fields"),
+    )
+
     def forwards(self, orm):
         print "Updating", orm.Photo.objects.all().count(), "photos"
         for photo in Photo.objects.all():
