@@ -2,7 +2,6 @@
 import os
 import simplejson
 from django.conf import settings
-from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect,QueryDict
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
@@ -12,12 +11,10 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
-from django.http import HttpResponseRedirect
 from photologue.models import Gallery, Photo
 from haystack.views import SearchView
 from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm, \
     SearchOptionsForm
-from daguerro.context_processors import category_thread
 from daguerro.utils import process_category_thread
 from daguerro.shorcuts import redirect_to_gallery
 from daguerro.models import DaguerroFlatPage
@@ -32,8 +29,9 @@ def index(request, slugs=None):
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
     categories = Gallery.objects.filter(parent__title_slug=parent_slug)
     if current_category:
-        order_by = current_category.photos_ordering.split(",")
-        photos = current_category.photos.all().order_by(*order_by)
+        photos = current_category.photos.all()
+        if current_category.photos_ordering:
+            photos = photos.order_by(current_category.photos_ordering)
     else:
         photos = Photo.objects.orphans()
     

@@ -2,16 +2,14 @@
 # -*- coding: utf-8 -*-
 import os
 from django.conf import settings
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.core.paginator import Paginator, InvalidPage
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
-from django.core.mail import send_mail, BadHeaderError
-from django.template import Context, Template
+from django.core.mail import BadHeaderError
+from django.template import Context
 from django.template.loader import get_template
-from django.core.mail import EmailMultiAlternatives, EmailMessage
-from django.http import Http404
-from photologue.models import Gallery, Photo
+from django.core.mail import EmailMultiAlternatives
+from photologue.models import Photo
 from daguerro.utils import process_category_thread
 from daguerro.paginator import DiggPaginator
 from daguerro.forms import SearchOptionsForm
@@ -28,11 +26,13 @@ def gallery(request, slugs=None):
         children_galleries = current_gallery.get_children().filter(is_public=True)
         brother_galleries = current_gallery.get_siblings(include_self=True).filter(is_public=True)
         photos = current_gallery.photos.public()
+        if current_gallery.photos_ordering:
+            photos = photos.order_by(current_gallery.photos_ordering)
     else:
         brother_galleries = None
         children_galleries = None
         photos = Photo.objects.public().orphans()
-
+    
     page_no = int(request.GET.get('page', 1))
     paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
     template = 'website/gallery.html' if slugs else 'website/index.html'  

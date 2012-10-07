@@ -1,10 +1,8 @@
-import json
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from django.utils.functional import curry
 from utils import safe_custom_field_name
 
 
@@ -14,18 +12,6 @@ FIELD_TYPE_CHOICES = (
     ('FloatField', _('FloatField')),
     ('URLField', _('URLField')),
     )
-
-
-class CustomFieldsMixin(models.Model):
-
-    class Meta:
-        abstract = True
-
-    def __getattr__(cls, key):
-        if key and key.startswith("cf_"):
-            return cls.custom_fields.get_value(key)
-        else:
-            raise AttributeError
 
 
 class CustomField(models.Model):
@@ -49,12 +35,35 @@ class CustomField(models.Model):
                                   (self.content_type, self.name))
 
 
+class CustomFieldsMixin(models.Model):
+
+    class Meta:
+        abstract = True
+
+    def __getattr__(cls, key):
+        if key and key.startswith("cf_"):
+            return cls.custom_fields.get_value(key)
+        else:
+            raise AttributeError
+
+
+class CustomFieldQuerySet(models.query.QuerySet):
+    
+    def order_by(self, *fields):
+        custom_fields = [field for field in fields if field and field.startswith("cf_")]
+        core_fields = [field for field in fields if field and field not in custom_fields]
+        qs = super(CustomFieldQuerySet, self).order_by(*core_fields)
+        if custom_fields:
+            for field in custom_fields:
+                qs = qs.filter(custom_fields__field__name=field).order_by("custom_fields__value")
+        return qs
+
+
 class GenericCustomFieldManager(models.Manager):
 
     def get_value(self, name):
         try:
             return self.get(field__name=name).value
-        
         except GenericCustomField.DoesNotExist:
             return None
 

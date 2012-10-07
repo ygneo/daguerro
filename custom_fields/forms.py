@@ -1,4 +1,4 @@
-from models import CustomField, GenericCustomField
+from models import CustomField
 from django import forms
 from utils import safe_custom_field_name
 from form_utils.forms import BetterModelForm

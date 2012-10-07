@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import random
-import shutil
 import zipfile
 
 from datetime import datetime
@@ -16,15 +15,13 @@ from django.template.defaultfilters import slugify
 from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import smart_unicode
-from django.core.paginator import Paginator
-from django.db.models import Q, Count
+from django.db.models import Count
 from django.contrib.contenttypes import generic
 
 from south.modelsinspector import add_introspection_rules
 from mptt.models import MPTTModel, TreeForeignKey
-from mptt.managers import TreeManager
 
-from custom_fields.models import GenericCustomField, CustomFieldsMixin
+from custom_fields.models import GenericCustomField, CustomFieldsMixin, CustomFieldQuerySet
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -531,7 +528,7 @@ class ImageModel(models.Model):
         super(ImageModel, self).delete()
 
 
-class PhotoQuerySet(models.query.QuerySet):
+class PhotoQuerySet(CustomFieldQuerySet, models.query.QuerySet):
 
     def public(self):
         return self.filter(is_public=True)
