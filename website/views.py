@@ -99,7 +99,8 @@ def _send_request_emails(subject, message, sender_email, photo_items):
         _send_html_mail(EmailMultiAlternatives(subject, 
                                                body, 
                                                settings.EMAIL_HOST_USER,
-                                               [settings.EMAIL_HOST_USER],)
+                                               [settings.EMAIL_HOST_USER],
+                                               headers = {'Reply-To': sender_email})
                         )
         _send_html_mail(EmailMultiAlternatives("[Barres Fotonatura] Pedido enviado", 
                                                settings.DAGUERRO_EMAIL_BODY,
