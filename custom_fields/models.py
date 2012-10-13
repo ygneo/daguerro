@@ -44,7 +44,7 @@ class CustomFieldsMixin(models.Model):
         if key and key.startswith("cf_"):
             return cls.custom_fields.get_value(key)
         else:
-            raise AttributeError
+            raise AttributeError("Object using CustomFieldsMixin has no attribute '%s'" % key)
 
 
 class CustomFieldQuerySet(models.query.QuerySet):

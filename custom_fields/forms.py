@@ -56,8 +56,7 @@ class CustomFieldsModelForm(BetterModelForm,
                             CustomFieldsMixin):
 
     def __init__(self, *args, **kwargs):
-        BetterModelForm.__init__(
-            self, *args, **kwargs)
+        BetterModelForm.__init__(self, *args, **kwargs)
         CustomFieldsMixin.__init__(self)
 
         if self.instance:
