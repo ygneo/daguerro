@@ -134,7 +134,7 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     parent = TreeForeignKey('self', verbose_name=_("Parent category"), blank=True, null=True, related_name='children')
     order = models.IntegerField(verbose_name=_("Order"), blank=True, null=True)
     description = models.TextField(_('Description'), blank=True)
-    photo = models.ForeignKey('Photo', verbose_name=_("Photo"), blank=True, null=True, related_name="related_gallery")
+    photo = models.ForeignKey('Photo', verbose_name=_("Photo"), blank=True, null=True, related_name="related_gallery", on_delete=models.SET_NULL)
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public galleries will be displayed in the default views.'))
     photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
@@ -631,12 +631,6 @@ class Photo(ImageModel, CustomFieldsMixin):
             print avaliable_title
         return avaliable_title
         
-    def delete(self):
-        """Related gallery using a photo as its representation image is not deleted"""
-        self.galleries.clear()
-        super(Photo, self).delete()
-        
-
 
 class BaseEffect(models.Model):
     name = models.CharField(_('name'), max_length=30, unique=True)

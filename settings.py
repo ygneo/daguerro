@@ -217,6 +217,7 @@ DAG_DEFAULT_PHOTO_ORDERING_FIELDS = [
     {'name': 'title', 'verbose_name': 'Titulo'},
     {'name': 'date_added', 'verbose_name': 'Fecha de creacion'},
     {'name': 'cf_nombre_cientifico', 'verbose_name': 'Nombre cientifico'},
+    {'name': 'cf_test', 'verbose_name': 'Test'},
     ]
 DAG_DEFAULT_PHOTO_ORDERING = 'title'
 
