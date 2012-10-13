@@ -600,14 +600,6 @@ class Photo(ImageModel, CustomFieldsMixin):
     def get_absolute_url(self):
         return reverse('pl-photo', args=[self.title_slug])
 
-    def get_daguerro_url(self):
-        galleries = self.galleries.all()
-        if galleries:
-            slugs_path = galleries[0].slugs_path() 
-        else:
-            slugs_path = ''
-        return reverse('daguerro-gallery-photo', args=[slugs_path, self.title_slug])
-
     def get_website_url(self):
         try:
             slugs = self.galleries.all()[0].slugs_path()

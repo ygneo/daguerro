@@ -1,8 +1,9 @@
 <li id="photo_{{ photo.id }}">
   <div class="photo">
-    <a href="{{ photo.get_daguerro_url }}">
+    {% url daguerro-gallery-photo current_category.slugs_path photo.title_slug as photo_url %}
+    <a href="{{ photo_url }}">
       <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}" title="{{ photo.title }}"/>
     </a>
        </div>
-  <p><a href="{{ photo.get_daguerro_url }}">{{ photo.title }}</a></p>
+  <p><a href="{{ photo_url }}">{{ photo.title }}</a></p>
 </li>
