@@ -27,10 +27,11 @@
      {% for photo in photos_page.object_list %}
      <li>
        <div class="photo">
-         <a href="{% url website-photo gallery.slugs_path, photo.title_slug %}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
+         {% url website-photo gallery.slugs_path, photo.title_slug as photo_url %}
+         <a href="{{ photo_url }}"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
        </div>
        <p>
-         <a href="{{ photo.get_website_url }}">{{ photo.title }}</a>
+         <a href="{{ photo_url }}">{{ photo.title }}</a>
          {% if photo.cf_nombre_cientifico %}<em>{{ photo.cf_nombre_cientifico }}</em>{% endif %}
        </p>
      </li>
