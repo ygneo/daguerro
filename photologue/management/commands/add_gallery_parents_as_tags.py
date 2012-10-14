@@ -1,5 +1,4 @@
-from mptt.models import MPTTModelBase
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from photologue.models import Photo
 
 
