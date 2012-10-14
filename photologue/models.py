@@ -151,6 +151,10 @@ class Gallery(MPTTModel, CustomFieldsMixin):
 
     class MPTTMeta:
         parent_attr = 'parent'
+    
+    @property
+    def photos_ordering_field(self):
+        return self.photos_ordering.replace("-", "")
 
     def __unicode__(self):
         return self.title
@@ -161,6 +165,7 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     def get_absolute_url(self):
         return reverse('pl-gallery', args=[self.title_slug])
 
+    @property
     def photos_ordering_type(self):
         if self.photos_ordering.startswith("-"):
             return "-"

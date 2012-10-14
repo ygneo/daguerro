@@ -8,7 +8,7 @@
   <select id="ordering_fields" name="ordering_field">  
     {% for field in settings.default_photo_ordering_fields %}
     <option value="{{ field.name }}"
-            {% if field.name == current_category.photos_ordering %}selected="selected"{% endif %}>
+            {% if field.name == current_category.photos_ordering_field %}selected="selected"{% endif %}>
       {{ field.verbose_name }}
     </option>
     {% endfor %}
