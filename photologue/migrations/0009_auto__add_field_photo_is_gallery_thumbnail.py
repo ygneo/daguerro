@@ -7,10 +7,6 @@ from django.db import models
 
 class Migration(SchemaMigration):
 
-    depends_on = (
-        ("custom_fields", "0001_add_field_CustomField_verbose_name"),
-    )
-
     def forwards(self, orm):
         # Adding field 'Photo.is_gallery_thumbnail'
         db.add_column('photologue_photo', 'is_gallery_thumbnail',

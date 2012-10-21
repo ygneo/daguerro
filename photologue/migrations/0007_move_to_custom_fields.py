@@ -4,8 +4,7 @@ from south.db import db
 from south.v2 import DataMigration
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
-from photologue.models import Photo
-from custom_fields.models import CustomField, GenericCustomField
+from custom_fields.models import CustomField
 
 
 class Migration(DataMigration):
@@ -22,13 +21,13 @@ class Migration(DataMigration):
             field_type="CharField",
             content_type=ctype,
             )
-        for p in Photo.objects.all():
+        for p in orm.Photo.objects.all():
             print p.title.encode("utf-8")
             p.custom_fields.add(GenericCustomField(
                     field=f1,
                     value=p.alternative_title)
             )
-            p.custom_fields.add(GenericCustomField(field=f2, value=p.family))
+            p.custom_fields.add(orm.GenericCustomField(field=f2, value=p.family))
             p.save()
             
 
