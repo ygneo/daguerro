@@ -1,7 +1,7 @@
 from fabric.api import *
 
 env.hosts = ['ygneo@barresfotonatura.com']
-env['project_path'] = "~/django_projects/barres"
+env['project_path'] = "~/django_projects/barres-site/barres"
 
 
 def git_status():
