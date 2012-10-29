@@ -31,7 +31,7 @@ def index(request, slugs=None):
     if current_category:
         photos = current_category.photos.all()
         if current_category.photos_ordering:
-            photos = photos.order_by(current_category.photos_ordering)
+            photos = photos.order_by_custom_fields("order", current_category.photos_ordering)
     else:
         photos = Photo.objects.orphans()
     

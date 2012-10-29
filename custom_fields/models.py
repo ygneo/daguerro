@@ -49,26 +49,22 @@ class CustomFieldsMixin(models.Model):
 
 class CustomFieldQuerySet(models.query.QuerySet):
     
-    def order_by(self, *fields):
-        custom_fields = [field for field in fields
-                         if field.startswith("-cf_") or field.startswith("cf_")]
-        if custom_fields:
-            if len(custom_fields) > 1:
-                raise NotImplementedError("""CusfomFieldQuerySet order_by does not support
-                                          multiple ordering using custom fields""")
-            else:
-                field = fields[0]
-                cfs = dict(CustomField.objects.all().values_list("name", "id"))
-                field_id = cfs[field.replace("-", "")]
-                qs = self.extra(select={"value": 
-                                      """SELECT value 
+    def order_by_custom_fields(self, *fields):
+        qs = self
+        cfs_dict = dict(CustomField.objects.all().values_list("name", "id"))
+        custom_fields = [field for field in fields 
+                         if field and field.startswith("cf_")]
+        core_fields = set(fields) - set(custom_fields)
+        for field in custom_fields:
+            field_id = cfs_dict[field.replace("-", "")]
+            qs = qs.extra(select={"value": 
+                                  """SELECT value 
                                          FROM custom_fields_genericcustomfield 
                                          WHERE field_id=%s AND object_id=photologue_photo.id"""},
-                                select_params=(field_id,))
-                direction = "-" if field.startswith("-") else ""
-                qs = qs.order_by("%svalue" % direction)
-        else:
-            qs = super(CustomFieldQuerySet, self).order_by(*fields)
+                          select_params=(field_id,))
+            direction = "-" if field.startswith("-") else ""
+            qs = qs.order_by("%svalue" % direction)
+        qs = qs.order_by(*core_fields)
         return qs
 
 
