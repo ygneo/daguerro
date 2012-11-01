@@ -14,8 +14,10 @@ li.disabled { background-color: #CCC !important;}
 #header a { color: white; }
 #header a:visited { color: white; }
 #header a:hover { color: white; text-decoration: underline; }
+#header #user { float: right; }
+#header #user a { float: left; margin-left: 1em;}
 #header #user a#logout { background: url('../img/on-off.png') no-repeat; padding-left: 24px; }
-#header #user a#logout:hover { background: url('../img/on-off.png') no-repeat;}
+#header #user a#logout:hover { background: url('../img/on-off.png') no-repeat;  }
 #header #user a#user_name { margin-right: 1ex; }
 
 #tabs { background: grey; float: left; padding-top:1ex; width:100%; }
@@ -117,7 +119,7 @@ li.disabled { background-color: #CCC !important;}
    cursor: pointer;
 }
 #buttons li { margin-right: 1ex; }
-#buttons ul li a { color: white; text-decoration:none; padding-top:.2ex; padding-left: 24px; display: block; height: 16px; }
+#buttons ul li a { color: white; text-decoration:none; padding-top:.2ex; padding-left: 36px; display: block; height: 24px; }
 #buttons ul li:hover { background: #58880C; }
 #buttons ul li:hover a { color: white; }
 #buttons ul li#upload-photo a { background: url('../img/photo.png') no-repeat;  }

@@ -7,12 +7,20 @@
 <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/results-list.js"></script>
 {% endblock %}
 
-{% block section %} {% trans "Users" %}{% endblock %}
-
 {% block nav%}
 {% activetab "topnav" "users" %}
 {{ block.super }}
 {% endblock %}
+
+{% block subheader %}{% endblock subheader %}
+{% block search_form %}{% endblock search_form %}
+{% block buttons %}
+<div id="buttons">
+  <ul>
+    <li id="add-user"><a href="{% url daguerro-user-add %}">{% trans "Create user"%}</a></li>
+  </ul>
+</div>
+{% endblock buttons %}
 
 {% block content %}
 {% if users %}
@@ -73,9 +81,4 @@
   <p>{% trans "No users" %}</p>
 </div>
 {% endif %}
-<div id="buttons">
-  <ul>
-    <li id="add-user"><a href="{% url daguerro-user-add %}">{% trans "Create user"%}</a></li>
-  </ul>
-</div>
 {% endblock %}

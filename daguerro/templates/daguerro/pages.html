@@ -7,12 +7,20 @@
 <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/results-list.js"></script>
 {% endblock %}
 
-{% block section %} {% trans "Pages" %}{% endblock %}
-
 {% block nav%}
 {% activetab "topnav" "pages" %}
 {{ block.super }}
 {% endblock %}
+
+{% block subheader %}{% endblock subheader %}
+{% block search_form %}{% endblock search_form %}
+{% block buttons %}
+<div id="buttons">
+  <ul>
+    <li id="add-page"><a href="{% url daguerro-page-add %}">{% trans "Create page"%}</a></li>
+  </ul>
+</div>
+{% endblock buttons %}
 
 {% block content %}
 {% if pages %}
@@ -59,9 +67,4 @@
   <p>{% trans "No pages" %}</p>
 </div>
 {% endif %}
-<div id="buttons">
-  <ul>
-    <li id="add-page"><a href="{% url daguerro-page-add %}">{% trans "Create page"%}</a></li>
-  </ul>
-</div>
 {% endblock %}
