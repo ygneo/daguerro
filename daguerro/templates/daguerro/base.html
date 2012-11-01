@@ -1,15 +1,10 @@
 {% load i18n %}
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="{{ STATIC_URL }}daguerro/css/styles.css" />
     <link rel="shortcut icon" href="{{ STATIC_URL}}daguerro/img/favicon.ico">
-    <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/jquery-1.4.4.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/jquery-ui-1.8.6.custom.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/daguerro.js"></script>
-    {% block extra_js %}{% endblock %} 
     {% block extra_style %}{% endblock %} 
     {% block extra_media %}{% endblock %} 
     <title>{% block title %}{% trans "Administración de" %} {{ current_site.name }} | {%block section %}{% endblock %} | Daguero CMS {% endblock %}</title>
@@ -23,6 +18,11 @@
          <h1 id="{{ current_action }}">{{ current_action_title }}</h1>
         {% endif %}
         {% block content %}{% endblock %}
+	 <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/jquery-1.4.4.min.js"></script>
+	 <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/jquery-ui-1.8.6.custom.min.js"></script>
+	 <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="{{ STATIC_URL }}daguerro/js/daguerro.js"></script>
+	{% block extra_js %}{% endblock %} 
       </div>
     </div>
   </body>
