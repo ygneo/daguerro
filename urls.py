@@ -3,6 +3,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.views.generic.simple import direct_to_template
 
+
 urlpatterns = patterns('',
                        (r'^daguerro/', include('daguerro.urls')),
                        (r'^tinymce/', include('tinymce.urls')),
