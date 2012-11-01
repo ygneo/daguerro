@@ -53,8 +53,9 @@ class CustomFieldQuerySet(models.query.QuerySet):
         qs = self
         cfs_dict = dict(CustomField.objects.all().values_list("name", "id"))
         custom_fields = [field for field in fields 
-                         if field and field.startswith("cf_")]
+                         if field and field.replace("-", "").startswith("cf_")]
         core_fields = set(fields) - set(custom_fields)
+        qs = qs.order_by(*core_fields)
         for field in custom_fields:
             field_id = cfs_dict[field.replace("-", "")]
             qs = qs.extra(select={"value": 
@@ -64,7 +65,6 @@ class CustomFieldQuerySet(models.query.QuerySet):
                           select_params=(field_id,))
             direction = "-" if field.startswith("-") else ""
             qs = qs.order_by("%svalue" % direction)
-        qs = qs.order_by(*core_fields)
         return qs
 
 

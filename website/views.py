@@ -27,7 +27,7 @@ def gallery(request, slugs=None):
         brother_galleries = current_gallery.get_siblings(include_self=True).filter(is_public=True)
         photos = current_gallery.photos.public()
         if current_gallery.photos_ordering:
-            photos = photos.order_by(current_gallery.photos_ordering)
+            photos = photos.order_by_custom_fields(current_gallery.photos_ordering)
     else:
         brother_galleries = None
         children_galleries = None
