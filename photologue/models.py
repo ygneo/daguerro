@@ -594,7 +594,6 @@ class Photo(ImageModel, CustomFieldsMixin):
     def save(self, *args, **kwargs):
         self.title_slug = slugify(self.title)
         self.tags = self.tags.lower()
-        self.is_gallery_thumbnail = self.related_gallery.count()
         super(Photo, self).save(*args, **kwargs)
 
     def public_galleries(self):

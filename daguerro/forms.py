@@ -130,7 +130,7 @@ class GalleryForm(CustomFieldsModelForm):
             except Photo.DoesNotExist:
                 raise forms.ValidationError(_('Photo does not exist'))
         elif isinstance(photo, InMemoryUploadedFile):
-            new_photo = Photo(title=photo.name, image=photo)
+            new_photo = Photo(title=photo.name, image=photo, is_gallery_thumbnail=True)
             cleaned_data['photo'] = new_photo
             try:
                 new_photo.save()
