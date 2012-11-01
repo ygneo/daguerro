@@ -144,7 +144,6 @@ class Gallery(MPTTModel, CustomFieldsMixin):
     custom_fields = generic.GenericRelation(GenericCustomField)
 
     class Meta:
-        ordering = ['order']
         get_latest_by = 'date_added'
         verbose_name = _('categoria')
         verbose_name_plural = _('categorias')
