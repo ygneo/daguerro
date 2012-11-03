@@ -180,20 +180,7 @@ LOGGING = {
     }
 }
 
-DAG_PHOTO_THUMB_SIZE_KEY = 'photo'
-DAG_PHOTO_ORIGINAL_SIZE_KEY = 'original'
-DAG_GALLERY_THUMB_SIZE_KEY = 'gallery'
-DAG_NO_IMAGE = {DAG_PHOTO_ORIGINAL_SIZE_KEY: 'daguerro/img/no_picture_photo.png',
-                DAG_PHOTO_THUMB_SIZE_KEY: 'daguerro/img/no_picture_photo.png',
-                DAG_GALLERY_THUMB_SIZE_KEY: 'daguerro/img/no_picture_gallery.png'
-                }
-DAG_ADD_PHOTO_IN_ROOT = False
-DAG_PHOTO_SLUG = 'foto'
 DAG_RESULTS_PER_PAGE = 20
-DAG_SEARCH_FIELDS_INITIAL = {"title": True, "tags": True, 
-                             "cf_nombre_cientifico": True,
-                             "cf_familia": True,
-                             }
 
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = DAG_RESULTS_PER_PAGE
 HAYSTACK_CONNECTIONS = {
@@ -203,6 +190,12 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+DAG_ADD_PHOTO_IN_ROOT = False
+DAG_PHOTO_SLUG = 'foto'
+DAG_SEARCH_FIELDS_INITIAL = {"title": True, "tags": True, 
+                             "cf_nombre_cientifico": True,
+                             "cf_familia": True,
+                             }
 DAG_PHOTO_THUMB_SIZE_KEY = 'photo'
 DAG_PHOTO_ORIGINAL_SIZE_KEY = 'original'
 DAG_GALLERY_THUMB_SIZE_KEY = 'gallery'
