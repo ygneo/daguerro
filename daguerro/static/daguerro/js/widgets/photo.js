@@ -18,7 +18,8 @@ $(function() {
                                     response(search_cache[term]);
                                     return;
                                 }
-                                lastXhr = $.getJSON("/daguerro/search-photo.json", request, function(data, status, xhr) {
+			    url = resolve("daguerro-search-photo-ajax", {format: "json"})
+                            lastXhr = $.getJSON(url, request, function(data, status, xhr) {
                                         if (use_search_cache) {
                                             search_cache[term] = data;
                                         }
