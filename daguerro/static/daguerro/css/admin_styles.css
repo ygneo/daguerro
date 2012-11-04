@@ -321,23 +321,23 @@ input#search_button {
 
 div#search_options {
     display: none;
-	clear: both; 
-	position: absolute;
-	width: 345px;
-	background: white;
-	color: #111;
-	padding: 8px; 
-	text-align: left; 
-	border-radius: 4px;
+    clear: both; 
+    position: absolute;
+    width: 312px;
+    background: white;
+    color: #111;
+    padding: 8px; 
+    text-align: left; 
+    border-radius: 4px;
     ms-border-radius: 4px;
     moz-border-radius: 4px;
     webkit-border-radius: 4px;
     khtml-border-radius: 4px;
-	-webkit-box-shadow: 1px 1px 0px 0px #58880C;
-	-moz-box-shadow: 1px 1px 0px 0px #58880C;
-	box-shadow: 1px 1px 0px 0px #58880C;
-	line-height: 150%; 
-	z-index: 99;
+    -webkit-box-shadow: 1px 1px 0px 0px #58880C;
+    -moz-box-shadow: 1px 1px 0px 0px #58880C;
+    box-shadow: 1px 1px 0px 0px #58880C;
+    line-height: 150%; 
+    z-index: 99;
 }
 
 
@@ -351,21 +351,20 @@ div#search_options {
 }
 
 #search_options input[type=submit] {
-	background: #58880C;
-	float: right; 
-	text-align: center;
-	color: white; 
-	padding: 0;
-	width: 4em;
-	cursor: pointer;
+    background: #58880C;
+    float: right; 
+    text-align: center;
+    color: white; 
+    padding: 0;
+    cursor: pointer;
     padding: 1ex; 
-	border-radius: 4px;
+    border-radius: 4px;
     ms-border-radius: 4px;
     moz-border-radius: 4px;
     webkit-border-radius: 4px;
     khtml-border-radius: 4px;
-	-webkit-box-shadow: 1px 1px 0px 0px #58880C;
-	-moz-box-shadow: 1px 1px 0px 0px #58880C;
+    -webkit-box-shadow: 1px 1px 0px 0px #58880C;
+    -moz-box-shadow: 1px 1px 0px 0px #58880C;
 }
 
 #search_options fieldset  { clear: left; margin-bottom: 1ex;}
