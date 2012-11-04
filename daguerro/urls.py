@@ -31,7 +31,7 @@ urlpatterns += patterns(
     url(r'^gallery/(?P<slugs>.+)$', 'index', name='daguerro-gallery'),
 
     # Searching urls
-    #url(r'^search-photo\.?(?P<format>json|html)?', 
+    url(r'^search-photo.(?P<format>json)', 'search_photo', name="daguerro-search-photo-ajax"),
     url(r'^search-photo/$', 
         SearchPhotosView(template='daguerro/search_results.html'),
         name='daguerro-search-photo'),
