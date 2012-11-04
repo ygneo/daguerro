@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-01 14:01+0100\n"
+"POT-Creation-Date: 2012-11-04 23:32+0100\n"
 "PO-Revision-Date: 2011-07-15 20:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "Categoría(s)"
 msgid "Location <a class=\"no_location\">No location</a>"
 msgstr "Localización <a class=\"no_location\">No usar localización</a>"
 
-#: forms.py:99 forms.py:235 templates/daguerro/pages.html:25
+#: forms.py:99 forms.py:235 templates/daguerro/pages.html:33
 msgid "Title"
 msgstr "Título"
 
@@ -52,7 +52,7 @@ msgstr "Descripción"
 msgid "Photo does not exist"
 msgstr "La foto no existe"
 
-#: forms.py:155 templates/daguerro/pages.html:26
+#: forms.py:155 templates/daguerro/pages.html:34
 msgid "Public"
 msgstr "Pública"
 
@@ -65,7 +65,6 @@ msgid "Content"
 msgstr "Contenido"
 
 #: forms.py:189
-#, fuzzy
 msgid "Username"
 msgstr "Usuario"
 
@@ -79,41 +78,39 @@ msgstr "No puedes desactivar tu propio usuario."
 
 #: forms.py:228
 msgid "Total match"
-msgstr ""
+msgstr "Coincencia completa"
 
 #: forms.py:229
 msgid "Partial match"
-msgstr ""
+msgstr "Coincidencia parcial"
 
 #: forms.py:232
 msgid "All galleries"
-msgstr ""
+msgstr "Todas las categorías"
 
 #: forms.py:233
 msgid "Only some galleries"
-msgstr ""
+msgstr "Solo algunas categorías"
 
 #: forms.py:236
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: forms.py:238
-#, fuzzy
 msgid "Location"
 msgstr "Pie de foto"
 
 #: forms.py:246
-#, fuzzy
 msgid "Galleries"
-msgstr "Galería"
+msgstr "Categorias"
 
 #: forms.py:291
 msgid "At least one of these checkboxes need to be checked:"
-msgstr ""
+msgstr "Al menos uno de estas opciones tiene que marcarse"
 
 #: utils.py:16 utils.py:22
 msgid "Galeria"
-msgstr "Galería"
+msgstr "Categoría"
 
 #: views.py:61
 msgid "Edit photography"
@@ -139,7 +136,7 @@ msgstr "Editar Página"
 msgid "Add Page"
 msgstr "Añadir Página"
 
-#: views.py:333 templates/daguerro/pages.html:10
+#: views.py:333
 msgid "Pages"
 msgstr "Páginas"
 
@@ -151,7 +148,7 @@ msgstr "Editar Usuario"
 msgid "Add User"
 msgstr "Añadir Usuario"
 
-#: views.py:384 templates/daguerro/users.html:10
+#: views.py:384
 msgid "Users"
 msgstr "Usuarios"
 
@@ -231,8 +228,8 @@ msgstr "¿Enlazar?"
 msgid "Yes"
 msgstr "Sí"
 
-#: widgets.py:207 templates/daguerro/pages.html:38
-#: templates/daguerro/users.html:52
+#: widgets.py:207 templates/daguerro/pages.html:46
+#: templates/daguerro/users.html:60
 msgid "No"
 msgstr "No"
 
@@ -240,7 +237,7 @@ msgstr "No"
 msgid "Unlink"
 msgstr "Desenlazar"
 
-#: templates/daguerro/base.html:15
+#: templates/daguerro/base.html:16
 msgid "Administración de"
 msgstr ""
 
@@ -250,11 +247,11 @@ msgstr ""
 
 #: templates/daguerro/base_admin.html:15
 msgid "Administración del sitio"
-msgstr ""
+msgstr "Site Administration"
 
 #: templates/daguerro/base_admin.html:20
 msgid "Salir"
-msgstr ""
+msgstr "Exit"
 
 #: templates/daguerro/base_admin.html:27
 #, fuzzy
@@ -285,25 +282,63 @@ msgstr "Crear categoría"
 msgid "Edit"
 msgstr "Editar"
 
-#: templates/daguerro/gallery.html:43 templates/daguerro/gallery_form.html:53
-#: templates/daguerro/pages.html:50 templates/daguerro/photo.html:58
-#: templates/daguerro/users.html:64
+#: templates/daguerro/gallery.html:45 templates/daguerro/gallery.html.py:46
+#: templates/daguerro/gallery_form.html:53 templates/daguerro/pages.html:58
+#: templates/daguerro/photo.html:58 templates/daguerro/users.html:72
 msgid "Delete"
 msgstr "Eliminar"
 
-#: templates/daguerro/gallery.html:54
+#: templates/daguerro/gallery.html:57
 msgid "photo(s) title contains"
 msgstr "foto(s) contienen en su título"
 
-#: templates/daguerro/gallery.html:75
+#: templates/daguerro/gallery.html:78
 msgid "No categories nor images"
 msgstr "No hay categorías ni fotografías"
+
+#: templates/daguerro/gallery_delete_modal.html:6
+#, fuzzy
+msgid "Delete gallery"
+msgstr "Editar Galería"
+
+#: templates/daguerro/gallery_delete_modal.html:11
+msgid "Close"
+msgstr "Cerrar"
+
+#: templates/daguerro/gallery_delete_modal.html:12
+msgid "Yes, delete gallery and all contents"
+msgstr "Sí, eliminar categoría y todos sus contenidos"
 
 #: templates/daguerro/gallery_form.html:56
 #: templates/daguerro/page_form.html:48 templates/daguerro/photo.html:61
 #: templates/daguerro/user_form.html:45
 msgid "Save"
 msgstr "Guardar"
+
+#: templates/daguerro/gallery_modal_body.html:4
+msgid "You are about to <em>delete</em> gallery titled"
+msgstr "Estás a punto de <em>eliminar</em> la categoría titulada"
+
+#: templates/daguerro/gallery_modal_body.html:8
+#, fuzzy
+msgid "If you delete this gallery, you will <em>also delete</em>"
+msgstr "Si eliminas esta categoría, <em>eliminarás también</em>"
+
+#: templates/daguerro/gallery_modal_body.html:11
+msgid "photos."
+msgstr "fotos."
+
+#: templates/daguerro/gallery_modal_body.html:15
+msgid "children galleries"
+msgstr "categorías hijas"
+
+#: templates/daguerro/gallery_modal_body.html:16
+msgid "and all the photos contained"
+msgstr "y todas las fotos que contienen."
+
+#: templates/daguerro/gallery_modal_body.html:22
+msgid "Are you sure?"
+msgstr "¿Estás seguro?"
 
 #: templates/daguerro/ordering_photos_form.html:7
 msgid "Ordenar"
@@ -317,37 +352,37 @@ msgstr "Ascendente"
 msgid "Descending"
 msgstr "Descendente"
 
-#: templates/daguerro/pages.html:36 templates/daguerro/users.html:50
+#: templates/daguerro/pages.html:20
+msgid "Create page"
+msgstr "Crear página"
+
+#: templates/daguerro/pages.html:44 templates/daguerro/users.html:58
 msgid "Sí"
 msgstr "Sí"
 
-#: templates/daguerro/pages.html:46
+#: templates/daguerro/pages.html:54
 msgid "For selected pages"
 msgstr "Para las páginas seleccionadas"
 
-#: templates/daguerro/pages.html:48
+#: templates/daguerro/pages.html:56
 msgid "Publish"
 msgstr "Publicar"
 
-#: templates/daguerro/pages.html:49
+#: templates/daguerro/pages.html:57
 msgid "Unpublish"
 msgstr "Despublicar"
 
-#: templates/daguerro/pages.html:53 templates/daguerro/users.html:67
+#: templates/daguerro/pages.html:61 templates/daguerro/users.html:75
 msgid "Run selected action"
 msgstr "Ejecutar acción seleccionada"
 
-#: templates/daguerro/pages.html:53 templates/daguerro/users.html:67
+#: templates/daguerro/pages.html:61 templates/daguerro/users.html:75
 msgid "Ok"
 msgstr "Ok"
 
-#: templates/daguerro/pages.html:59
+#: templates/daguerro/pages.html:67
 msgid "No pages"
 msgstr "No hay páginas"
-
-#: templates/daguerro/pages.html:64
-msgid "Create page"
-msgstr "Crear página"
 
 #: templates/daguerro/pagination_info.html:6
 msgid "previous"
@@ -388,41 +423,41 @@ msgstr ""
 msgid "Type a new password for user"
 msgstr "Escribe una nueva contraseña para el usuario"
 
-#: templates/daguerro/users.html:31
+#: templates/daguerro/users.html:20
+msgid "Create user"
+msgstr "Crear usuario"
+
+#: templates/daguerro/users.html:39
 msgid "User"
 msgstr "Usuario"
 
-#: templates/daguerro/users.html:32
+#: templates/daguerro/users.html:40
 msgid "Name"
 msgstr "Nombre"
 
-#: templates/daguerro/users.html:33
+#: templates/daguerro/users.html:41
 msgid "Group(s)"
 msgstr "Grupo(s)"
 
-#: templates/daguerro/users.html:34
+#: templates/daguerro/users.html:42
 msgid "Active"
 msgstr "Activo"
 
-#: templates/daguerro/users.html:60
+#: templates/daguerro/users.html:68
 msgid "For selected users"
 msgstr "Para los usuarios seleccionados"
 
-#: templates/daguerro/users.html:62
+#: templates/daguerro/users.html:70
 msgid "Activate"
 msgstr "Activar"
 
-#: templates/daguerro/users.html:63
+#: templates/daguerro/users.html:71
 msgid "Unactivate"
 msgstr "Desactivar"
 
-#: templates/daguerro/users.html:73
+#: templates/daguerro/users.html:81
 msgid "No users"
 msgstr "No hay usuarios"
-
-#: templates/daguerro/users.html:78
-msgid "Create user"
-msgstr "Crear usuario"
 
 #~ msgid "Is public"
 #~ msgstr "Pública"

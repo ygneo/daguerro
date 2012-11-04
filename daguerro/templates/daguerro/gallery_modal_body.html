@@ -5,7 +5,7 @@
 </p>
 
 {% if photos_to_delete.count or photos_to_delete.count %}
-<p>{% trans "If you delete this gallery, you wil <em>also delete</em>" %}:</p>
+<p>{% trans "If you delete this gallery, you will <em>also delete</em>" %}:</p>
 <ul>
       {% if photos_to_delete.count %}
       <li><em>{{ photos_to_delete.count }}</em> {% trans "photos." %}</li>
@@ -19,4 +19,4 @@
   {% endif %}
 </ul>
 
-<p>{% trans "Are you <em>sure</em>?" %}</p>
+<p><em>{% trans "Are you sure?" %}</em></p>
