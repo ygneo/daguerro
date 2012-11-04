@@ -2,8 +2,8 @@ $(function() {
     $(".ui-delete-button").live("click", function(e) {
         e.preventDefault();
 	slugs = $(this).attr("data:gallery_slugs")
-	$("#delete-gallery-modal .btn-primary").attr("data:gallery_slugs", slugs);
-	$('#delete-gallery-modal').modal({
+	$("#delete-gallery-modal .btn-danger").attr("data:gallery_slugs", slugs);
+	$(b'#delete-gallery-modal').modal({
 	    remote: dutils.urls.resolve('daguerro-gallery-delete-intent', {slugs: slugs})
 	});
     });
