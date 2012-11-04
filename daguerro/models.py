@@ -4,6 +4,7 @@ from django.contrib.sites.models import Site
 from django.template.defaultfilters import slugify
 from django.db import models
 
+
 class DaguerroFlatPage(FlatPage):
     class Meta:
         proxy = True

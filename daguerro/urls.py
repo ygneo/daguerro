@@ -29,6 +29,8 @@ urlpatterns += patterns(
     url(r'^gallery/(?P<slugs>.+)/delete$', 'gallery_delete', name='daguerro-gallery-delete'),
     url(r'^gallery/(?P<gallery_id>\d+)/add-photo/(?P<photo_id>\d+)$', 'add_photo'),
     url(r'^gallery/(?P<slugs>.+)$', 'index', name='daguerro-gallery'),
+    url(r'^gallery-delete-intent/(?P<slugs>.+)$', 'gallery_delete_intent',
+        name='daguerro-gallery-delete-intent'),
 
     # Searching urls
     url(r'^search-photo.(?P<format>json)', 'search_photo', name="daguerro-search-photo-ajax"),
@@ -51,5 +53,6 @@ urlpatterns += patterns(
     url(r'^user/(?P<id>\d+)/password/$', 'user_change_password', name='daguerro-user-change-password'),
     url(r'^user/(?P<id>\d+)/', 'user', {'action': 'edit'}, name='daguerro-user'),
 
+    # Whoosh search index for testing purposes
     url(r'^wix', 'whoosh_search_index'),
 )

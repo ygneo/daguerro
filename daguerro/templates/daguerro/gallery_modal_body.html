@@ -1,0 +1,22 @@
+{% load i18n %}
+
+<p>
+  {% trans "You are about to <em>delete</em> gallery titled" %} <em>{{ gallery }}</em>.
+</p>
+
+{% if photos_to_delete.count or photos_to_delete.count %}
+<p>{% trans "If you delete this gallery, you wil <em>also delete</em>" %}:</p>
+<ul>
+      {% if photos_to_delete.count %}
+      <li><em>{{ photos_to_delete.count }}</em> {% trans "photos." %}</li>
+      {% endif %}
+      {% if galleries_to_delete.count %}
+      <li>
+	<em>{{ galleries_to_delete.count }}</em> {% trans "children galleries" %}
+	<em>{% trans "and all the photos contained"%}</em>.
+      </li>
+      {% endif %}
+  {% endif %}
+</ul>
+
+<p>{% trans "Are you <em>sure</em>?" %}</p>

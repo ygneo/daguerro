@@ -431,3 +431,16 @@ def user_change_password(request, id):
                                'current_action': action, 
                                },
                               context_instance=RequestContext(request))
+
+
+@login_required
+def gallery_delete_intent(request, slugs):
+    parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
+    photos_to_delete = Photo.objects.only_in_gallery(current_category)
+    galleries_to_delete = current_category.children.all()
+    return render_to_response('daguerro/gallery_modal_body.html',
+                              {'gallery': current_category,
+                               'photos_to_delete': photos_to_delete,
+                               'galleries_to_delete': galleries_to_delete,
+                               },
+                              context_instance=RequestContext(request))
