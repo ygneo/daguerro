@@ -22,15 +22,15 @@
 {% with page.object_list as photos %}
 <ul id="photos" class="sortable">
   {% for item in photos %}
-  {% if item.object %}
-  {% with photo=item.object %}
-  {% include "daguerro/photo_li.html" %}
-  {% endwith %}
-  {% else %}
-  {% with photo=item %}
-  {% include "daguerro/photo_li.html" %}
-  {% endwith %}
-  {% endif %}
+      {% if item.object %}
+          {% with photo=item.object %}
+              {% include "daguerro/photo_li.html" %}
+          {% endwith %}
+      {% else %}
+          {% with photo=item %}
+              {% include "daguerro/photo_li.html" %}
+          {% endwith %}
+      {% endif %}
   {% endfor %}
 </ul>
 {% endwith %}
