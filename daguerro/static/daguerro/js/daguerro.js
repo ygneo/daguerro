@@ -1,5 +1,4 @@
 $(function() {
-
     $(".ui-delete-button").live("click", function(e) {
         e.preventDefault();
 	slugs = $(this).attr("data:gallery_slugs")

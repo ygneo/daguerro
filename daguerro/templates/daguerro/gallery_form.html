@@ -49,8 +49,8 @@
   </fieldset>
   <div id="buttons">
     {% ifequal current_action "edit" %}
-    <div id="delete-button">
-      <a class="ui-delete-button" href="{% url daguerro-gallery-delete current_category.slugs_path %}">{% trans "Delete" %}</a>
+    <div id="delete-button" class="ui-delete-button" data:gallery_slugs="{{ current_category.slugs_path }}">
+      <a href="{% url daguerro-gallery-delete current_category.slugs_path %}">{% trans "Delete" %}</a>
     </div>     
     {% endifequal %}
     <input type="submit" value="{% trans "Save" %}" id="save" />

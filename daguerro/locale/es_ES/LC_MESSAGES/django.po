@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-04 23:32+0100\n"
+"POT-Creation-Date: 2012-11-05 22:59+0100\n"
 "PO-Revision-Date: 2011-07-15 20:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,7 +297,6 @@ msgid "No categories nor images"
 msgstr "No hay categorías ni fotografías"
 
 #: templates/daguerro/gallery_delete_modal.html:6
-#, fuzzy
 msgid "Delete gallery"
 msgstr "Editar Galería"
 
@@ -320,7 +319,6 @@ msgid "You are about to <em>delete</em> gallery titled"
 msgstr "Estás a punto de <em>eliminar</em> la categoría titulada"
 
 #: templates/daguerro/gallery_modal_body.html:8
-#, fuzzy
 msgid "If you delete this gallery, you will <em>also delete</em>"
 msgstr "Si eliminas esta categoría, <em>eliminarás también</em>"
 
@@ -334,7 +332,7 @@ msgstr "categorías hijas"
 
 #: templates/daguerro/gallery_modal_body.html:16
 msgid "and all the photos contained"
-msgstr "y todas las fotos que contienen."
+msgstr "y todas las fotos que contienen"
 
 #: templates/daguerro/gallery_modal_body.html:22
 msgid "Are you sure?"

@@ -276,17 +276,17 @@ form#search input[type=text] {
     khtml-border-radius: 4px;
 }
 #search_buttons { 
-                  clear: none;
-                  float: left;
-                  height: 32px;
-                  width: 96px; 
-                  border-color: transparent;
-                  border-radius: 4px;
-                  ms-border-radius: 4px;
-                  moz-border-radius: 4px;
-                  webkit-border-radius: 4px;
-                  khtml-border-radius: 4px;
-                  background: #222; 
+    clear: none;
+    float: left;
+    height: 32px;
+    width: 96px; 
+    border-color: transparent;
+    border-radius: 4px;
+    ms-border-radius: 4px;
+    moz-border-radius: 4px;
+    webkit-border-radius: 4px;
+    khtml-border-radius: 4px;
+    background: #222; 
 }
 #search_buttons:hover, #search_buttons.active { background-color: #58880C; }
 
@@ -525,3 +525,5 @@ form#ordering input[type=submit] { margin-left: 1ex; }
 
 .modal-body p { margin-top: 1ex; margin-bottom: 1ex; }
 .modal-body ul { margin-left: 2ex; }
+
+.ui-delete-button { cursor: pointer; }
