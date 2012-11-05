@@ -1,9 +1,10 @@
 $(function() {
+
     $(".ui-delete-button").live("click", function(e) {
         e.preventDefault();
 	slugs = $(this).attr("data:gallery_slugs")
 	$("#delete-gallery-modal .btn-danger").attr("data:gallery_slugs", slugs);
-	$(b'#delete-gallery-modal').modal({
+	$('#delete-gallery-modal').modal({
 	    remote: dutils.urls.resolve('daguerro-gallery-delete-intent', {slugs: slugs})
 	});
     });
@@ -13,7 +14,6 @@ $(function() {
             e.preventDefault();
         }
     });
-
 
     $("#delete-gallery-modal .btn-danger").live("click", function(e) {
 	$('#delete-gallery-modal').modal('hide');
