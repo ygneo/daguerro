@@ -298,7 +298,7 @@ msgstr "No hay categorías ni fotografías"
 
 #: templates/daguerro/gallery_delete_modal.html:6
 msgid "Delete gallery"
-msgstr "Editar Galería"
+msgstr "Eliminar Galería"
 
 #: templates/daguerro/gallery_delete_modal.html:11
 msgid "Close"
