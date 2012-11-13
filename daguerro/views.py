@@ -85,6 +85,7 @@ def photo(request, action='add', slugs=None, slug=None):
 
     return render_to_response('daguerro/photo.html', 
                               {'form': form,
+                               'photo': photo,
                                'extra_context': extra_context,
                                'current_category': current_category,
                                'current_action_title': current_action_title,
@@ -96,8 +97,8 @@ def photo(request, action='add', slugs=None, slug=None):
 
 
 @login_required 
-def photo_delete(request, slugs=None, id=None):
-    photo = get_object_or_404(Photo, id=id)
+def photo_delete(request, photo_id, slugs=None, ):
+    photo = get_object_or_404(Photo, pk=photo_id)
     photo.delete()
     return redirect_to_gallery(slugs)
 

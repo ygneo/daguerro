@@ -19,7 +19,7 @@
     {% block breadcrumb %}
     {{ block.super }}
     {% endblock breadcrumb %}
-<form action="" method="post" enctype="multipart/form-data">
+<form id="gallery" action="" method="post" enctype="multipart/form-data">
    <fieldset id="form-layout">
     {% for fieldset in form.fieldsets %}
       <fieldset id="{{ fieldset.name }}" class="{{ fieldset.classes }}">
@@ -47,13 +47,15 @@
       </fieldset>
     {% endfor %}
   </fieldset>
-  <div id="buttons">
+  <fieldset id="buttons">
     {% ifequal current_action "edit" %}
     <div id="delete-button" class="ui-delete-button" data:gallery_slugs="{{ current_category.slugs_path }}">
       <a href="{% url daguerro-gallery-delete current_category.slugs_path %}">{% trans "Delete" %}</a>
     </div>     
     {% endifequal %}
-    <input type="submit" value="{% trans "Save" %}" id="save" />
-  </div>
+    <input type="submit" value="{% trans "Save" %}" id="save" class="ui-save-gallery-button"
+	   data:gallery_id="{{ current_category.id }}"/>
+  </fieldset>
 </form>
+{% include "daguerro/gallery_save_modal.html" %}
 {% endblock %}

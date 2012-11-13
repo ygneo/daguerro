@@ -40,7 +40,7 @@
         <a id="edit" href="{% url daguerro-gallery-edit current_category.slugs_path %}" alt="{% trans "Edit" %}" title="{% trans "Edit" %}">{% trans "Edit" %}</a>
       </li>
       <li>
-        <a id="delete" class="ui-delete-button"
+        <a class="delete ui-delete-gallery-button"
 	   href="{% url daguerro-gallery-delete current_category.slugs_path %}"
 	   title="{% trans "Delete" %}"
 	   data:gallery_slugs="{{ current_category.slugs_path }}">{% trans "Delete" %}</a>

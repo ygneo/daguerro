@@ -52,13 +52,15 @@
     {% endfor %}
   </fieldset>
   <div id="buttons">
-
     {% ifequal extra_context.current_action "edit" %}
     <div id="delete-button">
-      <a class="ui-delete-button" href="{% url daguerro-photo-delete current_category.slugs_path form.instance.id %}">{% trans "Delete" %}</a>
+      <a class="ui-delete-photo-button" 
+	 href="{% url daguerro-photo-delete current_category.slugs_path form.instance.id %}"
+	 >{% trans "Delete" %}</a>
     </div>     
     {% endifequal %}
     <input type="submit" value="{% trans "Save" %}" id="save" />
   </div>
 </form>
+{% include "daguerro/photo_delete_modal.html" %}
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-05 22:59+0100\n"
+"POT-Creation-Date: 2012-11-14 00:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,39 +121,39 @@ msgstr ""
 msgid "Add photography"
 msgstr ""
 
-#: views.py:146
+#: views.py:147
 msgid "Edit Gallery"
 msgstr ""
 
-#: views.py:150
+#: views.py:151
 msgid "Add Gallery"
 msgstr ""
 
-#: views.py:326
+#: views.py:327
 msgid "Edit Page"
 msgstr ""
 
-#: views.py:329
+#: views.py:330
 msgid "Add Page"
 msgstr ""
 
-#: views.py:333
+#: views.py:334
 msgid "Pages"
 msgstr ""
 
-#: views.py:375
+#: views.py:376
 msgid "Edit User"
 msgstr ""
 
-#: views.py:379
+#: views.py:380
 msgid "Add User"
 msgstr ""
 
-#: views.py:384
+#: views.py:385
 msgid "Users"
 msgstr ""
 
-#: views.py:411
+#: views.py:412
 msgid "Change password"
 msgstr ""
 
@@ -274,7 +274,7 @@ msgstr ""
 
 #: templates/daguerro/gallery.html:45 templates/daguerro/gallery.html.py:46
 #: templates/daguerro/gallery_form.html:53 templates/daguerro/pages.html:58
-#: templates/daguerro/photo.html:58 templates/daguerro/users.html:72
+#: templates/daguerro/photo.html:59 templates/daguerro/users.html:72
 msgid "Delete"
 msgstr ""
 
@@ -291,15 +291,17 @@ msgid "Delete gallery"
 msgstr ""
 
 #: templates/daguerro/gallery_delete_modal.html:11
+#: templates/daguerro/gallery_save_modal.html:18
+#: templates/daguerro/photo_delete_modal.html:13
 msgid "Close"
 msgstr ""
 
 #: templates/daguerro/gallery_delete_modal.html:12
-msgid "Yes, delete gallery and all contents"
+msgid "Yes, delete gallery and all its contents"
 msgstr ""
 
 #: templates/daguerro/gallery_form.html:56
-#: templates/daguerro/page_form.html:48 templates/daguerro/photo.html:61
+#: templates/daguerro/page_form.html:48 templates/daguerro/photo.html:62
 #: templates/daguerro/user_form.html:45
 msgid "Save"
 msgstr ""
@@ -325,7 +327,32 @@ msgid "and all the photos contained"
 msgstr ""
 
 #: templates/daguerro/gallery_modal_body.html:22
+#: templates/daguerro/gallery_save_modal.html:15
+#: templates/daguerro/photo_delete_modal.html:10
 msgid "Are you sure?"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:5
+msgid "Save gallery"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:9
+msgid "You have <em>marked</em> this gallery as public"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:10
+#: templates/daguerro/gallery_save_modal.html:13
+msgid ""
+"All photos and galleries belonging to this gallery will be marked as public "
+"too"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:12
+msgid "You have <em>unmarked</em> this gallery as public"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:19
+msgid "Yes, apply to all contents"
 msgstr ""
 
 #: templates/daguerro/ordering_photos_form.html:7
@@ -378,6 +405,18 @@ msgstr ""
 
 #: templates/daguerro/pagination_info.html:19
 msgid "next"
+msgstr ""
+
+#: templates/daguerro/photo_delete_modal.html:6
+msgid "Delete photo"
+msgstr ""
+
+#: templates/daguerro/photo_delete_modal.html:9
+msgid "You're about to <em>delete</em> the photo titled"
+msgstr ""
+
+#: templates/daguerro/photo_delete_modal.html:15
+msgid "Yes, delete photo"
 msgstr ""
 
 #: templates/daguerro/photos.html:6

@@ -474,7 +474,7 @@ label a.no_location {  float: right; font-size: 80%; }
 #category ul li:hover { background-color:#58880C;  }
 #category ul li a { color: white; text-decoration: none;  padding-left: 24px; }
 #category ul li a#edit { background: url('../img/pencil.png') no-repeat;  }
-#category ul li a#delete { background: url('../img/delete.png') no-repeat;  }
+#category ul li a.delete { background: url('../img/delete.png') no-repeat;  }
 
 #results { clear: both; float: left; width: 75%; }
 

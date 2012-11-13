@@ -19,9 +19,9 @@ urlpatterns += patterns(
     # Photo handling urls
     url(r'^gallery/(?P<slugs>.+)?/photo/add', 'photo', name='daguerro-gallery-photo-add'),
     url(r'^gallery/photo/add/$','photo', name='daguerro-gallery-photo-add-root'),
-    url(r'^gallery/((?P<slugs>.+)/)?foto/(?P<slug>.+)$', 'photo', {'action': 'edit'},
+    url(r'^gallery/(?P<slugs>(.+)?)/?foto/(?P<slug>.+)$', 'photo', {'action': 'edit'},
         name='daguerro-gallery-photo'),
-    url(r'^gallery/((?P<slugs>.+)/)?photo/(?P<id>\d+)/delete$', 'photo_delete',
+    url(r'^gallery/(?P<slugs>(.+)?)/?photo/(?P<photo_id>\d+)/delete$', 'photo_delete',
         name='daguerro-photo-delete'),
 
     # Gallery handling urls

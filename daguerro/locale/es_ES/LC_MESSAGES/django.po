@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-05 22:59+0100\n"
+"POT-Creation-Date: 2012-11-14 00:33+0100\n"
 "PO-Revision-Date: 2011-07-15 20:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,39 +120,39 @@ msgstr "Editar fotografía"
 msgid "Add photography"
 msgstr "Añadir fotografía"
 
-#: views.py:146
+#: views.py:147
 msgid "Edit Gallery"
-msgstr "Editar Galería"
+msgstr "Editar Categoría"
 
-#: views.py:150
+#: views.py:151
 msgid "Add Gallery"
 msgstr "Crear Categoría"
 
-#: views.py:326
+#: views.py:327
 msgid "Edit Page"
 msgstr "Editar Página"
 
-#: views.py:329
+#: views.py:330
 msgid "Add Page"
 msgstr "Añadir Página"
 
-#: views.py:333
+#: views.py:334
 msgid "Pages"
 msgstr "Páginas"
 
-#: views.py:375
+#: views.py:376
 msgid "Edit User"
 msgstr "Editar Usuario"
 
-#: views.py:379
+#: views.py:380
 msgid "Add User"
 msgstr "Añadir Usuario"
 
-#: views.py:384
+#: views.py:385
 msgid "Users"
 msgstr "Usuarios"
 
-#: views.py:411
+#: views.py:412
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
@@ -254,7 +254,6 @@ msgid "Salir"
 msgstr "Exit"
 
 #: templates/daguerro/base_admin.html:27
-#, fuzzy
 msgid "Galería"
 msgstr "Galería"
 
@@ -284,7 +283,7 @@ msgstr "Editar"
 
 #: templates/daguerro/gallery.html:45 templates/daguerro/gallery.html.py:46
 #: templates/daguerro/gallery_form.html:53 templates/daguerro/pages.html:58
-#: templates/daguerro/photo.html:58 templates/daguerro/users.html:72
+#: templates/daguerro/photo.html:59 templates/daguerro/users.html:72
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -301,15 +300,17 @@ msgid "Delete gallery"
 msgstr "Eliminar Galería"
 
 #: templates/daguerro/gallery_delete_modal.html:11
+#: templates/daguerro/gallery_save_modal.html:18
+#: templates/daguerro/photo_delete_modal.html:13
 msgid "Close"
 msgstr "Cerrar"
 
 #: templates/daguerro/gallery_delete_modal.html:12
-msgid "Yes, delete gallery and all contents"
+msgid "Yes, delete gallery and all its contents"
 msgstr "Sí, eliminar categoría y todos sus contenidos"
 
 #: templates/daguerro/gallery_form.html:56
-#: templates/daguerro/page_form.html:48 templates/daguerro/photo.html:61
+#: templates/daguerro/page_form.html:48 templates/daguerro/photo.html:62
 #: templates/daguerro/user_form.html:45
 msgid "Save"
 msgstr "Guardar"
@@ -335,8 +336,35 @@ msgid "and all the photos contained"
 msgstr "y todas las fotos que contienen"
 
 #: templates/daguerro/gallery_modal_body.html:22
+#: templates/daguerro/gallery_save_modal.html:15
+#: templates/daguerro/photo_delete_modal.html:10
 msgid "Are you sure?"
 msgstr "¿Estás seguro?"
+
+#: templates/daguerro/gallery_save_modal.html:5
+msgid "Save gallery"
+msgstr "Guardar categoría"
+
+#: templates/daguerro/gallery_save_modal.html:9
+msgid "You have <em>marked</em> this gallery as public"
+msgstr "Has <em>marcado</em> esta categoría como pública"
+
+#: templates/daguerro/gallery_save_modal.html:10
+#: templates/daguerro/gallery_save_modal.html:13
+msgid ""
+"All photos and galleries belonging to this gallery will be marked as public "
+"too"
+msgstr ""
+"Todas las fotos y categorías pertenecientes a esta categoría serán marcadas "
+"como públicas"
+
+#: templates/daguerro/gallery_save_modal.html:12
+msgid "You have <em>unmarked</em> this gallery as public"
+msgstr "Has <em>desmarcado</em> esta categoría como pública"
+
+#: templates/daguerro/gallery_save_modal.html:19
+msgid "Yes, apply to all contents"
+msgstr "Sí, aplicar a todos los contenidos"
 
 #: templates/daguerro/ordering_photos_form.html:7
 msgid "Ordenar"
@@ -390,25 +418,34 @@ msgstr ""
 msgid "next"
 msgstr ""
 
+#: templates/daguerro/photo_delete_modal.html:6
+msgid "Delete photo"
+msgstr "Eliminar fotografía"
+
+#: templates/daguerro/photo_delete_modal.html:9
+msgid "You're about to <em>delete</em> the photo titled"
+msgstr "Estás a punto de <em>eliminar</em> la foto titulada"
+
+#: templates/daguerro/photo_delete_modal.html:15
+msgid "Yes, delete photo"
+msgstr "Sí, eliminar foto"
+
 #: templates/daguerro/photos.html:6
 msgid "of"
-msgstr ""
+msgstr "de"
 
 #: templates/daguerro/photos.html:10
-#, fuzzy
 msgid "photos"
-msgstr "Foto"
+msgstr "fotos"
 
 #: templates/daguerro/search_buttons.html:6
 #: templates/daguerro/search_buttons.html:29
-#, fuzzy
 msgid "Search"
 msgstr "Buscar fotografía"
 
 #: templates/daguerro/search_buttons.html:9
-#, fuzzy
 msgid "Search options"
-msgstr "Buscar fotografía"
+msgstr "Opciones de búsqueda"
 
 #: templates/daguerro/user_form.html:21
 msgid ""
@@ -456,6 +493,15 @@ msgstr "Desactivar"
 #: templates/daguerro/users.html:81
 msgid "No users"
 msgstr "No hay usuarios"
+
+#~ msgid "Yes, save changes in gallery and all its contents"
+#~ msgstr "Sí, guardar cambios en la categoría y en todos sus contenidos"
+
+#~ msgid "Yes,"
+#~ msgstr "Sí,"
+
+#~ msgid "gallery and all its contents"
+#~ msgstr "categoría y todos sus contenidos"
 
 #~ msgid "Is public"
 #~ msgstr "Pública"
