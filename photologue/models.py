@@ -547,6 +547,9 @@ class PhotoQuerySet(CustomFieldQuerySet, models.query.QuerySet):
         qs = self.annotate(galleries_count=Count("galleries"))
         return qs.filter(galleries_count=1, galleries__id__exact=gallery.pk)
 
+    def custom_order_by(self, field):
+        return self.order_by_custom_fields(field, settings.DAG_DEFAULT_PHOTO_ORDERING)
+
 
 class PhotoManager(models.Manager):
 

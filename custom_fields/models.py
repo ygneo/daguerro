@@ -54,9 +54,9 @@ class CustomFieldQuerySet(models.query.QuerySet):
         cfs_dict = dict(CustomField.objects.all().values_list("name", "id"))
         custom_fields = [field for field in fields 
                          if field and field.replace("-", "").startswith("cf_")]
-        core_fields = set(fields) - set(custom_fields)
-        qs = qs.order_by(*core_fields)
-        for field in custom_fields:
+        core_fields = tuple(set(fields) - set(custom_fields))
+        if len(custom_fields) == 1:
+            field = custom_fields[0]
             field_id = cfs_dict[field.replace("-", "")]
             qs = qs.extra(select={"value": 
                                   """SELECT value 
@@ -64,7 +64,9 @@ class CustomFieldQuerySet(models.query.QuerySet):
                                          WHERE field_id=%s AND object_id=photologue_photo.id"""},
                           select_params=(field_id,))
             direction = "-" if field.startswith("-") else ""
-            qs = qs.order_by("%svalue" % direction)
+            qs = qs.order_by(*("%svalue" % direction,) + core_fields)
+        elif len(custom_fields) > 1:
+            raise Exception("No multiple custom fields are allowed in ordering")
         return qs
 
 
