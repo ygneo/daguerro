@@ -1,7 +1,7 @@
 <li id="photo_{{ photo.id }}">
   <div class="photo">
     {% url daguerro-gallery-photo current_category.slugs_path photo.title_slug as photo_url %}
-    <a href="{{ photo_url }}">
+    <a href="{{ photo_url }}{% if page.has_previous or page.has_next %}?page={{ page.number }}{% endif %}">
       <img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}" title="{{ photo.title }}"/>
     </a>
   </div>

@@ -2,10 +2,13 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 
 
-def redirect_to_gallery(slugs, gallery=None, action=None):
+def redirect_to_gallery(slugs, page=None, gallery=None, action=None):
     if action == "edit":
         slugs = _rebuild_slugs(slugs, gallery)
-    return HttpResponseRedirect(reverse('daguerro-gallery', kwargs={'slugs':slugs} if slugs else {}))
+    url = reverse('daguerro-gallery', kwargs={'slugs':slugs} if slugs else {})
+    if page:
+        url += "?page=" + page
+    return HttpResponseRedirect(url)
 
 
 def _rebuild_slugs(slugs, gallery):

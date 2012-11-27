@@ -54,7 +54,7 @@ def index(request, slugs=None):
 
 @login_required
 def photo(request, action='add', slugs=None, slug=None):
-    # TODO This function is perfect for a request context processors reused in gallery pages...
+    # TODO This function is perfect for a request context processor reused in gallery pages...
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
     
     if slug:
@@ -79,7 +79,7 @@ def photo(request, action='add', slugs=None, slug=None):
         form = PhotoForm(request.POST, request.FILES, instance=photo) 
         if form.is_valid(): 
             form.save()
-            return redirect_to_gallery(slugs)
+            return redirect_to_gallery(slugs, page=request.GET.get("page", None))
     else:
         form = PhotoForm(instance=photo, initial={'galleries': initial_galleries}) 
 
