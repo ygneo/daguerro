@@ -55,6 +55,8 @@ class CustomFieldQuerySet(models.query.QuerySet):
         custom_fields = [field for field in fields 
                          if field and field.replace("-", "").startswith("cf_")]
         core_fields = tuple(set(fields) - set(custom_fields))
+        if len(custom_fields) == 0:
+            qs = qs.order_by(*core_fields)
         if len(custom_fields) == 1:
             field = custom_fields[0]
             field_id = cfs_dict[field.replace("-", "")]
