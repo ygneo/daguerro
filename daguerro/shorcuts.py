@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 
 
-def redirect_to_gallery(slugs, page=None, gallery=None, action=None):
+def redirect_to_gallery(slugs, gallery=None, action=None, page=None):
     if action == "edit":
         slugs = _rebuild_slugs(slugs, gallery)
     url = reverse('daguerro-gallery', kwargs={'slugs':slugs} if slugs else {})
