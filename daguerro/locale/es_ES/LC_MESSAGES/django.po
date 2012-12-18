@@ -441,7 +441,7 @@ msgstr "fotos"
 #: templates/daguerro/search_buttons.html:6
 #: templates/daguerro/search_buttons.html:29
 msgid "Search"
-msgstr "Buscar fotografía"
+msgstr "Buscar"
 
 #: templates/daguerro/search_buttons.html:9
 msgid "Search options"
