@@ -121,9 +121,10 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.staticfiles',
     'django_js_utils',
+    'django_settings',
     'mptt',
     'haystack',
-    'custom_fields'
+    'custom_fields',
 )
 
 LOGGING = {
