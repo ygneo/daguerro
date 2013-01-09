@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-14 00:33+0100\n"
+"POT-Creation-Date: 2013-01-08 22:51+0100\n"
 "PO-Revision-Date: 2011-07-15 20:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,7 +237,7 @@ msgstr "No"
 msgid "Unlink"
 msgstr "Desenlazar"
 
-#: templates/daguerro/base.html:16
+#: templates/daguerro/base.html:17
 msgid "Administración de"
 msgstr ""
 
@@ -264,6 +264,10 @@ msgstr ""
 #: templates/daguerro/base_admin.html:33
 msgid "Usuarios"
 msgstr ""
+
+#: templates/daguerro/base_admin.html:35
+msgid "Settings"
+msgstr "Configuración"
 
 #: templates/daguerro/gallery.html:12
 msgid "Home"

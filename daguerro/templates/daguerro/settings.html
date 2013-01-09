@@ -1,0 +1,19 @@
+{% extends "daguerro/base_admin.html" %}
+
+{% load tabs %}
+{% load i18n %}
+
+{% block nav%}
+{% activetab "topnav" "settings" %}
+{{ block.super }}
+{% endblock %}
+
+{% block subheader %}{% endblock subheader %}
+{% block search_form %}{% endblock search_form %}
+
+{% block content %}
+
+<ul class="accordion">
+{{ settings|unordered_list }}
+</ul>
+{% endblock %}

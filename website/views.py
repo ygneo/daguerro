@@ -10,6 +10,7 @@ from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
 from photologue.models import Photo
+import django_settings
 from daguerro.utils import process_category_thread
 from daguerro.paginator import DiggPaginator
 from daguerro.forms import SearchOptionsForm
@@ -34,7 +35,7 @@ def gallery(request, slugs=None):
         photos = Photo.objects.public().orphans()
     
     page_no = int(request.GET.get('page', 1))
-    paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
+    paginator = DiggPaginator(photos, django_settings.get('DAG_RESULTS_PER_PAGE'))
     template = 'website/gallery.html' if slugs else 'website/index.html'  
     return render_to_response(template, {'gallery': current_gallery, 
                                          'brother_galleries': brother_galleries, 
@@ -90,21 +91,23 @@ def _send_request_emails(subject, message, sender_email, photo_items):
     try:
         t = get_template('website/request_photos_mail.html')
         photos = Photo.objects.filter(pk__in=photo_items)
-        no_image_thumb_url = os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
+        no_image_thumb_url = os.path.join(settings.STATIC_URL,
+                                          settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         body = t.render(Context({'photos': photos, 
                                  'sender_email': sender_email,
                                  'message': message, 
                                  'no_image_thumb_url': no_image_thumb_url}
                                 ))
-        _send_html_mail(EmailMultiAlternatives(subject, 
-                                               body, 
-                                               settings.EMAIL_HOST_USER,
-                                               [settings.EMAIL_HOST_USER],
+        _send_html_mail(EmailMultiAlternatives(subject,
+                                               body,
+                                               django_settings.get('DAG_SMTP_HOST'),
+                                               [django_settings.get('DAG_SMTP_HOST_USER')],
                                                headers = {'Reply-To': sender_email})
                         )
-        _send_html_mail(EmailMultiAlternatives("[Barres Fotonatura] Pedido enviado", 
-                                               settings.DAGUERRO_EMAIL_BODY,
-                                               settings.EMAIL_HOST_USER,
+        confirmation_body = DAGUERRO_EMAIL_BODY % {'email': django_settings.get("DAG_SALES_EMAIL")}
+        _send_html_mail(EmailMultiAlternatives(django_settings.get('DAG_CONFIRMATION_MAIL_SUBJECT'), 
+                                               confirmation_body,
+                                               django_settings.get('DAG_SMTP_HOST_USER'),
                                                [sender_email],)
                         )
     except BadHeaderError:

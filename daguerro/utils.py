@@ -4,7 +4,9 @@ from django.shortcuts import get_object_or_404
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.auth.models import User
 from photologue.models import Gallery
+from django_settings.models import Setting
 from django.forms import ValidationError
+
 
 def process_category_thread(request, slugs, urls_namespace='website', action=None):
     """
@@ -66,6 +68,22 @@ def apply_action(request, obj, action, attrs):
     for attr, value in attrs.iteritems():
         setattr(obj, attr, value)
         obj.save()
+
             
-            
-            
+def build_settings_tree():
+    settings_tree = []
+    for s in Setting.objects.all():
+        keys = s.name.split(".")
+        keys.reverse()
+        value = s.setting_object.value
+        settings_tree = _build_branch(keys, value)
+    return settings_tree
+
+
+def _build_branch(keys, value): 
+    keys_length = len(keys)
+    if keys_length > 1:
+        key = keys.pop()
+        return [key, _build_branch(keys, value)]
+    elif keys_length == 1:
+        return {keys[0]: value}

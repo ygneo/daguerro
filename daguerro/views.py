@@ -13,12 +13,13 @@ from django.utils.translation import ugettext as _
 from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from photologue.models import Gallery, Photo
 from haystack.views import SearchView
+import django_settings
 from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm, \
     SearchOptionsForm
 from daguerro.utils import process_category_thread
 from daguerro.shorcuts import redirect_to_gallery
 from daguerro.models import DaguerroFlatPage
-from daguerro.utils import apply_batch_action
+from daguerro.utils import apply_batch_action, build_settings_tree
 from daguerro.paginator import DiggPaginator
 
 
@@ -40,15 +41,16 @@ def index(request, slugs=None):
         return HttpResponseRedirect(reverse("daguerro-pages-index"))
     
     page_no = int(request.GET.get('page', 1))
-    paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
-    return render_to_response('daguerro/gallery.html', 
-                              {'categories': categories,
-                               'current_category': current_category,
-                               'photos_page': paginator.page(page_no),
-                               'add_photo_in_root': settings.DAG_ADD_PHOTO_IN_ROOT,
-                               'no_image_thumb_url': os.path.join(settings.STATIC_URL, settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY]),
-                               'search_options_form': SearchOptionsForm(),
-                               },
+    paginator = DiggPaginator(photos, django_settings.get('DAG_RESULTS_PER_PAGE'))
+    context = {'categories': categories,
+               'current_category': current_category,
+               'photos_page': paginator.page(page_no),
+               'add_photo_in_root': django_settings.get('DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY'),
+               'no_image_thumb_url': os.path.join(settings.STATIC_URL,
+                                                  settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY]),
+               'search_options_form': SearchOptionsForm(),
+               }
+    return render_to_response('daguerro/gallery.html', context,
                               context_instance=RequestContext(request))
 
 
@@ -300,7 +302,7 @@ def search_photo(request, format):
                 'photos': photos,
                 'term': term,
                 'num_results': num_results,
-                'add_photo_in_root': settings.DAG_ADD_PHOTO_IN_ROOT,
+                'add_photo_in_root': django_settings.get('DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY'),
                 'no_image_thumb_url': no_image_thumb_url,},
             context_instance=RequestContext(request))
     return response
@@ -443,5 +445,13 @@ def gallery_delete_intent(request, slugs):
                               {'gallery': current_category,
                                'photos_to_delete': photos_to_delete,
                                'galleries_to_delete': galleries_to_delete,
+                               },
+                              context_instance=RequestContext(request))
+
+
+@login_required
+def settings_index(request):
+    return render_to_response('daguerro/settings.html',
+                              {'settings': build_settings_tree(),
                                },
                               context_instance=RequestContext(request))

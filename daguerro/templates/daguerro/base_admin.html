@@ -32,7 +32,7 @@
         {% if perms.auth %}
         <li class="{% ifactivetab "topnav" "users" %}active{% else %}inactive{% endifactivetab %}"><a href="{% url daguerro-users-index %}">{%trans "Usuarios" %}</a></li>
         {% endif %}
-<!--        <li class="{% ifactivetab "topnav" "settings" %}active{% else %}inactive{% endifactivetab %}"><a href="">Configuración</a></li>-->
+        <li class="{% ifactivetab "topnav" "settings" %}active{% else %}inactive{% endifactivetab %}"><a href="{% url daguerro-settings-index %}">{%trans "Settings" %}</a></li>
       </ul>
     </div>
     {% endblock nav %}

@@ -181,9 +181,8 @@ LOGGING = {
     }
 }
 
-DAG_RESULTS_PER_PAGE = 20
-
-HAYSTACK_SEARCH_RESULTS_PER_PAGE = DAG_RESULTS_PER_PAGE
+# This setting can be overwritten in daguerro.settings
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 20
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'search_backends.search_engines.FoldingWhooshEngine',
@@ -191,8 +190,6 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-DAG_ADD_PHOTO_IN_ROOT = False
-DAG_PHOTO_SLUG = 'foto'
 DAG_SEARCH_FIELDS_INITIAL = {"title": True, "tags": True, 
                              "cf_nombre_cientifico": True,
                              "cf_familia": True,
@@ -204,8 +201,7 @@ DAG_NO_IMAGE = {DAG_PHOTO_ORIGINAL_SIZE_KEY: 'daguerro/img/no_picture_photo.png'
                 DAG_PHOTO_THUMB_SIZE_KEY: 'daguerro/img/no_picture_photo.png',
                 DAG_GALLERY_THUMB_SIZE_KEY: 'daguerro/img/no_picture_gallery.png'
                 }
-DAG_ADD_PHOTO_IN_ROOT = False
-DAG_PHOTO_SLUG = 'foto'
+
 DAG_DEFAULT_PHOTO_ORDERING_FIELDS = [
     {'name': 'order', 'verbose_name': 'Manualmente'},
     {'name': 'title', 'verbose_name': 'Titulo'},
@@ -233,13 +229,8 @@ MAPS_API_KEY = 'ABQIAAAApl773DNd8gKqDs88IJGhqxR1gbanoinoe2pNkEynQ_zYcd12shSqHBj5
 
 DAGUERRO_CART_SESSION_KEY = 'daguerro-cart'
 
-# TODO Move this to DB
-EMAIL_HOST = 'smtp.strato.com'
-EMAIL_HOST_USER = 'pedidos@barresfotonatura.com '
-EMAIL_HOST_PASSWORD = 'barresFOTO'
-
 DAGUERRO_EMAIL_BODY =  """<p>Su pedido ha sido enviado correctamente y se atenderá en breve.</p>
-                          <p>Para cualquier aclaración o consulta, escriba a %s</p>""" % EMAIL_HOST_USER
+                          <p>Para cualquier aclaración o consulta, escriba a %(email)s</p>"""
 
 """
 Local settings importing

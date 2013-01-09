@@ -55,6 +55,9 @@ urlpatterns += patterns(
     url(r'^user/(?P<id>\d+)/password/$', 'user_change_password', name='daguerro-user-change-password'),
     url(r'^user/(?P<id>\d+)/', 'user', {'action': 'edit'}, name='daguerro-user'),
 
+    # Settings urls
+    url(r'^settings/$', 'settings_index',  name='daguerro-settings-index'),
+
     # Whoosh search index for testing purposes
     url(r'^wix', 'whoosh_search_index'),
 )
