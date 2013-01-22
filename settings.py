@@ -145,7 +145,7 @@ LOGGING = {
         'file':{
             'level':'DEBUG',
             'class':'logging.handlers.WatchedFileHandler',
-            'filename': os.path.expanduser('/var/log/barres/barres.log'),
+            'filename': '/var/log/daguerro/daguerro.log',
             'formatter': 'simple',
         },
         'console':{
