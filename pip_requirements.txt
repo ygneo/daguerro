@@ -15,3 +15,4 @@ git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystac
 werkzeug
 newrelic
 django-settings
+gunicorn
