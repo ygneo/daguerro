@@ -12,5 +12,5 @@ class CustomFieldsIndexBase(indexes.DeclarativeMetaclass):
         return super(CustomFieldsIndexBase, cls).__new__(cls, name, bases, attrs)
 
 
-class CustomFieldsIndex(indexes.RealTimeSearchIndex):
+class CustomFieldsIndex(indexes.Indexable):
     __metaclass__ = CustomFieldsIndexBase

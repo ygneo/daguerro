@@ -4,7 +4,7 @@ from custom_fields.indexes import CustomFieldsIndex
 from haystack.query import SearchQuerySet
 
 
-class PhotoIndex(CustomFieldsIndex, indexes.Indexable, indexes.RealTimeSearchIndex):
+class PhotoIndex(CustomFieldsIndex, indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, model_attr='title')
     caption = indexes.CharField(model_attr='caption', null=True)
     location_title = indexes.CharField(model_attr='location_title', null=True)
@@ -15,7 +15,7 @@ class PhotoIndex(CustomFieldsIndex, indexes.Indexable, indexes.RealTimeSearchInd
     def get_model(self):
         return Photo
 
-    def index_queryset(self):
+    def index_queryset(self, *args, **kwargs):
         return Photo.objects.exclude_gallery_thumbs()
 
     def prepare_galleries_ids(self, obj):
