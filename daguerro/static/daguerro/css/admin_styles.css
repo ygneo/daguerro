@@ -501,7 +501,7 @@ p#form-help { font-size: 80%; padding: 0; }
 
 #photos-browsing-controls {float: right; }
 
-div.pagination-info { float: left; overflow: hidden; }
+div.pagination-info { float: right; overflow: hidden; }
 
 div.results-number { display: block; float: left; line-height: 1;}
 
@@ -509,7 +509,7 @@ span.result-number { font-weight: bold; }
 
 ul.pagination { float: right;  margin: 0; padding: 0; list-style: none; }
 
-ul.pagination li { padding: .5ex; float: left;  color: #58880C; }    
+ul.pagination li { padding: .5ex; float: left;  color: #58880C; }
 
 ul.pagination li a  { text-decoration: none; color: #58880C; }
 
