@@ -104,7 +104,8 @@ def _send_request_emails(subject, message, sender_email, photo_items):
                                                [django_settings.get('DAG_SMTP_HOST_USER')],
                                                headers = {'Reply-To': sender_email})
                         )
-        confirmation_body = DAGUERRO_EMAIL_BODY % {'email': django_settings.get("DAG_SALES_EMAIL")}
+        confirmation_body = settings.DAGUERRO_EMAIL_BODY % {'email': 
+                                                            django_settings.get("DAG_SALES_EMAIL")}
         _send_html_mail(EmailMultiAlternatives(django_settings.get('DAG_CONFIRMATION_MAIL_SUBJECT'), 
                                                confirmation_body,
                                                django_settings.get('DAG_SMTP_HOST_USER'),

@@ -230,7 +230,7 @@ MAPS_API_KEY = 'ABQIAAAApl773DNd8gKqDs88IJGhqxR1gbanoinoe2pNkEynQ_zYcd12shSqHBj5
 
 DAGUERRO_CART_SESSION_KEY = 'daguerro-cart'
 
-DAGUERRO_EMAIL_BODY =  """<p>Su pedido ha sido enviado correctamente y se atenderá en breve.</p>
+DAGUERRO_EMAIL_BODY =  u"""<p>Su pedido ha sido enviado correctamente y se atenderá en breve.</p>
                           <p>Para cualquier aclaración o consulta, escriba a %(email)s</p>"""
 
 """
