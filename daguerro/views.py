@@ -16,11 +16,12 @@ from haystack.views import SearchView
 import django_settings
 from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm, \
     SearchOptionsForm
-from daguerro.utils import process_category_thread
+from daguerro.utils import process_category_thread, SettingField
 from daguerro.shorcuts import redirect_to_gallery
 from daguerro.models import DaguerroFlatPage
-from daguerro.utils import apply_batch_action, build_settings_tree
+from daguerro.utils import apply_batch_action
 from daguerro.paginator import DiggPaginator
+from daguerro.settings import BasicSettingsForm, MailingSettingsForm
 
 
 @login_required
@@ -452,6 +453,7 @@ def gallery_delete_intent(request, slugs):
 @login_required
 def settings_index(request):
     return render_to_response('daguerro/settings.html',
-                              {'settings': build_settings_tree(),
+                              {'basic_settings_form': BasicSettingsForm(),
+                               'mailing_settings_form': MailingSettingsForm(),
                                },
                               context_instance=RequestContext(request))
