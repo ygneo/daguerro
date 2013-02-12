@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 22:51+0100\n"
+"POT-Creation-Date: 2013-02-12 23:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,51 +109,51 @@ msgstr ""
 msgid "At least one of these checkboxes need to be checked:"
 msgstr ""
 
-#: utils.py:16 utils.py:22
+#: utils.py:17 utils.py:23
 msgid "Galeria"
 msgstr ""
 
-#: views.py:61
+#: views.py:64
 msgid "Edit photography"
 msgstr ""
 
-#: views.py:66
+#: views.py:69
 msgid "Add photography"
 msgstr ""
 
-#: views.py:147
+#: views.py:150
 msgid "Edit Gallery"
 msgstr ""
 
-#: views.py:151
+#: views.py:154
 msgid "Add Gallery"
 msgstr ""
 
-#: views.py:327
+#: views.py:330
 msgid "Edit Page"
 msgstr ""
 
-#: views.py:330
+#: views.py:333
 msgid "Add Page"
 msgstr ""
 
-#: views.py:334
+#: views.py:337
 msgid "Pages"
 msgstr ""
 
-#: views.py:376
+#: views.py:379
 msgid "Edit User"
 msgstr ""
 
-#: views.py:380
+#: views.py:383
 msgid "Add User"
 msgstr ""
 
-#: views.py:385
+#: views.py:388
 msgid "Users"
 msgstr ""
 
-#: views.py:412
+#: views.py:415
 msgid "Change password"
 msgstr ""
 
@@ -438,6 +438,14 @@ msgstr ""
 
 #: templates/daguerro/search_buttons.html:9
 msgid "Search options"
+msgstr ""
+
+#: templates/daguerro/settings.html:20
+msgid "Basic"
+msgstr ""
+
+#: templates/daguerro/settings.html:34
+msgid "Mailing"
 msgstr ""
 
 #: templates/daguerro/user_form.html:21

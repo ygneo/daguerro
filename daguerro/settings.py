@@ -1,5 +1,6 @@
 from django import forms
 from django.conf import settings
+from django.utils.translation import ugettext as _
 import django_settings
 
 
@@ -26,7 +27,7 @@ class SettingsForm(forms.ModelForm):
             setting = self._meta.model.objects.get(name=field_name)
             FieldClass = getattr(forms, FIELD_CLASS[str(setting.setting_type)])
             self.fields.update({setting.name: 
-                                FieldClass(label=setting.name,
+                                FieldClass(label=_(setting.name),
                                            required=False,
                                            initial=setting.setting_object.value)})
 
