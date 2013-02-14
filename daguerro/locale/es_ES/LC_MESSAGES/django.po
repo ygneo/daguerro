@@ -453,11 +453,11 @@ msgstr "Opciones de búsqueda"
 
 #: templates/daguerro/settings.html:20
 msgid "Basic"
-msgstr ""
+msgstr "Básica"
 
 #: templates/daguerro/settings.html:34
 msgid "Mailing"
-msgstr ""
+msgstr "Correo electrónico"
 
 #: templates/daguerro/user_form.html:21
 msgid ""
