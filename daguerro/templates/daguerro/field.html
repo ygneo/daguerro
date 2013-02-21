@@ -1,0 +1,18 @@
+{% load form_filters %}
+
+{% if field.is_hidden %}
+  {{ field }}
+{% else %}
+  <div {% if field.errors %}{{ field|merge_attrs:'class="wrong_field"' }}{% else %}{{ field.row_attrs }}{% endif %} {% if field|field_type:'checkboxinput' %} {{ field|merge_attrs:'class="inline"' }} {% endif %} >
+    {% if field|field_type:'checkboxinput' %}
+      {{ field }} {{ field.label_tag }}
+    {% else %}
+    {% autoescape off %}
+      {{ field.label_tag }}
+    {% endautoescape %}
+    {{ field }}
+    {{ field.errors }}                    
+    {% endif %}
+    <span class="help_text">{{ field.help_text }}</span>
+  </div>
+{% endif %}

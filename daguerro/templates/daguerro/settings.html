@@ -13,7 +13,38 @@
 
 {% block content %}
 
-<ul class="accordion">
-{{ settings|unordered_list }}
-</ul>
+<div class="accordion" id="settings">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+        {% trans "Basic" %}
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+	<form id="basic-settings-form" action="">
+          {% for field in basic_settings_form %}
+       	     {% include "daguerro/field.html" %}
+	  {% endfor %}
+	</form>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        {% trans "Mailing" %}
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse out">
+      <div class="accordion-inner">
+	<form id="mailing-settings-form" action="">
+          {% for field in mailing_settings_form %}
+	     {% include "daguerro/field.html" %}
+	  {% endfor %}
+	</form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

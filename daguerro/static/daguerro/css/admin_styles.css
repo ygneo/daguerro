@@ -1,4 +1,4 @@
-body { background-color: #E6E6E6; }
+body { background-color: white; }
 
 li.first { clear: both; }
 
@@ -26,7 +26,7 @@ li.disabled { background-color: #CCC !important;}
 #tabs ul { list-style: none; margin-left: 2ex;}
 #tabs ul li { float: left; display: block; color: #E6E6E6; margin-right: 1.5ex; padding: .5ex; }
 #tabs ul li.active, #tabs ul li:hover { 
-   background-color: #E6E6E6;   
+   background-color: white;   
    border-top-left-radius: 4px;
    border-top-right-radius: 4px;
    -ms-border-top-right-radius: 4px;
@@ -533,3 +533,15 @@ form#ordering input[type=submit] { margin-left: 1ex; }
 .ui-autocomplete { overflow-y: scroll; }
   * html .ui-autocomplete { /* IE max- */height: expression( this.scrollHeight > 200 ? "200px" : "auto" ); }
   .ui-autocomplete { max-height: 200px; }
+
+.accordion-group {
+  margin-bottom: 2px;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.accordion-heading {
+  border-bottom: 0;
+}
