@@ -1,12 +1,16 @@
 from django import forms
+from django.db.utils import DatabaseError
 from django.conf import settings
 from django.utils.translation import ugettext as _
 import django_settings
 
 
 def overwrite_required_apps_settings():
-    dag_results_per_page = django_settings.get('DAG_RESULTS_PER_PAGE', default=20)
-    settings.HAYSTACK_SEARCH_RESULTS_PER_PAGE = dag_results_per_page
+    try:
+        dag_results_per_page = django_settings.get('DAG_RESULTS_PER_PAGE', default=20)
+        settings.HAYSTACK_SEARCH_RESULTS_PER_PAGE = dag_results_per_page
+    except DatabaseError:
+        pass
 
 overwrite_required_apps_settings()
 
