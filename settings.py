@@ -240,7 +240,6 @@ try:
     import platform
     hostname = platform.node().replace('.','_').replace('-', '_')
     exec "from local_settings.%s import *" % hostname
-except ImportError, e:
+except ImportError:
     pass
-
 

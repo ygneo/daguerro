@@ -15,13 +15,12 @@ from photologue.models import Gallery, Photo
 from haystack.views import SearchView
 import django_settings
 from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm, \
-    SearchOptionsForm
+    SearchOptionsForm, BasicSettingsForm, MailingSettingsForm
 from daguerro.utils import process_category_thread, SettingField
 from daguerro.shorcuts import redirect_to_gallery
 from daguerro.models import DaguerroFlatPage
 from daguerro.utils import apply_batch_action
 from daguerro.paginator import DiggPaginator
-from daguerro.settings import BasicSettingsForm, MailingSettingsForm
 
 
 @login_required
