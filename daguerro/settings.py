@@ -12,8 +12,8 @@ except DatabaseError:
 
 try:
     settings.EMAIL_HOST = django_settings.get('DAG_SMTP_HOST')
-    settings.EMAIL_HOST_USER = django_settings.get('DAG_SMTP_HOST_USER')
-    settings.EMAIL_HOST_PASSWORD = django_settings.get('DAG_SMTP_PASSWORD')
+    settings.EMAIL_HOST_USER = str(django_settings.get('DAG_SMTP_HOST_USER'))
+    settings.EMAIL_HOST_PASSWORD = str(django_settings.get('DAG_SMTP_PASSWORD'))
 except DatabaseError:
     pass
 
