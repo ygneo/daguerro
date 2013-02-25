@@ -161,7 +161,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers':['null'],
+            'handlers': ['file'],
             'propagate': True,
             'level':'INFO',
         },
