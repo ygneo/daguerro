@@ -15,7 +15,7 @@ from photologue.models import Gallery, Photo
 from haystack.views import SearchView
 import django_settings
 from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm, \
-    SearchOptionsForm, BasicSettingsForm, MailingSettingsForm
+    SearchOptionsForm, BasicSettingsForm, MailingSettingsForm, SettingsForm
 from daguerro.utils import process_category_thread, SettingField
 from daguerro.shorcuts import redirect_to_gallery
 from daguerro.models import DaguerroFlatPage
@@ -29,6 +29,7 @@ def index(request, slugs=None):
     # in gallery pages...
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
     categories = Gallery.objects.filter(parent__title_slug=parent_slug)
+
     if current_category:
         photos = current_category.photos.all()
         if current_category.photos_ordering:
@@ -39,7 +40,7 @@ def index(request, slugs=None):
     user_groups = request.user.groups.all().values_list("name", flat=True)
     if 'Editor' in user_groups and len(user_groups) == 1:
         return HttpResponseRedirect(reverse("daguerro-pages-index"))
-    
+
     page_no = int(request.GET.get('page', 1))
     paginator = DiggPaginator(photos, django_settings.get('DAG_RESULTS_PER_PAGE'))
     context = {'categories': categories,
@@ -451,6 +452,10 @@ def gallery_delete_intent(request, slugs):
 
 @login_required
 def settings_index(request):
+    if request.method == 'POST': 
+        form = SettingsForm(request.POST)
+        if form.is_valid(): 
+            form.save()
     return render_to_response('daguerro/settings.html',
                               {'basic_settings_form': BasicSettingsForm(),
                                'mailing_settings_form': MailingSettingsForm(),
