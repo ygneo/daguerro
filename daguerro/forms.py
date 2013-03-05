@@ -333,7 +333,8 @@ FIELD_CLASS = {'integer': 'IntegerField',
                'email': 'EmailField',
                'string': 'CharField',
                }
-class SettingsForm(forms.Form):    
+class SettingsForm(forms.Form):
+    settings_fields = []
         
     def __init__(self, *args, **kwargs):
         super(SettingsForm, self).__init__(*args, **kwargs)
@@ -347,6 +348,14 @@ class SettingsForm(forms.Form):
                                            initial=setting.setting_object.value,
                                            )})
 
+    def save(self, force_insert=False, force_update=False, commit=True):
+        print "SAVING"
+        if commit:
+            print self.instance
+        return super(SettingsForm, self).save(commit=commit)
+
+
+
 
 class BasicSettingsForm(SettingsForm):
     settings_fields = ['DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY', 'DAG_RESULTS_PER_PAGE',]
@@ -355,6 +364,7 @@ class BasicSettingsForm(SettingsForm):
         model = django_settings.models.Setting
         row_attrs = {'DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY': {'class': 'inline'},
                      }
+
 
 
 class MailingSettingsForm(SettingsForm):
