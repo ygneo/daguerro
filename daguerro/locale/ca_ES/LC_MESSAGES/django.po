@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-12 23:14+0100\n"
+"POT-Creation-Date: 2013-03-05 23:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,95 +17,95 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:34
+#: forms.py:35
 msgid "Alternative title"
 msgstr ""
 
-#: forms.py:41 forms.py:237
+#: forms.py:42 forms.py:238
 msgid "Caption"
 msgstr ""
 
-#: forms.py:49
+#: forms.py:50
 msgid "Category(s)"
 msgstr ""
 
-#: forms.py:51
+#: forms.py:52
 msgid "Location <a class=\"no_location\">No location</a>"
 msgstr ""
 
-#: forms.py:99 forms.py:235 templates/daguerro/pages.html:33
+#: forms.py:100 forms.py:236 templates/daguerro/pages.html:33
 msgid "Title"
 msgstr ""
 
-#: forms.py:101
+#: forms.py:102
 msgid "Parent category"
 msgstr ""
 
-#: forms.py:103
+#: forms.py:104
 msgid "None"
 msgstr ""
 
-#: forms.py:106
+#: forms.py:107
 msgid "Description"
 msgstr ""
 
-#: forms.py:131
+#: forms.py:132
 msgid "Photo does not exist"
 msgstr ""
 
-#: forms.py:155 templates/daguerro/pages.html:34
+#: forms.py:156 templates/daguerro/pages.html:34
 msgid "Public"
 msgstr ""
 
-#: forms.py:156
+#: forms.py:157
 msgid "Public pages will be displayed in the website."
 msgstr ""
 
-#: forms.py:169
+#: forms.py:170
 msgid "Content"
 msgstr ""
 
-#: forms.py:189
+#: forms.py:190
 msgid "Username"
 msgstr ""
 
-#: forms.py:196
+#: forms.py:197
 msgid "Groups"
 msgstr ""
 
-#: forms.py:223
+#: forms.py:224
 msgid "You cannot unactivate your own user"
 msgstr ""
 
-#: forms.py:228
+#: forms.py:229
 msgid "Total match"
 msgstr ""
 
-#: forms.py:229
+#: forms.py:230
 msgid "Partial match"
 msgstr ""
 
-#: forms.py:232
+#: forms.py:233
 msgid "All galleries"
 msgstr ""
 
-#: forms.py:233
+#: forms.py:234
 msgid "Only some galleries"
 msgstr ""
 
-#: forms.py:236
+#: forms.py:237
 msgid "Tags"
 msgstr ""
 
-#: forms.py:238
+#: forms.py:239
 msgid "Location"
 msgstr ""
 
-#: forms.py:246
+#: forms.py:247
 msgid "Galleries"
 msgstr ""
 
-#: forms.py:291
+#: forms.py:292
 msgid "At least one of these checkboxes need to be checked:"
 msgstr ""
 
@@ -444,8 +444,16 @@ msgstr ""
 msgid "Basic"
 msgstr ""
 
-#: templates/daguerro/settings.html:34
+#: templates/daguerro/settings.html:37
 msgid "Mailing"
+msgstr ""
+
+#: templates/daguerro/settings_form_buttons.html:3
+msgid "Save changes"
+msgstr ""
+
+#: templates/daguerro/settings_form_buttons.html:4
+msgid "Cancel"
 msgstr ""
 
 #: templates/daguerro/user_form.html:21

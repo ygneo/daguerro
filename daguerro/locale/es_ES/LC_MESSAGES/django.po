@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-12 23:14+0100\n"
+"POT-Creation-Date: 2013-03-05 23:39+0100\n"
 "PO-Revision-Date: 2011-07-15 20:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,95 +16,95 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:34
+#: forms.py:35
 msgid "Alternative title"
 msgstr "Nombre científico"
 
-#: forms.py:41 forms.py:237
+#: forms.py:42 forms.py:238
 msgid "Caption"
 msgstr "Pie de foto"
 
-#: forms.py:49
+#: forms.py:50
 msgid "Category(s)"
 msgstr "Categoría(s)"
 
-#: forms.py:51
+#: forms.py:52
 msgid "Location <a class=\"no_location\">No location</a>"
 msgstr "Localización <a class=\"no_location\">No usar localización</a>"
 
-#: forms.py:99 forms.py:235 templates/daguerro/pages.html:33
+#: forms.py:100 forms.py:236 templates/daguerro/pages.html:33
 msgid "Title"
 msgstr "Título"
 
-#: forms.py:101
+#: forms.py:102
 msgid "Parent category"
 msgstr "Categoría padre"
 
-#: forms.py:103
+#: forms.py:104
 msgid "None"
 msgstr "Ninguna"
 
-#: forms.py:106
+#: forms.py:107
 msgid "Description"
 msgstr "Descripción"
 
-#: forms.py:131
+#: forms.py:132
 msgid "Photo does not exist"
 msgstr "La foto no existe"
 
-#: forms.py:155 templates/daguerro/pages.html:34
+#: forms.py:156 templates/daguerro/pages.html:34
 msgid "Public"
 msgstr "Pública"
 
-#: forms.py:156
+#: forms.py:157
 msgid "Public pages will be displayed in the website."
 msgstr "Las páginas publicas serán mostradas en el sitio web."
 
-#: forms.py:169
+#: forms.py:170
 msgid "Content"
 msgstr "Contenido"
 
-#: forms.py:189
+#: forms.py:190
 msgid "Username"
 msgstr "Usuario"
 
-#: forms.py:196
+#: forms.py:197
 msgid "Groups"
 msgstr "Grupo(s)"
 
-#: forms.py:223
+#: forms.py:224
 msgid "You cannot unactivate your own user"
 msgstr "No puedes desactivar tu propio usuario."
 
-#: forms.py:228
+#: forms.py:229
 msgid "Total match"
 msgstr "Coincencia completa"
 
-#: forms.py:229
+#: forms.py:230
 msgid "Partial match"
 msgstr "Coincidencia parcial"
 
-#: forms.py:232
+#: forms.py:233
 msgid "All galleries"
 msgstr "Todas las categorías"
 
-#: forms.py:233
+#: forms.py:234
 msgid "Only some galleries"
 msgstr "Solo algunas categorías"
 
-#: forms.py:236
+#: forms.py:237
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: forms.py:238
+#: forms.py:239
 msgid "Location"
 msgstr "Pie de foto"
 
-#: forms.py:246
+#: forms.py:247
 msgid "Galleries"
 msgstr "Categorias"
 
-#: forms.py:291
+#: forms.py:292
 msgid "At least one of these checkboxes need to be checked:"
 msgstr "Al menos uno de estas opciones tiene que marcarse"
 
@@ -455,9 +455,17 @@ msgstr "Opciones de búsqueda"
 msgid "Basic"
 msgstr "Básica"
 
-#: templates/daguerro/settings.html:34
+#: templates/daguerro/settings.html:37
 msgid "Mailing"
 msgstr "Correo electrónico"
+
+#: templates/daguerro/settings_form_buttons.html:3
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: templates/daguerro/settings_form_buttons.html:4
+msgid "Cancel"
+msgstr "Cancelar cambios"
 
 #: templates/daguerro/user_form.html:21
 msgid ""
@@ -524,23 +532,23 @@ msgstr "No hay usuarios"
 #~ msgid "Technical data"
 #~ msgstr "Datos técnicos"
 
-msgid "DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY"
-msgstr "Permitir fotos huérfanas"
+#~ msgid "DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY"
+#~ msgstr "Permitir fotos huérfanas"
 
-msgid "DAG_RESULTS_PER_PAGE"
-msgstr "Número de fotos por página"
+#~ msgid "DAG_RESULTS_PER_PAGE"
+#~ msgstr "Número de fotos por página"
 
-msgid "DAG_SMTP_HOST_USER"
-msgstr "Usuario del servidor SMTP"
+#~ msgid "DAG_SMTP_HOST_USER"
+#~ msgstr "Usuario del servidor SMTP"
 
-msgid "DAG_SMTP_PASSWORD"
-msgstr "Contraseña"
+#~ msgid "DAG_SMTP_PASSWORD"
+#~ msgstr "Contraseña"
 
-msgid "DAG_SMTP_HOST"
-msgstr "Servidor STMP"
+#~ msgid "DAG_SMTP_HOST"
+#~ msgstr "Servidor STMP"
 
-msgid "DAG_SALES_EMAIL"
-msgstr "E-mail donde recibir pedidos"
+#~ msgid "DAG_SALES_EMAIL"
+#~ msgstr "E-mail donde recibir pedidos"
 
-msgid "DAG_CONFIRMATION_MAIL_SUBJECT"
-msgstr "Asunto del e-mail de confirmación"
+#~ msgid "DAG_CONFIRMATION_MAIL_SUBJECT"
+#~ msgstr "Asunto del e-mail de confirmación"
