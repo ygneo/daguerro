@@ -5,3 +5,4 @@
 local_settings/*
 newrelic.ini
 gunicorn.conf.py
+*.mo
