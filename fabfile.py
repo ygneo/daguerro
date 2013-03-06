@@ -1,19 +1,21 @@
+import os
 from fabric.api import *
 
 env.hosts = ['ygneo@barresfotonatura.com']
-env['project_path'] = "~/django_projects/barres-site/barres/"
-env['python_path'] = "/home/ygneo/.virtualenvs/daguerro/bin/python"
-env['pip_path'] = "/home/ygneo/.virtualenvs/daguerro/bin/pip"
+env.project_package = 'barres'
+env.project_root = "/home/ygneo/django_projects/barres-site/"
+env.project_path = env.app_root = os.path.join(env.project_root, env.project_package)
+env.virtualenv_path = "/home/ygneo/.virtualenvs/daguerro/"
 
 
 def git_status():
-    with cd(env['project_path']):
+    with cd(env.project_path):
         run('git fetch && git status') 
 
 
 def pushpull():
     local("git push origin master")
-    with cd(env['project_path']):
+    with cd(env.project_path):
         run('git pull') 
 
 
@@ -21,15 +23,28 @@ def reload_apache():
     run('sudo /etc/init.d/apache2 reload') 
 
 
+def compilemessages():
+    _run_django_admin("compilemessages")
+
+def pip_install():
+    pip_path = os.path.join(env.virtualenv_path, 'bin/pip')
+    run('%s install -r %spip_requirements.txt' % 
+        (pip_path, env.project_path))
+
+
 def release():
     pushpull()
-    run('%s install -r %spip_requirements.txt' % 
-        (env['pip_path'], env['project_path']))
-    with cd(env['project_path']):
+    with cd(env.project_path):
         _run_manage('migrate') 
         _run_manage('collectstatic') 
     reload_apache()
 
 
-def _run_manage(command):
-    run("%s ./manage.py %s" % (env['python_path'], command))
+def _run_manage(command, prefix=''):
+    python_path = os.path.join(env.virtualenv_path, "bin/python")
+    run("%s %s %s/manage.py %s" % (prefix, python_path, env.project_path,
+                                command))
+
+def _run_django_admin(command):
+    with cd(env.project_path): # + "/daguerro"):
+        _run_manage(command)
