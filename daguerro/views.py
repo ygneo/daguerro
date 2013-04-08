@@ -452,10 +452,13 @@ def gallery_delete_intent(request, slugs):
 
 @login_required
 def settings_index(request):
-    if request.method == 'POST': 
-        form = SettingsForm(request.POST)
-        if form.is_valid(): 
-            form.save()
+    form_id = request.GET.get('id', None)
+    form_class = {'basic-settings-form': BasicSettingsForm,
+                  'mailing-settings-form': MailingSettingsForm,
+                  }
+    if form_id and request.method == "POST":
+        form_class[form_id](request.POST).save()
+            
     return render_to_response('daguerro/settings.html',
                               {'basic_settings_form': BasicSettingsForm(),
                                'mailing_settings_form': MailingSettingsForm(),

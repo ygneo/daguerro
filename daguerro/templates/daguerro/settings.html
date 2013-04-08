@@ -22,11 +22,12 @@
     </div>
     <div id="collapseOne" class="accordion-body collapse in">
       <div class="accordion-inner">
-	<form id="basic-settings-form" method="post" action="">
+
+	<form id="basic-settings-form" method="POST" action="?id=basic-settings-form">
           {% for field in basic_settings_form %}
-       	     {% include "daguerro/field.html" %}
-	  {% endfor %}
-	  {% include "daguerro/settings_form_buttons.html" %}
+    	     {% include "daguerro/field.html" %}
+          {% endfor %}
+	      {% include "daguerro/settings_form_buttons.html" %}
 	</form>
       </div>
     </div>
@@ -39,7 +40,7 @@
     </div>
     <div id="collapseTwo" class="accordion-body collapse out">
       <div class="accordion-inner">
-	<form id="mailing-settings-form" action="">
+	<form id="mailing-settings-form" method="POST" action="?id=mailing-settings-form">
           {% for field in mailing_settings_form %}
 	     {% include "daguerro/field.html" %}
 	  {% endfor %}
