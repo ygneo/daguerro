@@ -129,7 +129,6 @@ msgid "dag_smtp_host_user"
 msgstr "Usuario"
 
 #: forms.py:348
-#, fuzzy
 msgid "dag_smtp_password"
 msgstr "Contraseña"
 
