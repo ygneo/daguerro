@@ -36,7 +36,7 @@ def index(request, slugs=None):
             photos = photos.custom_order_by(current_category.photos_ordering)
     else:
         photos = Photo.objects.orphans()
-    
+
     user_groups = request.user.groups.all().values_list("name", flat=True)
     if 'Editor' in user_groups and len(user_groups) == 1:
         return HttpResponseRedirect(reverse("daguerro-pages-index"))
@@ -59,47 +59,47 @@ def index(request, slugs=None):
 def photo(request, action='add', slugs=None, slug=None):
     # TODO This function is perfect for a request context processor reused in gallery pages...
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
-    
+
     if slug:
-        current_action_title = _("Edit photography") 
+        current_action_title = _("Edit photography")
         extra_context = {'current_action': 'edit'}
         photo = get_object_or_404(Photo, title_slug=slug)
         initial_galleries = photo.galleries.all().values_list('id', flat=True)
     else:
-        current_action_title = _("Add photography") 
+        current_action_title = _("Add photography")
         extra_context = {'current_action': 'add'}
         photo = Photo()
         try:
-            initial_galleries = [Gallery.objects.get(title_slug=parent_slug).id] 
+            initial_galleries = [Gallery.objects.get(title_slug=parent_slug).id]
         except Gallery.DoesNotExist:
             initial_galleries = None
 
     request.breadcrumbs(current_action_title, None)
 
-    if request.method == 'POST': 
+    if request.method == 'POST':
         # Force slugify, otherwise I need to fix photologue model or need client-side filling.
         request.POST['title_slug'] = slugify(request.POST['title'])
-        form = PhotoForm(request.POST, request.FILES, instance=photo) 
-        if form.is_valid(): 
+        form = PhotoForm(request.POST, request.FILES, instance=photo)
+        if form.is_valid():
             form.save()
             return redirect_to_gallery(slugs, page=request.GET.get("page", None))
     else:
-        form = PhotoForm(instance=photo, initial={'galleries': initial_galleries}) 
+        form = PhotoForm(instance=photo, initial={'galleries': initial_galleries})
 
-    return render_to_response('daguerro/photo.html', 
+    return render_to_response('daguerro/photo.html',
                               {'form': form,
                                'photo': photo,
                                'extra_context': extra_context,
                                'current_category': current_category,
                                'current_action_title': current_action_title,
-                               'current_action': action, 
-                               'no_image_thumb_url': os.path.join(settings.STATIC_URL, 
+                               'current_action': action,
+                               'no_image_thumb_url': os.path.join(settings.STATIC_URL,
                                                      settings.DAG_NO_IMAGE[settings.DAG_PHOTO_THUMB_SIZE_KEY]),
                                },
                               context_instance=RequestContext(request))
 
 
-@login_required 
+@login_required
 def photo_delete(request, photo_id, slugs=None, ):
     photo = get_object_or_404(Photo, pk=photo_id)
     photo.delete()
@@ -121,7 +121,7 @@ def sort_photos(request):
             gallery.photos_ordering = "%s%s" % (ordering_type, ordering_field)
             gallery.save()
         return redirect_to_gallery(slugs_path)
-            
+
 
 @login_required
 def sort_items(request):
@@ -147,17 +147,17 @@ def gallery(request, action='add', slugs=""):
     parent_slug, current_category = process_category_thread(request, slugs, 'daguerro', action)
 
     if action == 'edit':
-        current_action_title = _("Edit Gallery") 
+        current_action_title = _("Edit Gallery")
         parent_gallery = current_category.parent.id if current_category.parent else None
         gallery = get_object_or_404(Gallery, title_slug=current_category.title_slug)
     elif action == 'add':
-        current_action_title = _("Add Gallery") 
+        current_action_title = _("Add Gallery")
         parent_gallery = current_category.id if current_category else None
         gallery = Gallery()
 
     request.breadcrumbs(current_action_title, None)
 
-    if request.method == 'POST': 
+    if request.method == 'POST':
         # Force slugify, otherwise I need to fix photologue model or need client-side filling.
         request.POST['title_slug'] = slugify(request.POST['title'])
         form = GalleryForm(request.POST, request.FILES, instance=gallery)
@@ -166,13 +166,13 @@ def gallery(request, action='add', slugs=""):
             return redirect_to_gallery(slugs, gallery, action)
     else:
         form = GalleryForm(instance=gallery, initial={'parent': parent_gallery})
-        
-    return render_to_response('daguerro/gallery_form.html', 
+
+    return render_to_response('daguerro/gallery_form.html',
                               {'form': form,
                                'current_category': current_category,
                                'current_action_title': current_action_title,
-                               'current_action': action, 
-                               'no_image_thumb_url': os.path.join(settings.STATIC_URL, 
+                               'current_action': action,
+                               'no_image_thumb_url': os.path.join(settings.STATIC_URL,
                                                                   settings.DAG_NO_IMAGE['gallery']),
                                'search_options_form': SearchOptionsForm(),
                                },
@@ -181,7 +181,7 @@ def gallery(request, action='add', slugs=""):
 
 @login_required
 def gallery_delete(request, slugs=None):
-    parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')    
+    parent_slug, current_category = process_category_thread(request, slugs, 'daguerro')
     if current_category.parent:
         slugs = current_category.parent.slugs_path()
     else:
@@ -196,7 +196,7 @@ def add_photo(request, gallery_id, photo_id):
     gallery = get_object_or_404(Gallery, id=gallery_id)
     photo = get_object_or_404(Photo, id=photo_id)
     photo.galleries = [gallery]
-    photo.save()	
+    photo.save()
     return HttpResponse(status=200)
 
 
@@ -206,7 +206,7 @@ class SearchPhotosView(SearchView):
         kwargs['form_class'] = SearchOptionsForm
         super(SearchPhotosView, self).__init__(*args, **kwargs)
 
-    
+
     def build_page(self):
         """
         Paginates the results appropriately.
@@ -235,7 +235,7 @@ class SearchPhotosView(SearchView):
 
         return (paginator, page)
 
-    
+
     def extra_context(self):
         getvars = QueryDict(self.request.GET.urlencode(), mutable=True)
         try:
@@ -249,7 +249,7 @@ class SearchPhotosView(SearchView):
             if self.form.cleaned_data.get('search_galleries_choice', None) == "SELECTED":
                 show_galleries_tree = True
 
-        no_image_thumb_url = os.path.join(settings.STATIC_URL, 
+        no_image_thumb_url = os.path.join(settings.STATIC_URL,
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
 
         return {'no_image_thumb_url': no_image_thumb_url,
@@ -265,9 +265,9 @@ def whoosh_search_index(request):
      from whoosh.query import Every
      from whoosh.qparser import QueryParser
      from django.utils.html import escape
-     
+
      query = request.GET.get("q")
-     
+
      ix = open_dir(settings.HAYSTACK_CONNECTIONS['default']['PATH'])
      qp = QueryParser("text", schema=ix.schema)
      if query:
@@ -280,14 +280,14 @@ def whoosh_search_index(request):
          output += "<li>" + escape(str(result)) + "</li>"
      output += "</ul>"
      return HttpResponse(output)
-                        
+
 
 @login_required
 def search_photo(request, format):
     term = request.GET.get('term', '')
     photos = Photo.objects.filter(title__icontains=term).order_by("title")
     if format == 'json':
-        label = '<a><img src="%s"/><p>%s</p></a>' 
+        label = '<a><img src="%s"/><p>%s</p></a>'
         response = HttpResponse(simplejson.dumps([{
                         'label': label % (p.get_thumbnail_url(), p.title),
                         'value': p.title,
@@ -299,7 +299,7 @@ def search_photo(request, format):
         response = render_to_response(
             'daguerro/gallery.html', {
                 'categories': {},
-                'current_category': None,                
+                'current_category': None,
                 'photos': photos,
                 'term': term,
                 'num_results': num_results,
@@ -322,15 +322,15 @@ def pages_index(request):
             'current_action': 'pages',
             },
         context_instance=RequestContext(request))
-    
-    
+
+
 @login_required
 def page(request, action, id=None):
     if action == 'edit':
-        current_action_title = _("Edit Page") 
+        current_action_title = _("Edit Page")
         page = get_object_or_404(DaguerroFlatPage, pk=id)
     elif action == 'add':
-        current_action_title = _("Add Page") 
+        current_action_title = _("Add Page")
         page = DaguerroFlatPage(registration_required=True)
 
     request.breadcrumbs((
@@ -338,18 +338,18 @@ def page(request, action, id=None):
             (current_action_title, None),
     ))
 
-    if request.method == 'POST': 
-        form = FlatPageForm(request.POST, instance=page) 
-        if form.is_valid(): 
+    if request.method == 'POST':
+        form = FlatPageForm(request.POST, instance=page)
+        if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse("daguerro-pages-index"))
     else:
         form = FlatPageForm(instance=page)
 
-    return render_to_response('daguerro/page_form.html', 
+    return render_to_response('daguerro/page_form.html',
                               {'form': form,
                                'current_action_title': current_action_title,
-                               'current_action': action, 
+                               'current_action': action,
                                },
                               context_instance=RequestContext(request))
 
@@ -359,7 +359,7 @@ def users_index(request):
     if request.method == 'POST':
         data = dict(request.POST)
         data.update(user_id = request.user.pk)
-        form = ResultListForm(data) 
+        form = ResultListForm(data)
         if form.is_valid():
             apply_batch_action(request)
     else:
@@ -376,11 +376,11 @@ def users_index(request):
 @login_required
 def user(request, action, id=None):
     if action == 'edit':
-        current_action_title = _("Edit User") 
+        current_action_title = _("Edit User")
         user = get_object_or_404(User, pk=id)
         Form = UserForm
     elif action == 'add':
-        current_action_title = _("Add User") 
+        current_action_title = _("Add User")
         user = User()
         Form = UserCreationForm
 
@@ -389,12 +389,12 @@ def user(request, action, id=None):
             (current_action_title, None),
     ))
 
-    if request.method == 'POST': 
-        form = Form(request.POST, instance=user) 
-        if form.is_valid(): 
+    if request.method == 'POST':
+        form = Form(request.POST, instance=user)
+        if form.is_valid():
             form.save()
             if action == 'add':
-                url = reverse("daguerro-user", 
+                url = reverse("daguerro-user",
                               args=[form.instance.pk])
             else:
                 url = reverse("daguerro-users-index")
@@ -402,17 +402,17 @@ def user(request, action, id=None):
     else:
         form = Form(instance=user)
 
-    return render_to_response('daguerro/user_form.html', 
+    return render_to_response('daguerro/user_form.html',
                               {'form': form,
                                'current_action_title': current_action_title,
-                               'current_action': action, 
+                               'current_action': action,
                                },
                               context_instance=RequestContext(request))
 
 
 @login_required
 def user_change_password(request, id):
-    current_action_title = _("Change password") 
+    current_action_title = _("Change password")
     action = "change_password"
     user = get_object_or_404(User, pk=id)
 
@@ -420,19 +420,19 @@ def user_change_password(request, id):
             ("Users", reverse("daguerro-users-index")),
             (current_action_title, None),
     ))
-    if request.method == 'POST': 
-        form = SetPasswordForm(user, request.POST) 
-        if form.is_valid(): 
+    if request.method == 'POST':
+        form = SetPasswordForm(user, request.POST)
+        if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse("daguerro-user", 
+            return HttpResponseRedirect(reverse("daguerro-user",
                                                 args=[user.pk]))
     else:
         form = SetPasswordForm(user)
 
-    return render_to_response('daguerro/user_form.html', 
+    return render_to_response('daguerro/user_form.html',
                               {'form': form,
                                'current_action_title': current_action_title,
-                               'current_action': action, 
+                               'current_action': action,
                                },
                               context_instance=RequestContext(request))
 
@@ -452,6 +452,11 @@ def gallery_delete_intent(request, slugs):
 
 @login_required
 def settings_index(request):
+    if request.method == "POST":
+        form = SettingsForm(request.POST)
+        if form.is_valid():
+            form.save()
+        print "NO VALID"
     return render_to_response('daguerro/settings.html',
                               {'settings_form': SettingsForm(),
                                },

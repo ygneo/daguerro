@@ -15,7 +15,7 @@ from daguerro.widgets import DaguerroPhotoWidget, \
     DaguerroGalleryPhotoWidget, DaguerroGalleryWidget, \
     UserWidget, GoogleMapsWidget, WikipediaWidget
 from custom_fields.forms import CustomFieldsModelForm
-from haystack.forms import SearchForm            
+from haystack.forms import SearchForm
 from haystack.query import SearchQuerySet
 from custom_fields.forms import CustomFieldsMixin
 import django_settings
@@ -24,7 +24,7 @@ from daguerro.widgets import TreeCheckboxSelectMultipleWidget
 
 class PhotoForm(CustomFieldsModelForm):
     image = forms.ImageField(
-        label='', 
+        label='',
         widget=DaguerroPhotoWidget(
             photo_size=settings.DAG_PHOTO_THUMB_SIZE_KEY,
             )
@@ -39,12 +39,12 @@ class PhotoForm(CustomFieldsModelForm):
     alternative_title_url = forms.URLField(
         widget=forms.widgets.HiddenInput, required=False)
     caption = forms.CharField(
-        label=_("Caption"), 
-        widget=forms.Textarea(attrs={'rows':1, 
-                                     'cols':40}), 
+        label=_("Caption"),
+        widget=forms.Textarea(attrs={'rows':1,
+                                     'cols':40}),
         required=False,)
     galleries = forms.ModelMultipleChoiceField(
-        queryset=Gallery.objects.all(), 
+        queryset=Gallery.objects.all(),
         widget=forms.widgets.SelectMultiple(
             attrs = {'size': 2}),
         label=_('Category(s)'),)
@@ -63,22 +63,22 @@ class PhotoForm(CustomFieldsModelForm):
 
     class Meta:
         model = Photo
-        fields = ['image', 'title', 'title_slug', 'galleries',  
+        fields = ['image', 'title', 'title_slug', 'galleries',
                   'is_public', 'caption', 'tags', 'location_title', 'latitude', 'longitude',]
-        fieldsets = [('basic-metadata', 
-                      {'fields': ['title', 'title_slug', 
-                                  'is_public', 'caption', 
-                                  'alternative_title', 
-                                  'alternative_title_url', 
-                                  'family','galleries', 
+        fieldsets = [('basic-metadata',
+                      {'fields': ['title', 'title_slug',
+                                  'is_public', 'caption',
+                                  'alternative_title',
+                                  'alternative_title_url',
+                                  'family','galleries',
                                   'tags', 'location_title',
                                   'latitude', 'longitude',],
                        'legend': '',
                        'add_custom_fields': True}),
-                     ('photo-area', 
+                     ('photo-area',
                       {'fields': ['image',], 'legend':''})]
-        row_attrs = {'image': {'id': 'photo-related', 
-                               'class': 'visible'}, 
+        row_attrs = {'image': {'id': 'photo-related',
+                               'class': 'visible'},
                      'is_public': {'class': 'inline'},
                      }
 
@@ -92,28 +92,28 @@ class PhotoForm(CustomFieldsModelForm):
 
 class GalleryForm(CustomFieldsModelForm):
     photo = forms.ImageField(
-        label='', 
+        label='',
         widget=DaguerroGalleryPhotoWidget(
-            photo_size=settings.DAG_GALLERY_THUMB_SIZE_KEY, 
+            photo_size=settings.DAG_GALLERY_THUMB_SIZE_KEY,
             ),
         required=False)
     title = forms.CharField(label=_("Title"), required=True)
     title_slug = forms.SlugField(widget=forms.widgets.HiddenInput)
-    parent = forms.ModelChoiceField(label=_("Parent category"), 
-                                    queryset=Gallery.objects.all(), 
-                                    empty_label=_("None"), 
-                                    widget=forms.Select(attrs = {'readonly':'readonly'}), 
+    parent = forms.ModelChoiceField(label=_("Parent category"),
+                                    queryset=Gallery.objects.all(),
+                                    empty_label=_("None"),
+                                    widget=forms.Select(attrs = {'readonly':'readonly'}),
                                     required=False)
-    description = forms.CharField(label=_("Description"), 
-                                  widget=forms.Textarea(attrs={'rows':1, 'cols':40}), 
+    description = forms.CharField(label=_("Description"),
+                                  widget=forms.Textarea(attrs={'rows':1, 'cols':40}),
                                   required=False)
 
     class Meta:
         model = Gallery
         fields = ('photo', 'title', 'title_slug', 'is_public','description', 'parent')
-        fieldsets = [('basic-metadata', {'fields': 
-                                         ['title', 'title_slug', 'is_public', 'description', 
-                                          'parent', 'tags'], 
+        fieldsets = [('basic-metadata', {'fields':
+                                         ['title', 'title_slug', 'is_public', 'description',
+                                          'parent', 'tags'],
                                          'legend':'',
                                          'add_custom_fields': True
                                          }),
@@ -125,8 +125,8 @@ class GalleryForm(CustomFieldsModelForm):
         cleaned_data = self.cleaned_data
         cleaned_data['id_photo'] = self.data['id_photo']
         photo = cleaned_data.get('photo')
-        if isinstance(photo, long): 
-            try: 
+        if isinstance(photo, long):
+            try:
                 cleaned_data['photo'] = Photo.objects.get(pk=photo)
             except Photo.DoesNotExist:
                 raise forms.ValidationError(_('Photo does not exist'))
@@ -139,11 +139,11 @@ class GalleryForm(CustomFieldsModelForm):
                 new_photo.title = new_photo.get_avaliable_title()
                 new_photo.save()
         return cleaned_data['photo']
-       
-        
+
+
     def save(self, force_insert=False, force_update=False, commit=True):
         if commit and self.cleaned_data['id_photo']:
-            try: 
+            try:
                 self.instance.photo = Photo.objects.get(pk=self.cleaned_data['id_photo'])
             except Photo.DoesNotExist:
                 self.instance.photo = None
@@ -162,8 +162,8 @@ class FlatPageForm(BetterModelForm):
     content = forms.CharField(
         widget=TinyMCE(
             attrs={
-                'cols': 160, 
-                'rows': 30, 
+                'cols': 160,
+                'rows': 30,
                 'style': 'width: 100%',
                 },
             ),
@@ -187,19 +187,19 @@ class FlatPageForm(BetterModelForm):
 class UserForm(BetterModelForm):
     username = forms.CharField(
         widget = UserWidget(),
-        label = _("Username"), 
+        label = _("Username"),
         help_text = None,
         required = False,
     )
     groups = forms.ModelMultipleChoiceField(
-        queryset = Group.objects.all(), 
+        queryset = Group.objects.all(),
         widget = forms.widgets.CheckboxSelectMultiple(),
         label = _("Groups"),
     )
 
     class Meta:
         model = User
-        fields = ('username', 'is_active', 'first_name', 
+        fields = ('username', 'is_active', 'first_name',
                   'last_name', 'email', 'groups',)
         row_attrs = {
             'is_active': {'class': 'inline'},
@@ -213,7 +213,7 @@ class ResultListForm(forms.Form):
         if user_id:
             action = str(self.data['action'][0])
             item_type = str(self.data['item_type'][0])
-            ids = map(lambda x: int(x), 
+            ids = map(lambda x: int(x),
                       self.data["%s[]" % item_type])
             unactivate_yourself = (
                 action == 'unactivate' and \
@@ -237,36 +237,36 @@ class SearchOptionsForm(BetterForm, SearchForm, CustomFieldsMixin):
     tags = forms.BooleanField(required=False, initial=True, label=_("Tags"),)
     caption = forms.BooleanField(required=False, initial=False, label=_("Caption"))
     location_title = forms.BooleanField(required=False, initial=False, label=_("Location"))
-    search_galleries_choice = forms.ChoiceField(choices=SEARCH_GALLERIES_CHOICES, 
+    search_galleries_choice = forms.ChoiceField(choices=SEARCH_GALLERIES_CHOICES,
                                                 widget=forms.RadioSelect(attrs={'id': 'search_in_galleries'}),
                                                 initial="ALL",
                                                 label="",)
     galleries = TreeNodeMultipleChoiceField(
         required=False,
-        queryset=Gallery.objects.filter(is_public=True), 
+        queryset=Gallery.objects.filter(is_public=True),
         label=_("Galleries"),
-        widget = TreeCheckboxSelectMultipleWidget(attrs = {'id': 'galleries'}, 
+        widget = TreeCheckboxSelectMultipleWidget(attrs = {'id': 'galleries'},
                                                   show_empty_choices=False),
         level_indicator=u'-'
         )
-   
+
     class Meta:
         fields = ['title', 'alternative_title', 'family',
-                  'caption', 'tags', 'location_title', 
+                  'caption', 'tags', 'location_title',
                   'search_galleries_choice', 'galleries',]
-        
+
         fieldsets = [('default-fields',
-                      {'fields': ['title', 
+                      {'fields': ['title',
                                   'alternative_title',
                                   'family', 'tags'],
                        'add_custom_fields': True,}
                       ),
                      ('advanced-fields',
-                      {'fields': ['caption', 
+                      {'fields': ['caption',
                                   'location_title',
                                   ]}
                       ),
-                     ('galleries-fields', 
+                     ('galleries-fields',
                       {'fields': ['search_galleries_choice',
                                   'galleries',
                                   ],
@@ -281,13 +281,13 @@ class SearchOptionsForm(BetterForm, SearchForm, CustomFieldsMixin):
                                    FieldClass=forms.BooleanField,
                                    initial=settings.DAG_SEARCH_FIELDS_INITIAL
                                    )
-        
+
     def clean(self):
         cleaned_data = self.cleaned_data
-        checkable_fields = [cleaned_data[key] 
+        checkable_fields = [cleaned_data[key]
                             for key, field in self.fields.iteritems()
                             if isinstance(field, forms.BooleanField)]
-        
+
         if not any(checkable_fields):
             raise forms.ValidationError(_("At least one of these checkboxes need to be checked:"))
 
@@ -296,7 +296,7 @@ class SearchOptionsForm(BetterForm, SearchForm, CustomFieldsMixin):
     def search(self):
         if not hasattr(self, "cleaned_data"):
             return self.no_query_found()
-        
+
         search_fields = [key for key, value in self.cleaned_data.iteritems() if value == True]
         if 'title' not in search_fields:
             sqs = SearchQuerySet()
@@ -318,53 +318,58 @@ class SearchOptionsForm(BetterForm, SearchForm, CustomFieldsMixin):
 
         if search_galleries == 'SELECTED':
             sqs = sqs.filter_and(galleries_ids__in=galleries)
-            
+
         return sqs
-        
-    
+
+
     def _filter_or_query_words(self, sqs, key, query_words):
         for word in query_words:
             sqs = sqs.filter_or(**{key: word})
-        return sqs 
+        return sqs
 
 
 class SettingsForm(BetterForm):
     dag_allow_photos_in_root_gallery = forms.BooleanField(
         label=_("dag_allow_photos_in_root_gallery"),
         )
-    dag_results_per_page = forms.BooleanField(
+    dag_results_per_page = forms.IntegerField(
         label=_("dag_results_per_page"),
         )
-    dag_sales_email = forms.BooleanField(
+    dag_sales_email = forms.EmailField(
         label=_("dag_sales_email"),
         )
-    dag_smtp_host = forms.BooleanField(
+    dag_smtp_host = forms.URLField(
         label=_("dag_smtp_host"),
         )
-    dag_smtp_host_user = forms.BooleanField(
+    dag_smtp_host_user = forms.CharField(
         label=_("dag_smtp_host_user"),
         )
-    dag_smtp_password = forms.BooleanField(
+    dag_smtp_password = forms.CharField(
         label=_("dag_smtp_password"),
         )
-    dag_confirmation_mail_subject = forms.BooleanField(
+    dag_confirmation_mail_subject = forms.CharField(
         label=_("dag_confirmation_mail_subject"),
         )
-    
+
 
     class Meta:
         fields = ['dag_allow_photos_in_root_gallery', 'dag_results_per_page',
                   'dag_sales_email', 'dag_smtp_host', 'dag_smtp_host_user',
                   'dag_smtp_password', 'dag_confirmation_mail_subject',
                   ]
-        fieldsets = [('basic', {'fields': 
-                                ['dag_allow_photos_in_root_gallery', 
-                                 'dag_results_per_page', 
+        fieldsets = [('basic', {'fields':
+                                ['dag_allow_photos_in_root_gallery',
+                                 'dag_results_per_page',
                                  ],
-                                 'legend': _('Basic'),                                 
+                                 'legend': _('Basic'),
                                 }),
-                     ('mailing', {'fields': ['dag_sales_email', 'dag_smtp_host', 
-                                             'dag_smtp_host_user', 'dag_smtp_password', 
+                     ('mailing', {'fields': ['dag_sales_email', 'dag_smtp_host',
+                                             'dag_smtp_host_user', 'dag_smtp_password',
                                              'dag_confirmation_mail_subject',
-                                             ], 
+                                             ],
                                   'legend':_('Mailing')}),]
+
+    def save(self, commit=True):
+        if commit:
+            for key, value in self.cleaned_data:
+                print key, value
