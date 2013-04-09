@@ -17,12 +17,14 @@
     {% for fieldset in settings_form.fieldsets %}
     <div class="accordion-group">
       <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+        <a class="accordion-toggle" data-toggle="collapse" 
+           data-parent="#accordion-{{ forloop.counter }}" href="#collapse{{ forloop.counter }}">
           {{ fieldset.legend }}
           {{ fieldset.description }}
         </a>
       </div>
-      <div id="collapseOne" class="accordion-body collapse in">
+      <div id="collapse{{ forloop.counter }}"
+           class="accordion-body collapse {% if forloop.first %} in {% endif %}">
         <div class="accordion-inner">
 	      <form id="basic-settings-form" method="POST" action="?id=basic-settings-form">
             {% for field in fieldset %}
