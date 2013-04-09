@@ -490,11 +490,11 @@ msgstr "Opciones de búsqueda"
 
 #: templates/daguerro/settings_form_buttons.html:3
 msgid "Save changes"
-msgstr "Guardar cambios"
+msgstr "Guardar"
 
 #: templates/daguerro/settings_form_buttons.html:4
 msgid "Cancel"
-msgstr "Cancelar cambios"
+msgstr "Cancelar"
 
 #: templates/daguerro/user_form.html:21
 msgid ""

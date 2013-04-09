@@ -30,7 +30,8 @@
             {% for field in fieldset %}
     	    {% include "daguerro/field.html" %}
             {% endfor %}
-	        {% include "daguerro/settings_form_buttons.html" %}
+            <button type="submit" class="btn btn-primary">{% trans "Save changes" %}</button>
+            <button type="button" class="btn">{% trans "Cancel" %}</button>
 	      </form>
         </div>
       </div>
