@@ -14,40 +14,26 @@
 {% block content %}
 
 <div class="accordion" id="settings">
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
-        {% trans "Basic" %}
-      </a>
-    </div>
-    <div id="collapseOne" class="accordion-body collapse in">
-      <div class="accordion-inner">
-
-	<form id="basic-settings-form" method="POST" action="?id=basic-settings-form">
-          {% for field in basic_settings_form %}
-    	     {% include "daguerro/field.html" %}
-          {% endfor %}
-	      {% include "daguerro/settings_form_buttons.html" %}
-	</form>
+    {% for fieldset in settings_form.fieldsets %}
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+          {{ fieldset.legend }}
+          {{ fieldset.description }}
+        </a>
+      </div>
+      <div id="collapseOne" class="accordion-body collapse in">
+        <div class="accordion-inner">
+	      <form id="basic-settings-form" method="POST" action="?id=basic-settings-form">
+            {% for field in fieldset %}
+    	    {% include "daguerro/field.html" %}
+            {% endfor %}
+	        {% include "daguerro/settings_form_buttons.html" %}
+	      </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-        {% trans "Mailing" %}
-      </a>
-    </div>
-    <div id="collapseTwo" class="accordion-body collapse out">
-      <div class="accordion-inner">
-	<form id="mailing-settings-form" method="POST" action="?id=mailing-settings-form">
-          {% for field in mailing_settings_form %}
-	     {% include "daguerro/field.html" %}
-	  {% endfor %}
-	  {% include "daguerro/settings_form_buttons.html" %}
-	</form>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

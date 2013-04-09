@@ -15,7 +15,7 @@ from photologue.models import Gallery, Photo
 from haystack.views import SearchView
 import django_settings
 from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm, \
-    SearchOptionsForm, BasicSettingsForm, MailingSettingsForm, SettingsForm
+    SearchOptionsForm, SettingsForm
 from daguerro.utils import process_category_thread, SettingField
 from daguerro.shorcuts import redirect_to_gallery
 from daguerro.models import DaguerroFlatPage
@@ -452,15 +452,7 @@ def gallery_delete_intent(request, slugs):
 
 @login_required
 def settings_index(request):
-    form_id = request.GET.get('id', None)
-    form_class = {'basic-settings-form': BasicSettingsForm,
-                  'mailing-settings-form': MailingSettingsForm,
-                  }
-    if form_id and request.method == "POST":
-        form_class[form_id](request.POST).save()
-            
     return render_to_response('daguerro/settings.html',
-                              {'basic_settings_form': BasicSettingsForm(),
-                               'mailing_settings_form': MailingSettingsForm(),
+                              {'settings_form': SettingsForm(),
                                },
                               context_instance=RequestContext(request))

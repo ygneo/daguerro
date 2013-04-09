@@ -328,48 +328,43 @@ class SearchOptionsForm(BetterForm, SearchForm, CustomFieldsMixin):
         return sqs 
 
 
-FIELD_CLASS = {'integer': 'IntegerField',
-               'positive integer': 'BooleanField',
-               'email': 'EmailField',
-               'string': 'CharField',
-               }
-class SettingsForm(forms.Form):
-    settings_fields = []
-        
-    def __init__(self, *args, **kwargs):
-        super(SettingsForm, self).__init__(*args, **kwargs)
-        self.fields = {}
-        for field_name in self.settings_fields:
-            setting = django_settings.models.Setting.objects.get(name=field_name)
-            FieldClass = getattr(forms, FIELD_CLASS[str(setting.setting_type)])
-            self.fields.update({setting.name: 
-                                FieldClass(label=_(setting.name),
-                                           required=False,
-                                           initial=setting.setting_object.value,
-                                           )})
-
-    def save(self, force_insert=False, force_update=False, commit=True):
-        print "SAVING"
-        if commit:
-            print self.instance
-        return super(SettingsForm, self).save(commit=commit)
-
-
-
-
-class BasicSettingsForm(SettingsForm):
-    settings_fields = ['DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY', 'DAG_RESULTS_PER_PAGE',]
+class SettingsForm(BetterForm):
+    dag_allow_photos_in_root_gallery = forms.BooleanField(
+        label=_("dag_allow_photos_in_root_gallery"),
+        )
+    dag_results_per_page = forms.BooleanField(
+        label=_("dag_results_per_page"),
+        )
+    dag_sales_email = forms.BooleanField(
+        label=_("dag_sales_email"),
+        )
+    dag_smtp_host = forms.BooleanField(
+        label=_("dag_smtp_host"),
+        )
+    dag_smtp_host_user = forms.BooleanField(
+        label=_("dag_smtp_host_user"),
+        )
+    dag_smtp_password = forms.BooleanField(
+        label=_("dag_smtp_password"),
+        )
+    dag_confirmation_mail_subject = forms.BooleanField(
+        label=_("dag_confirmation_mail_subject"),
+        )
+    
 
     class Meta:
-        model = django_settings.models.Setting
-        row_attrs = {'DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY': {'class': 'inline'},
-                     }
-
-
-
-class MailingSettingsForm(SettingsForm):
-    settings_fields = ['DAG_SALES_EMAIL', 'DAG_SMTP_HOST', 'DAG_SMTP_HOST_USER',
-                       'DAG_SMTP_PASSWORD', 'DAG_CONFIRMATION_MAIL_SUBJECT',]
-
-    class Meta:
-        model = django_settings.models.Setting
+        fields = ['dag_allow_photos_in_root_gallery', 'dag_results_per_page',
+                  'dag_sales_email', 'dag_smtp_host', 'dag_smtp_host_user',
+                  'dag_smtp_password', 'dag_confirmation_mail_subject',
+                  ]
+        fieldsets = [('basic', {'fields': 
+                                ['dag_allow_photos_in_root_gallery', 
+                                 'dag_results_per_page', 
+                                 ],
+                                 'legend': _('Basic'),                                 
+                                }),
+                     ('mailing', {'fields': ['dag_sales_email', 'dag_smtp_host', 
+                                             'dag_smtp_host_user', 'dag_smtp_password', 
+                                             'dag_confirmation_mail_subject',
+                                             ], 
+                                  'legend':_('Mailing')}),]
