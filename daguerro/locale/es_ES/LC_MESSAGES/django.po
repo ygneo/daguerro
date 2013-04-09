@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-05 23:39+0100\n"
+"POT-Creation-Date: 2013-04-09 23:17+0200\n"
 "PO-Revision-Date: 2011-07-15 20:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,6 +107,43 @@ msgstr "Categorias"
 #: forms.py:292
 msgid "At least one of these checkboxes need to be checked:"
 msgstr "Al menos uno de estas opciones tiene que marcarse"
+
+#: forms.py:333
+msgid "dag_allow_photos_in_root_gallery"
+msgstr "Permite fotografías huérfanas (sin categoría)."
+
+#: forms.py:336
+msgid "dag_results_per_page"
+msgstr "Número de fotografías por página"
+
+#: forms.py:339
+msgid "dag_sales_email"
+msgstr "E-mail para recepción de pedidos"
+
+#: forms.py:342
+msgid "dag_smtp_host"
+msgstr "Servidor STMP"
+
+#: forms.py:345
+msgid "dag_smtp_host_user"
+msgstr "Usuario"
+
+#: forms.py:348
+#, fuzzy
+msgid "dag_smtp_password"
+msgstr "Contraseña"
+
+#: forms.py:351
+msgid "dag_confirmation_mail_subject"
+msgstr "Asunto del email de confirmación"
+
+#: forms.py:364
+msgid "Basic"
+msgstr "Básica"
+
+#: forms.py:370
+msgid "Mailing"
+msgstr "Correo electrónico"
 
 #: utils.py:17 utils.py:23
 msgid "Galeria"
@@ -450,14 +487,6 @@ msgstr "Buscar"
 #: templates/daguerro/search_buttons.html:9
 msgid "Search options"
 msgstr "Opciones de búsqueda"
-
-#: templates/daguerro/settings.html:20
-msgid "Basic"
-msgstr "Básica"
-
-#: templates/daguerro/settings.html:37
-msgid "Mailing"
-msgstr "Correo electrónico"
 
 #: templates/daguerro/settings_form_buttons.html:3
 msgid "Save changes"

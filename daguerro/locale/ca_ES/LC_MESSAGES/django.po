@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-05 23:39+0100\n"
+"POT-Creation-Date: 2013-04-09 23:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,6 +107,42 @@ msgstr ""
 
 #: forms.py:292
 msgid "At least one of these checkboxes need to be checked:"
+msgstr ""
+
+#: forms.py:333
+msgid "dag_allow_photos_in_root_gallery"
+msgstr ""
+
+#: forms.py:336
+msgid "dag_results_per_page"
+msgstr ""
+
+#: forms.py:339
+msgid "dag_sales_email"
+msgstr ""
+
+#: forms.py:342
+msgid "dag_smtp_host"
+msgstr ""
+
+#: forms.py:345
+msgid "dag_smtp_host_user"
+msgstr ""
+
+#: forms.py:348
+msgid "dag_smtp_password"
+msgstr ""
+
+#: forms.py:351
+msgid "dag_confirmation_mail_subject"
+msgstr ""
+
+#: forms.py:364
+msgid "Basic"
+msgstr ""
+
+#: forms.py:370
+msgid "Mailing"
 msgstr ""
 
 #: utils.py:17 utils.py:23
@@ -438,14 +474,6 @@ msgstr ""
 
 #: templates/daguerro/search_buttons.html:9
 msgid "Search options"
-msgstr ""
-
-#: templates/daguerro/settings.html:20
-msgid "Basic"
-msgstr ""
-
-#: templates/daguerro/settings.html:37
-msgid "Mailing"
 msgstr ""
 
 #: templates/daguerro/settings_form_buttons.html:3
