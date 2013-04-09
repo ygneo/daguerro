@@ -456,7 +456,6 @@ def settings_index(request):
         form = SettingsForm(request.POST)
         if form.is_valid():
             form.save()
-        print "NO VALID"
     return render_to_response('daguerro/settings.html',
                               {'settings_form': SettingsForm(),
                                },

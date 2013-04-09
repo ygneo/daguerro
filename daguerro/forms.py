@@ -330,25 +330,25 @@ class SearchOptionsForm(BetterForm, SearchForm, CustomFieldsMixin):
 
 class SettingsForm(BetterForm):
     dag_allow_photos_in_root_gallery = forms.BooleanField(
-        label=_("dag_allow_photos_in_root_gallery"),
+        label=_("dag_allow_photos_in_root_gallery"), required=False,
         )
     dag_results_per_page = forms.IntegerField(
-        label=_("dag_results_per_page"),
+        label=_("dag_results_per_page"), required=True,
         )
     dag_sales_email = forms.EmailField(
-        label=_("dag_sales_email"),
+        label=_("dag_sales_email"), required=False,
         )
     dag_smtp_host = forms.URLField(
-        label=_("dag_smtp_host"),
+        label=_("dag_smtp_host"), required=False,
         )
     dag_smtp_host_user = forms.CharField(
-        label=_("dag_smtp_host_user"),
+        label=_("dag_smtp_host_user"), required=False,
         )
     dag_smtp_password = forms.CharField(
-        label=_("dag_smtp_password"),
+        label=_("dag_smtp_password"), required=False,
         )
     dag_confirmation_mail_subject = forms.CharField(
-        label=_("dag_confirmation_mail_subject"),
+        label=_("dag_confirmation_mail_subject"), required=False,
         )
 
 
@@ -371,5 +371,5 @@ class SettingsForm(BetterForm):
 
     def save(self, commit=True):
         if commit:
-            for key, value in self.cleaned_data:
-                print key, value
+            for key, value in self.cleaned_data.iteritems():
+                django_settings.set(key.upper(), value)
