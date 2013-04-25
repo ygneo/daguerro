@@ -369,7 +369,15 @@ class SettingsForm(BetterForm):
                                              ],
                                   'legend':_('Mailing')}),]
 
+
+    SETTING_TYPE = {'CharField': 'String',
+                    'URLField': 'String',
+                    'BooleanField': 'PositiveInteger',
+                    'IntegerField': 'Integer',
+                    'EmailField': 'Email',
+                    }
     def save(self, commit=True):
         if commit:
             for key, value in self.cleaned_data.iteritems():
-                django_settings.set(key.upper(), value)
+                field_type = self.fields[key].__class__.__name__
+                django_settings.set(self.SETTING_TYPE[field_type], key.upper(), value)
