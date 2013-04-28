@@ -10,17 +10,17 @@ env.virtualenv_path = "/home/ygneo/.virtualenvs/daguerro/"
 
 def git_status():
     with cd(env.project_path):
-        run('git fetch && git status') 
+        run('git fetch && git status')
 
 
 def pushpull():
     local("git push origin master")
     with cd(env.project_path):
-        run('git pull') 
+        run('git pull')
 
 
-def reload_apache():
-    run('sudo /etc/init.d/apache2 reload') 
+def reloadapp():
+    run('sudo supervisorctl reload %s' % env.project_package)
 
 
 def compilemessages():
@@ -28,16 +28,16 @@ def compilemessages():
 
 def pip_install():
     pip_path = os.path.join(env.virtualenv_path, 'bin/pip')
-    run('%s install -r %spip_requirements.txt' % 
+    run('%s install -r %spip_requirements.txt' %
         (pip_path, env.project_path))
 
 
 def release():
     pushpull()
     with cd(env.project_path):
-        _run_manage('migrate') 
-        _run_manage('collectstatic') 
-    reload_apache()
+        _run_manage('migrate')
+        _run_manage('collectstatic')
+    reloadapp()
 
 
 def _run_manage(command, prefix=''):
