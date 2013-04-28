@@ -174,10 +174,10 @@ LOGGING = {
             'handlers': ['console', 'file', 'mail_admins'],
             'level': 'DEBUG',
         },
-	'form_utils': {
+    'form_utils': {
             'handlers': ['console', 'file', 'mail_admins'],
             'level': 'DEBUG',
-	}	
+    }
     }
 }
 
@@ -191,7 +191,7 @@ HAYSTACK_CONNECTIONS = {
 }
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
-DAG_SEARCH_FIELDS_INITIAL = {"title": True, "tags": True, 
+DAG_SEARCH_FIELDS_INITIAL = {"title": True, "tags": True,
                              "cf_nombre_cientifico": True,
                              "cf_familia": True,
                              }
@@ -216,8 +216,8 @@ DAG_DEFAULT_PHOTO_ORDERING = 'title'
 THUMBNAIL_QUALITY = 95
 THUMBNAIL_EXTENSION = 'png'
 
-TINYMCE_DEFAULT_CONFIG = {'theme': "advanced", 
-                          'relative_urls': False, 
+TINYMCE_DEFAULT_CONFIG = {'theme': "advanced",
+                          'relative_urls': False,
                           'theme_advanced_buttons1' : "bold,italic,underline,strikethrough," \
                               "separator,fontsizeselect,separator,justifyleft,justifycenter," \
                               "justifyright,justifyfull,bullist,numlist,separator,cut,copy,paste," \
@@ -242,4 +242,3 @@ try:
     exec "from local_settings.%s import *" % hostname
 except ImportError:
     pass
-

@@ -456,7 +456,16 @@ def settings_index(request):
         form = SettingsForm(request.POST)
         if form.is_valid():
             form.save()
+    else:
+        form = SettingsForm(_settings_to_dict())
     return render_to_response('daguerro/settings.html',
-                              {'settings_form': SettingsForm(),
+                              {'settings_form': form,
                                },
                               context_instance=RequestContext(request))
+
+
+def _settings_to_dict():
+    settings_dict = {}
+    for setting in django_settings.models.Setting.objects.all():
+        settings_dict[setting.name.lower()] = setting.setting_object.value
+    return settings_dict

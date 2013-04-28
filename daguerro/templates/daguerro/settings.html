@@ -13,7 +13,8 @@
 
 {% block content %}
 
-<div class="accordion" id="settings">
+<form id="settings-form" method="POST" action="">
+  <div class="accordion" id="settings">
     {% for fieldset in settings_form.fieldsets %}
     <div class="accordion-group">
       <div class="accordion-heading">
@@ -26,16 +27,15 @@
       <div id="collapse{{ forloop.counter }}"
            class="accordion-body collapse {% if forloop.first %} in {% endif %}">
         <div class="accordion-inner">
-         <form id="basic-settings-form" method="POST" action="">
             {% for field in fieldset %}
             {% include "daguerro/field.html" %}
             {% endfor %}
             <input type="submit" value="{% trans "Save changes" %}" class="btn btn-primary"/>
-         </form>
         </div>
       </div>
     </div>
     {% endfor %}
+   </div>
   </div>
-</div>
+</form>
 {% endblock %}
