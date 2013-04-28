@@ -1,0 +1,531 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-28 21:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:35
+msgid "Alternative title"
+msgstr ""
+
+#: forms.py:42 forms.py:238
+msgid "Caption"
+msgstr ""
+
+#: forms.py:50
+msgid "Category(s)"
+msgstr ""
+
+#: forms.py:52
+msgid "Location <a class=\"no_location\">No location</a>"
+msgstr ""
+
+#: forms.py:100 forms.py:236 templates/daguerro/pages.html:33
+msgid "Title"
+msgstr ""
+
+#: forms.py:102
+msgid "Parent category"
+msgstr ""
+
+#: forms.py:104
+msgid "None"
+msgstr ""
+
+#: forms.py:107
+msgid "Description"
+msgstr ""
+
+#: forms.py:132
+msgid "Photo does not exist"
+msgstr ""
+
+#: forms.py:156 templates/daguerro/pages.html:34
+msgid "Public"
+msgstr ""
+
+#: forms.py:157
+msgid "Public pages will be displayed in the website."
+msgstr ""
+
+#: forms.py:170
+msgid "Content"
+msgstr ""
+
+#: forms.py:190
+msgid "Username"
+msgstr ""
+
+#: forms.py:197
+msgid "Groups"
+msgstr ""
+
+#: forms.py:224
+msgid "You cannot unactivate your own user"
+msgstr ""
+
+#: forms.py:229
+msgid "Total match"
+msgstr ""
+
+#: forms.py:230
+msgid "Partial match"
+msgstr ""
+
+#: forms.py:233
+msgid "All galleries"
+msgstr ""
+
+#: forms.py:234
+msgid "Only some galleries"
+msgstr ""
+
+#: forms.py:237
+msgid "Tags"
+msgstr ""
+
+#: forms.py:239
+msgid "Location"
+msgstr ""
+
+#: forms.py:247
+msgid "Galleries"
+msgstr ""
+
+#: forms.py:292
+msgid "At least one of these checkboxes need to be checked:"
+msgstr ""
+
+#: forms.py:333
+msgid "dag_allow_photos_in_root_gallery"
+msgstr "Allow orphans photos"
+
+#: forms.py:336
+msgid "dag_results_per_page"
+msgstr "Photos per page"
+
+#: forms.py:339
+msgid "dag_sales_email"
+msgstr "Sales E-mail address"
+
+#: forms.py:342
+msgid "dag_smtp_host"
+msgstr "SMTP server"
+
+#: forms.py:345
+msgid "dag_smtp_host_user"
+msgstr "SMTP account username"
+
+#: forms.py:348
+msgid "dag_smtp_password"
+msgstr "SMTP account password"
+
+#: forms.py:351
+msgid "dag_confirmation_mail_subject"
+msgstr "Confirmation mail subject"
+
+#: forms.py:364
+msgid "Basic"
+msgstr "Básico"
+
+#: forms.py:370
+msgid "Mailing"
+msgstr "E-mail"
+
+#: utils.py:17 utils.py:23
+msgid "Galeria"
+msgstr ""
+
+#: views.py:64
+msgid "Edit photography"
+msgstr ""
+
+#: views.py:69
+msgid "Add photography"
+msgstr ""
+
+#: views.py:150
+msgid "Edit Gallery"
+msgstr ""
+
+#: views.py:154
+msgid "Add Gallery"
+msgstr ""
+
+#: views.py:330
+msgid "Edit Page"
+msgstr ""
+
+#: views.py:333
+msgid "Add Page"
+msgstr ""
+
+#: views.py:337
+msgid "Pages"
+msgstr ""
+
+#: views.py:379
+msgid "Edit User"
+msgstr ""
+
+#: views.py:383
+msgid "Add User"
+msgstr ""
+
+#: views.py:388
+msgid "Users"
+msgstr ""
+
+#: views.py:415
+msgid "Change password"
+msgstr ""
+
+#: widgets.py:62
+msgid "Photo"
+msgstr ""
+
+#: widgets.py:72
+msgid "Upload new photo"
+msgstr ""
+
+#: widgets.py:75
+msgid "Search existing photo"
+msgstr ""
+
+#: widgets.py:76
+msgid "Write a photo title"
+msgstr ""
+
+#: widgets.py:103
+msgid "Change pasword"
+msgstr ""
+
+#: widgets.py:123
+msgid ""
+"Write a location to be searched in the map. A marker will be drop in the "
+"map, and can be draggable."
+msgstr ""
+
+#: widgets.py:124
+msgid ""
+"No results. Try to do a different search that approaches to your target. If "
+"you don't want to use any location, click <a class='no_location'>here</a>."
+msgstr ""
+
+#: widgets.py:125
+msgid "No location"
+msgstr ""
+
+#: widgets.py:126
+msgid ""
+"Drag and drop this marker if you want to mark a different position in the "
+"map."
+msgstr ""
+
+#: widgets.py:177
+msgid ""
+"Article found in wikipedia. <a class=\"ui-wikipedia-link\" href=\"#\" target="
+"\"_blank\">Visit</a> | "
+msgstr ""
+
+#: widgets.py:181
+msgid ""
+"Linked to an article in wikipedia. <a class=\"ui-wikipedia-link\" href=\"#\" "
+"target=\"_blank\">Visit</a> | "
+msgstr ""
+
+#: widgets.py:205
+msgid "Link?"
+msgstr ""
+
+#: widgets.py:206
+msgid "Yes"
+msgstr ""
+
+#: widgets.py:207 templates/daguerro/pages.html:46
+#: templates/daguerro/users.html:60
+msgid "No"
+msgstr ""
+
+#: widgets.py:209
+msgid "Unlink"
+msgstr ""
+
+#: templates/daguerro/base.html:17
+msgid "Administración de"
+msgstr ""
+
+#: templates/daguerro/base_admin.html:13
+msgid "Daguerro CMS"
+msgstr ""
+
+#: templates/daguerro/base_admin.html:15
+msgid "Administración del sitio"
+msgstr ""
+
+#: templates/daguerro/base_admin.html:20
+msgid "Salir"
+msgstr ""
+
+#: templates/daguerro/base_admin.html:27
+msgid "Galería"
+msgstr ""
+
+#: templates/daguerro/base_admin.html:30
+msgid "Páginas"
+msgstr ""
+
+#: templates/daguerro/base_admin.html:33
+msgid "Usuarios"
+msgstr ""
+
+#: templates/daguerro/base_admin.html:35
+msgid "Configuración"
+msgstr ""
+
+#: templates/daguerro/gallery.html:12
+msgid "Home"
+msgstr ""
+
+#: templates/daguerro/gallery.html:24
+msgid "Upload image"
+msgstr ""
+
+#: templates/daguerro/gallery.html:27
+msgid "Create category"
+msgstr ""
+
+#: templates/daguerro/gallery.html:40
+msgid "Edit"
+msgstr ""
+
+#: templates/daguerro/gallery.html:45 templates/daguerro/gallery.html.py:46
+#: templates/daguerro/gallery_form.html:53 templates/daguerro/pages.html:58
+#: templates/daguerro/photo.html:59 templates/daguerro/users.html:72
+msgid "Delete"
+msgstr ""
+
+#: templates/daguerro/gallery.html:57
+msgid "photo(s) title contains"
+msgstr ""
+
+#: templates/daguerro/gallery.html:78
+msgid "No categories nor images"
+msgstr ""
+
+#: templates/daguerro/gallery_delete_modal.html:6
+msgid "Delete gallery"
+msgstr ""
+
+#: templates/daguerro/gallery_delete_modal.html:11
+#: templates/daguerro/gallery_save_modal.html:18
+#: templates/daguerro/photo_delete_modal.html:13
+msgid "Close"
+msgstr ""
+
+#: templates/daguerro/gallery_delete_modal.html:12
+msgid "Yes, delete gallery and all its contents"
+msgstr ""
+
+#: templates/daguerro/gallery_form.html:56
+#: templates/daguerro/page_form.html:48 templates/daguerro/photo.html:62
+#: templates/daguerro/user_form.html:45
+msgid "Save"
+msgstr ""
+
+#: templates/daguerro/gallery_modal_body.html:4
+msgid "You are about to <em>delete</em> gallery titled"
+msgstr ""
+
+#: templates/daguerro/gallery_modal_body.html:8
+msgid "If you delete this gallery, you will <em>also delete</em>"
+msgstr ""
+
+#: templates/daguerro/gallery_modal_body.html:11
+msgid "photos."
+msgstr ""
+
+#: templates/daguerro/gallery_modal_body.html:15
+msgid "children galleries"
+msgstr ""
+
+#: templates/daguerro/gallery_modal_body.html:16
+msgid "and all the photos contained"
+msgstr ""
+
+#: templates/daguerro/gallery_modal_body.html:22
+#: templates/daguerro/gallery_save_modal.html:15
+#: templates/daguerro/photo_delete_modal.html:10
+msgid "Are you sure?"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:5
+msgid "Save gallery"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:9
+msgid "You have <em>marked</em> this gallery as public"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:10
+#: templates/daguerro/gallery_save_modal.html:13
+msgid ""
+"All photos and galleries belonging to this gallery will be marked as public "
+"too"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:12
+msgid "You have <em>unmarked</em> this gallery as public"
+msgstr ""
+
+#: templates/daguerro/gallery_save_modal.html:19
+msgid "Yes, apply to all contents"
+msgstr ""
+
+#: templates/daguerro/ordering_photos_form.html:7
+msgid "Ordenar"
+msgstr ""
+
+#: templates/daguerro/ordering_photos_form.html:19
+msgid "Ascending"
+msgstr ""
+
+#: templates/daguerro/ordering_photos_form.html:21
+msgid "Descending"
+msgstr ""
+
+#: templates/daguerro/pages.html:20
+msgid "Create page"
+msgstr ""
+
+#: templates/daguerro/pages.html:44 templates/daguerro/users.html:58
+msgid "Sí"
+msgstr ""
+
+#: templates/daguerro/pages.html:54
+msgid "For selected pages"
+msgstr ""
+
+#: templates/daguerro/pages.html:56
+msgid "Publish"
+msgstr ""
+
+#: templates/daguerro/pages.html:57
+msgid "Unpublish"
+msgstr ""
+
+#: templates/daguerro/pages.html:61 templates/daguerro/users.html:75
+msgid "Run selected action"
+msgstr ""
+
+#: templates/daguerro/pages.html:61 templates/daguerro/users.html:75
+msgid "Ok"
+msgstr ""
+
+#: templates/daguerro/pages.html:67
+msgid "No pages"
+msgstr ""
+
+#: templates/daguerro/pagination_info.html:6
+msgid "previous"
+msgstr ""
+
+#: templates/daguerro/pagination_info.html:19
+msgid "next"
+msgstr ""
+
+#: templates/daguerro/photo_delete_modal.html:6
+msgid "Delete photo"
+msgstr ""
+
+#: templates/daguerro/photo_delete_modal.html:9
+msgid "You're about to <em>delete</em> the photo titled"
+msgstr ""
+
+#: templates/daguerro/photo_delete_modal.html:15
+msgid "Yes, delete photo"
+msgstr ""
+
+#: templates/daguerro/photos.html:6
+msgid "of"
+msgstr ""
+
+#: templates/daguerro/photos.html:10
+msgid "photos"
+msgstr ""
+
+#: templates/daguerro/search_buttons.html:6
+#: templates/daguerro/search_buttons.html:29
+msgid "Search"
+msgstr ""
+
+#: templates/daguerro/search_buttons.html:9
+msgid "Search options"
+msgstr ""
+
+#: templates/daguerro/settings.html:33
+#: templates/daguerro/settings_form_buttons.html:3
+msgid "Save changes"
+msgstr ""
+
+#: templates/daguerro/settings_form_buttons.html:4
+msgid "Cancel"
+msgstr ""
+
+#: templates/daguerro/user_form.html:21
+msgid ""
+"First type an username and password. Then you can edit rest of the user data."
+msgstr ""
+
+#: templates/daguerro/user_form.html:24
+msgid "Type a new password for user"
+msgstr ""
+
+#: templates/daguerro/users.html:20
+msgid "Create user"
+msgstr ""
+
+#: templates/daguerro/users.html:39
+msgid "User"
+msgstr ""
+
+#: templates/daguerro/users.html:40
+msgid "Name"
+msgstr ""
+
+#: templates/daguerro/users.html:41
+msgid "Group(s)"
+msgstr ""
+
+#: templates/daguerro/users.html:42
+msgid "Active"
+msgstr ""
+
+#: templates/daguerro/users.html:68
+msgid "For selected users"
+msgstr ""
+
+#: templates/daguerro/users.html:70
+msgid "Activate"
+msgstr ""
+
+#: templates/daguerro/users.html:71
+msgid "Unactivate"
+msgstr ""
+
+#: templates/daguerro/users.html:81
+msgid "No users"
+msgstr ""
