@@ -2,6 +2,7 @@ import os
 from fabric.api import *
 
 env.hosts = ['ygneo@barresfotonatura.com']
+env.project_package_prefix = 'daguerro'
 env.project_package = 'barres'
 env.project_root = "/home/ygneo/django_projects/barres-site/"
 env.project_path = env.app_root = os.path.join(env.project_root, env.project_package)
@@ -20,7 +21,11 @@ def pushpull():
 
 
 def reloadapp():
-    run('sudo supervisorctl reload %s' % env.project_package)
+    if env.project_package_prefix:
+        app_name = "%s-%s" % (env.project_package_prefix, env.project_package)
+    else:
+        app_name = env.project_package
+    run('sudo supervisorctl restart %s' % app_name)
 
 
 def compilemessages():
