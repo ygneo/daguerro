@@ -27,7 +27,7 @@
       <div id="header">
         <div id="header-int">
           <div id="site_info">
-            <h1><a href="{% url website-gallery %}">{{ daguerro_settings.dag_site_title }}</a></h1>
+            <h1><a href="{% url website-gallery %}">{% autoescape off %}{{ daguerro_settings.dag_site_title }}{% endautoescape %}</a></h1>
             <h2>Archivo Digital especializado en Naturaleza y Geografía.</h2>
             <h3>
               <strong>{{ photo_count|numberformat }}</strong> fotografías de
