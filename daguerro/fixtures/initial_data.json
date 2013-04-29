@@ -62,12 +62,21 @@
          "setting_type": 23
       }
    },
- {
+   {
     "pk": 8,
     "model": "django_settings.setting",
     "fields": {
       "name": "DAG_SITE_TITLE",
       "setting_id": 9,
+      "setting_type": 24
+    }
+  },
+  {
+    "pk": 9,
+    "model": "django_settings.setting",
+    "fields": {
+      "name": "DAG_SITE_DESCRIPTION",
+      "setting_id": 10,
       "setting_type": 24
     }
   },
@@ -125,6 +134,13 @@
     "model": "django_settings.string",
     "fields": {
       "value": "Site title"
+    }
+   },
+   {
+    "pk": 10,
+    "model": "django_settings.string",
+    "fields": {
+      "value": "Site description"
     }
    }
 ]
