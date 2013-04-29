@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-28 21:13+0200\n"
+"POT-Creation-Date: 2013-04-30 00:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,42 +110,50 @@ msgid "At least one of these checkboxes need to be checked:"
 msgstr ""
 
 #: forms.py:333
+msgid "dag_site_title"
+msgstr "Site title"
+
+#: forms.py:336
+msgid "dag_site_description"
+msgstr "Site description"
+
+#: forms.py:339
 msgid "dag_allow_photos_in_root_gallery"
 msgstr "Allow orphans photos"
 
-#: forms.py:336
+#: forms.py:342
 msgid "dag_results_per_page"
 msgstr "Photos per page"
 
-#: forms.py:339
+#: forms.py:345
 msgid "dag_sales_email"
 msgstr "Sales E-mail address"
 
-#: forms.py:342
+#: forms.py:348
 msgid "dag_smtp_host"
 msgstr "SMTP server"
 
-#: forms.py:345
+#: forms.py:351
 msgid "dag_smtp_host_user"
 msgstr "SMTP account username"
 
-#: forms.py:348
+#: forms.py:354
 msgid "dag_smtp_password"
 msgstr "SMTP account password"
 
-#: forms.py:351
+#: forms.py:357
 msgid "dag_confirmation_mail_subject"
 msgstr "Confirmation mail subject"
 
-#: forms.py:364
+#: forms.py:372
 msgid "Basic"
 msgstr "Básico"
 
-#: forms.py:370
+#: forms.py:378
 msgid "Mailing"
 msgstr "E-mail"
 
-#: utils.py:17 utils.py:23
+#: utils.py:18 utils.py:24
 msgid "Galeria"
 msgstr ""
 
