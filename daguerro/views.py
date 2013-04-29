@@ -16,7 +16,7 @@ from haystack.views import SearchView
 import django_settings
 from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, ResultListForm, \
     SearchOptionsForm, SettingsForm
-from daguerro.utils import process_category_thread, SettingField
+from daguerro.utils import process_category_thread, SettingField, daguerro_settings_to_dict
 from daguerro.shorcuts import redirect_to_gallery
 from daguerro.models import DaguerroFlatPage
 from daguerro.utils import apply_batch_action
@@ -457,15 +457,8 @@ def settings_index(request):
         if form.is_valid():
             form.save()
     else:
-        form = SettingsForm(_settings_to_dict())
+        form = SettingsForm(daguerro_settings_to_dict())
     return render_to_response('daguerro/settings.html',
                               {'settings_form': form,
                                },
                               context_instance=RequestContext(request))
-
-
-def _settings_to_dict():
-    settings_dict = {}
-    for setting in django_settings.models.Setting.objects.all():
-        settings_dict[setting.name.lower()] = setting.setting_object.value
-    return settings_dict

@@ -4,10 +4,10 @@
 {% get_flatpages as flatpages %}
 {% get_flatpages "/josep" as contact_flatpages %}
 <!DOCTYPE html>
-<html>  
+<html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %} {{ daguerro_settings.dag_site_title }} {% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}website/css/style.css"/>
     <link rel="shortcut icon" href="{{ STATIC_URL}}website/img/favicon.ico">
     <script type="text/javascript" src="{{ STATIC_URL }}website/js/jquery-1.6.4.min.js"></script>
@@ -27,25 +27,25 @@
       <div id="header">
         <div id="header-int">
           <div id="site_info">
-            <h1><a href="{% url website-gallery %}">barres<span>fotonatura</span></a></h1>
+            <h1><a href="{% url website-gallery %}">{{ daguerro_settings.dag_site_title }}</a></h1>
             <h2>Archivo Digital especializado en Naturaleza y Geografía.</h2>
             <h3>
               <strong>{{ photo_count|numberformat }}</strong> fotografías de
               {% for gallery in galleries %}
               <a href="{% url website-gallery gallery.title_slug %}" title="{{ gallery.title }}">{{ gallery.title }}</a>{% if not forloop.last %}, {% endif %}
               {% endfor %}
-            </h3>  
+            </h3>
           </div>
           <div id="side">
 {% comment %}
-            Left here for future development 
+            Left here for future development
           <div id="languages">
               <a href="#">Catalan</a> | <span>Castellano</span> | <a href="#">English</a>
           </div>
 {% endcomment %}
            <div id="searcher">
              <form id="search" method="GET" action="{% url website-search-photos %}">
-	       <input type="text" id="query" name="q" value="{{ query }}"/>
+           <input type="text" id="query" name="q" value="{{ query }}"/>
                {% include "daguerro/search_buttons.html" %}
              </form>
              </div>

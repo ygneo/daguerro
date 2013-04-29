@@ -5,6 +5,7 @@ from django.contrib.flatpages.models import FlatPage
 from django.contrib.auth.models import User
 from photologue.models import Gallery
 from django import forms
+import django_settings
 
 
 def process_category_thread(request, slugs, urls_namespace='website', action=None):
@@ -25,9 +26,9 @@ def process_category_thread(request, slugs, urls_namespace='website', action=Non
         current_category = None
 
     return parent_slug, current_category
-    
 
-def get_category_thread(slugs, urls_namespace):    
+
+def get_category_thread(slugs, urls_namespace):
     parent_categories = []
     current_category = None
     if slugs:
@@ -36,12 +37,19 @@ def get_category_thread(slugs, urls_namespace):
         for slug in list_slugs:
             i += 1
             category = get_object_or_404(Gallery, title_slug=slug)
-            url = str(reverse("%s-gallery" % urls_namespace, 
+            url = str(reverse("%s-gallery" % urls_namespace,
                               kwargs={"slugs": category.slugs_path()}))
             parent_categories.append((category.title, url))
         current_category = category
-                        
+
     return (parent_categories, current_category)
+
+
+def daguerro_settings_to_dict():
+    settings_dict = {}
+    for setting in django_settings.models.Setting.objects.all():
+        settings_dict[setting.name.lower()] = setting.setting_object.value
+    return settings_dict
 
 
 def apply_batch_action(request):
@@ -58,7 +66,7 @@ def apply_batch_action(request):
         objects = model.objects.filter(pk__in=ids)
         if action == 'delete':
             objects.delete()
-        else: 
+        else:
             for obj in model.objects.filter(pk__in=ids):
                 apply_action(request, obj, action, attrs)
 
@@ -70,12 +78,11 @@ def apply_action(request, obj, action, attrs):
 
 
 class SettingField(forms.Field):
-    
+
     def __init__(self, setting, *args , **kwargs):
         name = setting.name
         value = setting.setting_object.value
         if setting.setting_type == 'integer':
             return forms.IntegerField(initial=setting.setting_object.value,
-                                       label=setting.name,                                    
+                                       label=setting.name,
                                        )
-

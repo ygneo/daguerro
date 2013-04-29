@@ -78,6 +78,7 @@ TEMPLATE_CONTEXT_PROCESSORS =(
     "daguerro.context_processors.current_site",
     "daguerro.context_processors.settings_processor",
     "website.context_processors.header_info",
+    "daguerro.context_processors.daguerro_settings",
 )
 
 MIDDLEWARE_CLASSES = (
