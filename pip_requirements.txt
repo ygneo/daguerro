@@ -10,9 +10,9 @@ django-mptt
 ipython==0.10
 whoosh
 fabric
-# Careful with this, I intend to use django-haystack=2.0.0 
+# Careful with this, I intend to use django-haystack=2.0.0
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 werkzeug
 newrelic
-django-settings
+git+https://github.com/ygneo/django-settings.git
 gunicorn
