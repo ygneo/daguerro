@@ -390,6 +390,11 @@ class SettingsForm(BetterForm):
                     }
     def save(self, commit=True):
         if commit:
+            django_settings.admin.clear_cache(
+                modeladmin=django_settings.admin.SettingAdmin,
+                request=None,
+                queryset=django_settings.models.Setting.objects.all()
+            )
             for key, value in self.cleaned_data.iteritems():
                 field_type = self.fields[key].__class__.__name__
                 django_settings.set(self.SETTING_TYPE[field_type], key.upper(), value)
