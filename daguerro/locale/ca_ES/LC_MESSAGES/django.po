@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-30 00:00+0200\n"
+"POT-Creation-Date: 2013-05-01 00:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,38 +118,42 @@ msgid "dag_site_description"
 msgstr ""
 
 #: forms.py:339
-msgid "dag_allow_photos_in_root_gallery"
+msgid "dag_publish_by_default"
 msgstr ""
 
 #: forms.py:342
-msgid "dag_results_per_page"
+msgid "dag_allow_photos_in_root_gallery"
 msgstr ""
 
 #: forms.py:345
-msgid "dag_sales_email"
+msgid "dag_results_per_page"
 msgstr ""
 
 #: forms.py:348
-msgid "dag_smtp_host"
+msgid "dag_sales_email"
 msgstr ""
 
 #: forms.py:351
-msgid "dag_smtp_host_user"
+msgid "dag_smtp_host"
 msgstr ""
 
 #: forms.py:354
-msgid "dag_smtp_password"
+msgid "dag_smtp_host_user"
 msgstr ""
 
 #: forms.py:357
+msgid "dag_smtp_password"
+msgstr ""
+
+#: forms.py:360
 msgid "dag_confirmation_mail_subject"
 msgstr ""
 
-#: forms.py:372
+#: forms.py:376
 msgid "Basic"
 msgstr ""
 
-#: forms.py:378
+#: forms.py:382
 msgid "Mailing"
 msgstr ""
 
@@ -165,39 +169,39 @@ msgstr ""
 msgid "Add photography"
 msgstr ""
 
-#: views.py:150
+#: views.py:153
 msgid "Edit Gallery"
 msgstr ""
 
-#: views.py:154
+#: views.py:157
 msgid "Add Gallery"
 msgstr ""
 
-#: views.py:330
+#: views.py:336
 msgid "Edit Page"
 msgstr ""
 
-#: views.py:333
+#: views.py:339
 msgid "Add Page"
 msgstr ""
 
-#: views.py:337
+#: views.py:343
 msgid "Pages"
 msgstr ""
 
-#: views.py:379
+#: views.py:388
 msgid "Edit User"
 msgstr ""
 
-#: views.py:383
+#: views.py:392
 msgid "Add User"
 msgstr ""
 
-#: views.py:388
+#: views.py:397
 msgid "Users"
 msgstr ""
 
-#: views.py:415
+#: views.py:424
 msgid "Change password"
 msgstr ""
 

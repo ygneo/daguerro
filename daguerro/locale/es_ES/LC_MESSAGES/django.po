@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-30 00:00+0200\n"
+"POT-Creation-Date: 2013-05-01 00:12+0200\n"
 "PO-Revision-Date: 2011-07-15 20:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,38 +117,42 @@ msgid "dag_site_description"
 msgstr "Descripción del sitio web"
 
 #: forms.py:339
+msgid "dag_publish_by_default"
+msgstr "Publicar por defecto"
+
+#: forms.py:342
 msgid "dag_allow_photos_in_root_gallery"
 msgstr "Permite fotografías huérfanas (sin categoría)."
 
-#: forms.py:342
+#: forms.py:345
 msgid "dag_results_per_page"
 msgstr "Número de fotografías por página"
 
-#: forms.py:345
+#: forms.py:348
 msgid "dag_sales_email"
 msgstr "E-mail para recepción de pedidos"
 
-#: forms.py:348
+#: forms.py:351
 msgid "dag_smtp_host"
 msgstr "Servidor STMP"
 
-#: forms.py:351
+#: forms.py:354
 msgid "dag_smtp_host_user"
 msgstr "Usuario"
 
-#: forms.py:354
+#: forms.py:357
 msgid "dag_smtp_password"
 msgstr "Contraseña"
 
-#: forms.py:357
+#: forms.py:360
 msgid "dag_confirmation_mail_subject"
 msgstr "Asunto del email de confirmación"
 
-#: forms.py:372
+#: forms.py:376
 msgid "Basic"
 msgstr "Básica"
 
-#: forms.py:378
+#: forms.py:382
 msgid "Mailing"
 msgstr "Correo electrónico"
 
@@ -164,39 +168,39 @@ msgstr "Editar fotografía"
 msgid "Add photography"
 msgstr "Añadir fotografía"
 
-#: views.py:150
+#: views.py:153
 msgid "Edit Gallery"
 msgstr "Editar Categoría"
 
-#: views.py:154
+#: views.py:157
 msgid "Add Gallery"
 msgstr "Crear Categoría"
 
-#: views.py:330
+#: views.py:336
 msgid "Edit Page"
 msgstr "Editar Página"
 
-#: views.py:333
+#: views.py:339
 msgid "Add Page"
 msgstr "Añadir Página"
 
-#: views.py:337
+#: views.py:343
 msgid "Pages"
 msgstr "Páginas"
 
-#: views.py:379
+#: views.py:388
 msgid "Edit User"
 msgstr "Editar Usuario"
 
-#: views.py:383
+#: views.py:392
 msgid "Add User"
 msgstr "Añadir Usuario"
 
-#: views.py:388
+#: views.py:397
 msgid "Users"
 msgstr "Usuarios"
 
-#: views.py:415
+#: views.py:424
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
