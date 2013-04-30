@@ -41,7 +41,7 @@ def release():
     pushpull()
     with cd(env.project_path):
         _run_manage('migrate')
-        _run_manage('collectstatic')
+        _run_manage('collectstatic --noinput')
     reloadapp()
 
 
