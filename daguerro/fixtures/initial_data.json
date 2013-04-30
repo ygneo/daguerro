@@ -81,6 +81,24 @@
     }
   },
   {
+    "pk": 9,
+    "model": "django_settings.setting",
+    "fields": {
+      "name": "DAG_SITE_DESCRIPTION",
+      "setting_id": 10,
+      "setting_type": 24
+    }
+  },
+  {
+    "pk": 10,
+    "model": "django_settings.setting",
+    "fields": {
+      "name": "DAG_PUBLISH_BY_DEFAULT",
+      "setting_id": 11,
+      "setting_type": 26
+    }
+  },
+  {
       "pk": 1,
       "model": "django_settings.email",
       "fields": {
@@ -141,6 +159,13 @@
     "model": "django_settings.string",
     "fields": {
       "value": "Site description"
+    }
+   },
+   {
+    "pk": 11,
+    "model": "django_settings.positiveinteger",
+    "fields": {
+      "value": 0
     }
    }
 ]

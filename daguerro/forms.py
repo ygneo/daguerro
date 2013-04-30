@@ -335,6 +335,9 @@ class SettingsForm(BetterForm):
     dag_site_description = forms.CharField(
         label=_("dag_site_description"), required=False,
         )
+    dag_publish_by_default = forms.BooleanField(
+        label=_("dag_publish_by_default"), required=False,
+        )
     dag_allow_photos_in_root_gallery = forms.BooleanField(
         label=_("dag_allow_photos_in_root_gallery"), required=False,
         )
@@ -359,13 +362,14 @@ class SettingsForm(BetterForm):
 
 
     class Meta:
-        fields = ['dag_site_title', 'dag_site_description', 'dag_allow_photos_in_root_gallery', 'dag_results_per_page',
-                  'dag_sales_email', 'dag_smtp_host', 'dag_smtp_host_user',
+        fields = ['dag_site_title', 'dag_site_description', 'dag_allow_photos_in_root_gallery',
+                  'dag_results_per_page', 'dag_sales_email', 'dag_smtp_host', 'dag_smtp_host_user',
                   'dag_smtp_password', 'dag_confirmation_mail_subject',
                   ]
         fieldsets = [('basic', {'fields':
                                 ['dag_site_title',
                                  'dag_site_description',
+                                 'dag_publish_by_default',
                                  'dag_allow_photos_in_root_gallery',
                                  'dag_results_per_page',
                                  ],
