@@ -14,5 +14,5 @@ fabric
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 werkzeug
 newrelic
-django-settings
+git+https://github.com/ygneo/django-settings.git
 gunicorn
