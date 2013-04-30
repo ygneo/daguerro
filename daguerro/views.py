@@ -84,7 +84,10 @@ def photo(request, action='add', slugs=None, slug=None):
             form.save()
             return redirect_to_gallery(slugs, page=request.GET.get("page", None))
     else:
-        form = PhotoForm(instance=photo, initial={'galleries': initial_galleries})
+        form = PhotoForm(instance=photo, initial={
+                'galleries': initial_galleries,
+                'is_public': django_settings.get('DAG_PUBLISH_BY_DEFAULT', default=False)
+                })
 
     return render_to_response('daguerro/photo.html',
                               {'form': form,
@@ -165,7 +168,10 @@ def gallery(request, action='add', slugs=""):
             form.save()
             return redirect_to_gallery(slugs, gallery, action)
     else:
-        form = GalleryForm(instance=gallery, initial={'parent': parent_gallery})
+        form = GalleryForm(instance=gallery, initial={
+                'parent': parent_gallery,
+                'is_public': django_settings.get('DAG_PUBLISH_BY_DEFAULT', default=False)
+                })
 
     return render_to_response('daguerro/gallery_form.html',
                               {'form': form,
@@ -344,7 +350,10 @@ def page(request, action, id=None):
             form.save()
             return HttpResponseRedirect(reverse("daguerro-pages-index"))
     else:
-        form = FlatPageForm(instance=page)
+        form = FlatPageForm(instance=page, initial={
+                'registration_required': not django_settings.get('DAG_PUBLISH_BY_DEFAULT',
+                                                                 default=True)
+                })
 
     return render_to_response('daguerro/page_form.html',
                               {'form': form,
