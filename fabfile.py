@@ -7,6 +7,7 @@ env.project_package = 'barres'
 env.project_root = "/home/ygneo/django_projects/barres-site/"
 env.project_path = env.app_root = os.path.join(env.project_root, env.project_package)
 env.virtualenv_path = "/home/ygneo/.virtualenvs/daguerro/"
+env.project_i18n_apps = ['daguerro', 'website']
 
 
 def git_status():
@@ -29,7 +30,9 @@ def reloadapp():
 
 
 def compilemessages():
-    _run_django_admin("compilemessages")
+    for app in env.project_i18n_apps:
+        with cd(os.path.join(env.project_path, app)):
+            run("%(virtualenv_path)s/bin/django-admin.py compilemessages" % env)
 
 def pip_install():
     pip_path = os.path.join(env.virtualenv_path, 'bin/pip')
@@ -43,13 +46,10 @@ def release():
         _run_manage('migrate')
         _run_manage('collectstatic --noinput')
     reloadapp()
+    compilemessages()
 
 
 def _run_manage(command, prefix=''):
     python_path = os.path.join(env.virtualenv_path, "bin/python")
     run("%s %s %s/manage.py %s" % (prefix, python_path, env.project_path,
                                 command))
-
-def _run_django_admin(command):
-    with cd(env.project_path): # + "/daguerro"):
-        _run_manage(command)
