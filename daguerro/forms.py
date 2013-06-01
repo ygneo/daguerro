@@ -19,6 +19,7 @@ from haystack.forms import SearchForm
 from haystack.query import SearchQuerySet
 from custom_fields.forms import CustomFieldsMixin
 import django_settings
+from django_settings import admin as django_settings_admin
 from daguerro.widgets import TreeCheckboxSelectMultipleWidget
 
 
@@ -390,7 +391,7 @@ class SettingsForm(BetterForm):
                     }
     def save(self, commit=True):
         if commit:
-            django_settings.admin.clear_cache(
+            django_settings_admin.clear_cache(
                 modeladmin=django_settings.admin.SettingAdmin,
                 request=None,
                 queryset=django_settings.models.Setting.objects.all()

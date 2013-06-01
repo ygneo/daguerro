@@ -130,6 +130,7 @@ INSTALLED_APPS = (
 
 LOGGING = {
     'version': 1,
+    'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
             'format': '%(levelname)s %(asctime)s [%(module)s] %(process)d %(thread)d %(message)s'
@@ -165,6 +166,7 @@ LOGGING = {
             'handlers': ['file'],
             'propagate': True,
             'level':'INFO',
+            }
         },
         'django.request': {
             'handlers': ['mail_admins'],
@@ -175,11 +177,6 @@ LOGGING = {
             'handlers': ['console', 'file', 'mail_admins'],
             'level': 'DEBUG',
         },
-    'form_utils': {
-            'handlers': ['console', 'file', 'mail_admins'],
-            'level': 'DEBUG',
-    }
-    }
 }
 
 # This setting can be overwritten in daguerro.settings
