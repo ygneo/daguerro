@@ -166,7 +166,6 @@ LOGGING = {
             'handlers': ['file'],
             'propagate': True,
             'level':'INFO',
-            }
         },
         'django.request': {
             'handlers': ['mail_admins'],
@@ -177,6 +176,7 @@ LOGGING = {
             'handlers': ['console', 'file', 'mail_admins'],
             'level': 'DEBUG',
         },
+   }
 }
 
 # This setting can be overwritten in daguerro.settings
