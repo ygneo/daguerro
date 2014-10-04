@@ -156,7 +156,7 @@ class Gallery(MPTTModel, CustomFieldsMixin):
 
     def __str__(self):
         return self.__unicode__()
-    
+
     @property
     def photos_ordering_field(self):
         return self.photos_ordering.replace("-", "")
@@ -185,7 +185,7 @@ class Gallery(MPTTModel, CustomFieldsMixin):
             self.photos_ordering = settings.DAG_DEFAULT_PHOTO_ORDERING
         super(Gallery, self).save(*args, **kwargs)
 
-        
+
     def latest(self, limit=0, public=True):
         if limit == 0:
             limit = self.photo_count()
@@ -225,7 +225,7 @@ class Gallery(MPTTModel, CustomFieldsMixin):
             parents.append(parent)
             parent = parent.parent
         return parents
-        
+
 
 class GalleryUpload(models.Model):
     zip_file = models.FileField(_('images file (.zip)'), upload_to=PHOTOLOGUE_DIR+"/temp",
@@ -393,7 +393,7 @@ class ImageModel(models.Model):
     def size_exists(self, photosize):
         func = getattr(self, "get_%s_filename" % photosize.name, None)
         if func is not None:
-            if os.path.isfile(func()):
+            if os.path.isfile(func().encode(settings.DEFAULT_CHARSET)):
                 return True
         return False
 
@@ -553,7 +553,7 @@ class PhotoQuerySet(CustomFieldQuerySet, models.query.QuerySet):
 
 class PhotoManager(models.Manager):
 
-    def get_query_set(self): 
+    def get_query_set(self):
         model = models.get_model('photologue', 'Photo')
         return PhotoQuerySet(model)
 
@@ -572,9 +572,9 @@ class Photo(ImageModel, CustomFieldsMixin):
     caption = models.TextField(blank=True)
     date_added = models.DateTimeField(_('Date added'), default=datetime.now, editable=False)
     order = models.IntegerField(_('Order'), blank=True, null=True)
-    is_public = models.BooleanField(_('Public'), default=True, 
+    is_public = models.BooleanField(_('Public'), default=True,
                                     help_text=_('Public photographs will be displayed in the default views.'))
-    is_gallery_thumbnail = models.BooleanField(_('Gallery thumbnail'), default=False, 
+    is_gallery_thumbnail = models.BooleanField(_('Gallery thumbnail'), default=False,
                                                help_text=_('Indicates wether or not photo is being used as gallery thumbnail.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('Tags'))
     location_title = models.CharField(_('Location'), max_length=300, blank=True, null=True,)
@@ -636,7 +636,7 @@ class Photo(ImageModel, CustomFieldsMixin):
             avaliable_title = "%s-%s" % (self.title, num_photos + 1)
             print avaliable_title
         return avaliable_title
-        
+
 
 class BaseEffect(models.Model):
     name = models.CharField(_('name'), max_length=30, unique=True)
@@ -841,5 +841,3 @@ def add_methods(sender, instance, signal, *args, **kwargs):
 
 # connect the add_accessor_methods function to the post_init signal
 post_init.connect(add_methods)
-
-
