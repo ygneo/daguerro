@@ -1,5 +1,7 @@
 import os
 from fabric.api import *
+from fabric.contrib.console import confirm
+
 
 env.hosts = ['ygneo@barresfotonatura.com']
 env.project_package_prefix = 'daguerro'
@@ -19,6 +21,18 @@ def pushpull():
     local("git push origin master")
     with cd(env.project_path):
         run('git pull')
+
+def pulldb():
+    filename = 'mysql_dumped.sql'
+
+    with cd(env['project_path']):
+        run('mysqldump --defaults-file=".mysqldump_cnf" --single-transaction daguerro > %s' % filename)
+        get(filename, '.')
+        run('rm %s' % filename)
+
+    if confirm("Load dumped remote data into local DB?"):
+        local('mysql --defaults-file=".mysqldump_cnf" daguerro < %s' % filename)
+
 
 
 def reloadapp():
