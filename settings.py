@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Django settings for daguerro project.
@@ -87,7 +86,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'contrib.breadcrumbs.middleware.BreadcrumbsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 )
 
@@ -100,9 +99,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.dirname(__file__), 'templates')
+    os.path.join(os.path.dirname(__file__), 'templates'),
 )
-
 
 INSTALLED_APPS = (
     'daguerro',
@@ -111,7 +109,7 @@ INSTALLED_APPS = (
     'photologue',
     'tinymce',
     'south',
-    'debug_toolbar',
+    #'debug_toolbar',
     'django_extensions',
     'django.contrib.auth',
     'django.contrib.admin',
@@ -121,7 +119,6 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.humanize',
     'django.contrib.staticfiles',
-    'django_js_utils',
     'django_settings',
     'mptt',
     'haystack',
@@ -189,6 +186,8 @@ HAYSTACK_CONNECTIONS = {
 }
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
+DAG_RESULTS_PER_PAGE = 20
+DAG_ADD_PHOTO_IN_ROOT = True
 DAG_SEARCH_FIELDS_INITIAL = {"title": True, "tags": True,
                              "cf_nombre_cientifico": True,
                              "cf_familia": True,
@@ -234,9 +233,6 @@ DAGUERRO_EMAIL_BODY =  u"""<p>Su pedido ha sido enviado correctamente y se atend
 """
 Local settings importing
 """
-try:
-    import platform
-    hostname = platform.node().replace('.','_').replace('-', '_')
-    exec "from local_settings.%s import *" % hostname
-except ImportError:
-    pass
+import platform
+hostname = platform.node().replace('.','_').replace('-', '_')
+exec "from local_settings.%s import *" % hostname
