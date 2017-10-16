@@ -2,7 +2,7 @@ import os
 from fabric.api import *
 from fabric.contrib.console import confirm
 
-
+env.forward_agent = True
 env.hosts = ['ygneo@barresfotonatura.com']
 env.project_package_prefix = 'daguerro'
 env.project_package = 'barres'
