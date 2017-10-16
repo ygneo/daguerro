@@ -48,7 +48,10 @@ def get_category_thread(slugs, urls_namespace):
 def daguerro_settings_to_dict():
     settings_dict = {}
     for setting in django_settings.models.Setting.objects.all():
-        settings_dict[setting.name.lower()] = setting.setting_object.value
+        try:
+            settings_dict[setting.name.lower()] = setting.setting_object.value
+        except AttributeError:
+            pass
     return settings_dict
 
 

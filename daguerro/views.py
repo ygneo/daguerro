@@ -42,13 +42,13 @@ def index(request, slugs=None):
         return HttpResponseRedirect(reverse("daguerro-pages-index"))
 
     page_no = int(request.GET.get('page', 1))
-    paginator = DiggPaginator(photos, django_settings.get('DAG_RESULTS_PER_PAGE'))
+    paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
     context = {'categories': categories,
                'current_category': current_category,
                'photos_page': paginator.page(page_no),
-               'add_photo_in_root': django_settings.get('DAG_ALLOW_PHOTOS_IN_ROOT_GALLERY'),
+               'add_photo_in_root': settings.DAG_ADD_PHOTO_IN_ROOT,
                'no_image_thumb_url': os.path.join(settings.STATIC_URL,
-                                                  settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY]),
+                                                settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY]),
                'search_options_form': SearchOptionsForm(),
                }
     return render_to_response('daguerro/gallery.html', context,

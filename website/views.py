@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
 from django.conf import settings
@@ -19,9 +18,9 @@ from website.forms import ShoppingCartForm
 
 def gallery(request, slugs=None):
     parent_slug, current_gallery = process_category_thread(request, slugs)
-    no_image_thumb_url = os.path.join(settings.STATIC_URL, 
+    no_image_thumb_url = os.path.join(settings.STATIC_URL,
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-    
+
     # TODO Find a better way to do this (parent by default for a category, i.e. root)
     if current_gallery:
         children_galleries = current_gallery.get_children().filter(is_public=True)
@@ -33,16 +32,16 @@ def gallery(request, slugs=None):
         brother_galleries = None
         children_galleries = None
         photos = Photo.objects.public().orphans()
-    
+
     page_no = int(request.GET.get('page', 1))
-    paginator = DiggPaginator(photos, django_settings.get('DAG_RESULTS_PER_PAGE'))
-    template = 'website/gallery.html' if slugs else 'website/index.html'  
-    return render_to_response(template, {'gallery': current_gallery, 
-                                         'brother_galleries': brother_galleries, 
+    paginator = DiggPaginator(photos, settings.DAG_RESULTS_PER_PAGE)
+    template = 'website/gallery.html' if slugs else 'website/index.html'
+    return render_to_response(template, {'gallery': current_gallery,
+                                         'brother_galleries': brother_galleries,
                                          'children_galleries': children_galleries,
                                          'search_options_form': SearchOptionsForm(),
                                          'no_image_thumb_url': no_image_thumb_url,
-                                         'photos_page': paginator.page(page_no),
+                                         'photos_page': paginator.page(page_no)
                                          }, context_instance=RequestContext(request)
                               )
 
@@ -50,13 +49,13 @@ def gallery(request, slugs=None):
 def photo(request, gallery_slugs, photo_slug):
     parent_slug, current_gallery = process_category_thread(request, gallery_slugs)
     parent_category = current_gallery.parent
-    
+
     try:
         photo = Photo.objects.get(title_slug=photo_slug)
     except Photo.DoesNotExist:
         raise Http404
     custom_fields = photo.custom_fields.exclude(value='')
-    
+
     return render_to_response('website/photo.html', {
             'photo': photo,
             'custom_fields': custom_fields,
@@ -68,9 +67,9 @@ def photo(request, gallery_slugs, photo_slug):
 
 def send_request_photos(request):
     form = ShoppingCartForm(request.POST)
-    if request.method == 'POST' : 
+    if request.method == 'POST' :
         form = ShoppingCartForm(request.POST)
-        
+
         if form.is_valid():
             subject = "[Barres Fotonatura] Solicitud de fotografías"
             message = request.POST.get("message", "")
@@ -83,7 +82,7 @@ def send_request_photos(request):
             return response
         else:
             return HttpResponseBadRequest(form.errors)
-    else: 
+    else:
         return HttpResponseBadRequest("POST only")
 
 
@@ -93,9 +92,9 @@ def _send_request_emails(subject, message, sender_email, photo_items):
         photos = Photo.objects.filter(pk__in=photo_items)
         no_image_thumb_url = os.path.join(settings.STATIC_URL,
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
-        body = t.render(Context({'photos': photos, 
+        body = t.render(Context({'photos': photos,
                                  'sender_email': sender_email,
-                                 'message': message, 
+                                 'message': message,
                                  'no_image_thumb_url': no_image_thumb_url}
                                 ))
         _send_html_mail(EmailMultiAlternatives(subject,
@@ -104,18 +103,17 @@ def _send_request_emails(subject, message, sender_email, photo_items):
                                                [django_settings.get('DAG_SMTP_HOST_USER')],
                                                headers = {'Reply-To': sender_email})
                         )
-        confirmation_body = settings.DAGUERRO_EMAIL_BODY % {'email': 
+        confirmation_body = settings.DAGUERRO_EMAIL_BODY % {'email':
                                                             django_settings.get("DAG_SALES_EMAIL")}
-        _send_html_mail(EmailMultiAlternatives(django_settings.get('DAG_CONFIRMATION_MAIL_SUBJECT'), 
+        _send_html_mail(EmailMultiAlternatives(django_settings.get('DAG_CONFIRMATION_MAIL_SUBJECT'),
                                                confirmation_body,
                                                django_settings.get('DAG_SMTP_HOST_USER'),
                                                [sender_email],)
                         )
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
- 
+
 
 def _send_html_mail(msg):
-    msg.attach_alternative(msg.body, "text/html")            
+    msg.attach_alternative(msg.body, "text/html")
     msg.send()
-
