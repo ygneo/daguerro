@@ -10,14 +10,14 @@ from custom_fields.models import CustomField
 class Migration(DataMigration):
 
     def forwards(self, orm):
-        ctype = ContentType.objects.get(app_label="photologue", model="photo")
+        ctype, _ = ContentType.objects.get_or_create(app_label="photologue", model="photo")
         f1, _ = CustomField.objects.get_or_create(
-            name="Nombre científico", 
+            name="Nombre científico",
             field_type="CharField",
             content_type=ctype,
             )
         f2, _ = CustomField.objects.get_or_create(
-            name="Familia", 
+            name="Familia",
             field_type="CharField",
             content_type=ctype,
             )
@@ -29,7 +29,7 @@ class Migration(DataMigration):
             )
             p.custom_fields.add(orm.GenericCustomField(field=f2, value=p.family))
             p.save()
-            
+
 
     def backwards(self, orm):
         "Write your backwards methods here."
