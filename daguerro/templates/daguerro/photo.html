@@ -3,7 +3,14 @@
 {% load i18n %}
 {% load form_filters %}
 
-{% block extra_media %} {{ form.media }} {% endblock %} 
+{% block extra_js %}
+{{ block.super }}
+<script>
+$('#id_tags').tagsInput();
+</script>
+{% endblock %}
+
+{% block extra_media %} {{ form.media }} {% endblock %}
 
 {% block section %}{{ current_action_title }}{% endblock %}
 
@@ -36,7 +43,7 @@
               {% else %}
                   <div {% if field.errors %}{{ field|merge_attrs:'class="wrong_field"' }}{% else %}{{ field.row_attrs }}{% endif %} >
                       {% if field|field_type:'checkboxinput' %}
-                      {{ field }} {{ field.label_tag }} 
+                      {{ field }} {{ field.label_tag }}
                       {% else %}
                       {% autoescape off %}
                       <label for="{{ field.name}}">{{ field.label }}</label>
@@ -54,10 +61,10 @@
   <div id="buttons">
     {% ifequal extra_context.current_action "edit" %}
     <div id="delete-button">
-      <a class="ui-delete-photo-button" 
+      <a class="ui-delete-photo-button"
 	 href="{% url daguerro-photo-delete current_category.slugs_path form.instance.id %}"
 	 >{% trans "Delete" %}</a>
-    </div>     
+    </div>
     {% endifequal %}
     <input type="submit" value="{% trans "Save" %}" id="save" />
   </div>
