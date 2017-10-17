@@ -6,7 +6,10 @@
 {% block extra_js %}
 {{ block.super }}
 <script>
-$('#id_tags').tagsInput();
+$('#id_tags').tagsInput({
+    'delimiter': [',',';',' '],
+}
+);
 </script>
 {% endblock %}
 
