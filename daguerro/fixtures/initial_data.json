@@ -151,14 +151,14 @@
     "pk": 9,
     "model": "django_settings.string",
     "fields": {
-      "value": "Site title"
+      "value": "Barres Fotonatura"
     }
    },
    {
     "pk": 10,
     "model": "django_settings.string",
     "fields": {
-      "value": "Site description"
+      "value": "Archivo Digital especializado en Naturaleza y Geografía"
     }
    },
    {
