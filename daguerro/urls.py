@@ -58,6 +58,11 @@ urlpatterns += patterns(
     # Settings urls
     url(r'^settings/$', 'settings_index',  name='daguerro-settings-index'),
 
+    # tags
+    url(r'^tags', 'tags',  name='daguerro-tags'),
+
+
+
     # Whoosh search index for testing purposes
     url(r'^wix', 'whoosh_search_index'),
 )

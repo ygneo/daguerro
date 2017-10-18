@@ -2,7 +2,8 @@
 import os
 import simplejson
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect,QueryDict
+from django.http import HttpResponse, HttpResponseRedirect, \
+    HttpResponseBadRequest, QueryDict
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -18,7 +19,7 @@ from daguerro.forms import PhotoForm, GalleryForm, FlatPageForm, UserForm, Resul
     SearchOptionsForm, SettingsForm
 from daguerro.utils import process_category_thread, SettingField, daguerro_settings_to_dict
 from daguerro.shorcuts import redirect_to_gallery
-from daguerro.models import DaguerroFlatPage
+from daguerro.models import DaguerroFlatPage, Tag
 from daguerro.utils import apply_batch_action
 from daguerro.paginator import DiggPaginator
 
@@ -471,3 +472,16 @@ def settings_index(request):
                               {'settings_form': form,
                                },
                               context_instance=RequestContext(request))
+
+
+@login_required
+def tags(request):
+    if request.method != "GET":
+        return HttpResponseBadRequest
+    if "term" in request.GET:
+        term = request.GET.get("term")
+
+    tags = Tag.objects.filter(name__startswith=term)
+    tags = list(tags.values_list("name", flat=True))
+
+    return HttpResponse(simplejson.dumps(tags, ensure_ascii=False))
