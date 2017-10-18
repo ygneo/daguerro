@@ -22,6 +22,7 @@ from south.modelsinspector import add_introspection_rules
 from mptt.models import MPTTModel, TreeForeignKey
 
 from custom_fields.models import GenericCustomField, CustomFieldsMixin, CustomFieldQuerySet
+from daguerro.models import Tag
 
 # Required PIL classes may or may not be available from the root namespace
 # depending on the installation method used.
@@ -597,6 +598,8 @@ class Photo(ImageModel, CustomFieldsMixin):
     def save(self, *args, **kwargs):
         self.title_slug = slugify(self.title)
         self.tags = self.tags.lower()
+        for tag in self.tags.split(" "):
+            Tag.objects.get_or_create(name=tag)
         super(Photo, self).save(*args, **kwargs)
 
     def public_galleries(self):
