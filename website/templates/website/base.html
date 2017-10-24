@@ -34,6 +34,11 @@
               {% for gallery in galleries %}
               <a href="{% url website-gallery gallery.title_slug %}" title="{{ gallery.title }}">{{ gallery.title }}</a>{% if not forloop.last %}, {% endif %}
               {% endfor %}
+              <p>(c) Josep María Barres {% now "Y" %} |
+                 {% for page in flatpages %}
+                 <a href="{{ page.url }}">{{ page.title }}</a> {% if not forloop.last  %} | {% endif %}
+                 {% endfor %}
+               </p>
             </h3>
           </div>
           <div id="side">
@@ -48,7 +53,8 @@
            <input type="text" id="query" name="q" value="{{ query }}"/>
                {% include "daguerro/search_buttons.html" %}
              </form>
-             </div>
+           </div>
+           
              <div id="tools">
               <div id="shop">
                 <div id="shop_info"><em id="shopping-cart-num-items">0</em> fotografía/s en la <a href="#" id="open-shopping-cart">cesta</a></div>
@@ -63,14 +69,15 @@
         {%block content %}{% endblock %}
       </div>
 
-      <div id="footer">
-        <div id="links">(c) Josep María Barres {% now "Y" %} |
-          {% for page in flatpages %}
-          <a href="{{ page.url }}">{{ page.title }}</a> {% if not forloop.last  %} | {% endif %}
-          {% endfor %}
-        </div>
+      <div id="selection">
       </div>
     </div>
+
+<script type="text/javascript">
+renderShoppingCart();
+</script>
+
+
     <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-26297451-1']);

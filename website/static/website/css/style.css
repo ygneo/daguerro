@@ -1,30 +1,29 @@
 * { margin: 0; padding: 0; }
-html,body {height:100%; font-family: Verdana, Arial; color: #111; margin: 0; padding: 0; }
+html,body {height:100%; font-family: Verdana, Arial; color: #111; margin: 0; padding: 0;   background-color: #CCC;
+}
 p { line-height:1.5; margin:0 0 1em; }
 img { border:0; }
-a { color: #75b410; } 
+a { color: #75b410; }
 fieldset { margin: 0; padding:0; border: 0; }
 em { font-style: normal; font-weight: bold; }
 
 .push { clear:both; height:0; width:0; line-height:0;}
 
-img.mini { width: 50px; height: 40px; } 
+img.mini { width: 50px; height: 40px; }
 
 div#container {
 	position:relative; /* needed for footer positioning*/
 	width:100%;
-	background:white;
 	height:auto !important; /* real browsers */
 	height:100%; /* IE6: treaded as min-height*/
 	min-height:100%; /* real browsers */
-    background-color: #CCC;
 }
 
-#header {height: 109px; padding-top:1ex; background-color:#222; border-bottom: 2px #58880c solid;width:100%; margin-bottom:2ex;}
+#header { height: 15ex; padding-top:1ex; background-color:#222; border-bottom: 2px #58880c solid;width:100%; margin-bottom:2ex;  font-size: 100%; float: left;}
         #header #header-int { width:88%; margin: 0 auto; height: 100%; }
-        #header h1 {font-size:200%;font-weight:normal; font-family: Helvetica; }
+        #header h1 {font-size:220%;font-weight:normal; font-family: Helvetica; }
         #header h1 a {text-decoration: none; }
-        #header h2 {clear: both; font-size: 100%;font-weight:normal; margin:0 0 0.5em;}
+        #header h2 {clear: both; font-size: 120%;font-weight:normal; margin:0 0 0.5em;}
         #header a {font-decoration:none;}
         #header a:hover {font-decoration:underline;}
 #header #push {display: block; clear: left; margin: -0.66em 0;}
@@ -33,11 +32,12 @@ div#container {
         #header #site_info span {color:#75b410;font-weight:bold;}
         #header #site_info h1 {margin-top:15px;margin-left: 90px;}
         #header #site_info h2 {margin-left: 90px; color: white;}
-        #header #site_info h3 {margin-left: 90px; font-size:60%; color: white; font-weight:normal;}
+        #header #site_info h3 {margin-left: 90px; font-size:90%; color: white; font-weight:normal;}
+        #header #site_info p {margin-top: 1ex; }
         #header #side { float: right; }
         #header #side #languages {font-size:70%; text-align: right; color: white;}
         #header #side #languages span {font-weight:bold;}
-        #header #side #searcher { font-size: 90%; text-align: right; margin-top: 1ex; }        
+        #header #side #searcher { font-size: 90%; text-align: right; margin-top: 1ex; }
         #header #searcher #search { float:right;}
         #header #searcher #search label { display: block; }
 	button::-moz-focus-inner,
@@ -48,43 +48,43 @@ div#container {
 	    border: none;
 	}
     form#search input { border: 0 }
-    form#search input[type=text] { 
-        color: black; 
-        border: 2px solid white; 
+    form#search input[type=text] {
+        color: black;
+        border: 2px solid white;
         float:left;
-        font-size: 120%; 
-        height: 26px; 
+        font-size: 120%;
+        height: 26px;
         padding: 1px;
         margin-right: .3ex;
-        width: 22em;      
+        width: 22em;
         border-radius: 4px;
         ms-border-radius: 4px;
         moz-border-radius: 4px;
         webkit-border-radius: 4px;
         khtml-border-radius: 4px;
     }
-    #header #searcher #search #search_buttons { 
+    #header #searcher #search #search_buttons {
 	        float: right;
             height: 32px;
-            width: 96px; 
+            width: 96px;
             border-color: transparent;
             border-radius: 4px;
             ms-border-radius: 4px;
             moz-border-radius: 4px;
             webkit-border-radius: 4px;
             khtml-border-radius: 4px;
-			background: #58880C; 
+			background: #58880C;
         }
        #header #searcher form#search div#search_options {
 	       display: none;
-	       clear: both; 
+	       clear: both;
 		   position: absolute;
-		   top: 48px; 
+		   top: 48px;
 		   width: 466px;
 		   background: white;
 		   color: #111;
-		   padding: 8px; 
-		   text-align: left; 
+		   padding: 8px;
+		   text-align: left;
 		   border-radius: 4px;
            ms-border-radius: 4px;
            moz-border-radius: 4px;
@@ -93,7 +93,7 @@ div#container {
 		   -webkit-box-shadow: 1px 1px 0px 0px #58880C;
 		   -moz-box-shadow: 1px 1px 0px 0px #58880C;
 		   box-shadow: 1px 1px 0px 0px #58880C;
-		   line-height: 150%; 
+		   line-height: 150%;
 		   z-index: 99;
        }
        #header #searcher form#search div#search_options ul { list-style: none; }
@@ -110,12 +110,12 @@ div#container {
 	#search_options fieldset#galleries-fields #ui-open-galleries.active { background: url('../img/rnd_br_up.png') left no-repeat transparent; }
         #ui-open-galleries + label { cursor: pointer; }
 	#ui-open-galleries + label:hover { text-decoration: underline; }
-	
-	ul.errorlist { background: url("../img/attention.png") 1ex 1ex #58880C no-repeat; 
-		       color: white; 
-		       margin: .5ex; 
-		       padding: 1ex; 
-		       padding-left: 4ex; 
+
+	ul.errorlist { background: url("../img/attention.png") 1ex 1ex #58880C no-repeat;
+		       color: white;
+		       margin: .5ex;
+		       padding: 1ex;
+		       padding-left: 4ex;
 		       border-radius: 4px;
                        ms-border-radius: 4px;
                        moz-border-radius: 4px;
@@ -123,12 +123,12 @@ div#container {
                        khtml-border-radius: 4px;
 		     }
 
-	p#search_no_results { 
-	    background: url("../img/attention_white_big.png") 1ex .5ex #58880C no-repeat; 
+	p#search_no_results {
+	    background: url("../img/attention_white_big.png") 1ex .5ex #58880C no-repeat;
 	    font-size: 120%;
-	    color: white; 
-	    padding: 1.5ex; 	    
-	    padding-left: 7ex; 
+	    color: white;
+	    padding: 1.5ex;
+	    padding-left: 7ex;
 	    border-radius: 4px;
             ms-border-radius: 4px;
             moz-border-radius: 4px;
@@ -139,15 +139,15 @@ div#container {
 
         #header #searcher #search input[type=submit] {
                                 height: 28px;
-                                width: 48px; 
-                                background: url('../img/zoom.png') center no-repeat #58880C; 
+                                width: 48px;
+                                background: url('../img/zoom.png') center no-repeat #58880C;
 				float: left;
 				margin-top: 2px;
 				margin-left: 4px;
 				padding-right: 8px;
         }
-        #header #searcher form#search input[type=submit]:hover,  #header #searcher form#search input[type=button]:hover { 
-	    cursor: pointer; 
+        #header #searcher form#search input[type=submit]:hover,  #header #searcher form#search input[type=button]:hover {
+	    cursor: pointer;
 	    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 	    filter: alpha(opacity=70);
 	    -moz-opacity:0.7;
@@ -155,22 +155,22 @@ div#container {
 	    opacity: 0.7;
 
 	}
-        #header #searcher #search input#search_options_button { 
+        #header #searcher #search input#search_options_button {
 				outline: none;
                                 height: 28px;
-                                width: 36px; 
-                                background: url('../img/cog.png') center no-repeat #58880C; 
+                                width: 36px;
+                                background: url('../img/cog.png') center no-repeat #58880C;
 				float: right;
 				margin-top: 2px;
         }
-        #header #searcher #search input#search_options_button.active {  
+        #header #searcher #search input#search_options_button.active {
                                background: url('../img/cog-active.png') center no-repeat #58880C; }
         #header #searcher form#search input[type=submit]:hover { cursor: pointer; }
         #header #searcher #search #search_options input[type=submit] {
 	    background: #58880C;
-	    float: right; 
+	    float: right;
 	    text-align: center;
-	    color: white; 
+	    color: white;
 	    padding: 0;
 	    width: 4em;
 	    cursor: pointer;
@@ -182,16 +182,16 @@ div#container {
 	    -webkit-box-shadow: 1px 1px 0px 0px #58880C;
 	    -moz-box-shadow: 1px 1px 0px 0px #58880C;
 	}
- 
-        #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px; 
-			  margin-left: 4px; margin-right: 2px; 
+
+        #vertical-border { float: left; width: 1px; height: 16px; background: white; margin-top: 8px;
+			  margin-left: 4px; margin-right: 2px;
 			}
         #ui-arrow-down { display: none; position: absolute; z-index: 100; background:url('../img/arrow-down.png') center no-repeat transparent; height: 24px; width: 36px; top: 47px; left: 1540px;}
 	#ui-tree-node-handler { float: left; font-size: 90%; height: 14px; width: 14px; margin-top: 2px; background: url('../img/sq_plus.png') center no-repeat transparent; margin-left: 0;}
 	#ui-tree-node-handler.close-node {background: url('../img/sq_minus.png') center no-repeat transparent; }
 
 div#content {
-        width: 88%;    
+        width: 88%;
         clear: both;
         margin: 0 auto;
         padding-bottom: 2ex;
@@ -204,15 +204,15 @@ div#content {
 #gallery li {float:left; text-align:center; margin-right: 40px; padding-bottom: 16px; background: #222222; width: 270px; margin-bottom:40px}
 #gallery li.last {float:left; text-align:center; margin-right: 0px;}
 #gallery li:hover {background-color:#58880c; filter:shadow(color:gray);}
-#gallery img {display:block;margin-bottom: 1ex;  margin: 0 auto; margin-bottom: 1ex;} 
+#gallery img {display:block;margin-bottom: 1ex;  margin: 0 auto; margin-bottom: 1ex;}
 #gallery a { font-size: 130%; color: white; text-decoration: none; }
 #gallery a:hover {margin-top: 1ex; color: white;  text-decoration: underline;}
 
 #category { margin-bottom: 2ex; float: left; width: 100%; background: #222222; }
 #category #imgCat img { float: left; padding:0; margin: 0; width: 108px; height: 72px; }
-#category #title { float:left; color: white; padding-left: 2ex; height: 72px; padding-top: .5ex; }  
-#category h2 { padding: 0; font-size: 130%; float: left; }      
-#category h3 { font-weight: normal; font-size: 90%; clear:left;}      
+#category #title { float:left; color: white; padding-left: 2ex; height: 72px; padding-top: .5ex; }
+#category h2 { padding: 0; font-size: 130%; float: left; }
+#category h3 { font-weight: normal; font-size: 90%; clear:left;}
 
 #tools { float: right; margin-top: 8px; margin-right: 8px; text-align: right; }
 #tools form { float: right; }
@@ -235,7 +235,7 @@ div#content {
 #subgallery li {float:left; text-align:center; margin-right: 20px; padding-bottom: 8px; margin-bottom:20px; background: #222222; width: 250px;}
 #subgallery li:hover {background-color:#58880c; }
 #subgallery li.first {clear:both;}
-#subgallery img {display:block;margin-bottom: 1ex; width: 250px; height: 160px;  margin: 0 auto;  margin-bottom: 1ex;} 
+#subgallery img {display:block;margin-bottom: 1ex; width: 250px; height: 160px;  margin: 0 auto;  margin-bottom: 1ex;}
 #subgallery a { font-size: 100%; color: white; text-decoration: none; }
 #subgallery a:hover {margin-top: 1ex; color: white;  text-decoration: underline;}
 
@@ -294,13 +294,13 @@ div#photo div#photo_info img  {  float:left; margin-right: 1em; }
 
 div#photo div#description  { float: left; margin-right: 4ex;}
 
-div.info { float: left;  height: 100%; margin-left: 4em; }
+div.info { float: left;  height: 100%; }
 div.info.first { margin-left: 0; }
 div.info img { margin-top: .5ex; }
 div.info ul {
     list-style: none;
     float: left;
-    margin-left: 1ex; 
+    margin-left: 1ex;
 }
 
 div.tab { float: left; }
@@ -337,25 +337,104 @@ ul.pagination .next {  }
 
 ul.pagination .prev {  }
 
-ul.pagination li { padding: .5ex; float: left;  color: #58880C; }    
+ul.pagination li { padding: .5ex; float: left;  color: #58880C; }
 
 ul.pagination li a  { text-decoration: none; color: #58880C; }
 
 ul.pagination .current { background-color: #58880C; color: white; }
 
-
-div#footer {
-        clear: both;
-	position:absolute;
-	bottom: 0; /* stick to bottom */
-        font-size:60%;
-        color: #EEFFFF;
-        padding-top: 1.5ex;
-        padding-bottom: 1.5ex;
-        width: 100%;
-        background-color: #222;                
+a#ui-add-to-cart {
+	color: white;
+	text-decoration: none;
+	width: 10em;
+	display: block;
+	font-size: 110%;
+  background-color: #222;
+  padding: 2ex;
+  border-radius: 10px;
+  ms-border-radius: 10px;
+  moz-border-radius: 10px;
+  webkit-border-radius: 10px;
+  khtml-border-radius: 10px;
 }
-        #footer a {color: #EEFFFF;  font-decoration:none;}
-        #footer a:hover {font-decoration:underline;}
-        #footer #links {width: 88%; margin: 0 auto; text-align: center;}
-        #footer #daguerro {display:block;float:right;}
+
+a#ui-add-to-cart:hover {
+    background-color: #58880C;
+}
+
+
+div#selection {
+  height: 160px;
+	color: white;
+	clear: both;
+	margin: 0 auto;
+	padding-top: 2ex;
+	background-color: #111;
+	width: 88%;
+	border-radius: 10px;
+  ms-border-radius: 10px;
+  moz-border-radius: 10px;
+  webkit-border-radius: 10px;
+  khtml-border-radius: 10px;
+}
+
+div#selection ul#photos {
+	float: left;
+	list-style: none;
+	margin-left: 2ex;
+	margin-top: 1.5ex;
+	margin-bottom: 1.5ex;
+	padding-left: 1.5ex;g
+}
+
+div#selection ul#photos li {
+	width: auto;
+	float: left;
+	margin-right: 1em;
+	padding: 0;
+}
+
+
+div#selection p {
+	margin: 0;
+	padding: 0;
+	color: white;
+
+}
+
+div#selection div#buttons {
+	float: right;
+	width: 7em;
+}
+
+div#selection button, div#selection div#buttons a {
+    text-align: center;
+	float: right;
+	margin-right: 1.5ex;
+	margin-top: 1.5ex;
+	background-color: #222;
+	border: 0;
+	color: white;
+	font-size: 120%;
+	width: 150px;
+	padding: 10px;
+  border-radius: 4px;
+  ms-border-radius: 4px;
+  moz-border-radius: 4px;
+  webkit-border-radius: 4px;
+  khtml-border-radius: 4px;
+	cursor: pointer;
+  text-decoration: none;
+}
+
+div#selection button:hover, div#selection div#buttons a:hover  {
+  background-color: #58880C;
+}
+
+div#selection div.ui-selection-remove {
+    color: white;
+    background-color: black;
+    opacity: .9;
+    font-weight: bold;
+    top: -10px;
+}

@@ -1,56 +1,20 @@
-var cart_session_key = 'daguerro-cart' 
+var cart_session_key = 'daguerro-cart'
 
 $(document).ready(function() {
-    var shopping_cart_container_id = 'div#shopping-cart';
-
-    $('a#open-shopping-cart').qtip({
-            content: renderShoppingCart(),
-                position: {
-                corner: {
-                    target: 'bottomMiddle',
-                    tooltip: 'topMiddle'
-                        }
-            },
-                style: { 
-                width: 220,
-                    padding: 5,
-                    background: 'white',
-                    color: 'black',
-                    'font-size': 'small',
-                    border: {
-                    width: 1,
-                        radius: 4,
-                        color: 'white'
-                        },
-                    textAlign: 'left',
-                    tip: 'topMiddle',
-                    name: 'dark'
-                    },
-                fixed: true,
-               hide: { when: { target: $("a#close-shopping-cart"), event: "doubleclick" }},  
-               show: { when: { event: "click" }}
+    $('div#selection a#cancel').live("click", function (e) {
+        $.cookie(cart_session_key, null, { path: '/' });
+        renderShoppingCart();
     });
-
-    $('a#open-shopping-cart').click(function (e) { 
-            e.preventDefault(); 
-            e.stopPropagation();
-            renderShoppingCartTable(shopping_cart_container_id);
-            $('a#open-shopping-cart').qtip("show");
-            $("fieldset#request-form").hide();
-            $("#ui-shopping-cart-make-request").show();
-        });
-
-    $('a#close-shopping-cart').live("click", function (e) { 
-            $('a#open-shopping-cart').qtip("hide");
-            });
 
     $("#ui-add-to-cart").click(function(e) {
             e.preventDefault();
-            current_item  = {'id': $(this).attr('data:item_id'),
+
+            var current_item  = {'id': $(this).attr('data:item_id'),
                              'thumb_url': $(this).attr('data:item_thumb_url'),
                              'title': $(this).attr('data:item_title')
             };
-            items = JSON.parse($.cookie(cart_session_key));
+            var items = JSON.parse($.cookie(cart_session_key));
+
             if (items) {
                 items[current_item.id] = current_item;
             }
@@ -58,17 +22,19 @@ $(document).ready(function() {
                 items = new Object();
                 items[current_item.id] = current_item;
             }
+
             $.cookie(cart_session_key, null);
             $.cookie(cart_session_key, JSON.stringify(items), {expires: null,  path: "/"});
-            updateShoppingCartNumItems();
+
+            renderShoppingCart();
      });
 
-    $("#ui-shopping-cart-make-request").live("click", function(e) { 
+    $("#ui-shopping-cart-make-request").live("click", function(e) {
             $(this).hide();
-            $(shopping_cart_container_id + " table tr td input[type=checkbox]:not(:checked)").each(function() { 
+            $(shopping_cart_container_id + " table tr td input[type=checkbox]:not(:checked)").each(function() {
                     $(this).parent("td").each(function() {
                             $(this).parent("tr").fadeOut();
-                    });                    
+                    });
             });
             $("fieldset#request-form").show();
         });
@@ -94,7 +60,7 @@ $(document).ready(function() {
 	    }
     }
 
-    $("#shopping-cart-submit").live("click", function(e) { 
+    $("#shopping-cart-submit").live("click", function(e) {
         input_email = $("input[name=email]")
         if (!validEmail(input_email.attr("value"))) {
             e.preventDefault();
@@ -105,7 +71,7 @@ $(document).ready(function() {
 		                target: 'bottomLeft',
 		            },
 	            },
-	            style: { 
+	            style: {
 		            tip: {
 		                corner: 'topMiddle',
 		                color: '#58880C',
@@ -127,24 +93,28 @@ $(document).ready(function() {
 	            hide: { when: { target: input_email,
 			                    event: 'keyup'
 			                  },
-		                effect: { type: 'fade' } 
+		                effect: { type: 'fade' }
 		              },
 	        });
         }
     });
-   
 
-    function renderShoppingCartTable(container_id) {
-        table = $("table#shopping-list");
-        table.html('');
-        photo_items = Array();
-        current_object = Object();
-        var items = JSON.parse($.cookie(cart_session_key), function (key, value) {
-	        if (typeof value === 'string') {
+
+
+});
+
+
+function renderShoppingCart() {
+    var cart = $('div#selection');
+
+    photo_items = Array();
+    current_object = Object();
+    var items = JSON.parse($.cookie(cart_session_key), function (key, value) {
+	       if (typeof value === 'string') {
 		        if (key == 'id') {
 			        current_object = Object();
 			        current_object.id = value;
-		        }	
+		        }
 		        else if (key == 'thumb_url') {
 			        current_object.thumb_url = value;
 		        }
@@ -153,33 +123,25 @@ $(document).ready(function() {
 			        photo_items.push(current_object);
 		        }
 	        }
-        });
+    });
+
+    cart.html('');
+    cart.hide();
+
+    if (photo_items.length) {
+        cart.html('<ul id="photos"></ul>');
+        var list = $("ul#photos");
+
         photo_items.forEach(function (photo, id) {
-            table.append('<tr><td><input type="checkbox" checked="checked" class="select-item"/><input type="hidden" name="shopping-cart-items[]" value ="' + photo.id + '" /><td><img src="'+ photo.thumb_url + '" alt="' + photo.title + 'title="' + photo.title + '"/></td><td>' + photo.title  + '</td></tr>');
-	    });
+                list.append('<li><img src="'+ photo.thumb_url + '" alt="' + photo.title + 'title="' + photo.title + '"/><p>' + photo.title  + '</p>');
+    	});
+
+        cart.append('<div id="buttons"><a id="request" href="/request">Solicitar estas fotografías</a><a id="cancel">Cancelar</a></div>');
+
+        cart.show();
     }
 
-    function renderShoppingCart() {
-        updateShoppingCartNumItems();
-        return $('<div id="shopping-cart"><div id="head"><h3>Cesta de fotografías</h3><a id="close-shopping-cart" href="#" title="Close">x</a></div><form action="/solicitar-fotos/" method="post"><table id="shopping-list"></table><input id="ui-shopping-cart-make-request" type="button" value="Solicitar"></input><fieldset id="request-form"><input type="text" name="email" value="tu correo electrónico" data:default="tu correo electrónico"/><textarea name="message" rows="5" data:default="tus comentarios (opcional)">tus comentarios (opcional)</textarea><input type="hidden" name="redirect_to_url" value="' + window.location + '"/><input type="submit" value="Enviar solicitud" id="shopping-cart-submit"/></fieldset></form></div>');
-    }
-
-    function numItemsInShoppingCar() {
-        var count=0;
-        var items = JSON.parse($.cookie(cart_session_key));
-        for (key in items) { count++; }
-        return count;
-    }
-
-    function updateShoppingCartNumItems() {
-        var num_items = numItemsInShoppingCar();
-        if (num_items > 0) {
-            $("#tools #shop").show();
-            $("#shopping-cart-num-items").html(num_items);
-        }
-    }
-});
-
+}
 
 //This prototype is provided by the Mozilla foundation and
 //is distributed under the MIT license.
@@ -201,5 +163,3 @@ if (!Array.prototype.forEach)
     }
   };
 }
-
- 
