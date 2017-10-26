@@ -86,7 +86,7 @@ def send_request_photos(request):
         return HttpResponseBadRequest("POST only")
 
 
-def _send_request_emails(subject, message, sender_email, photo_items):
+def _send_request_emails(subject, data, sender_email, photo_items):
     try:
         t = get_template('website/request_photos_mail.html')
         photos = Photo.objects.filter(pk__in=photo_items)
@@ -94,7 +94,7 @@ def _send_request_emails(subject, message, sender_email, photo_items):
                                           settings.DAG_NO_IMAGE[settings.DAG_GALLERY_THUMB_SIZE_KEY])
         body = t.render(Context({'photos': photos,
                                  'sender_email': sender_email,
-                                 'message': message,
+                                 'data': data,
                                  'no_image_thumb_url': no_image_thumb_url}
                                 ))
         _send_html_mail(EmailMultiAlternatives(subject,
@@ -117,3 +117,24 @@ def _send_request_emails(subject, message, sender_email, photo_items):
 def _send_html_mail(msg):
     msg.attach_alternative(msg.body, "text/html")
     msg.send()
+
+
+def photos_request_page(request):
+    if request.method == "GET":
+        return render_to_response('website/photos_request_page.html', {}, context_instance=RequestContext(request))
+    elif request.method == "POST":
+        subject = "[Barres Fotonatura] Solicitud de fotografías"
+
+        data = {
+            "name": request.POST.get("name"),
+            "quality": request.POST.get("quality"),
+            "use":  request.POST.get("use"),
+            "comments": request.POST.get("comments")
+        }
+        sender_email = request.POST.get("email", "")
+        photo_ids = request.POST.getlist("photo_ids[]")
+        _send_request_emails(subject, data, sender_email, photo_ids)
+
+        response = HttpResponseRedirect("/")
+        response.delete_cookie(settings.DAGUERRO_CART_SESSION_KEY)
+        return response

@@ -418,13 +418,13 @@ div#selection button, div#selection div#buttons a {
 	font-size: 120%;
 	width: 150px;
 	padding: 10px;
-  border-radius: 4px;
-  ms-border-radius: 4px;
-  moz-border-radius: 4px;
-  webkit-border-radius: 4px;
-  khtml-border-radius: 4px;
+    border-radius: 4px;
+    ms-border-radius: 4px;
+    moz-border-radius: 4px;
+    webkit-border-radius: 4px;
+    khtml-border-radius: 4px;
 	cursor: pointer;
-  text-decoration: none;
+    text-decoration: none;
 }
 
 div#selection button:hover, div#selection div#buttons a:hover  {
@@ -437,4 +437,76 @@ div#selection div.ui-selection-remove {
     opacity: .9;
     font-weight: bold;
     top: -10px;
+}
+
+
+form#photos_request {
+    background-color: #111;
+    color: white;
+    float: left;
+    padding: 4ex;
+    border-radius: 4px;
+    ms-border-radius: 4px;
+    moz-border-radius: 4px;
+    webkit-border-radius: 4px;
+    html-border-radius: 4px;
+}
+
+form#photos_request table {
+    margin-top: 1.5ex;
+    margin-bottom: 1.5ex;
+}
+
+form#photos_request table td {
+    padding-right: .5ex;
+}
+
+form#photos_request p {
+    margin-top: 1.5ex;
+    margin-bottom: 1.5ex;
+}
+
+form#photos_request label, form#photos_request input, form#photos_request textarea, form#photos_request select, form#photos_request button {
+    float: left;
+    clear: both;
+}
+
+form#photos_request div.field {
+    float: left;
+    clear: both;
+    margin-bottom: 1ex;
+}
+
+form#photos_request label {
+    margin-bottom: .2ex;
+} 
+
+
+form#photos_request input {
+    padding: .5ex;
+    width: 40em;
+}
+
+form#photos_request textarea {
+    width: 40em;
+    height: 20ex;
+}
+
+form#photos_request button {
+    margin-top: 1.5ex;
+    background-color: #222;
+    font-size: 120%;
+    color: white;
+    border: 0;
+    padding: 1ex;
+    border-radius: 4px;
+    ms-border-radius: 4px;
+    moz-border-radius: 4px;
+    webkit-border-radius: 4px;
+    html-border-radius: 4px;
+}
+
+form#photos_request button:hover {
+    background-color: #58880C;
+    cursor: pointer;
 }

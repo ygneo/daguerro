@@ -1,0 +1,55 @@
+{% extends "website/base.html" %}
+
+{% load i18n %}
+
+{% block title %}Barres foto natura | Solicitar fotos en alta calidad | {{ query }}{% endblock %}
+
+{% block content %}
+<form id="photos_request" method="POST">
+  <h2>Solicitar fotografías en alta calidad</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum tincidunt dui eu fringilla. Phasellus at nibh a orci tristique cursus. Suspendisse lacinia purus mauris, sed facilisis orci pellentesque nec. Aenean et mattis erat. Curabitur ac pulvinar magna. Donec hendrerit quam vitae nisi dictum volutpat. Integer sollicitudin nisl sed neque varius luctus. Cras porta varius orci, ac vulputate nisi feugiat nec. Morbi et turpis orci. Mauris semper, sapien non molestie ultricies, metus elit congue turpis, id egestas nunc nisi quis sapien.</p>
+  <table id="photos_list">
+  </table> 
+  
+  <div class="field">
+    <label for="quality">Tamaño y calidad</label>
+    <select name="quality" id="quality">
+      <option value="x">X</option>
+      <option value="y">Y</option>
+      <option value="z">Z</option>
+    </select>
+  </div>  
+ 
+ <div class="field">
+    <label for="quality">Uso</label>
+    <select name="use" id="use">
+      <option value="x">X</option>
+      <option value="y">Y</option>
+      <option value="z">Z</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="name">Tu nombre</label>
+    <input type="text" name="name" id="name"/>
+  </div>
+
+  <div class="field">
+      <label for="email">Tu dirección e-mail*</label>
+      <input type="email" name="email" id="email" required/>
+  </div>
+
+  <div class="field">
+    <label for="comments">Comentarios</label>
+    <textarea name="comments" id="comments"></textarea>
+  </div>
+
+  <button type="submit">Solicitar fotos</button>
+</form>
+{% endblock %}
+
+
+{% block lastJS %}
+<script type="text/javascript" src="{{ STATIC_URL }}website/js/photos_request_page.js"></script>
+{% endblock lastJS %}
+

@@ -25,6 +25,7 @@ urlpatterns = urlpatterns + patterns(
         name='website-send-request-photos'),
     (r'^favicon.ico$', redirect_to, 
      {'url':'/static/website/img/favicon.ico'}),
+    url(r'request/$', 'photos_request_page', name='website-request-photos'),
     url(r'(?P<gallery_slugs>.+)/foto/(?P<photo_slug>.+)$', 
         'photo', name='website-photo'),
     url(r'(?P<slugs>.+)$', 'gallery', name='website-gallery'),

@@ -106,7 +106,9 @@ $(document).ready(function() {
 
 function renderShoppingCart() {
     var cart = $('div#selection');
+    var show_cart = !$("form#photos_request").length;
 
+ 
     photo_items = Array();
     current_object = Object();
     var items = JSON.parse($.cookie(cart_session_key), function (key, value) {
@@ -128,7 +130,7 @@ function renderShoppingCart() {
     cart.html('');
     cart.hide();
 
-    if (photo_items.length) {
+    if (photo_items.length && show_cart) {
         cart.html('<ul id="photos"></ul>');
         var list = $("ul#photos");
 

@@ -1,44 +1,42 @@
 <html>
-<body style="font-family: Verdana, Arial;">
+    <body style="font-family: Verdana, Arial;">
 
-<p>Un visitante (<a href="mailto:{{ sender_email }}">{{ sender_email }}</a>) del sitio Barres Fotonatura ha realizado la solicitud de fotografías que a continuación se detalla.</p>
-{% if message %}
-<p>Además ha dejado estos comentarios:</p>
-<p>---</p>
-{{ message }}
-<p>---</p>
-{% endif %}
-</p>
+        <p>Un visitante (<a href="mailto:{{ sender_email }}">{{ sender_email }}</a>) del sitio Barres Fotonatura ha realizado la solicitud de fotografías que a continuación se detalla.</p>
+        <p>Nombre del solicitante: {{ data.name }}</p>
 
-<table style="width: 100%; border-collapse: collapse;">
-  <thead style="background: #222; color: white; text-align:center;">
-  {% comment TODO: Show the image (gmail is scaping it and converting spaces in + %}
-  <td style="background: white; border: 1px solid white;"></td>
-  {% endcomment %}
-  <td style="border: 1px solid white;">Título</td><td style="border: 1px solid white;">Categoría(s)</td>
-  </thead>
-{%for photo in photos %}
-  <tr style="{% cycle 'background-color: #CCCCCC;' '' %}">
-    {% comment TODO: Show the image (gmail is scaping it and converting spaces in + %}
-    <td style="border: none; background: white; width: 147px; text-align: center; ">
-      <img style="border: 0;" src="{% autoescape off %}{{ photo.get_thumbnail_url }}{% endautoescape %}" alt="" title="{{ photo.title }}"/>
-    </td>
-    {% endcomment %}
-    <td style="border: 1px solid white; padding: 0.5ex;">
-      {{ photo.title }}
-    </td>
-    <td style="border: 1px solid white; padding: 0.5ex;">
-      {% for gallery in photo.galleries.all %}
-         <p>
-         {% for parent in gallery.get_parents reversed %}
-         {{ parent.title }} >
-         {% endfor %}
-         {{ gallery.title }}
-         </p>
-    </td>
-      {% endfor %}
-    </tr>
-{%endfor %}
+        <p>Tamaño y calidad solicitada: {{ data.quality }}</p>
+        <p>Uso declarado: {{ data.use }}</p>
+        <p>Comentarios: {{ data.comments }}</p>
+
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead style="background: #222; color: white; text-align:center;">
+                {% comment TODO: Show the image (gmail is scaping it and converting spaces in + %}
+                <td style="background: white; border: 1px solid white;"></td>
+                {% endcomment %}
+                <td style="border: 1px solid white;">Título</td><td style="border: 1px solid white;">Categoría(s)</td>
+            </thead>
+            {%for photo in photos %}
+            <tr style="{% cycle 'background-color: #CCCCCC;' '' %}">
+                {% comment TODO: Show the image (gmail is scaping it and converting spaces in + %}
+                <td style="border: none; background: white; width: 147px; text-align: center; ">
+                    <img style="border: 0;" src="{% autoescape off %}{{ photo.get_thumbnail_url }}{% endautoescape %}" alt="" title="{{ photo.title }}"/>
+                </td>
+                {% endcomment %}
+                <td style="border: 1px solid white; padding: 0.5ex;">
+                    <a href="http://www.barresfotonatura.com/{{ photo.get_website_url }}" {{ photo.title }}
+                </td>
+                <td style="border: 1px solid white; padding: 0.5ex;">
+                    {% for gallery in photo.galleries.all %}
+                    <p>
+                        {% for parent in gallery.get_parents reversed %}
+                        {{ parent.title }} >
+                        {% endfor %}
+                        {{ gallery.title }}
+                    </p>
+                </td>
+                {% endfor %}
+            </tr>
+            {%endfor %}
 </table>
 </body>
 </html>
