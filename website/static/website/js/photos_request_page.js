@@ -28,7 +28,7 @@ function renderPhotosTable() {
         photo_items.forEach(function (photo, id) {
             var img = '<img src="'+ photo.thumb_url + '" alt="' + photo.title + 'title="' + photo.title + '"/>';
             var title = '<div>' + photo.title + '</div>'
-            var button = '<button class="remove" data:id="' + photo.id + '">Quitar</button>'
+            var button = '<button class="remove" data:id="' + photo.id + '">Quitar / Remove</button>'
             var input = '<input type="hidden" name="photo_ids[]" value ="' + photo.id + '"/>'
 
             table.append('<tr><td>' + img + '<td><td>' +  title + button + input + '</td></tr>');

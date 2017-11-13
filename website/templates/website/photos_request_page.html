@@ -6,45 +6,41 @@
 
 {% block content %}
 <form id="photos_request" method="POST">
-  <h2>Solicitar fotografías en alta calidad</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum tincidunt dui eu fringilla. Phasellus at nibh a orci tristique cursus. Suspendisse lacinia purus mauris, sed facilisis orci pellentesque nec. Aenean et mattis erat. Curabitur ac pulvinar magna. Donec hendrerit quam vitae nisi dictum volutpat. Integer sollicitudin nisl sed neque varius luctus. Cras porta varius orci, ac vulputate nisi feugiat nec. Morbi et turpis orci. Mauris semper, sapien non molestie ultricies, metus elit congue turpis, id egestas nunc nisi quis sapien.</p>
+  <h2>Solicitar fotografías en alta calidad / Request images in high quality</h2>
+  <p>En el siguiente formulario puedes solicitar las fotografías que has seleccionado. Su importe para usos comerciales estará en función del uso y el tamaño, en 300 ppi, así cómo de la cantidad de imágenes escogidas.</p>
+  <p>On next form you can request images chosen. The images price for commercial ueses would be depending on use, quality and quantity.</p>
+
   <table id="photos_list">
   </table> 
   
   <div class="field">
-    <label for="quality">Tamaño y calidad</label>
-    <select name="quality" id="quality">
-      <option value="x">X</option>
-      <option value="y">Y</option>
-      <option value="z">Z</option>
-    </select>
+      <label for="quality">Calidad / Quality</label>
+      <input type="text" name="quality" id="quality"/>
+      <br/>
+      <span>Hasta 7300x5000 o 62x42cm / Until 7300x5000 or 62x42cm</span>
   </div>  
  
  <div class="field">
-    <label for="quality">Uso</label>
-    <select name="use" id="use">
-      <option value="x">X</option>
-      <option value="y">Y</option>
-      <option value="z">Z</option>
-    </select>
-  </div>
+     <label for="quality">Uso / Use</label>
+     <input type="text" name="use" id="use"/>
+ </div>
 
   <div class="field">
-    <label for="name">Tu nombre</label>
+    <label for="name">Tu nombre / Your name</label>
     <input type="text" name="name" id="name"/>
   </div>
 
   <div class="field">
-      <label for="email">Tu dirección e-mail*</label>
+      <label for="email">Tu dirección e-mail* / Your email address</label>
       <input type="email" name="email" id="email" required/>
   </div>
 
   <div class="field">
-    <label for="comments">Comentarios</label>
+    <label for="comments">Comentarios / Comments</label>
     <textarea name="comments" id="comments"></textarea>
   </div>
 
-  <button type="submit">Solicitar fotos</button>
+  <button type="submit">Solicitar fotos / Request images</button>
 </form>
 {% endblock %}
 
