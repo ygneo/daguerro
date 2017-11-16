@@ -107,7 +107,7 @@ def _send_request_emails(subject, data, sender_email, photo_items):
                                                             django_settings.get("DAG_SALES_EMAIL")}
         _send_html_mail(EmailMultiAlternatives(django_settings.get('DAG_CONFIRMATION_MAIL_SUBJECT'),
                                                confirmation_body,
-                                               settings.EMAIL_USER,
+                                               settings.EMAIL_HOST_USER,
                                                [sender_email],)
                         )
     except BadHeaderError:
