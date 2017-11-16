@@ -3,10 +3,14 @@
 
         <p>Un visitante (<a href="mailto:{{ sender_email }}">{{ sender_email }}</a>) del sitio Barres Fotonatura ha realizado la solicitud de fotografías que a continuación se detalla.</p>
         <p>Nombre del solicitante: {{ data.name }}</p>
-
         <p>Tamaño y calidad solicitada: {{ data.quality }}</p>
         <p>Uso declarado: {{ data.use }}</p>
-        <p>Comentarios: {{ data.comments }}</p>
+        {% if data.comments %}
+        <p>Comentarios:</p>
+        <p>
+            {{ data.comments }}
+        </p>
+        {% endif %}
 
         <table style="width: 100%; border-collapse: collapse;">
             <thead style="background: #222; color: white; text-align:center;">
@@ -23,7 +27,7 @@
                 </td>
                 {% endcomment %}
                 <td style="border: 1px solid white; padding: 0.5ex;">
-                    <a href="http://www.barresfotonatura.com/{{ photo.get_website_url }}" {{ photo.title }}
+                    <a href="http://www.barresfotonatura.com/{{ photo.get_website_url }}">{{ photo.title }}</a>
                 </td>
                 <td style="border: 1px solid white; padding: 0.5ex;">
                     {% for gallery in photo.galleries.all %}
