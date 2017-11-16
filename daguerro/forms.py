@@ -348,15 +348,6 @@ class SettingsForm(BetterForm):
     dag_sales_email = forms.EmailField(
         label=_("dag_sales_email"), required=False,
         )
-    dag_smtp_host = forms.CharField(
-        label=_("dag_smtp_host"), required=False,
-        )
-    dag_smtp_host_user = forms.CharField(
-        label=_("dag_smtp_host_user"), required=False,
-        )
-    dag_smtp_password = forms.CharField(
-        label=_("dag_smtp_password"), required=False,
-        )
     dag_confirmation_mail_subject = forms.CharField(
         label=_("dag_confirmation_mail_subject"), required=False,
         )
