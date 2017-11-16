@@ -27,15 +27,6 @@
       }
    },
    {
-      "pk": 7,
-      "model": "django_settings.setting",
-      "fields": {
-         "name": "DAG_SALES_EMAIL",
-         "setting_id": 1,
-         "setting_type": 23
-      }
-   },
-   {
     "pk": 8,
     "model": "django_settings.setting",
     "fields": {
@@ -71,13 +62,6 @@
       "setting_type": 26
     }
   },
-  {
-      "pk": 1,
-      "model": "django_settings.email",
-      "fields": {
-         "value": "pedidos@barresfotonatura.com"
-      }
-   },
    {
       "pk": 1,
       "model": "django_settings.string",
